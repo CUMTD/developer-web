@@ -1,0 +1,58 @@
+{
+	"bugs": {
+		"url": "https://github.com/rblackman/developer-web/issues"
+	},
+	"dependencies": {
+		"clsx": "^2.1.1",
+		"next": "^16.1.1",
+		"react": "^19.2.3",
+		"react-dom": "^19.2.3",
+		"server-only": "^0.0.1",
+		"zod": "^4.3.3"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.3.10",
+		"@commitlint/cli": "^20.2.0",
+		"@commitlint/config-conventional": "^20.2.0",
+		"@types/node": "^25.0.3",
+		"@types/react": "^19.2.7",
+		"@types/react-dom": "^19.2.3",
+		"dotenv": "^17.2.3",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7",
+		"tsx": "^4.21.0",
+		"typescript": "^5.9.3"
+	},
+	"engines": {
+		"node": "v22.x"
+	},
+	"homepage": "https://mtd.dev/",
+	"name": "developer-web",
+	"packageManager": "pnpm@10.27.0",
+	"private": true,
+	"repository": {
+		"type": "github",
+		"url": "https://github.com/rblackman/developer-web"
+	},
+	"scripts": {
+		"build": "next build",
+		"dev": "next dev",
+		"start": "next start",
+
+		"prebuild": "pnpm --filter cms typegen && pnpm run validate:env",
+		"predev": "pnpm run validate:env",
+		"preinstall": "corepack enable",
+		"prepare": "husky",
+
+		"shadcn:fix-type": "pnpm exec tsx --require dotenv/config scripts/add-ts-nocheck-to-shadcn.ts",
+		"shadcn:update": "pnpm dlx shadcn@latest add --all --yes --overwrite && pnpm run shadcn:fix-type",
+
+		"ci:verify": "pnpm exec biome check . && pnpm exec tsc -p tsconfig.json --noEmit",
+		"format": "pnpm exec biome format --write .",
+		"lint": "pnpm exec biome check --write .",
+		"typecheck": "pnpm exec tsc -p tsconfig.json --noEmit",
+		"validate:env": "pnpm exec tsx --require dotenv/config scripts/validate-env.ts"
+	},
+	"type": "module",
+	"version": "3.0.0"
+}

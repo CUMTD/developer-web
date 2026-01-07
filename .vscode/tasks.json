@@ -1,0 +1,52 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Dev",
+			"type": "shell",
+			"command": "pnpm run dev",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"presentation": {
+				"panel": "dedicated",
+				"reveal": "always"
+			},
+			"detail": "Start the Next.js dev server for the website on port 3000."
+		},
+		{
+			"label": "Lint (Biome)",
+			"type": "shell",
+			"command": "pnpm run lint",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"detail": "Run Biome across the workspace."
+		},
+		{
+			"label": "Typecheck",
+			"type": "shell",
+			"command": "pnpm run typecheck",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": "$tsc",
+			"detail": "Run TypeScript checks across all packages."
+		},
+		{
+			"label": "CI Verify",
+			"type": "shell",
+			"command": "pnpm run ci:verify",
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "Mirror the CI verify pipeline locally."
+		}
+	]
+}

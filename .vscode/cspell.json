@@ -1,0 +1,16 @@
+{
+	"ignorePaths": [
+		"**/node_modules/**",
+		"**/.next/**",
+		"**/.turbo/**",
+		"**/.vercel/**",
+		"git/**/*"
+	],
+	"words": [
+		"autoapprove",
+		"Autobuild",
+		"commitlint",
+		"esbuild",
+		"lintstagedrc"
+	]
+}
