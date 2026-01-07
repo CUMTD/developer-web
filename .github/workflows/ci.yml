@@ -39,9 +39,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: S
-        uses: ./.github/actions/write-website-env
-
       - name: Verify
         run: pnpm run ci:verify
         env:
