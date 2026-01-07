@@ -21,7 +21,7 @@ function patchFile(filePath: string) {
 	// Already patched?
 	if (/^\s*\/\/\s*@ts-nocheck/.test(text)) return;
 
-	writeFileSync(filePath, `// @ts-nocheck\n${original}`);
+	writeFileSync(filePath, `// @ts-nocheck\n// tailwindcss-disable suggestCanonicalClasses\n${original}`);
 	console.log("patched", filePath);
 }
 
