@@ -1,4 +1,4 @@
-import { clientEnv } from "@shared/config/env.client";
+import { serverEnv } from "@shared/config/env.server";
 import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
@@ -10,8 +10,8 @@ export default async function updateSession(request: NextRequest) {
 	// With Fluid compute, don't put this client in a global environment
 	// variable. Always create a new one on each request.
 	const supabase = createServerClient(
-		clientEnv.NEXT_PUBLIC_SUPABASE_URL,
-		clientEnv.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+		serverEnv.NEXT_PUBLIC_SUPABASE_URL,
+		serverEnv.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
 		{
 			cookies: {
 				getAll() {

@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@components/theme-provider";
-import { clientEnv } from "@shared/config/env.client";
+import { serverEnv } from "@shared/config/env.server";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VercelToolbar } from "@vercel/toolbar/next";
 import type { Metadata, Viewport } from "next";
@@ -28,7 +28,7 @@ export const viewport: Viewport = {
 export async function generateMetadata(): Promise<Metadata> {
 	const defaultTitle = "MTD Developer";
 	const defaultDescription = "MTD Developer API."; // TODO: Update description
-	const metadataBase = clientEnv.NEXT_PUBLIC_BASE_URL;
+	const metadataBase = serverEnv.NEXT_PUBLIC_BASE_URL;
 
 	return {
 		title: {
