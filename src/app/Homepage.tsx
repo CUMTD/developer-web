@@ -1,5 +1,5 @@
 "use client";
-import CopyTextButton from "@components/CopyString";
+import CopyTextButton from "@components/CopyTextButton";
 import { Button } from "@shared/shadcn/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@shared/shadcn/card";
 import { Separator } from "@shared/shadcn/separator";
