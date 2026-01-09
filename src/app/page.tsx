@@ -1,6 +1,7 @@
 import buildCanonicalUrl from "@helpers/build-canonical-url";
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 import "server-only";
+import Homepage from "./Homepage";
 
 const homeCanonical = buildCanonicalUrl("/");
 const homeTitle = "Home";
@@ -23,9 +24,5 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-	return (
-		<main>
-			<h1>Welcome to MTD Developer</h1>
-		</main>
-	);
+	return <Homepage />;
 }

@@ -1,5 +1,16 @@
 {
 	"$schema": "https://ui.shadcn.com/schema.json",
+	"style": "new-york",
+	"rsc": false,
+	"tsx": true,
+	"tailwind": {
+		"config": "",
+		"css": "src/app/globals.css",
+		"baseColor": "slate",
+		"cssVariables": true,
+		"prefix": ""
+	},
+	"iconLibrary": "lucide",
 	"aliases": {
 		"components": "@shared/shadcn",
 		"utils": "@shared/utils",
@@ -7,15 +18,7 @@
 		"lib": "@shared",
 		"hooks": "@shared/hooks"
 	},
-	"iconLibrary": "lucide",
-	"rsc": false,
-	"style": "new-york",
-	"tailwind": {
-		"baseColor": "slate",
-		"config": "",
-		"css": "src/app/globals.css",
-		"cssVariables": true,
-		"prefix": ""
-	},
-	"tsx": true
+	"registries": {
+		"@supabase": "https://supabase.com/ui/r/{name}.json"
+	}
 }

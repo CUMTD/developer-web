@@ -1,12 +1,13 @@
+import { ThemeProvider } from "@components/theme-provider";
 import { clientEnv } from "@shared/config/env.client";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VercelToolbar } from "@vercel/toolbar/next";
-import clsx from "clsx";
 import type { Metadata, Viewport } from "next";
 import { Overpass, Overpass_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import "server-only";
 import "./globals.css";
+import NavMenu from "./NavMenu";
 
 const overpass = Overpass({
 	subsets: ["latin"],
@@ -51,15 +52,20 @@ export async function generateMetadata(): Promise<Metadata> {
 	};
 }
 
-export default async function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
 	const shouldInjectToolbar = process.env.NODE_ENV === "development";
 
 	return (
-		<html lang="en" className={clsx(overpass.variable, overpassMono.variable, "antialiased")}>
-			<body>
-				{children}
-				{shouldInjectToolbar && <VercelToolbar />}
-				<SpeedInsights />
+		<html lang="en" suppressHydrationWarning>
+			<body className={`${overpass.variable} ${overpassMono.variable} font-sans antialiased`}>
+				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+					<div className="grid grid-rows-[auto_1fr] h-screen">
+						<NavMenu />
+						<main className="overflow-auto">{children}</main>
+					</div>
+					{shouldInjectToolbar && <VercelToolbar />}
+					<SpeedInsights />
+				</ThemeProvider>
 			</body>
 		</html>
 	);
