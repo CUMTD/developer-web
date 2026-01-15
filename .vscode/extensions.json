@@ -6,7 +6,8 @@
 		"EditorConfig.EditorConfig",
 		"github.vscode-github-actions",
 		"sanity-io.vscode-sanity",
-		"bradlc.vscode-tailwindcss"
+		"bradlc.vscode-tailwindcss",
+		"unifiedjs.vscode-mdx"
 	],
 	"unwantedRecommendations": ["esbenp.prettier-vscode"]
 }

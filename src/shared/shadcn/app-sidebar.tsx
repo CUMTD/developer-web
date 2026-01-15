@@ -11,105 +11,147 @@ import {
 	SidebarMenuSubItem,
 	SidebarRail,
 } from "@shared/shadcn/sidebar";
+
+import { ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import type * as React from "react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
 
 const data = {
 	navMain: [
 		{
-			title: "Getting Started",
-			url: "/reference",
+			title: "Introduction",
+			url: "/reference/introduction",
+		},
+		{
+			title: "Getting an API Key",
+			url: "/reference/api-key",
+		},
+		{
+			title: "Sending HTTP Requests",
+			url: "/reference/requests",
+		},
+		{
+			title: "Interpreting Responses",
+			url: "/reference/responses",
+		},
+		{
+			title: "Routes",
+			subtitle: "/routes",
+			url: "/reference/routes",
 			items: [
 				{
-					title: "Introduction",
-					url: "#",
+					title: "Get a route",
+					url: "#get-route",
 				},
 				{
-					title: "Getting an API Key",
-					url: "#",
-				},
-				{
-					title: "Sending HTTP Requests",
-					url: "#",
-				},
-				{
-					title: "Interpreting Responses",
-					url: "#",
+					title: "Get all routes",
+					url: "/reference/routes#get-routes",
 				},
 			],
 		},
 		{
-			title: "Objects",
-			url: "/reference/objects",
+			title: "Shapes",
+			subtitle: "/shapes",
+			url: "/reference/shapes",
 			items: [
 				{
-					title: "Route",
-					url: "#",
-				},
-				{
-					title: "Stop",
-					url: "#",
-				},
-				{
-					title: "Trip",
-					url: "#",
-				},
-				{
-					title: "Vehicle",
-					url: "#",
-				},
-				{
-					title: "Service Alert",
-					url: "#",
+					title: "Get a shape",
+					url: "#get-shape",
 				},
 			],
 		},
 		{
-			title: "API Endpoints",
-			url: "/reference/endpoints",
-			monospacedSub: true,
+			title: "Trips",
+			subtitle: "/trips",
+			url: "/reference/trips",
 			items: [
 				{
-					title: "/routes",
-					url: "#",
+					title: "Get all trips",
+					url: "#get-trips",
 				},
 				{
-					title: "/search",
-					url: "#",
+					title: "Get a trip",
+					url: "#get-trip",
+				},
+			],
+		},
+		{
+			title: "Stops",
+			subtitle: "/stops",
+			url: "/reference/stops",
+			items: [
+				{
+					title: "Get all stops",
+
+					url: "#get-stops",
 				},
 				{
-					title: "/service-alerts",
-					url: "#",
+					title: "Get a stop",
+					url: "#get-stop",
 				},
 				{
-					title: "/shapes",
-					url: "#",
+					title: "Get stop's schedule",
+					url: "#get-stop-schedule",
 				},
 				{
-					title: "/stops",
-					url: "#",
+					title: "Get stop's trips",
+					url: "#get-stop-trips",
 				},
 				{
-					title: "/trips",
-					url: "#",
+					title: "Get stop's routes",
+					url: "#get-stop-routes",
 				},
 				{
-					title: "/vehicles",
-					url: "#",
+					title: "Get stop's departures",
+
+					url: "#get-departures",
+				},
+			],
+		},
+		{
+			title: "Vehicles",
+			subtitle: "/vehicles",
+
+			url: "/reference/vehicles",
+			items: [
+				{
+					title: "Get all vehicles",
+					url: "#get-vehicles",
+				},
+				{
+					title: "Get a vehicle",
+					url: "#get-vehicle",
+				},
+				{
+					title: "Get a vehicle's current location",
+					url: "#get-vehicle-location",
+				},
+			],
+		},
+		{
+			title: "Service Alerts",
+			subtitle: "/service-alerts",
+
+			url: "/reference/service-alerts",
+			items: [
+				{
+					title: "Get all service alerts",
+					url: "#get-service-alerts",
 				},
 			],
 		},
 
-		{
-			title: "Community",
-			url: "/reference/community",
-			items: [
-				{
-					title: "Contribution Guide",
-					url: "#",
-				},
-			],
-		},
+		// {
+		// 	title: "Community",
+		// 	url: "/reference/community",
+		// 	items: [
+		// 		{
+		// 			title: "Contribution Guide",
+		// 			url: "/reference/community",
+		// 		},
+		// 	],
+		// },
 	],
 };
 
@@ -118,38 +160,54 @@ export function ReferenceSidebar({ ...props }: React.ComponentProps<typeof Sideb
 
 	return (
 		<Sidebar {...props}>
-			{/* <SidebarHeader>
-				<h1>MTD API v3.0.0</h1>
-			</SidebarHeader> */}
 			<SidebarContent>
 				<SidebarGroup>
 					<SidebarMenu>
 						{data.navMain.map((item) => {
 							const isMainActive = pathname === item.url || pathname.startsWith(`${item.url}/`);
-							return (
-								<SidebarMenuItem key={item.title}>
-									<SidebarMenuButton asChild isActive={isMainActive}>
-										<a href={item.url} className="font-bold">
-											{item.title}
-										</a>
-									</SidebarMenuButton>
-									{item.items?.length ? (
-										<SidebarMenuSub className={`${item.monospacedSub ? "font-mono" : ""} `}>
-											{item.items.map((subItem) => {
-												const isSubActive =
-													pathname === subItem.url || (subItem.url !== "#" && pathname.startsWith(`${subItem.url}/`));
-												return (
-													<SidebarMenuSubItem key={subItem.title}>
-														<SidebarMenuSubButton asChild isActive={isSubActive}>
-															<a href={subItem.url}>{subItem.title}</a>
-														</SidebarMenuSubButton>
-													</SidebarMenuSubItem>
-												);
-											})}
-										</SidebarMenuSub>
-									) : null}
-								</SidebarMenuItem>
-							);
+
+							if (item.items?.length) {
+								// Collapsible item with sub-items
+								return (
+									<Collapsible key={item.title} defaultOpen={isMainActive} className="group/collapsible">
+										<SidebarMenuItem>
+											<CollapsibleTrigger asChild>
+												<SidebarMenuButton isActive={isMainActive} className="font-bold">
+													{item.title} <span className="font-mono text-muted-foreground">{item.subtitle}</span>
+													<ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+												</SidebarMenuButton>
+											</CollapsibleTrigger>
+											<CollapsibleContent>
+												<SidebarMenuSub>
+													{item.items.map((subItem) => {
+														const isSubActive =
+															pathname === subItem.url ||
+															(subItem.url !== "#" && pathname.startsWith(`${subItem.url}/`));
+														return (
+															<SidebarMenuSubItem key={subItem.title}>
+																<SidebarMenuSubButton asChild isActive={isSubActive}>
+																	<a href={subItem.url}>{subItem.title}</a>
+																</SidebarMenuSubButton>
+															</SidebarMenuSubItem>
+														);
+													})}
+												</SidebarMenuSub>
+											</CollapsibleContent>
+										</SidebarMenuItem>
+									</Collapsible>
+								);
+							} else {
+								// Regular item without sub-items
+								return (
+									<SidebarMenuItem key={item.title}>
+										<SidebarMenuButton asChild isActive={isMainActive}>
+											<a href={item.url} className="font-bold">
+												{item.title} {item.subtitle}
+											</a>
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+								);
+							}
 						})}
 					</SidebarMenu>
 				</SidebarGroup>

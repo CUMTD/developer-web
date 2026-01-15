@@ -59,11 +59,11 @@ export default function NavMenu() {
 						</NavigationMenuContent>
 					</NavigationMenuItem>
 
-					<NavigationMenuItem>
+					{/* <NavigationMenuItem>
 						<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
 							<Link href="/garage">App Garage</Link>
 						</NavigationMenuLink>
-					</NavigationMenuItem>
+					</NavigationMenuItem> */}
 
 					<NavigationMenuItem>
 						<UserProfileDisplay />

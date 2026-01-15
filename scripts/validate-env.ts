@@ -1,7 +1,7 @@
-import { ClientEnvSchema, ServerEnvSchema } from "../src/shared/config/env.schema";
+import { GlobalEnvSchema, ServerEnvSchema } from "../src/shared/config/env.schema";
 
 // Parse using process.env so it matches Next build environment
-ClientEnvSchema.parse(process.env);
+GlobalEnvSchema.parse(process.env);
 
 ServerEnvSchema.parse(process.env);
 

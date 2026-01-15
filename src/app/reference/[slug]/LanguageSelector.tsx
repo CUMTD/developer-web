@@ -1,0 +1,71 @@
+"use client";
+
+import { Button } from "@shared/shadcn/button";
+import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from "@shared/shadcn/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@shared/shadcn/popover";
+import { cn } from "@shared/utils";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { useRouter } from "next/navigation";
+import * as React from "react";
+import { EXAMPLE_LANGUAGES } from "src/app/markdown/languages";
+
+interface LanguageSelectorProps {
+	selectedLanguage: string;
+}
+
+export function LanguageSelector({ selectedLanguage }: LanguageSelectorProps) {
+	const router = useRouter();
+	const [open, setOpen] = React.useState(false);
+
+	return (
+		<Popover open={open} onOpenChange={setOpen}>
+			<PopoverTrigger asChild>
+				<Button variant="outline" role="combobox" aria-expanded={open} className="w-[200px] justify-between">
+					<div className="flex items-center gap-2">
+						{(() => {
+							const selectedLanguageObj = EXAMPLE_LANGUAGES.find((language) => language.name === selectedLanguage);
+							const IconComponent = selectedLanguageObj?.icon;
+							return IconComponent ? <IconComponent className="h-4 w-4" /> : null;
+						})()}
+						{EXAMPLE_LANGUAGES.find((language) => language.name === selectedLanguage)?.displayName}
+					</div>
+					<ChevronsUpDown className="opacity-50" />
+				</Button>
+			</PopoverTrigger>
+			<PopoverContent className="w-[200px] p-0">
+				<Command>
+					<CommandList>
+						<CommandEmpty>No language found.</CommandEmpty>
+						<CommandGroup>
+							{EXAMPLE_LANGUAGES.map((language) => {
+								const IconComponent = language.icon;
+								return (
+									<CommandItem
+										key={language.name}
+										value={language.name}
+										onSelect={(currentValue) => {
+											if (currentValue !== selectedLanguage) {
+												const url = new URL(window.location.href);
+												url.searchParams.set("language", currentValue);
+												router.push(url.toString());
+											}
+											setOpen(false);
+										}}
+									>
+										<div className="flex items-center gap-2">
+											<IconComponent className="h-4 w-4" />
+											{language.displayName}
+										</div>
+										<Check
+											className={cn("ml-auto", selectedLanguage === language.name ? "opacity-100" : "opacity-0")}
+										/>
+									</CommandItem>
+								);
+							})}
+						</CommandGroup>
+					</CommandList>
+				</Command>
+			</PopoverContent>
+		</Popover>
+	);
+}

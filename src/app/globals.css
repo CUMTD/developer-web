@@ -156,10 +156,17 @@ th {
 	color: var(--muted-foreground);
 }
 
-/* tbody tr:nth-child(even) {
-  background-color: var(--muted);
-} */
+pre {
+	overflow-x: auto;
+}
 
-/* tbody tr:hover {
-  background-color: var(--accent);
-} */
+/* rehype-pretty-code emits spans for each line */
+pre [data-line] {
+	padding: 0 1rem;
+	font-size: var(--text-sm);
+}
+
+/* make sure the theme colors actually get used */
+pre code {
+	display: grid;
+}

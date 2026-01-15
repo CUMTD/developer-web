@@ -39,7 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
 		metadataBase,
 		openGraph: {
 			type: "website",
-			...(metadataBase && { url: metadataBase }),
+			...(metadataBase ? { url: metadataBase } : {}),
 			siteName: defaultTitle,
 			title: defaultTitle,
 			description: defaultDescription,
@@ -53,7 +53,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-	const shouldInjectToolbar = process.env.NODE_ENV === "development";
+	// const shouldInjectToolbar = process.env.NODE_ENV === "development";
+	const shouldInjectToolbar = false; //todo
 
 	return (
 		<html lang="en" suppressHydrationWarning>

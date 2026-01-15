@@ -3,7 +3,7 @@ import CopyTextButton from "@components/CopyString";
 import { Button } from "@shared/shadcn/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@shared/shadcn/card";
 import { Separator } from "@shared/shadcn/separator";
-import { ArrowRight, DownloadIcon, ExternalLink, FolderArchive, KeyIcon, WorkflowIcon } from "lucide-react";
+import { ArrowRight, DownloadIcon, ExternalLink, FolderArchive, KeyRoundIcon, WorkflowIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -101,7 +101,7 @@ export default function Homepage() {
 						<CardFooter className="mt-auto">
 							<div className="flex flex-row gap-4">
 								<Button variant={"secondary"} className="bg-blue-800 text-white">
-									Get an API Key <KeyIcon />
+									Get an API Key <KeyRoundIcon />
 								</Button>
 								<Button>
 									API Reference <ArrowRight />

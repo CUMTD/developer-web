@@ -1,6 +1,6 @@
-import { clientEnv } from "@shared/config/env.client";
+import { globalEnv } from "@shared/config/env.global";
 import { createBrowserClient } from "@supabase/ssr";
 
 export function createClient() {
-	return createBrowserClient(clientEnv.NEXT_PUBLIC_SUPABASE_URL, clientEnv.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
+	return createBrowserClient(globalEnv.NEXT_PUBLIC_SUPABASE_URL, globalEnv.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
 }
