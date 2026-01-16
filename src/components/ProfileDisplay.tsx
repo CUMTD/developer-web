@@ -8,7 +8,11 @@ export default function UserProfileDisplay() {
 	const router = useRouter();
 
 	if (username === "?") {
-		return <Button onClick={() => router.push("/auth/login")}>Sign In</Button>;
+		return (
+			<Button size={"sm"} onClick={() => router.push("/auth/login")}>
+				Sign In
+			</Button>
+		);
 	}
 	return (
 		<div className="flex flex-row gap-2">
@@ -17,7 +21,7 @@ export default function UserProfileDisplay() {
 				className={"bg-green-800 hover:bg-green-900 hover:cursor-pointer text-white"}
 				size={"sm"}
 			>
-				Dashboard
+				My Account
 			</Button>
 			<CurrentUserAvatar />
 		</div>

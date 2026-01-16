@@ -7,7 +7,7 @@ export default async function ReferenceLayout({ children }: { children: ReactNod
 	return (
 		<SidebarProvider>
 			<ReferenceSidebar collapsible="none" />
-			<SidebarInset className="">{children}</SidebarInset>
+			<SidebarInset className="p-10">{children}</SidebarInset>
 		</SidebarProvider>
 	);
 }

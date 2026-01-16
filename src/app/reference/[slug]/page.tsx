@@ -1,36 +1,38 @@
 import { readdir } from "node:fs/promises";
 import { join } from "node:path";
+import EndpointParameters from "@components/EndpointParameters";
 import { Item, ItemContent, ItemGroup, ItemHeader } from "@shared/shadcn/item";
 import { Separator } from "@shared/shadcn/separator";
 import { notFound } from "next/navigation";
+import "server-only";
 import { EXAMPLE_LANGUAGES } from "src/app/markdown/languages";
 import { CodeExampleWithCopy } from "./CodeExampleWithCopy";
 import { LanguageSelector } from "./LanguageSelector";
 
-// valid API objects (anything else will be 404'd)
-const VALID_API_OBJECTS = ["routes", "shapes", "trips", "stops", "vehicles", "service-alerts"] as const;
+async function getTopLevelReferenceDirectories() {
+	const markdownPath = join(process.cwd(), "src", "app", "markdown");
+	const entries = await readdir(markdownPath, { withFileTypes: true });
+	const directories = entries.filter((entry) => entry.isDirectory()).map(({ name }) => name);
+	return directories;
+}
 
-type ApiObject = (typeof VALID_API_OBJECTS)[number];
-
-function assertValidApiObject(value: string): asserts value is ApiObject {
-	if (!(VALID_API_OBJECTS as readonly string[]).includes(value)) {
+export async function validateSlug(slug: string): Promise<void> {
+	const validSlugs = await getTopLevelReferenceDirectories();
+	if (!validSlugs.includes(slug)) {
 		notFound();
 	}
 }
 
 export async function generateStaticParams() {
-	// read top level slugs (folders) from file system and generate static pages (/reference/routes, /reference/stops, etc)
-	const markdownPath = join(process.cwd(), "src", "app", "markdown");
-	const entries = await readdir(markdownPath, { withFileTypes: true });
-	const folders = entries.filter((entry) => entry.isDirectory()).map((entry) => ({ slug: entry.name }));
-
-	return folders;
+	const directories = await getTopLevelReferenceDirectories();
+	return directories.map((slug) => ({ slug }));
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
 	const { slug: apiObject } = await params;
 
-	assertValidApiObject(apiObject);
+	// will return a not found if no folder exists for this slug.
+	await validateSlug(apiObject);
 
 	// read subdirectories from the slug folder: if the apiObject is "routes", return ["get-route", "get-routes"]
 	const markdownPath = join(process.cwd(), "src", "app", "markdown", apiObject);
@@ -38,13 +40,20 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 	const methods = entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name);
 
 	const { default: ObjectDescription } = await import(`../../markdown/${apiObject}/description.mdx`);
+	const { default: ResponseObject } = await import(`../../markdown/${apiObject}/response.mdx`);
 
 	return (
 		<>
-			<div className="col-span-2" id={apiObject}>
+			<div className="col-span-1 lg:col-span-1 prose dark:prose-invert max-w-full" id={apiObject}>
 				<ObjectDescription />
 			</div>
-			<Separator className="col-span-3" />
+			<Item className="items-start p-0 ">
+				<ItemContent>
+					<ItemHeader className="text-xl ">Object</ItemHeader>
+					<ResponseObject />
+				</ItemContent>
+			</Item>
+			<Separator className="col-span-1 lg:col-span-2" />
 
 			{methods.map((method) => {
 				return (
@@ -66,38 +75,40 @@ async function EndpointItem({ object, method, selectedLanguage }: EndpointItemPr
 	const { default: EndpointDescription } = await import(`../../markdown/${object}/${method}/description.mdx`);
 	const { default: ResponseObject } = await import(`../../markdown/${object}/response.mdx`);
 	const { default: CodeExample } = await import(`../../markdown/${object}/${method}/${selectedLanguage}.mdx`);
+	const { parameters } = await import(`../../markdown/${object}/${method}/parameters.ts`);
 
 	return (
 		<>
-			<div className="col-span-2" id={method}>
-				<EndpointDescription />
-			</div>
-			<div className="flex flex-col gap-5">
+			<div className="col-span-1 lg:col-span-1 flex flex-col gap-10" id={method}>
+				<div className="[&_p]:text-muted-foreground">
+					<EndpointDescription />
+				</div>
 				<div>
-					<ItemGroup>
-						<Item>
-							<ItemHeader className="text-xl">
-								Example
-								<div>
-									<LanguageSelector selectedLanguage={selectedLanguage} />
-								</div>
-							</ItemHeader>
-							<ItemContent>
-								<CodeExampleWithCopy>
-									<CodeExample />
-								</CodeExampleWithCopy>
-							</ItemContent>
-						</Item>
-						<Item>
-							<ItemHeader className="text-xl">Response</ItemHeader>
-							<ItemContent>
-								<ResponseObject />
-							</ItemContent>
-						</Item>
-					</ItemGroup>
+					<EndpointParameters parameters={parameters} />
 				</div>
 			</div>
-			<Separator className="col-span-3" />
+			<ItemGroup className="flex flex-col gap-5">
+				<Item className="p-0">
+					<ItemHeader className="text-xl">
+						Example
+						<div>
+							<LanguageSelector selectedLanguage={selectedLanguage} />
+						</div>
+					</ItemHeader>
+					<ItemContent className="w-full">
+						<CodeExampleWithCopy>
+							<CodeExample />
+						</CodeExampleWithCopy>
+					</ItemContent>
+				</Item>
+				<Item className="p-0">
+					<ItemHeader className="text-xl">Response</ItemHeader>
+					<ItemContent>
+						<ResponseObject />
+					</ItemContent>
+				</Item>
+			</ItemGroup>
+			<Separator className="col-span-1 lg:col-span-2" />
 		</>
 	);
 }

@@ -12,10 +12,9 @@ import {
 	SidebarRail,
 } from "@shared/shadcn/sidebar";
 
-import { ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import type * as React from "react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./collapsible";
+import { Collapsible } from "./collapsible";
 
 const data = {
 	navMain: [
@@ -24,11 +23,11 @@ const data = {
 			url: "/reference/introduction",
 		},
 		{
-			title: "Getting an API Key",
-			url: "/reference/api-key",
+			title: "Authentication",
+			url: "/reference/authentication",
 		},
 		{
-			title: "Sending HTTP Requests",
+			title: "Sending Requests",
 			url: "/reference/requests",
 		},
 		{
@@ -42,11 +41,15 @@ const data = {
 			items: [
 				{
 					title: "Get a route",
-					url: "#get-route",
+					url: "/reference/routes#get-route",
 				},
 				{
-					title: "Get all routes",
-					url: "/reference/routes#get-routes",
+					title: "Get a route group",
+					url: "/reference/routes#get-route-group",
+				},
+				{
+					title: "Get all route groups",
+					url: "/reference/routes#get-route-groups",
 				},
 			],
 		},
@@ -57,7 +60,7 @@ const data = {
 			items: [
 				{
 					title: "Get a shape",
-					url: "#get-shape",
+					url: "/reference/shapes#get-shape",
 				},
 			],
 		},
@@ -171,28 +174,30 @@ export function ReferenceSidebar({ ...props }: React.ComponentProps<typeof Sideb
 								return (
 									<Collapsible key={item.title} defaultOpen={isMainActive} className="group/collapsible">
 										<SidebarMenuItem>
-											<CollapsibleTrigger asChild>
-												<SidebarMenuButton isActive={isMainActive} className="font-bold">
-													{item.title} <span className="font-mono text-muted-foreground">{item.subtitle}</span>
-													<ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
-												</SidebarMenuButton>
-											</CollapsibleTrigger>
-											<CollapsibleContent>
-												<SidebarMenuSub>
-													{item.items.map((subItem) => {
-														const isSubActive =
-															pathname === subItem.url ||
-															(subItem.url !== "#" && pathname.startsWith(`${subItem.url}/`));
-														return (
-															<SidebarMenuSubItem key={subItem.title}>
-																<SidebarMenuSubButton asChild isActive={isSubActive}>
-																	<a href={subItem.url}>{subItem.title}</a>
-																</SidebarMenuSubButton>
-															</SidebarMenuSubItem>
-														);
-													})}
-												</SidebarMenuSub>
-											</CollapsibleContent>
+											{/* <CollapsibleTrigger asChild> */}
+											<SidebarMenuButton asChild isActive={isMainActive} className="font-bold">
+												<a href={item.url}>
+													{item.title}
+													<span className="font-mono text-muted-foreground">{item.subtitle}</span>
+													{/* <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" /> */}
+												</a>
+											</SidebarMenuButton>
+											{/* </CollapsibleTrigger> */}
+											{/* <CollapsibleContent> */}
+											<SidebarMenuSub>
+												{item.items.map((subItem) => {
+													const isSubActive =
+														pathname === subItem.url || (subItem.url !== "#" && pathname.startsWith(`${subItem.url}/`));
+													return (
+														<SidebarMenuSubItem key={subItem.title}>
+															<SidebarMenuSubButton asChild isActive={isSubActive}>
+																<a href={subItem.url}>{subItem.title}</a>
+															</SidebarMenuSubButton>
+														</SidebarMenuSubItem>
+													);
+												})}
+											</SidebarMenuSub>
+											{/* </CollapsibleContent> */}
 										</SidebarMenuItem>
 									</Collapsible>
 								);

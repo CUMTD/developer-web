@@ -6,7 +6,7 @@ import type * as React from "react";
 
 function ItemGroup({ className, ...props }: React.ComponentProps<"div">) {
 	return (
-		// biome-ignore lint/a11y/useSemanticElements: <shadcn>
+		// biome-ignore lint/a11y/useSemanticElements: shadcn
 		<div role="list" data-slot="item-group" className={cn("group/item-group flex flex-col", className)} {...props} />
 	);
 }

@@ -6,7 +6,6 @@ import type { Metadata, Viewport } from "next";
 import { Overpass, Overpass_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import "server-only";
-import { Toaster } from "sonner";
 import "./globals.css";
 import NavMenu from "./NavMenu";
 
@@ -54,8 +53,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-	// const shouldInjectToolbar = process.env.NODE_ENV === "development";
-	const shouldInjectToolbar = false; //todo
+	const shouldInjectToolbar = process.env.NODE_ENV === "development";
+	// const shouldInjectToolbar = false; //todo
 
 	return (
 		<html lang="en" suppressHydrationWarning>
@@ -65,7 +64,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 						<NavMenu />
 						<main className="overflow-auto">{children}</main>
 					</div>
-					<Toaster richColors />
 					{shouldInjectToolbar && <VercelToolbar />}
 					<SpeedInsights />
 				</ThemeProvider>

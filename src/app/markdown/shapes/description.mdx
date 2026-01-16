@@ -1,0 +1,14 @@
+# Shapes
+Shapes are geographical lines. Shapes are used by <a href="/reference/trips">trips</a> to represent the physical path a bus takes.
+
+## Two types of shapes:
+
+### Classic Shapes
+Classic shapes are modeled after the GTFS definition of a shape. A classic shape contains an array of shape points. Each shape point has a sequence, lat/long coordinates, distance travelled, and stopId.
+
+### Encoded Polyline Shapes
+Polyline encoding is a lossy compression algorithm created by Google that allows you to store a series of coordinates as a single string. View the Google Documentation for more information on how to decode these strings.
+
+Encoded Polyline shapes are a much cleaner and efficient way of representing shapes, at the expense of verbosity. With these type of shapes, you lose stopId and distance travelled information.
+
+`example`
