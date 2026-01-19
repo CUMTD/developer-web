@@ -5,11 +5,9 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Checkbox } from "@shared/shadcn/checkbox";
 import { Label } from "@shared/shadcn/label";
 import { ScrollArea } from "@shared/shadcn/scroll-area";
-import { useState } from "react";
 import TermsOfUse from "./TermsOfUse";
 
 export default function GetApiKey() {
-	const [loading, setIsLoading] = useState<boolean>(false);
 	return (
 		<Card>
 			<CardHeader className="text-2xl">
