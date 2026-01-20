@@ -9,9 +9,9 @@ import { useRouter } from "next/navigation";
 import * as React from "react";
 import { EXAMPLE_LANGUAGES } from "src/app/markdown/languages";
 
-interface LanguageSelectorProps {
+type LanguageSelectorProps = Readonly<{
 	selectedLanguage: string;
-}
+}>;
 
 export function LanguageSelector({ selectedLanguage }: LanguageSelectorProps) {
 	const router = useRouter();
@@ -32,7 +32,7 @@ export function LanguageSelector({ selectedLanguage }: LanguageSelectorProps) {
 					<ChevronsUpDown className="opacity-50" />
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className="w-[200px] p-0">
+			<PopoverContent className="w-50 p-0">
 				<Command>
 					<CommandList>
 						<CommandEmpty>No language found.</CommandEmpty>
