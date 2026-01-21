@@ -1,8 +1,8 @@
 "use client";
+import { createClient } from "@shared/lib/supabase/client";
 import { Button } from "@shared/shadcn/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@shared/shadcn/card";
 import { cn } from "@shared/utils";
-import { createClient } from "lib/supabase/client";
 import { useState } from "react";
 
 export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {

@@ -1,8 +1,8 @@
 import ApiKeyManager from "@components/ApiKeyManager";
+import { createClient } from "@shared/lib/supabase/server";
 import { Button } from "@shared/shadcn/button";
 import { CurrentUserAvatar } from "@shared/shadcn/current-user-avatar";
 import { Item, ItemContent, ItemDescription, ItemHeader, ItemMedia } from "@shared/shadcn/item";
-import { createClient } from "lib/supabase/server";
 import { redirect } from "next/navigation";
 
 export default async function AccountPage() {
