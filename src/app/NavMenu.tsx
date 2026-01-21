@@ -20,7 +20,7 @@ export default function NavMenu() {
 	const isMobile = useIsMobile();
 
 	return (
-		<header className="flex flex-row justify-between md:px-10 p-5 row-span-1 sticky top-0 bg-sidebar z-50    ">
+		<header className="flex flex-row justify-between lg:px-8 px-5 p-5 row-span-1 sticky top-0 bg-sidebar z-50    ">
 			<WordMark />
 			<NavigationMenu viewport={isMobile}>
 				<NavigationMenuList className="flex-wrap">
@@ -35,7 +35,7 @@ export default function NavMenu() {
 							<ul className="grid w-[300px] gap-4">
 								<li>
 									<NavigationMenuLink asChild>
-										<Link href="/reference">
+										<Link href="/reference/introduction">
 											<div className="font-medium">Developer API Reference</div>
 											<div className="text-muted-foreground">Learn how to use the API.</div>
 										</Link>

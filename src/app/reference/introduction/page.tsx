@@ -10,7 +10,7 @@ export default function IntroductionPage() {
 				<BusFrontIcon size={50} />
 				<HeartIcon size={50} />
 			</div>
-			<h1>Welcome to the MTD Developer API Documentation!</h1>
+			<h1>Welcome aboard!</h1>
 			<p>
 				Here you'll find the technical documentation for the Application Programming Interface (API) provided by the
 				Champaign-Urbana Mass Transit District (MTD) for accessing bus service data.

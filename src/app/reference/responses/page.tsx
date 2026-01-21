@@ -1,20 +1,29 @@
 import NextPreviousPageNavigatorButtons from "@components/NextPreviousPageNavigatorButtons";
 import { CloudDownload } from "lucide-react";
 
-export default function RequestsPage() {
+export const dynamic = "force-static";
+
+export default async function RequestsPage() {
+	const { default: Sample } = await import(`./sample.mdx`);
+
 	return (
 		<div className="prose dark:prose-invert col-span-2 ">
 			<div className="flex flex-row gap-5 mb-5">
 				<CloudDownload size={50} />
 			</div>
 			<h1>Interpreting Responses</h1>
-			<h2>Base URL</h2>
-			<p>All endpoints are RESTful HTTP.</p>
-			<code>https://mtd.dev/api</code>
-			<h2>Choose an endpoint</h2>
-			<p>For this example, let's fetch vehicle #XXXX using the vehicles endpoint.</p>
-			<h2>API Key</h2>
-			<p>Add your API key to the request header. Every request you make must contain this key.</p>
+
+			<p>
+				If your API call was successful, response data will be under <code>result</code>. If your call was not
+				successful (whether by user or server error), error details will be provided under <code>error</code> in
+				addition to the proper{" "}
+				<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status">HTTP status code</a>.
+			</p>
+			<h2>Successful Response</h2>
+			<Sample />
+
+			<h2>Unsuccessful Response</h2>
+			<Sample />
 			<NextPreviousPageNavigatorButtons previousLink="/reference/requests" />
 		</div>
 	);

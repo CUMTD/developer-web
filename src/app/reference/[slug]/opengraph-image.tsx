@@ -21,9 +21,9 @@ async function loadGoogleFont(font: string, text: string, weight = 400) {
 export default async function Image({ params }: Props) {
 	const { slug } = await params;
 
-	const logoAbsoluteUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/mtd.svg`;
+	const logoAbsoluteUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/mtd-white-red.svg`;
 
-	const logoType = "Developer Resources";
+	const logoType = "Developer";
 	const subtitle = "API Documentation";
 	const route = `/${slug}`;
 
@@ -70,6 +70,7 @@ export default async function Image({ params }: Props) {
 						alt="MTD"
 						style={{
 							width: "1em",
+							//todo
 						}}
 					/>
 					<span style={{ fontWeight: "bold", fontSize: "50px" }}>{subtitle}</span>

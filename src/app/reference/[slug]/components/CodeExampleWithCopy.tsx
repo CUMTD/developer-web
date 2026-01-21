@@ -6,9 +6,11 @@ import { useRef, useState } from "react";
 
 interface CodeExampleWithCopyProps {
 	children: React.ReactNode;
+	copyable?: boolean;
+	mini?: boolean;
 }
 
-export function CodeExampleWithCopy({ children }: CodeExampleWithCopyProps) {
+export function CodeExampleBody({ children, copyable = true, mini = false }: CodeExampleWithCopyProps) {
 	const [copied, setCopied] = useState(false);
 	const containerRef = useRef<HTMLDivElement>(null);
 
@@ -28,17 +30,22 @@ export function CodeExampleWithCopy({ children }: CodeExampleWithCopyProps) {
 	};
 
 	return (
-		<div ref={containerRef} className="relative">
-			<Button
-				variant="ghost"
-				size="sm"
-				onClick={copyCode}
-				className="absolute top-2 right-2 z-10 h-8 w-8 p-0 "
-				title="Copy code"
-			>
-				{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-			</Button>
+		<div
+			ref={containerRef}
+			className={` ${mini ? "w-min flex flex-row whitespace-nowrap items-center gap-1" : "relative w-full"}`}
+		>
 			{children}
+			{copyable && (
+				<Button
+					variant="ghost"
+					size="sm"
+					onClick={copyCode}
+					className={` ${mini ? "block" : "absolute"}  top-2 right-2 z-10 h-8 w-8 p-0 `}
+					title="Copy code"
+				>
+					{copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+				</Button>
+			)}
 		</div>
 	);
 }

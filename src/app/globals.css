@@ -162,11 +162,20 @@ pre {
 
 /* rehype-pretty-code emits spans for each line */
 pre [data-line] {
-	padding: 0 1rem;
+	padding: 0;
 	font-size: var(--text-sm);
+}
+
+figure {
+	margin: 0;
 }
 
 /* make sure the theme colors actually get used */
 pre code {
 	display: grid;
+}
+
+code::before,
+code::after {
+	content: "";
 }
