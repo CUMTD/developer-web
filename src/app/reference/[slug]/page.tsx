@@ -1,11 +1,13 @@
+import ApiAttributeItem from "@components/ApiAttributeItem";
 import toTitleCase from "@helpers/toTitleCase";
-import { Item, ItemContent, ItemHeader } from "@shared/shadcn/item";
+import { Item, ItemContent, ItemGroup, ItemHeader, ItemSeparator } from "@shared/shadcn/item";
 import { Separator } from "@shared/shadcn/separator";
 import type { Metadata } from "next";
+import React from "react";
 import "server-only";
-import { EXAMPLE_LANGUAGES } from "src/app/markdown/languages";
+import type { ApiResponseAttribute } from "src/types/DocumentationTypes";
 import { API_INDEX, type ApiObject } from "../../../types/md.generated";
-import EndpointItem from "./endpoint-item";
+import EndpointItem from "./components/endpoint-item";
 
 // Disable dynamic route parameters
 // This ensures that only the statically generated routes are used
@@ -38,25 +40,61 @@ export default async function Page({ params }: Props) {
 
 	const { default: ObjectDescription } = await import(`../../markdown/${apiObject}/description.mdx`);
 	const { default: ResponseObject } = await import(`../../markdown/${apiObject}/response.mdx`);
+	const { response: responseAttributes } = await import(`../../markdown/${apiObject}/response.ts`);
+
+	var attributes = responseAttributes as ApiResponseAttribute[];
 
 	return (
 		<>
-			<div className="col-span-1 lg:col-span-1 prose dark:prose-invert max-w-full" id={apiObject}>
+			<div className="col-span-1 lg:col-span-1 prose dark:prose-invert max-w-full " id={apiObject}>
 				<ObjectDescription />
+				<Separator className="my-10" />
+				<ObjectAttributes attributes={attributes} />
 			</div>
 			<Item className="items-start p-0 ">
-				<ItemContent>
-					<ItemHeader className="text-xl ">Object</ItemHeader>
+				<ItemContent className="w-full sticky top-0">
+					<ItemHeader className="text-xl">Object</ItemHeader>
 					<ResponseObject />
 				</ItemContent>
 			</Item>
-			<Separator className="col-span-1 lg:col-span-2" />
+			<div className="col-span-1 lg:col-span-2">
+				<h2 className="font-bold text-3xl ">API Definitions</h2>
+				<Separator className="" id={methods[0]} />
+			</div>
 
-			{methods.map((method) => {
+			{methods.map((method, idx) => {
 				return (
-					<EndpointItem object={apiObject} method={method} selectedLanguage={EXAMPLE_LANGUAGES[0].name} key={method} />
+					<React.Fragment key={method}>
+						{idx !== 0 && <Separator className={`col-span-1 lg:col-span-2 `} id={method} />}
+						<EndpointItem object={apiObject} method={method} key={method} />
+					</React.Fragment>
 				);
 			})}
+			<div className="col-span-2 w-full min-h-[75vh] flex flex-col gap-5 ">
+				<Separator />
+				<span className="text-muted-foreground text-center text-xs">* * *</span>
+			</div>
+		</>
+	);
+}
+
+interface ObjectAttributesProps {
+	attributes: ApiResponseAttribute[];
+}
+function ObjectAttributes({ attributes }: ObjectAttributesProps) {
+	return (
+		<>
+			<h3 className="prose dark:prose-invert font-normal">Return Object Attributes</h3>
+			<ItemGroup>
+				{attributes.map((attr) => {
+					return (
+						<React.Fragment key={attr.name}>
+							<ItemSeparator />
+							<ApiAttributeItem attribute={attr} childAttributes={attr.childAttributes ?? []} />
+						</React.Fragment>
+					);
+				})}
+			</ItemGroup>
 		</>
 	);
 }

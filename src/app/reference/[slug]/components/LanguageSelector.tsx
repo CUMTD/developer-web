@@ -45,9 +45,10 @@ export function LanguageSelector({ selectedLanguage }: LanguageSelectorProps) {
 										value={language.name}
 										onSelect={(currentValue) => {
 											if (currentValue !== selectedLanguage) {
-												const url = new URL(window.location.href);
-												url.searchParams.set("language", currentValue);
-												router.push(url.toString());
+												const currentUrl = new URL(window.location.href);
+												currentUrl.searchParams.set("language", currentValue);
+
+												router.replace(currentUrl.toString(), { scroll: false });
 											}
 											setOpen(false);
 										}}

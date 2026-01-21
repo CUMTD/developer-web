@@ -4,7 +4,7 @@ import { KeyRound, KeyRoundIcon } from "lucide-react";
 
 export default function AuthenticationPage() {
 	return (
-		<div className="prose dark:prose-invert col-span-2 ">
+		<div className="prose dark:prose-invert col-span-2  ">
 			<div className="flex flex-row gap-5 mb-5">
 				<KeyRound size={50} />
 			</div>

@@ -16,6 +16,7 @@ import { usePathname } from "next/navigation";
 import type * as React from "react";
 import { Collapsible } from "./collapsible";
 
+// this should mirror app/markdown
 const data = {
 	navMain: [
 		{
@@ -70,12 +71,12 @@ const data = {
 			url: "/reference/trips",
 			items: [
 				{
-					title: "Get all trips",
-					url: "#get-trips",
+					title: "Get a trip",
+					url: "/reference/trips#get-trip",
 				},
 				{
-					title: "Get a trip",
-					url: "#get-trip",
+					title: "Get all trips",
+					url: "/reference/trips#get-trips",
 				},
 			],
 		},
@@ -85,30 +86,29 @@ const data = {
 			url: "/reference/stops",
 			items: [
 				{
-					title: "Get all stops",
-
-					url: "#get-stops",
+					title: "Get a stop",
+					url: "/reference/stops#get-stop",
 				},
 				{
-					title: "Get a stop",
-					url: "#get-stop",
+					title: "Get all stops",
+
+					url: "/reference/stops#get-stops",
 				},
 				{
 					title: "Get stop's schedule",
-					url: "#get-stop-schedule",
+					url: "/reference/stops#get-stop-schedule",
 				},
 				{
 					title: "Get stop's trips",
-					url: "#get-stop-trips",
+					url: "/reference/stops#get-stop-trips",
 				},
 				{
 					title: "Get stop's routes",
-					url: "#get-stop-routes",
+					url: "/reference/stops#get-stop-routes",
 				},
 				{
 					title: "Get stop's departures",
-
-					url: "#get-departures",
+					url: "/reference/stops#get-stop-departures",
 				},
 			],
 		},
@@ -119,16 +119,16 @@ const data = {
 			url: "/reference/vehicles",
 			items: [
 				{
-					title: "Get all vehicles",
-					url: "#get-vehicles",
+					title: "Get a vehicle",
+					url: "/reference/vehicles#get-vehicle",
 				},
 				{
-					title: "Get a vehicle",
-					url: "#get-vehicle",
+					title: "Get all vehicles",
+					url: "/reference/vehicles#get-vehicles",
 				},
 				{
 					title: "Get a vehicle's current location",
-					url: "#get-vehicle-location",
+					url: "/reference/vehicles#get-vehicle-location",
 				},
 			],
 		},
@@ -139,8 +139,12 @@ const data = {
 			url: "/reference/service-alerts",
 			items: [
 				{
+					title: "Get a service alert",
+					url: "/reference/service-alerts#get-service-alert",
+				},
+				{
 					title: "Get all service alerts",
-					url: "#get-service-alerts",
+					url: "/reference/service-alerts#get-service-alerts",
 				},
 			],
 		},

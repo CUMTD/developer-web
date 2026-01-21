@@ -1,5 +1,6 @@
 import NextPreviousPageNavigatorButtons from "@components/NextPreviousPageNavigatorButtons";
 import { CloudUpload } from "lucide-react";
+import { CodeExampleBody } from "../[slug]/components/CodeExampleWithCopy";
 
 export default function RequestsPage() {
 	return (
@@ -8,13 +9,30 @@ export default function RequestsPage() {
 				<CloudUpload size={50} />
 			</div>
 			<h1>Sending Requests</h1>
-			<h2>Base URL</h2>
-			<p>All endpoints are RESTful HTTP.</p>
-			<code>https://mtd.dev/api</code>
+			<p>
+				HTTP requests are how the internet transfers data. If you're viewing this website live on the internet, it was
+				delivered via an HTTP request made by your browser.
+			</p>
+
+			<h2>Get the API base URL</h2>
+			<CodeExampleBody mini>
+				<code>https://mtd.dev/api</code>
+			</CodeExampleBody>
 			<h2>Choose an endpoint</h2>
-			<p>For this example, let's fetch vehicle #XXXX using the vehicles endpoint.</p>
-			<h2>API Key</h2>
-			<p>Add your API key to the request header. Every request you make must contain this key.</p>
+			<p>Check out the sidebar for all of the different kinds of data you can get.</p>
+			<p>
+				For this example, let's fetch departures for IU:1 #2439 using the{" "}
+				<a href="/reference/vehicles">vehicles endpoint.</a>
+			</p>
+			<h2>Include Query Parameters</h2>
+			<p>Some endpoints can take in query parameters that will shape the response output.</p>
+			<h2>Include your API Key</h2>
+			<p>
+				Every request you make must contain your API key in the <code>X-Api-Key</code> header. How you include this key
+				will vary by what you are using to make the HTTP request, but here are some examples:
+			</p>
+			<h2>Send!</h2>
+			<p>Go to next page.</p>
 			<NextPreviousPageNavigatorButtons nextLink="/reference/responses" previousLink="/reference/authentication" />
 		</div>
 	);

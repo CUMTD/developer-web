@@ -16,7 +16,7 @@ export default function WordMark() {
 				}}
 				placeholder="empty"
 			/>
-			<span className="text-2xl italic font-bold">Developer Resources</span>
+			<span className="text-2xl italic font-bold">Developer</span>
 		</Link>
 	);
 }

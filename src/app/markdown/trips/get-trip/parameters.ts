@@ -1,6 +1,6 @@
-import type { EndpointParameter } from "src/types/EndpointParameter";
+import type { ApiRequestParameter } from "src/types/DocumentationTypes";
 
-export const parameters: EndpointParameter[] = [
+export const parameters: ApiRequestParameter[] = [
 	{
 		name: "id",
 		type: "string",
