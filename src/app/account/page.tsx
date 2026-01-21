@@ -1,4 +1,5 @@
 import ApiKeyManager from "@components/ApiKeyManager";
+import { getApiKeys } from "@shared/actions/api-keys/get-api-keys";
 import { createClient } from "@shared/lib/supabase/server";
 import { Button } from "@shared/shadcn/button";
 import { CurrentUserAvatar } from "@shared/shadcn/current-user-avatar";
@@ -7,8 +8,8 @@ import { redirect } from "next/navigation";
 
 export default async function AccountPage() {
 	const supabase = await createClient();
-
 	const { data } = await supabase.auth.getClaims();
+	const apiKeys = await getApiKeys();
 
 	async function handleSignOut() {
 		"use server";
@@ -18,7 +19,7 @@ export default async function AccountPage() {
 	}
 
 	return (
-		<div className="p-5 max-w-[80rem] w-full mx-auto flex flex-col gap-5 ">
+		<div className="p-5 max-w-7xl w-full mx-auto flex flex-col gap-5 ">
 			<div className="flex flex-row justify-between items-center">
 				<Item className="text-4xl">
 					<ItemMedia variant={"image"}>
@@ -33,7 +34,7 @@ export default async function AccountPage() {
 					<Button variant={"destructive"}>Sign Out</Button>
 				</form>
 			</div>
-			<ApiKeyManager />
+			<ApiKeyManager apiKeys={apiKeys} />
 		</div>
 	);
 }

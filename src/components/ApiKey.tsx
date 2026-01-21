@@ -1,31 +1,28 @@
-"use client";
-
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@shared/shadcn/card";
+import type { ApiKeyResult } from "@shared/actions/api-keys/get-api-keys";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@shared/shadcn/card";
 import { KeyRoundIcon } from "lucide-react";
-import CopyTextButton from "./CopyString";
+import ApiKeyDisplay from "./ApiKeyDisplay";
 
 interface ApiKeyProps {
-	apiKey: string;
+	apiKey: ApiKeyResult;
 }
 
-export default function ApiKey({ apiKey }: ApiKeyProps) {
+export default function ApiKey({ apiKey: { key, name, notes, created_at } }: ApiKeyProps) {
 	return (
 		<Card className="mx-auto w-full">
 			<CardHeader>
 				<CardTitle className="flex flex-row items-center gap-2">
 					<KeyRoundIcon size={15} />
-					API Key
+					{name}
 				</CardTitle>
-				<CardDescription>
-					Treat this like a password, do not share it with anyone, and do not send or upload code containing this key to
-					the internet, especially GitHub.
-				</CardDescription>
+				{notes && notes.length > 0 && <CardDescription>{notes}</CardDescription>}
 			</CardHeader>
-			{/* <CardFooter> */}
 			<CardContent className="w-full">
-				<CopyTextButton apiKey text={apiKey} />
-				{/* </CardFooter> */}
+				<ApiKeyDisplay apiKey={key} />
 			</CardContent>
+			<CardFooter>
+				<p className="text-sm text-muted-foreground">Created at: {new Date(created_at).toLocaleString()}</p>
+			</CardFooter>
 		</Card>
 	);
 }
