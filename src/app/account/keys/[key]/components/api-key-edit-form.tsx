@@ -8,6 +8,7 @@ import { Label } from "@shared/shadcn/label";
 import { Textarea } from "@shared/shadcn/textarea";
 import Link from "next/link";
 import { useActionState } from "react";
+import DeleteApiKeyButton from "./delete-api-key-button";
 
 type ApiKeyEditFormProps = Readonly<{
 	apiKey: ApiKeyResult;
@@ -41,9 +42,7 @@ export default function ApiKeyEditForm({ apiKey: { name, key, notes } }: ApiKeyE
 				{message ? <p className={ok ? "text-sm text-foreground" : "text-sm text-destructive"}>{message}</p> : null}
 			</div>
 			<div className="flex gap-2 justify-end">
-				<Button asChild variant="destructive" className="justify-self-start mr-auto">
-					<Link href={`/account/keys/${key}/delete`}>Delete</Link>
-				</Button>
+				<DeleteApiKeyButton apiKeyName={name ?? ""} apiKeyValue={key} />
 				<Button asChild variant="ghost">
 					<Link href="/account/keys">Cancel</Link>
 				</Button>

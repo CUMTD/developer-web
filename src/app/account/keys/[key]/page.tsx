@@ -21,7 +21,7 @@ export default async function ApiKeyPage({ params }: ApiKeyPageProps) {
 		notFound();
 	}
 
-	const { name, notes, created_at, is_active } = apiKey;
+	const { name } = apiKey;
 
 	return (
 		<>
