@@ -1,6 +1,7 @@
 import { H2 } from "@components/heading";
 import type { DeveloperResult } from "@shared/actions/account/getDeveloperDetails";
 import { Item, ItemContent, ItemDescription, ItemHeader } from "@shared/shadcn/item";
+import Keys from "./keys";
 
 type DeveloperInfoProps = Readonly<{
 	developer: DeveloperResult;
@@ -9,7 +10,7 @@ type DeveloperInfoProps = Readonly<{
 export default function DeveloperInfo({ developer: { tokens_per_hour, current_tokens } }: DeveloperInfoProps) {
 	return (
 		<div className="space-y-4">
-			<H2>Usage Limits</H2>
+			<H2>Account Info</H2>
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
 				<Item variant="muted">
 					<ItemContent>
@@ -23,6 +24,7 @@ export default function DeveloperInfo({ developer: { tokens_per_hour, current_to
 						<ItemDescription>{current_tokens}</ItemDescription>
 					</ItemContent>
 				</Item>
+				<Keys />
 			</div>
 		</div>
 	);

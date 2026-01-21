@@ -1,6 +1,7 @@
 import { H1, H2 } from "@components/heading";
 import { getApiKey } from "@shared/actions/api-keys/get-api-key";
 import { notFound } from "next/navigation";
+import Breadcrumbs from "../../components/breadcrumbs";
 import ApiKeyEditForm from "./components/api-key-edit-form";
 
 type ApiKeyPageProps = Readonly<{
@@ -26,6 +27,13 @@ export default async function ApiKeyPage({ params }: ApiKeyPageProps) {
 	return (
 		<>
 			<H1>Edit API Key: {name}</H1>
+			<Breadcrumbs
+				items={[
+					{ href: "/account", label: "Account" },
+					{ href: "/account/keys", label: "API Keys" },
+					{ href: `/account/keys/${key}`, label: name },
+				]}
+			/>
 			<H2> {obfuscateKey(key)}</H2>
 			<ApiKeyEditForm apiKey={apiKey} />
 		</>

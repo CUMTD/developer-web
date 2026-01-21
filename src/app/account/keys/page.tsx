@@ -2,6 +2,7 @@ import { H1 } from "@components/heading";
 import { getApiKeys } from "@shared/actions/api-keys/get-api-keys";
 import { Button } from "@shared/shadcn/button";
 import Link from "next/link";
+import Breadcrumbs from "../components/breadcrumbs";
 import ApiKey from "./components/api-key";
 
 export default async function KeysPage() {
@@ -17,12 +18,17 @@ export default async function KeysPage() {
 					</Button>
 				</div>
 			</div>
+			<Breadcrumbs
+				items={[
+					{ href: "/account", label: "Account" },
+					{ href: "/account/keys", label: "API Keys" },
+				]}
+			/>
 			<div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
 				{apiKeys.map((apiKey) => (
 					<ApiKey key={apiKey.key} apiKey={apiKey} />
 				))}
 			</div>
-			<div className="flex justify-end"></div>
 		</>
 	);
 }
