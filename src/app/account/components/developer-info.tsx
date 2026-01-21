@@ -6,9 +6,7 @@ type DeveloperInfoProps = Readonly<{
 	developer: DeveloperResult;
 }>;
 
-export default function DeveloperInfo({
-	developer: { id, created_at, name, tokens_per_hour, current_tokens, last_token_count_update, is_active },
-}: DeveloperInfoProps) {
+export default function DeveloperInfo({ developer: { tokens_per_hour, current_tokens } }: DeveloperInfoProps) {
 	return (
 		<div className="space-y-4">
 			<H2>Usage Limits</H2>
