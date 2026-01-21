@@ -1,40 +1,37 @@
-import ApiKeyManager from "@components/ApiKeyManager";
-import { getApiKeys } from "@shared/actions/api-keys/get-api-keys";
+import { H1 } from "@components/heading";
+import { getDeveloperDetails } from "@shared/actions/account/getDeveloperDetails";
 import { createClient } from "@shared/lib/supabase/server";
-import { Button } from "@shared/shadcn/button";
-import { CurrentUserAvatar } from "@shared/shadcn/current-user-avatar";
-import { Item, ItemContent, ItemDescription, ItemHeader, ItemMedia } from "@shared/shadcn/item";
-import { redirect } from "next/navigation";
+import { unauthorized } from "next/navigation";
+import DeveloperInfo from "./components/developer-info";
+import TermsOfUse from "./components/terms-of-use";
+import UserInfo from "./components/user-info";
 
 export default async function AccountPage() {
 	const supabase = await createClient();
-	const { data } = await supabase.auth.getClaims();
-	const apiKeys = await getApiKeys();
+	const { data: authData } = await supabase.auth.getClaims();
 
-	async function handleSignOut() {
-		"use server";
-		const supabase = await createClient();
-		await supabase.auth.signOut();
-		return redirect("/");
+	if (authData === null) {
+		unauthorized();
 	}
 
+	const developerDetails = await getDeveloperDetails();
+
+	const {
+		claims: { user_metadata },
+	} = authData;
+
+	const name = user_metadata?.full_name ?? "Unknown User";
+	const email = user_metadata?.email ?? null;
+	const avatarUrl = user_metadata?.avatar_url ?? null;
+
 	return (
-		<div className="p-5 max-w-7xl w-full mx-auto flex flex-col gap-5 ">
-			<div className="flex flex-row justify-between items-center">
-				<Item className="text-4xl">
-					<ItemMedia variant={"image"}>
-						<CurrentUserAvatar />
-					</ItemMedia>
-					<ItemContent>
-						<ItemHeader className="font-bold">{data?.claims.user_metadata?.full_name}</ItemHeader>
-						<ItemDescription>{data?.claims.email}</ItemDescription>
-					</ItemContent>
-				</Item>
-				<form action={handleSignOut}>
-					<Button variant={"destructive"}>Sign Out</Button>
-				</form>
+		<div className="space-y-12">
+			<div className="space-y-4">
+				<H1>Developer Info</H1>
+				<UserInfo name={name} email={email} avatarUrl={avatarUrl} />
 			</div>
-			<ApiKeyManager apiKeys={apiKeys} />
+			<DeveloperInfo developer={developerDetails} />
+			<TermsOfUse />
 		</div>
 	);
 }

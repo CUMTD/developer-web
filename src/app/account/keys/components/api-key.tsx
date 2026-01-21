@@ -1,7 +1,7 @@
 import type { ApiKeyResult } from "@shared/actions/api-keys/get-api-keys";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@shared/shadcn/card";
 import { KeyRoundIcon } from "lucide-react";
-import ApiKeyDisplay from "./ApiKeyDisplay";
+import ApiKeyDisplay from "./api-key-display";
 
 interface ApiKeyProps {
 	apiKey: ApiKeyResult;
