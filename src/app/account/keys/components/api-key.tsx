@@ -1,6 +1,8 @@
 import type { ApiKeyResult } from "@shared/actions/api-keys/get-api-keys";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@shared/shadcn/card";
-import { KeyRoundIcon } from "lucide-react";
+import { Button } from "@shared/shadcn/button";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@shared/shadcn/card";
+import { KeyRoundIcon, PencilIcon } from "lucide-react";
+import Link from "next/link";
 import ApiKeyDisplay from "./api-key-display";
 
 interface ApiKeyProps {
@@ -16,6 +18,14 @@ export default function ApiKey({ apiKey: { key, name, notes, created_at } }: Api
 					{name}
 				</CardTitle>
 				{notes && notes.length > 0 && <CardDescription>{notes}</CardDescription>}
+				<CardAction>
+					<Button asChild variant="ghost">
+						<Link href={`/account/keys/${key}`} className="flex items-center gap-2">
+							<PencilIcon className="h-4 w-4" />
+							<span>Edit</span>
+						</Link>
+					</Button>
+				</CardAction>
 			</CardHeader>
 			<CardContent className="w-full">
 				<ApiKeyDisplay apiKey={key} />
