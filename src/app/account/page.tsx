@@ -1,9 +1,9 @@
-import { H1 } from "@components/heading";
+import { H1, H2 } from "@components/heading";
 import { getDeveloperDetails } from "@shared/actions/account/getDeveloperDetails";
 import { createClient } from "@shared/lib/supabase/server";
 import { unauthorized } from "next/navigation";
 import DeveloperInfo from "./components/developer-info";
-import TermsOfUse from "./components/terms-of-use";
+import TermsOfUse from "./components/tos";
 import UserInfo from "./components/user-info";
 
 export default async function AccountPage() {
@@ -31,7 +31,11 @@ export default async function AccountPage() {
 				<UserInfo name={name} email={email} avatarUrl={avatarUrl} />
 			</div>
 			<DeveloperInfo developer={developerDetails} />
-			<TermsOfUse />
+
+			<div className="space-y-4">
+				<H2>Terms of Use</H2>
+				<TermsOfUse />
+			</div>
 		</div>
 	);
 }
