@@ -1,6 +1,5 @@
 "use client";
 
-import Prose from "@components/prose";
 import { disableApiKeyAction } from "@shared/actions/api-keys/disable-api-key";
 import { useCurrentUserEmail } from "@shared/hooks/use-current-user-email";
 import { Button } from "@shared/shadcn/button";
@@ -46,13 +45,9 @@ export default function DeleteApiKeyButton({ apiKeyName, apiKeyValue }: Props) {
 				<DialogHeader>
 					<DialogTitle>Delete API key</DialogTitle>
 					<DialogDescription>
-						<Prose>
-							<p>
-								This will disable the key immediately. Type
-								<code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{currentUserEmail}</code> to enable
-								the delete button
-							</p>
-						</Prose>
+						This will disable the key immediately. Type
+						<code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{currentUserEmail}</code> to enable the
+						delete button
 					</DialogDescription>
 				</DialogHeader>
 
