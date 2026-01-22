@@ -29,25 +29,30 @@ export default function LoggedInUserMenu({ user }: Readonly<{ user: CurrentUser 
 				</div>
 			</NavigationMenuTrigger>
 
-			<NavigationMenuContent className="absolute right-0 top-full mt-2 z-50 min-w-90 max-w-90 w-90 -translate-x-60">
-				<ul className="grid gap-2 p-2">
-					<li>
-						<NavigationMenuLink asChild>
-							<Link href="/account" className="block rounded-md px-3 py-2 hover:bg-accent focus:bg-accent outline-none">
-								<div className="font-medium">Account</div>
-								<div className="text-muted-foreground">Manage your account settings and API keys.</div>
-							</Link>
-						</NavigationMenuLink>
-					</li>
+			<NavigationMenuContent className="absolute right-0 left-auto top-full mt-2 z-50">
+				<div className="w-[min(420px,calc(100vw-1rem))] p-2">
+					<ul className="grid gap-2">
+						<li>
+							<NavigationMenuLink asChild>
+								<Link
+									href="/account"
+									className="block rounded-md px-3 py-2 hover:bg-accent focus:bg-accent outline-none"
+								>
+									<div className="font-medium">Account</div>
+									<div className="text-muted-foreground">Manage your account settings and API keys.</div>
+								</Link>
+							</NavigationMenuLink>
+						</li>
 
-					<li>
-						<form action="/account/auth/logout" method="POST">
-							<Button type="submit" variant="ghost" className="w-full justify-start">
-								Logout
-							</Button>
-						</form>
-					</li>
-				</ul>
+						<li>
+							<form action="/account/auth/logout" method="POST">
+								<Button type="submit" variant="ghost" className="w-full justify-start">
+									Logout
+								</Button>
+							</form>
+						</li>
+					</ul>
+				</div>
 			</NavigationMenuContent>
 		</NavigationMenuItem>
 	);
