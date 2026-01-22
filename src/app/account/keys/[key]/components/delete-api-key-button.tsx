@@ -1,7 +1,7 @@
 "use client";
 
 import { disableApiKeyAction } from "@shared/actions/api-keys/disable-api-key";
-import { useCurrentUserEmail } from "@shared/hooks/use-current-user-email";
+import { useCurrentUser } from "@shared/hooks/use-current-user";
 import { Button } from "@shared/shadcn/button";
 import {
 	Dialog,
@@ -22,16 +22,24 @@ type Props = Readonly<{
 }>;
 
 export default function DeleteApiKeyButton({ apiKeyName, apiKeyValue }: Props) {
-	const currentUserEmail = useCurrentUserEmail();
-	const confirmString = useMemo(() => currentUserEmail ?? "Confirm", [currentUserEmail]);
+	const { isLoading, isAuthenticated, user } = useCurrentUser();
+	const confirmString = useMemo(() => user?.email || "Confirm", [user?.email]);
 	const [typedEmail, setTypedEmail] = useState("");
 
 	const canConfirm = useMemo(() => {
+		if (isLoading || !isAuthenticated) {
+			return false;
+		}
+
 		if (!confirmString) {
 			return false;
 		}
 		return typedEmail.trim().toLowerCase() === confirmString.trim().toLowerCase();
-	}, [typedEmail, confirmString]);
+	}, [typedEmail, confirmString, isAuthenticated, isLoading]);
+
+	if (!isLoading && !isAuthenticated) {
+		return null;
+	}
 
 	return (
 		<Dialog>
@@ -46,7 +54,7 @@ export default function DeleteApiKeyButton({ apiKeyName, apiKeyValue }: Props) {
 					<DialogTitle>Delete API key</DialogTitle>
 					<DialogDescription>
 						This will disable the key immediately. Type
-						<code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{currentUserEmail}</code> to enable the
+						<code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{confirmString}</code> to enable the
 						delete button
 					</DialogDescription>
 				</DialogHeader>
@@ -64,8 +72,8 @@ export default function DeleteApiKeyButton({ apiKeyName, apiKeyValue }: Props) {
 					<Input
 						id="confirm-email"
 						autoComplete="off"
-						disabled={!currentUserEmail}
-						placeholder={currentUserEmail ?? ""}
+						disabled={!confirmString}
+						placeholder={confirmString ?? ""}
 						value={typedEmail}
 						onChange={(e) => setTypedEmail(e.target.value)}
 					/>

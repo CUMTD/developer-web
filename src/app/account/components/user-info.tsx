@@ -1,4 +1,4 @@
-import UserAvatar from "@shared/shadcn/user-avatar";
+import UserAvatar from "@components/user-avatar";
 
 type UserInfoProps = Readonly<{
 	name: string;
@@ -9,7 +9,7 @@ type UserInfoProps = Readonly<{
 export default function UserInfo({ name, email, avatarUrl }: UserInfoProps) {
 	return (
 		<div className="flex flex-row items-center space-x-4">
-			<UserAvatar name={name} profileImage={avatarUrl} />
+			<UserAvatar name={name} profileImage={avatarUrl} size="xl" />
 			<div>
 				<div className="font-bold">{name}</div>
 				{email && <div className="text-sm text-muted-foreground">{email}</div>}
