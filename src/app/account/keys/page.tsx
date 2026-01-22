@@ -29,6 +29,7 @@ export default async function KeysPage() {
 					<ApiKey key={apiKey.key} apiKey={apiKey} />
 				))}
 			</div>
+			{apiKeys.length === 0 && <p className="text-muted-foreground w-full text-center">No API Keys.</p>}
 		</>
 	);
 }
