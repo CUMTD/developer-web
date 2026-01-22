@@ -23,7 +23,6 @@ type Props = Readonly<{
 }>;
 
 export default function DeleteApiKeyButton({ apiKeyName, apiKeyValue }: Props) {
-	console.log("key", { apiKeyName, apiKeyValue });
 	const { isLoading, isAuthenticated, user } = useCurrentUser();
 	const confirmString = useMemo(() => user?.email || "Confirm", [user?.email]);
 	const [typedEmail, setTypedEmail] = useState("");
