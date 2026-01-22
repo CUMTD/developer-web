@@ -9,7 +9,7 @@ export default function UserProfileDisplay() {
 
 	if (username === "?") {
 		return (
-			<Button size={"sm"} onClick={() => router.push("/auth/login")}>
+			<Button size={"sm"} onClick={() => router.push("/account/auth/login")}>
 				Sign In
 			</Button>
 		);
