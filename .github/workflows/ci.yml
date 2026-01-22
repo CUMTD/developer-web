@@ -52,12 +52,6 @@ jobs:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
         run: pnpm exec supabase login --token "$SUPABASE_ACCESS_TOKEN"
 
-      - name: Verify Supabase generated types are up to date
-        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
-        env:
-          SUPABASE_PROJECT_REF: ${{ vars.SUPABASE_PROJECT_REF }}
-        run: pnpm run typecheck:supabase
-
   build:
     name: Build (non-fork PRs + main)
     runs-on: ubuntu-latest

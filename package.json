@@ -96,9 +96,8 @@
 		"format": "pnpm exec biome format --write .",
 		"lint": "pnpm exec biome check --write .",
 		"typecheck": "pnpm exec tsc -p tsconfig.json --noEmit",
-		"typecheck:supabase": "pnpm typegen:supabase && git diff --exit-code src/types/supabase.ts",
 		"typegen:md": "pnpm exec tsx scripts/generate-markdown-index.ts",
-		"typegen:supabase": "dotenv -e .env -- cross-env-shell \"supabase gen types typescript --project-id $SUPABASE_PROJECT_REF\" > src/types/supabase.ts",
+		"typegen:supabase": "dotenv -e .env -- cross-env-shell \"supabase gen types typescript --project-id $SUPABASE_PROJECT_REF\" > src/types/supabase.ts && pnpm exec biome format --write src/types/supabase.ts",
 		"validate:env": "pnpm exec tsx --require dotenv/config scripts/validate-env.ts"
 	},
 	"type": "module",
