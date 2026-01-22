@@ -21,8 +21,6 @@ function isAttributeProps(props: ObfuscatedKeyProps): props is ObfuscatedKeyAttr
 }
 
 export default function ObfuscatedKey(props: ObfuscatedKeyProps) {
-	console.log("props in ObfuscatedKey:", props);
-
 	let key: string;
 
 	if (isAttributeProps(props)) {
@@ -30,8 +28,6 @@ export default function ObfuscatedKey(props: ObfuscatedKeyProps) {
 	} else {
 		key = props.children || "";
 	}
-
-	console.log("key in ObfuscatedKey:", key);
-
+	
 	return <>{obfuscateKeyString(key)}</>;
 }
