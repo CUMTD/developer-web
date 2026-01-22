@@ -1,5 +1,6 @@
 "use client";
 
+import ObfuscatedKey from "@components/obfuscated-key";
 import { disableApiKeyAction } from "@shared/actions/api-keys/disable-api-key";
 import { useCurrentUser } from "@shared/hooks/use-current-user";
 import { Button } from "@shared/shadcn/button";
@@ -22,6 +23,7 @@ type Props = Readonly<{
 }>;
 
 export default function DeleteApiKeyButton({ apiKeyName, apiKeyValue }: Props) {
+	console.log("key", { apiKeyName, apiKeyValue });
 	const { isLoading, isAuthenticated, user } = useCurrentUser();
 	const confirmString = useMemo(() => user?.email || "Confirm", [user?.email]);
 	const [typedEmail, setTypedEmail] = useState("");
@@ -63,7 +65,9 @@ export default function DeleteApiKeyButton({ apiKeyName, apiKeyValue }: Props) {
 					<Label>Key</Label>
 					<div className="rounded-md border p-3">
 						<p className="font-medium">{apiKeyName || "Untitled key"}</p>
-						<p className="font-mono text-xs text-muted-foreground break-all">{apiKeyValue}</p>
+						<p className="font-mono text-xs text-muted-foreground break-all">
+							<ObfuscatedKey>{apiKeyValue}</ObfuscatedKey>
+						</p>
 					</div>
 				</div>
 
