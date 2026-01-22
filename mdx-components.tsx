@@ -2,7 +2,6 @@ import type { MDXComponents } from "mdx/types";
 import type { ReactNode } from "react";
 
 const customComponents: MDXComponents = {
-	// You can customize how MDX renders different elements
 	h1: ({ children }) => <h1 className="text-3xl font-bold mb-4">{children}</h1>,
 	h2: ({ children }) => <h2 className="text-2xl font-semibold mb-3">{children}</h2>,
 	p: ({ children }) => <p className="mb-2">{children}</p>,
@@ -29,5 +28,5 @@ export function useMDXComponents(components: MDXComponents = {}): MDXComponents 
 }
 
 function CodeComponent({ children }: { children: ReactNode }) {
-	return <code className="rounded-md bg-sidebar-accent border p-2 overflow-y-scroll">{children}</code>;
+	return <code className="rounded-md bg-sidebar-accent border  p-2 overflow-y-scroll ">{children}</code>;
 }

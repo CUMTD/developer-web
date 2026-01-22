@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
-import { validateSlug } from "./page";
+import type { Props } from "./page";
+export const dynamicParams = false;
+export const dynamic = "force-static";
 
 async function loadGoogleFont(font: string, text: string, weight = 400) {
 	const url = `https://fonts.googleapis.com/css2?family=${font}:wght@${weight}&text=${encodeURIComponent(text)}`;
@@ -16,13 +18,12 @@ async function loadGoogleFont(font: string, text: string, weight = 400) {
 	throw new Error("failed to load font data");
 }
 
-export default async function Image({ params }: { params: { slug: string } }) {
+export default async function Image({ params }: Props) {
 	const { slug } = await params;
-	await validateSlug(slug);
 
-	const logoAbsoluteUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/mtd.svg`;
+	const logoAbsoluteUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/mtd-white-red.svg`;
 
-	const logoType = "Developer Resources";
+	const logoType = "Developer";
 	const subtitle = "API Documentation";
 	const route = `/${slug}`;
 
@@ -69,6 +70,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
 						alt="MTD"
 						style={{
 							width: "1em",
+							//todo
 						}}
 					/>
 					<span style={{ fontWeight: "bold", fontSize: "50px" }}>{subtitle}</span>

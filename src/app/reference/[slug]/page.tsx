@@ -1,114 +1,100 @@
-import { readdir } from "node:fs/promises";
-import { join } from "node:path";
-import EndpointParameters from "@components/EndpointParameters";
-import { Item, ItemContent, ItemGroup, ItemHeader } from "@shared/shadcn/item";
+import ApiAttributeItem from "@components/ApiAttributeItem";
+import toTitleCase from "@helpers/toTitleCase";
+import { Item, ItemContent, ItemGroup, ItemHeader, ItemSeparator } from "@shared/shadcn/item";
 import { Separator } from "@shared/shadcn/separator";
-import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import React from "react";
 import "server-only";
-import { EXAMPLE_LANGUAGES } from "src/app/markdown/languages";
-import { CodeExampleWithCopy } from "./CodeExampleWithCopy";
-import { LanguageSelector } from "./LanguageSelector";
+import type { ApiResponseAttribute } from "src/types/DocumentationTypes";
+import { API_INDEX, type ApiObject } from "../../../types/md.generated";
+import EndpointItem from "./components/endpoint-item";
 
-async function getTopLevelReferenceDirectories() {
-	const markdownPath = join(process.cwd(), "src", "app", "markdown");
-	const entries = await readdir(markdownPath, { withFileTypes: true });
-	const directories = entries.filter((entry) => entry.isDirectory()).map(({ name }) => name);
-	return directories;
+// Disable dynamic route parameters
+// This ensures that only the statically generated routes are used
+export const dynamicParams = false;
+
+// Force static generation for this page
+// This ensures that the page is statically generated at build time
+export const dynamic = "force-static";
+
+export type ParamsPayload = { slug: ApiObject };
+export type Props = Readonly<{
+	params: Promise<ParamsPayload>;
+}>;
+
+export async function generateStaticParams(): Promise<Array<{ slug: ApiObject }>> {
+	return (Object.keys(API_INDEX) as ApiObject[]).map((slug) => ({ slug }));
 }
 
-export async function validateSlug(slug: string): Promise<void> {
-	const validSlugs = await getTopLevelReferenceDirectories();
-	if (!validSlugs.includes(slug)) {
-		notFound();
-	}
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const { slug } = await params;
+	const title = toTitleCase(slug);
+	return {
+		title,
+	};
 }
 
-export async function generateStaticParams() {
-	const directories = await getTopLevelReferenceDirectories();
-	return directories.map((slug) => ({ slug }));
-}
-
-export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Page({ params }: Props) {
 	const { slug: apiObject } = await params;
-
-	// will return a not found if no folder exists for this slug.
-	await validateSlug(apiObject);
-
-	// read subdirectories from the slug folder: if the apiObject is "routes", return ["get-route", "get-routes"]
-	const markdownPath = join(process.cwd(), "src", "app", "markdown", apiObject);
-	const entries = await readdir(markdownPath, { withFileTypes: true });
-	const methods = entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name);
+	const methods = API_INDEX[apiObject];
 
 	const { default: ObjectDescription } = await import(`../../markdown/${apiObject}/description.mdx`);
 	const { default: ResponseObject } = await import(`../../markdown/${apiObject}/response.mdx`);
+	const { response: responseAttributes } = await import(`../../markdown/${apiObject}/response.ts`);
+
+	var attributes = responseAttributes as ApiResponseAttribute[];
 
 	return (
 		<>
-			<div className="col-span-1 lg:col-span-1 prose dark:prose-invert max-w-full" id={apiObject}>
+			<div className="col-span-1 lg:col-span-1 prose dark:prose-invert max-w-full " id={apiObject}>
 				<ObjectDescription />
+				<Separator className="my-10" />
+				<ObjectAttributes attributes={attributes} />
 			</div>
 			<Item className="items-start p-0 ">
-				<ItemContent>
-					<ItemHeader className="text-xl ">Object</ItemHeader>
+				<ItemContent className="w-full sticky top-0">
+					<ItemHeader className="text-xl">Object</ItemHeader>
 					<ResponseObject />
 				</ItemContent>
 			</Item>
-			<Separator className="col-span-1 lg:col-span-2" />
+			<div className="col-span-1 lg:col-span-2">
+				<h2 className="font-bold text-3xl ">API Definitions</h2>
+				<Separator className="" id={methods[0]} />
+			</div>
 
-			{methods.map((method) => {
+			{methods.map((method, idx) => {
 				return (
-					<EndpointItem object={apiObject} method={method} selectedLanguage={EXAMPLE_LANGUAGES[0].name} key={method} />
+					<React.Fragment key={method}>
+						{idx !== 0 && <Separator className={`col-span-1 lg:col-span-2 `} id={method} />}
+						<EndpointItem object={apiObject} method={method} key={method} />
+					</React.Fragment>
 				);
 			})}
+			<div className="col-span-2 w-full min-h-[75vh] flex flex-col gap-5 ">
+				<Separator />
+				<span className="text-muted-foreground text-center text-xs">* * *</span>
+			</div>
 		</>
 	);
 }
 
-interface EndpointItemProps {
-	object: string;
-	method: string;
-	selectedLanguage: string;
+interface ObjectAttributesProps {
+	attributes: ApiResponseAttribute[];
 }
-
-async function EndpointItem({ object, method, selectedLanguage }: EndpointItemProps) {
-	// import the relevant .mdx files
-	const { default: EndpointDescription } = await import(`../../markdown/${object}/${method}/description.mdx`);
-	const { default: ResponseObject } = await import(`../../markdown/${object}/response.mdx`);
-	const { default: CodeExample } = await import(`../../markdown/${object}/${method}/${selectedLanguage}.mdx`);
-	const { parameters } = await import(`../../markdown/${object}/${method}/parameters.ts`);
-
+function ObjectAttributes({ attributes }: ObjectAttributesProps) {
 	return (
 		<>
-			<div className="col-span-1 lg:col-span-1 flex flex-col gap-10" id={method}>
-				<div className="[&_p]:text-muted-foreground">
-					<EndpointDescription />
-				</div>
-				<div>
-					<EndpointParameters parameters={parameters} />
-				</div>
-			</div>
-			<ItemGroup className="flex flex-col gap-5">
-				<Item className="p-0">
-					<ItemHeader className="text-xl">
-						Example
-						<div>
-							<LanguageSelector selectedLanguage={selectedLanguage} />
-						</div>
-					</ItemHeader>
-					<ItemContent className="w-full">
-						<CodeExampleWithCopy>
-							<CodeExample />
-						</CodeExampleWithCopy>
-					</ItemContent>
-				</Item>
-				<Item className="p-0">
-					<ItemHeader className="text-xl">Response</ItemHeader>
-					<ItemContent>
-						<ResponseObject />
-					</ItemContent>
-				</Item>
+			<h3 className="prose dark:prose-invert font-normal">Return Object Attributes</h3>
+			<ItemGroup>
+				{attributes.map((attr) => {
+					return (
+						<React.Fragment key={attr.name}>
+							<ItemSeparator />
+							<ApiAttributeItem attribute={attr} childAttributes={attr.childAttributes ?? []} />
+						</React.Fragment>
+					);
+				})}
 			</ItemGroup>
-			<Separator className="col-span-1 lg:col-span-2" />
 		</>
 	);
 }

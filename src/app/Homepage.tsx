@@ -5,7 +5,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@sha
 import { Separator } from "@shared/shadcn/separator";
 import { ArrowRight, DownloadIcon, ExternalLink, FolderArchive, KeyRoundIcon, WorkflowIcon } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Homepage() {
 	return (
@@ -25,8 +24,7 @@ export default function Homepage() {
 						<p>
 							As part of our commitment to staying on the frontline of technology, MTD is proud to offer various ways
 							for students, academics, developers and tinkerers to access our service data. On this page you'll find
-							links to some of the various data feeds we offer. Be sure to check out user-submitted apps in the{" "}
-							<Link href="/garage">App Garage.</Link>
+							links to some of the various data feeds we offer.
 						</p>
 					</div>
 

@@ -16,7 +16,8 @@
 			"@apps/*": ["app/*"],
 			"@components/*": ["src/components/*"],
 			"@helpers/*": ["src/helpers/*"],
-			"@shared/*": ["src/shared/*"]
+			"@shared/*": ["src/shared/*"],
+			"@t/*": ["src/types/*"]
 		},
 		"plugins": [
 			{
@@ -28,7 +29,8 @@
 		"strict": true,
 		"strictNullChecks": true,
 		"target": "es2020",
-		"types": ["node"]
+		"types": ["node"],
+		"typeRoots": ["./src/types", "./node_modules/@types"]
 	},
 	"exclude": ["node_modules"],
 	"include": [

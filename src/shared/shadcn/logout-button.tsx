@@ -1,7 +1,7 @@
 "use client";
 
+import { createClient } from "@shared/lib/supabase/client";
 import { Button } from "@shared/shadcn/button";
-import { createClient } from "lib/supabase/client";
 import { useRouter } from "next/navigation";
 
 export function LogoutButton() {

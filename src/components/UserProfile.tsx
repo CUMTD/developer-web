@@ -1,6 +1,6 @@
+import { createClient } from "@shared/lib/supabase/server";
 import { Button } from "@shared/shadcn/button";
 import { CurrentUserAvatar } from "@shared/shadcn/current-user-avatar";
-import { createClient } from "lib/supabase/server";
 import Link from "next/link";
 
 export default async function UserProfile() {

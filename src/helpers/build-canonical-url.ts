@@ -1,11 +1,11 @@
-import { serverEnv } from "@shared/config/env.server";
+import { globalEnv } from "@shared/config/env.global";
 
 export default function buildCanonicalUrl(pathname: string, baseUrl?: string): string | undefined {
 	if (!pathname) {
 		return undefined;
 	}
 
-	const resolvedBaseUrl = baseUrl ?? serverEnv.NEXT_PUBLIC_BASE_URL;
+	const resolvedBaseUrl = baseUrl ?? globalEnv.NEXT_PUBLIC_BASE_URL;
 	const normalizedPath = pathname.startsWith("/") ? pathname : `/${pathname}`;
 
 	try {

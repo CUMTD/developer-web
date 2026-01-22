@@ -39,10 +39,18 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # biome + tsc (no secrets required)
       - name: Verify
         run: pnpm run ci:verify
         env:
           NEXT_PUBLIC_BASE_URL: ${{ vars.NEXT_PUBLIC_BASE_URL }}
+
+      # Supabase type drift check (requires secrets; skip on fork PRs)
+      - name: Supabase login (token)
+        if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: pnpm exec supabase login --token "$SUPABASE_ACCESS_TOKEN"
 
   build:
     name: Build (non-fork PRs + main)
@@ -50,12 +58,12 @@ jobs:
     timeout-minutes: 20
     needs: verify
 
-    # Fork PRs don't have access to repo vars.
+    # Fork PRs don't have access to vars/secrets required for validate:env and build.
     if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Enable Corepack (pnpm)
         run: corepack enable
@@ -70,7 +78,18 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build all workspaces
+      # Required for typegen:supabase during prebuild
+      - name: Supabase login (token)
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+        run: pnpm exec supabase login --token "$SUPABASE_ACCESS_TOKEN"
+
+      - name: Build
         run: pnpm run build
         env:
+          # validate:env required variables
           NEXT_PUBLIC_BASE_URL: ${{ vars.NEXT_PUBLIC_BASE_URL }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_PROJECT_REF: ${{ vars.SUPABASE_PROJECT_REF }}

@@ -1,0 +1,11 @@
+```typescript
+const API_KEY = "6a8sd4a68d...asd64adasd789a"
+
+const response = await fetch(`mtd.dev/feed/metadata`, {
+	headers: {
+		"X-ApiKey": API_KEY,
+	},
+});
+
+const routes = (await response.json()) as Routes[];
+```
