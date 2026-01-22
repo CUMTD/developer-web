@@ -28,6 +28,6 @@ export default function ObfuscatedKey(props: ObfuscatedKeyProps) {
 	} else {
 		key = props.children || "";
 	}
-	
+
 	return <>{obfuscateKeyString(key)}</>;
 }
