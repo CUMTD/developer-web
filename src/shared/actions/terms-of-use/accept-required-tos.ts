@@ -15,6 +15,5 @@ export async function acceptRequiredTos() {
 		throw new Error(error.message);
 	}
 
-	revalidatePath("/account/tos");
 	revalidatePath("/account");
 }

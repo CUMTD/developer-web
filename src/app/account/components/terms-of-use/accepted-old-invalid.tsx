@@ -32,7 +32,7 @@ export default function AcceptedOldInvalid({ acceptedOn }: AcceptedOldInvalidPro
 
 				<div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
 					<Button asChild className="w-full sm:w-auto">
-						<Link href="/tos?accept">Read &amp; Accept Terms</Link>
+						<Link href="/terms-of-use">Read &amp; Accept Terms</Link>
 					</Button>
 				</div>
 			</AlertDescription>

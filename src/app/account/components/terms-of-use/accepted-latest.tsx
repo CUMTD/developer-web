@@ -28,7 +28,7 @@ export default function AcceptedLatestTos({ acceptedOn }: AcceptedLatestTosProps
 
 				<div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
 					<Button asChild className="w-full sm:w-auto">
-						<Link href="/tos">Read Terms</Link>
+						<Link href="/terms-of-use">Read Terms</Link>
 					</Button>
 				</div>
 			</AlertDescription>

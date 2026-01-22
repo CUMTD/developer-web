@@ -3,7 +3,7 @@ import { getDeveloperDetails } from "@shared/actions/account/getDeveloperDetails
 import { createClient } from "@shared/lib/supabase/server";
 import { unauthorized } from "next/navigation";
 import DeveloperInfo from "./components/developer-info";
-import TermsOfUse from "./components/tos";
+import TermsOfUse from "./components/terms-of-use";
 import UserInfo from "./components/user-info";
 
 export default async function AccountPage() {

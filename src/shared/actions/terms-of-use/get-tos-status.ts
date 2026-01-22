@@ -1,4 +1,4 @@
-import { getTosAcceptanceHistory, type TosStatusResult } from "@shared/actions/tos/get-tos-acceptance-history";
+import { getTosAcceptanceHistory, type TosStatusResult } from "@shared/actions/terms-of-use/get-tos-acceptance-history";
 
 export enum Status {
 	NeverAccepted = "NeverAccepted",

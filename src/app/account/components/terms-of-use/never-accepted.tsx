@@ -19,7 +19,7 @@ export default function NeverAccepted() {
 
 				<div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
 					<Button asChild>
-						<Link href="/tos?accept">Read &amp; Accept Terms</Link>
+						<Link href="/terms-of-use">Read &amp; Accept Terms</Link>
 					</Button>
 				</div>
 			</AlertDescription>
