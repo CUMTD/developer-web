@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   verify:
-    name: Verify (biome, tsc, type drift)
+    name: Verify (biome, tsc)
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
