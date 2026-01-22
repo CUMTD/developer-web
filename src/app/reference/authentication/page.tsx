@@ -1,6 +1,7 @@
 import NextPreviousPageNavigatorButtons from "@components/NextPreviousPageNavigatorButtons";
 import { Button } from "@shared/shadcn/button";
 import { KeyRound, KeyRoundIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function AuthenticationPage() {
 	return (
@@ -28,8 +29,10 @@ export default function AuthenticationPage() {
 
 function ApiKeyNudge() {
 	return (
-		<Button variant={"secondary"} className="bg-blue-800 text-white">
-			Get an API Key <KeyRoundIcon />
+		<Button variant={"secondary"} className="bg-blue-800 text-white" asChild>
+			<Link href="/account/keys">
+				Get an API Key <KeyRoundIcon />
+			</Link>
 		</Button>
 	);
 }

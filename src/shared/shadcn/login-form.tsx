@@ -1,25 +1,34 @@
 "use client";
+
 import { createClient } from "@shared/lib/supabase/client";
 import { Button } from "@shared/shadcn/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@shared/shadcn/card";
 import { cn } from "@shared/utils";
-import { useState } from "react";
+import { type ComponentPropsWithoutRef, type FormEvent, useState } from "react";
 
-export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
+type LoginFormProps = Readonly<
+	{
+		redirectUrl: string;
+	} & ComponentPropsWithoutRef<"div">
+>;
+
+export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) {
 	const [error, setError] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const handleSocialLogin = async (e: React.FormEvent) => {
+	const handleSocialLogin = async (e: FormEvent) => {
 		e.preventDefault();
 		const supabase = createClient();
 		setIsLoading(true);
 		setError(null);
 
+		const next = redirectUrl.startsWith("/") ? redirectUrl : "/account";
+
 		try {
 			const { error } = await supabase.auth.signInWithOAuth({
 				provider: "github",
 				options: {
-					redirectTo: `${window.location.origin}/auth/oauth?next=/account`,
+					redirectTo: `${window.location.origin}/auth/oauth?next=${next}`,
 				},
 			});
 
