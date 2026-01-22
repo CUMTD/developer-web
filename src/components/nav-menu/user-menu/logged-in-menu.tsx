@@ -1,0 +1,54 @@
+import UserAvatar from "@components/user-avatar";
+import { type CurrentUser, isUnknownUser } from "@shared/hooks/use-current-user";
+import { Button } from "@shared/shadcn/button";
+import {
+	NavigationMenuContent,
+	NavigationMenuItem,
+	NavigationMenuLink,
+	NavigationMenuTrigger,
+} from "@shared/shadcn/navigation-menu";
+import Link from "next/link";
+
+function getDisplayName(currentUser: CurrentUser) {
+	if (isUnknownUser(currentUser)) {
+		return currentUser.name;
+	}
+	return currentUser.name.split(" ")[0];
+}
+
+export default function LoggedInUserMenu({ user }: Readonly<{ user: CurrentUser }>) {
+	const name = getDisplayName(user);
+	const { profileImageUrl } = user;
+
+	return (
+		<NavigationMenuItem className="hidden md:flex">
+			<NavigationMenuTrigger>
+				<div className="flex flex-row gap-2 items-center">
+					<UserAvatar profileImage={profileImageUrl} name={name} size="sm" />
+					<span className="font-medium">{name}</span>
+				</div>
+			</NavigationMenuTrigger>
+
+			<NavigationMenuContent className="absolute right-0 top-full mt-2 z-50 min-w-90 max-w-90 w-90 -translate-x-60">
+				<ul className="grid gap-2 p-2">
+					<li>
+						<NavigationMenuLink asChild>
+							<Link href="/account" className="block rounded-md px-3 py-2 hover:bg-accent focus:bg-accent outline-none">
+								<div className="font-medium">Account</div>
+								<div className="text-muted-foreground">Manage your account settings and API keys.</div>
+							</Link>
+						</NavigationMenuLink>
+					</li>
+
+					<li>
+						<form action="/account/auth/logout" method="POST">
+							<Button type="submit" variant="ghost" className="w-full justify-start">
+								Logout
+							</Button>
+						</form>
+					</li>
+				</ul>
+			</NavigationMenuContent>
+		</NavigationMenuItem>
+	);
+}

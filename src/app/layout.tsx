@@ -1,3 +1,4 @@
+import NavMenu from "@components/nav-menu";
 import { ThemeProvider } from "@components/theme-provider";
 import { globalEnv } from "@shared/config/env.global";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -7,7 +8,6 @@ import { Overpass, Overpass_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import "server-only";
 import "./globals.css";
-import NavMenu from "./NavMenu";
 
 const overpass = Overpass({
 	subsets: ["latin"],
