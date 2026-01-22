@@ -1,5 +1,5 @@
+import { createClient } from "@shared/lib/supabase/server";
 import { LogoutButton } from "@shared/shadcn/logout-button";
-import { createClient } from "lib/supabase/server";
 import { redirect } from "next/navigation";
 
 export default async function ProtectedPage() {

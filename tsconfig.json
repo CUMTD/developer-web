@@ -16,7 +16,8 @@
 			"@apps/*": ["app/*"],
 			"@components/*": ["src/components/*"],
 			"@helpers/*": ["src/helpers/*"],
-			"@shared/*": ["src/shared/*"]
+			"@shared/*": ["src/shared/*"],
+			"@t/*": ["src/types/*"]
 		},
 		"plugins": [
 			{

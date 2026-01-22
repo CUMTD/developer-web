@@ -7,5 +7,6 @@ export const GlobalEnvSchema = z.object({
 });
 
 export const ServerEnvSchema = z.object({
-	// SAMPLE_SERVER_VAR: z.string().min(1),
+	SUPABASE_SERVICE_ROLE_KEY: z.string().min(1),
+	SUPABASE_PROJECT_REF: z.string().min(1),
 });
