@@ -17,7 +17,8 @@
 			"@components/*": ["src/components/*"],
 			"@helpers/*": ["src/helpers/*"],
 			"@shared/*": ["src/shared/*"],
-			"@t/*": ["src/types/*"]
+			"@t/*": ["src/types/*"],
+			"@markdown/*": ["src/app/markdown/*"]
 		},
 		"plugins": [
 			{
