@@ -1,4 +1,5 @@
 import { H1, H2 } from "@components/heading";
+import ObfuscatedKey from "@components/obfuscated-key";
 import { getApiKey } from "@shared/actions/api-keys/get-api-key";
 import { getTosStatus } from "@shared/actions/terms-of-use/get-tos-status";
 import { notFound, unauthorized } from "next/navigation";
@@ -10,10 +11,6 @@ type ApiKeyPageProps = Readonly<{
 		key: string;
 	}>;
 }>;
-
-function obfuscateKey(key: string) {
-	return `${key.slice(0, 4)}***************************${key.slice(-4)}`;
-}
 
 export default async function ApiKeyPage({ params }: ApiKeyPageProps) {
 	const { key } = await params;
@@ -40,7 +37,10 @@ export default async function ApiKeyPage({ params }: ApiKeyPageProps) {
 					{ href: `/account/keys/${key}`, label: name },
 				]}
 			/>
-			<H2 wrapProse> {obfuscateKey(key)}</H2>
+
+			<H2 wrapProse>
+				<ObfuscatedKey apiKey={key} />
+			</H2>
 			<ApiKeyEditForm apiKey={apiKey} />
 		</>
 	);
