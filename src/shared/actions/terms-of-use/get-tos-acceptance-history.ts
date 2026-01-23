@@ -37,8 +37,9 @@ export async function getTosAcceptanceHistory(): Promise<TosStatusResult[]> {
 		throw new Error(error.message);
 	}
 
-	return (data ?? []).map(
-		({ accepted_at, tos_version: { id, created_at, version, is_current, is_required, supersedes } }) => ({
+	return (data ?? [])
+		.filter(({ tos_version }) => tos_version !== null)
+		.map(({ accepted_at, tos_version: { id, created_at, version, is_current, is_required, supersedes } }) => ({
 			accepted_at,
 			id,
 			created_at,
@@ -46,6 +47,5 @@ export async function getTosAcceptanceHistory(): Promise<TosStatusResult[]> {
 			is_current,
 			is_required,
 			supersedes,
-		}),
-	);
+		}));
 }
