@@ -1,4 +1,8 @@
 export function obfuscateKeyString(key: string) {
+	if (key.length === 0) {
+		// Ensure a minimum obfuscation pattern is shown even for empty keys
+		return "****";
+	}
 	if (key.length <= 8) {
 		return "*".repeat(key.length);
 	}
