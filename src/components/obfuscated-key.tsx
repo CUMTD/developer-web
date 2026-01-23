@@ -7,7 +7,7 @@ export function obfuscateKeyString(key: string) {
 		return "*".repeat(key.length);
 	}
 
-	return `${key.slice(0, 4)}${"*".repeat(key.length - 8)}${key.slice(-4)}`;
+	return `${key.slice(0, 4)}${"*".repeat(27)}${key.slice(-4)}`;
 }
 
 type ObfuscatedKeyChildProps = Readonly<{
