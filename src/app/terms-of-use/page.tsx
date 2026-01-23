@@ -1,5 +1,6 @@
 import { H1, H2 } from "@components/heading";
 import Prose from "@components/prose";
+import { createClient } from "@shared/lib/supabase/server";
 import type { Metadata } from "next";
 import AcceptTermsOfUse from "./accept-terms-of-use";
 
@@ -9,6 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default async function TermsOfUsePage() {
+	const supabase = await createClient();
+	const { data: authData } = await supabase.auth.getClaims();
+
 	return (
 		<Prose>
 			<H1>Terms of Use</H1>
@@ -142,10 +146,12 @@ export default async function TermsOfUsePage() {
 					involving the Licensee and the MTD.
 				</p>
 			</section>
-			<section className="mt-5 mb-100">
-				<H2>Acceptance</H2>
-				<AcceptTermsOfUse />
-			</section>
+			{authData && (
+				<section className="mt-5 mb-100">
+					<H2>Acceptance</H2>
+					<AcceptTermsOfUse />
+				</section>
+			)}
 		</Prose>
 	);
 }
