@@ -1,4 +1,5 @@
 import { H1 } from "@components/heading";
+import { getTosStatus } from "@shared/actions/terms-of-use/get-tos-status";
 import { createClient } from "@shared/lib/supabase/server";
 import { unauthorized } from "next/navigation";
 import Breadcrumbs from "../../components/breadcrumbs";
@@ -7,7 +8,11 @@ import ApiKeyAddForm from "./components/api-key-add-form";
 export default async function AddApiKeyPage() {
 	const supabase = await createClient();
 	const { data: authData } = await supabase.auth.getClaims();
+	const { canAccessApi } = await getTosStatus();
 
+	if (!canAccessApi) {
+		unauthorized();
+	}
 	if (authData === null) {
 		unauthorized();
 	}

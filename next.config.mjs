@@ -1,6 +1,6 @@
+import nextMDX from "@next/mdx";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import nextMDX from "@next/mdx";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,6 +24,9 @@ const nextConfig = {
 	reactStrictMode: true,
 	distDir: ".next",
 	outputFileTracingRoot: path.join(__dirname, "./"),
+	experimental: {
+		authInterrupts: true,
+	},
 };
 
 export default withMDX(nextConfig);

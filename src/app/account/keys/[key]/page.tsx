@@ -1,6 +1,7 @@
 import { H1, H2 } from "@components/heading";
 import { getApiKey } from "@shared/actions/api-keys/get-api-key";
-import { notFound } from "next/navigation";
+import { getTosStatus } from "@shared/actions/terms-of-use/get-tos-status";
+import { notFound, unauthorized } from "next/navigation";
 import Breadcrumbs from "../../components/breadcrumbs";
 import ApiKeyEditForm from "./components/api-key-edit-form";
 
@@ -17,6 +18,11 @@ function obfuscateKey(key: string) {
 export default async function ApiKeyPage({ params }: ApiKeyPageProps) {
 	const { key } = await params;
 	const apiKey = await getApiKey(key);
+	const { canAccessApi } = await getTosStatus();
+
+	if (!canAccessApi) {
+		unauthorized();
+	}
 
 	if (!apiKey) {
 		notFound();
