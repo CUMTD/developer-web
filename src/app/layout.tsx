@@ -8,6 +8,7 @@ import { Overpass, Overpass_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import "server-only";
 import "./globals.css";
+import { PlausibleAnalytics } from "./plausible-analytics";
 
 const overpass = Overpass({
 	subsets: ["latin"],
@@ -59,14 +60,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className={`${overpass.variable} ${overpassMono.variable} font-sans antialiased`}>
+				<PlausibleAnalytics />
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					<div className="grid grid-rows-[auto_1fr] h-screen">
 						<NavMenu />
 						<main className="overflow-auto">{children}</main>
 					</div>
 					{shouldInjectToolbar && <VercelToolbar />}
-					<SpeedInsights />
 				</ThemeProvider>
+				<SpeedInsights />
 			</body>
 		</html>
 	);
