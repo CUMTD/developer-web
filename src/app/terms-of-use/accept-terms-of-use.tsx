@@ -11,7 +11,6 @@ export default async function AcceptTermsOfUse() {
 		const { lastAcceptedAt } = tosStatus;
 		return (
 			<Alert
-				variant="destructive"
 				className="border-green-200 bg-green-50 text-green-900 dark:border-green-900 dark:bg-green-950 dark:text-yellow-50"
 			>
 				<AlertTitle className="text-green-900 dark:text-green-50 text-lg">Accepted</AlertTitle>
