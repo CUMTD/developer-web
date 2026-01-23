@@ -67,6 +67,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					{shouldInjectToolbar && <VercelToolbar />}
 					<SpeedInsights />
 				</ThemeProvider>
+				<SpeedInsights />
 			</body>
 		</html>
 	);
