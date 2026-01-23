@@ -27,13 +27,13 @@ export default async function AccountPage() {
 	return (
 		<div className="space-y-12">
 			<div className="space-y-4">
-				<H1>Developer Info</H1>
+				<H1 wrapProse>Developer Info</H1>
 				<UserInfo name={name} email={email} avatarUrl={avatarUrl} />
 			</div>
 			<DeveloperInfo developer={developerDetails} />
 
 			<div className="space-y-4">
-				<H2>Terms of Use</H2>
+				<H2 wrapProse>Terms of Use</H2>
 				<TermsOfUse />
 			</div>
 		</div>

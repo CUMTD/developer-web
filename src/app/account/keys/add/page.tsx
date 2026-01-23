@@ -14,7 +14,7 @@ export default async function AddApiKeyPage() {
 
 	return (
 		<>
-			<H1>Add API Key</H1>
+			<H1 wrapProse>Add API Key</H1>
 			<Breadcrumbs
 				items={[
 					{ href: "/account", label: "Account" },

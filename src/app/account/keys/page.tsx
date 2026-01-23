@@ -11,7 +11,9 @@ export default async function KeysPage() {
 	return (
 		<>
 			<div className="w-full flex items-center">
-				<H1 containerClassName="flex-1">API Keys</H1>
+				<H1 containerClassName="flex-1" wrapProse>
+					API Keys
+				</H1>
 				<div className="flex flex-1 justify-end">
 					<Button asChild variant="default">
 						<Link href="/account/keys/add">Add Key</Link>

@@ -21,7 +21,7 @@ export default function AcceptedOldInvalid({ acceptedOn }: AcceptedOldInvalidPro
 							<>
 								You previously accepted an older Terms of Service on{" "}
 								<span className="font-medium">
-									<LocalTime value={acceptedOn} options="long" />
+									<LocalTime value={acceptedOn} variant="long" />
 								</span>
 								, but those Terms are no longer valid.
 							</>

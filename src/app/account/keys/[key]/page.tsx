@@ -26,7 +26,7 @@ export default async function ApiKeyPage({ params }: ApiKeyPageProps) {
 
 	return (
 		<>
-			<H1>Edit API Key: {name}</H1>
+			<H1 wrapProse>Edit API Key: {name}</H1>
 			<Breadcrumbs
 				items={[
 					{ href: "/account", label: "Account" },
@@ -34,7 +34,7 @@ export default async function ApiKeyPage({ params }: ApiKeyPageProps) {
 					{ href: `/account/keys/${key}`, label: name },
 				]}
 			/>
-			<H2> {obfuscateKey(key)}</H2>
+			<H2 wrapProse> {obfuscateKey(key)}</H2>
 			<ApiKeyEditForm apiKey={apiKey} />
 		</>
 	);

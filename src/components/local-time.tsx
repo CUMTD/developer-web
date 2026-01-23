@@ -35,15 +35,15 @@ export function toLocalString(
 	}).format(new Date(zdt.epochMilliseconds));
 }
 
-interface LocalTimeProps {
+type LocalTimeProps = Readonly<{
 	value: Temporal.Instant | string;
-	options?: "short" | "long" | "verbose" | Intl.DateTimeFormatOptions;
-}
+	variant?: "short" | "long" | "verbose" | Intl.DateTimeFormatOptions;
+}>;
 
-export default function LocalTime({ value, options = "short" }: LocalTimeProps) {
+export default function LocalTime({ value, variant = "short" }: LocalTimeProps) {
 	let formatOptions: Intl.DateTimeFormatOptions;
 
-	switch (options) {
+	switch (variant) {
 		case "short":
 			formatOptions = {
 				year: "numeric",
@@ -76,7 +76,7 @@ export default function LocalTime({ value, options = "short" }: LocalTimeProps) 
 			};
 			break;
 		default:
-			formatOptions = options;
+			formatOptions = variant;
 	}
 
 	return <>{toLocalString(value, formatOptions)}</>;

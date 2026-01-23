@@ -1,5 +1,6 @@
 import { H1, H2 } from "@components/heading";
 import Prose from "@components/prose";
+import AcceptTermsOfUse from "./accept-terms-of-use";
 
 export default async function TermsOfUsePage() {
 	return (
@@ -7,7 +8,7 @@ export default async function TermsOfUsePage() {
 			<H1>Terms of Use</H1>
 			<H2 className="text-muted-foreground mb-4 font-light text-[1.1rem]">Last Updated: 9/4/2014</H2>
 
-			<section id="inset" className="prose dark:prose-invert min-w-full! pr-10">
+			<section id="inset" className="min-w-full">
 				<p>
 					The Champaign-Urbana Mass Transit District (hereafter "Licensor" or "MTD"), owns and maintains certain
 					electronic data, including but not limited to MTD route and schedule data, service alert data and real-time
@@ -134,6 +135,10 @@ export default async function TermsOfUsePage() {
 					agent, or of limited or general partnership, or of joint venture, or of any association or relationship
 					involving the Licensee and the MTD.
 				</p>
+			</section>
+			<section className="mt-5 mb-100">
+				<H2>Acceptance</H2>
+				<AcceptTermsOfUse />
 			</section>
 		</Prose>
 	);

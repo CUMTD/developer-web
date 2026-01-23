@@ -9,11 +9,14 @@ export async function acceptRequiredTos() {
 	await requireUserId();
 	const supabase = await createClient();
 
-	const { error } = await supabase.rpc("accept_required_tos");
+	const result = await supabase.rpc("accept_required_tos");
+	const { error } = result;
 
 	if (error) {
 		throw new Error(error.message);
 	}
 
 	revalidatePath("/account");
+	revalidatePath("/account/keys");
+	revalidatePath("/terms-of-use");
 }

@@ -20,7 +20,7 @@ export default function AcceptedOldValid({ acceptedOn }: AcceptedOldValidProps) 
 						<>
 							You accepted a previous version of the Terms of Service on{" "}
 							<span className="font-medium">
-								<LocalTime value={acceptedOn} options="long" />
+								<LocalTime value={acceptedOn} variant="long" />
 							</span>
 							.
 						</>

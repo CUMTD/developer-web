@@ -18,7 +18,7 @@ export default function AcceptedLatestTos({ acceptedOn }: AcceptedLatestTosProps
 							<>
 								You accepted the latest Terms of Service on{" "}
 								<span className="font-medium">
-									<LocalTime value={acceptedOn} options="long" />
+									<LocalTime value={acceptedOn} variant="long" />
 								</span>
 								.
 							</>
