@@ -10,9 +10,7 @@ export default async function AcceptTermsOfUse() {
 	if (status === Status.AcceptedLatest) {
 		const { lastAcceptedAt } = tosStatus;
 		return (
-			<Alert
-				className="border-green-200 bg-green-50 text-green-900 dark:border-green-900 dark:bg-green-950 dark:text-yellow-50"
-			>
+			<Alert className="border-green-200 bg-green-50 text-green-900 dark:border-green-900 dark:bg-green-950 dark:text-yellow-50">
 				<AlertTitle className="text-green-900 dark:text-green-50 text-lg">Accepted</AlertTitle>
 				<AlertDescription className="flex flex-col gap-3 font-medium text-green-900 dark:text-green-50">
 					<p>
