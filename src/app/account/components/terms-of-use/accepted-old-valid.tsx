@@ -11,7 +11,7 @@ export default function AcceptedOldValid({ acceptedOn }: AcceptedOldValidProps) 
 	return (
 		<Alert
 			variant="destructive"
-			className="border-amber-200 bg-amber-50 text-yellow-900 dark:border-yellow-900 dark:bg-yellow-950 dark:text-yellow-50"
+			className="border-yellow-200 bg-yellow-50 text-yellow-900 dark:border-yellow-900 dark:bg-yellow-950 dark:text-yellow-50"
 		>
 			<AlertTitle className="text-yellow-900 dark:text-yellow-50 text-lg">Action required: Re-Accept Terms</AlertTitle>
 			<AlertDescription className="flex flex-col gap-3 font-medium text-yellow-900 dark:text-yellow-50">
