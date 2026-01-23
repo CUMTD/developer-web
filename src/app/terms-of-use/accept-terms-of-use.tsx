@@ -35,7 +35,7 @@ export default async function AcceptTermsOfUse() {
 			<AlertTitle className="text-yellow-900 dark:text-yellow-50 text-lg">
 				Action Required: Accept Terms of Use
 			</AlertTitle>
-			<AlertDescription className="flex flex-col gap-3 font-medium text-amber-900 dark:text-amber-50">
+			<AlertDescription className="flex flex-col gap-3 font-medium text-yellow-900 dark:text-yellow-50">
 				<AcceptForm status={status} />
 			</AlertDescription>
 		</Alert>
