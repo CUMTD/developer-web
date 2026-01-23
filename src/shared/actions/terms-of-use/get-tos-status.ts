@@ -15,7 +15,6 @@ export type TosStatus = Readonly<{
 }>;
 
 function parseTosStatus(statuses: TosStatusResult[]): Status {
-	console.log("TOS Acceptance History:", statuses);
 	if (statuses.length === 0) {
 		return Status.NeverAccepted;
 	}
@@ -48,12 +47,6 @@ export async function getTosStatus(): Promise<TosStatus> {
 
 	const status = parseTosStatus(tos);
 	const simpleStatus = parseSimpleStatus(status);
-
-	console.log("TOS Status:", {
-		status,
-		canAccessApi: simpleStatus,
-		lastAcceptedAt: tos.length > 0 ? tos[0].accepted_at : null,
-	});
 
 	return {
 		status,
