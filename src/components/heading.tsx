@@ -1,40 +1,62 @@
 import { createElement, type JSX, type ReactNode } from "react";
 import Prose from "./prose";
 
-type HeadingProps = Readonly<{
+type SharedHeadingProps = {
 	level: 1 | 2 | 3 | 4 | 5 | 6;
 	children: ReactNode;
-	className?: string;
+} & Omit<JSX.IntrinsicElements["h1"], "children">;
+
+type WrapProseProps = {
+	wrapProse: true;
 	containerClassName?: string;
-}> &
-	Omit<JSX.IntrinsicElements["h1"], "children" | "className">;
+};
 
-export default function Heading({ level, children, className, containerClassName, ...rest }: HeadingProps) {
-	const Tag = `h${level}` as keyof JSX.IntrinsicElements;
+type NoWrapProseProps = {
+	wrapProse?: false;
+	containerClassName?: undefined;
+};
 
-	return <Prose className={containerClassName}>{createElement(Tag, { className, ...rest }, children)}</Prose>;
+type HeadingProps = Readonly<SharedHeadingProps & (WrapProseProps | NoWrapProseProps)>;
+
+type HeadingWithoutLevelProps = Readonly<Omit<SharedHeadingProps, "level"> & (WrapProseProps | NoWrapProseProps)>;
+
+function isWrapProseProps(props: HeadingProps): props is SharedHeadingProps & WrapProseProps {
+	return props.wrapProse === true;
 }
 
-export function H1(props: Omit<HeadingProps, "level">) {
+export default function Heading(props: HeadingProps) {
+	const Tag = `h${props.level}` as keyof JSX.IntrinsicElements;
+
+	if (isWrapProseProps(props)) {
+		const { level, children, className, wrapProse, containerClassName, ...rest } = props;
+
+		return <Prose className={containerClassName}>{createElement(Tag, { className, ...rest }, children)}</Prose>;
+	}
+
+	const { level, children, className, wrapProse, containerClassName, ...rest } = props;
+	return createElement(Tag, { className, ...rest }, children);
+}
+
+export function H1(props: HeadingWithoutLevelProps) {
 	return <Heading level={1} {...props} />;
 }
 
-export function H2(props: Omit<HeadingProps, "level">) {
+export function H2(props: HeadingWithoutLevelProps) {
 	return <Heading level={2} {...props} />;
 }
 
-export function H3(props: Omit<HeadingProps, "level">) {
+export function H3(props: HeadingWithoutLevelProps) {
 	return <Heading level={3} {...props} />;
 }
 
-export function H4(props: Omit<HeadingProps, "level">) {
+export function H4(props: HeadingWithoutLevelProps) {
 	return <Heading level={4} {...props} />;
 }
 
-export function H5(props: Omit<HeadingProps, "level">) {
+export function H5(props: HeadingWithoutLevelProps) {
 	return <Heading level={5} {...props} />;
 }
 
-export function H6(props: Omit<HeadingProps, "level">) {
+export function H6(props: HeadingWithoutLevelProps) {
 	return <Heading level={6} {...props} />;
 }

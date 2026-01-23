@@ -1,8 +1,15 @@
 import { H1 } from "@components/heading";
+import { getTosStatus } from "@shared/actions/terms-of-use/get-tos-status";
 import { createClient } from "@shared/lib/supabase/server";
+import type { Metadata } from "next";
 import { unauthorized } from "next/navigation";
 import Breadcrumbs from "../../components/breadcrumbs";
 import ApiKeyAddForm from "./components/api-key-add-form";
+
+export const metadata: Metadata = {
+	title: "Add Key",
+	description: "Add an API key.",
+};
 
 export default async function AddApiKeyPage() {
 	const supabase = await createClient();
@@ -12,9 +19,15 @@ export default async function AddApiKeyPage() {
 		unauthorized();
 	}
 
+	const { canAccessApi } = await getTosStatus();
+
+	if (!canAccessApi) {
+		unauthorized();
+	}
+
 	return (
 		<>
-			<H1>Add API Key</H1>
+			<H1 wrapProse>Add API Key</H1>
 			<Breadcrumbs
 				items={[
 					{ href: "/account", label: "Account" },

@@ -5,7 +5,7 @@ import type { Database } from "@t/supabase";
 import { requireUserId } from "../_auth";
 
 type ApiKeyRow = Database["public"]["Tables"]["api_key"]["Row"];
-export type ApiKeyResult = Pick<ApiKeyRow, "key" | "name" | "notes" | "created_at" | "is_active">;
+export type ApiKeyResult = Readonly<Pick<ApiKeyRow, "key" | "name" | "notes" | "created_at" | "is_active">>;
 
 export async function getApiKey(key: string): Promise<ApiKeyResult | null> {
 	const userId = await requireUserId();

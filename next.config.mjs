@@ -24,6 +24,9 @@ const nextConfig = {
 	reactStrictMode: true,
 	distDir: ".next",
 	outputFileTracingRoot: path.join(__dirname, "./"),
+	experimental: {
+		authInterrupts: true,
+	},
 };
 
 export default withMDX(nextConfig);
