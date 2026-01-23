@@ -1,10 +1,16 @@
 import { H1, H2 } from "@components/heading";
 import { getDeveloperDetails } from "@shared/actions/account/getDeveloperDetails";
 import { createClient } from "@shared/lib/supabase/server";
+import type { Metadata } from "next";
 import { unauthorized } from "next/navigation";
 import DeveloperInfo from "./components/developer-info";
 import TermsOfUse from "./components/terms-of-use";
 import UserInfo from "./components/user-info";
+
+export const metadata: Metadata = {
+	title: "Account",
+	description: "Manage your account details and API keys.",
+};
 
 export default async function AccountPage() {
 	const supabase = await createClient();

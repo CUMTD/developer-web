@@ -2,6 +2,7 @@ import { H1, H2 } from "@components/heading";
 import ObfuscatedKey from "@components/obfuscated-key";
 import { getApiKey } from "@shared/actions/api-keys/get-api-key";
 import { getTosStatus } from "@shared/actions/terms-of-use/get-tos-status";
+import type { Metadata } from "next";
 import { notFound, unauthorized } from "next/navigation";
 import Breadcrumbs from "../../components/breadcrumbs";
 import ApiKeyEditForm from "./components/api-key-edit-form";
@@ -11,6 +12,11 @@ type ApiKeyPageProps = Readonly<{
 		key: string;
 	}>;
 }>;
+
+export const metadata: Metadata = {
+	title: "Edit Key",
+	description: "Edit an API key.",
+};
 
 export default async function ApiKeyPage({ params }: ApiKeyPageProps) {
 	const { key } = await params;

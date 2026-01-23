@@ -1,6 +1,12 @@
 import { H1, H2 } from "@components/heading";
 import Prose from "@components/prose";
+import type { Metadata } from "next";
 import AcceptTermsOfUse from "./accept-terms-of-use";
+
+export const metadata: Metadata = {
+	title: "Terms of Use",
+	description: "Read and accept the Terms of Use for accessing MTD data.",
+};
 
 export default async function TermsOfUsePage() {
 	return (

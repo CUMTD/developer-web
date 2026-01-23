@@ -2,10 +2,16 @@ import { H1 } from "@components/heading";
 import { getApiKeys } from "@shared/actions/api-keys/get-api-keys";
 import { getTosStatus } from "@shared/actions/terms-of-use/get-tos-status";
 import { Button } from "@shared/shadcn/button";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumbs from "../components/breadcrumbs";
 import ApiKey from "./components/api-key";
 import CannotAccess from "./components/cannot-access";
+
+export const metadata: Metadata = {
+	title: "Keys",
+	description: "Manage your API keys.",
+};
 
 export default async function KeysPage() {
 	const { canAccessApi } = await getTosStatus();
