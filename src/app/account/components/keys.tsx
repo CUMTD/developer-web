@@ -6,14 +6,14 @@ import { KeyRound } from "lucide-react";
 import Link from "next/link";
 
 export default async function Keys() {
-	const keys = await getApiKeys();
 	const { canAccessApi } = await getTosStatus();
+	const keys = await getApiKeys();
 
 	return (
 		<Item variant="muted">
 			<ItemContent>
 				<ItemHeader>Key Count</ItemHeader>
-				<ItemDescription>{keys.length.toLocaleString()}</ItemDescription>
+				<ItemDescription>{canAccessApi ? keys.length.toLocaleString() : "*"}</ItemDescription>
 			</ItemContent>
 			{canAccessApi && (
 				<ItemActions>
