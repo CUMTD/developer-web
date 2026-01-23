@@ -28,7 +28,7 @@ export default function AcceptedOldValid({ acceptedOn }: AcceptedOldValidProps) 
 						<>You accepted a previous version of the Terms of Service.</>
 					)}
 				</p>
-				<p className="text-muted-foreground">
+				<p>
 					Your current acceptance is still valid, but will eventually stop working. Please review and accept the latest
 					Terms to ensure uninterrupted access to the API.
 				</p>
