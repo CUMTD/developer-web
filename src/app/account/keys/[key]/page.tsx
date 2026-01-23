@@ -14,13 +14,13 @@ type ApiKeyPageProps = Readonly<{
 
 export default async function ApiKeyPage({ params }: ApiKeyPageProps) {
 	const { key } = await params;
-	const apiKey = await getApiKey(key);
 	const { canAccessApi } = await getTosStatus();
 
 	if (!canAccessApi) {
 		unauthorized();
 	}
 
+	const apiKey = await getApiKey(key);
 	if (!apiKey) {
 		notFound();
 	}
