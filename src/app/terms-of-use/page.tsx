@@ -65,7 +65,7 @@ export default async function TermsOfUsePage() {
 					MTD Data. MTD reserves the right to alter, correct or modify MTD Data at any time without prior notice to
 					Licensee.
 				</p>
-				<H2 id="indeminification">Indemnification</H2>
+				<H2 id="indemnification">Indemnification</H2>
 				<p>
 					Licensee agrees to indemnify, defend and hold harmless MTD and its officers, directors, and employees from and
 					against all fines, suits, proceedings, claims, causes of action, demands, or liabilities of any kind or of any
