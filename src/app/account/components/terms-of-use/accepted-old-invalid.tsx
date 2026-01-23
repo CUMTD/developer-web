@@ -16,17 +16,15 @@ export default function AcceptedOldInvalid({ acceptedOn }: AcceptedOldInvalidPro
 			<AlertTitle className="text-amber-900 dark:text-amber-50 text-lg">Action required: Re-Accept Terms</AlertTitle>
 			<AlertDescription className="flex flex-col gap-3 font-medium text-amber-900 dark:text-amber-50">
 				<div className="space-y-2 text-sm">
-					<p>
-						{acceptedOn && (
-							<>
-								You previously accepted an older Terms of Service on{" "}
-								<span className="font-medium">
-									<LocalTime value={acceptedOn} variant="long" />
-								</span>
-								, but those Terms are no longer valid.
-							</>
-						)}
-					</p>
+					{acceptedOn && (
+						<p>
+							You previously accepted an older Terms of Service on{" "}
+							<span className="font-medium">
+								<LocalTime value={acceptedOn} variant="long" />
+							</span>
+							, but those Terms are no longer valid.
+						</p>
+					)}
 					<p>You must accept the latest Terms for your API keys to continue working.</p>
 				</div>
 
