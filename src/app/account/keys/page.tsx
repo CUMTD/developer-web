@@ -8,8 +8,8 @@ import ApiKey from "./components/api-key";
 import CannotAccess from "./components/cannot-access";
 
 export default async function KeysPage() {
-	const apiKeys = await getApiKeys();
 	const { canAccessApi } = await getTosStatus();
+	const apiKeys = canAccessApi ? await getApiKeys() : [];
 
 	return (
 		<>
