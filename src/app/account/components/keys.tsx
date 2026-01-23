@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default async function Keys() {
 	const { canAccessApi } = await getTosStatus();
-	const keys = await getApiKeys();
+	const keys = canAccessApi ? await getApiKeys() : [];
 
 	return (
 		<Item variant="muted">
