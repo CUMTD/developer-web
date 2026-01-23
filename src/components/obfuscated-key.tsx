@@ -17,7 +17,7 @@ type ObfuscatedKeyAttributeProps = Readonly<{
 type ObfuscatedKeyProps = ObfuscatedKeyChildProps | ObfuscatedKeyAttributeProps;
 
 function isAttributeProps(props: ObfuscatedKeyProps): props is ObfuscatedKeyAttributeProps {
-	return (props as ObfuscatedKeyAttributeProps)?.apiKey !== undefined;
+	return (props as ObfuscatedKeyAttributeProps).apiKey !== undefined;
 }
 
 export default function ObfuscatedKey(props: ObfuscatedKeyProps) {
