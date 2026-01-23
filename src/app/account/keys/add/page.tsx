@@ -8,12 +8,14 @@ import ApiKeyAddForm from "./components/api-key-add-form";
 export default async function AddApiKeyPage() {
 	const supabase = await createClient();
 	const { data: authData } = await supabase.auth.getClaims();
+
+	if (authData === null) {
+		unauthorized();
+	}
+
 	const { canAccessApi } = await getTosStatus();
 
 	if (!canAccessApi) {
-		unauthorized();
-	}
-	if (authData === null) {
 		unauthorized();
 	}
 
