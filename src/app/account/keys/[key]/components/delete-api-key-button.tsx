@@ -65,7 +65,7 @@ export default function DeleteApiKeyButton({ apiKeyName, apiKeyValue }: Props) {
 					<div className="rounded-md border p-3">
 						<p className="font-medium">{apiKeyName || "Untitled key"}</p>
 						<p className="font-mono text-xs text-muted-foreground break-all">
-							<ObfuscatedKey>{apiKeyValue}</ObfuscatedKey>
+							<ObfuscatedKey apiKey={apiKeyValue} />
 						</p>
 					</div>
 				</div>
