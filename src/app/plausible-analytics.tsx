@@ -33,6 +33,11 @@ export function PlausibleAnalytics(): null {
 					mod.init({
 						domain,
 						autoCapturePageviews: true,
+						outboundLinks: true,
+						fileDownloads: true,
+						formSubmissions: true,
+						captureOnLocalhost: false,
+						endpoint: "https://pa.mtd.dev/api/event",
 					});
 				} catch (err) {
 					// If init fails, allow a later retry
