@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@sha
 import { Separator } from "@shared/shadcn/separator";
 import { ArrowRight, DownloadIcon, ExternalLink, FolderArchive, KeyRoundIcon, WorkflowIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Homepage() {
 	return (
@@ -98,11 +99,15 @@ export default function Homepage() {
 						</CardContent>
 						<CardFooter className="mt-auto">
 							<div className="flex flex-row gap-4">
-								<Button variant={"secondary"} className="bg-blue-800 text-white">
-									Get an API Key <KeyRoundIcon />
+								<Button variant={"secondary"} className="bg-blue-800 text-white" asChild>
+									<Link href="/account/keys">
+										Get an API Key <KeyRoundIcon />
+									</Link>
 								</Button>
-								<Button>
-									API Reference <ArrowRight />
+								<Button asChild>
+									<Link href="/reference/introduction">
+										API Reference <ArrowRight />
+									</Link>
 								</Button>
 							</div>
 						</CardFooter>
