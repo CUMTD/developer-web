@@ -21,8 +21,6 @@ export default function UserAvatar({ profileImage, name, size }: UserAvatarProps
 		.join("")
 		.toUpperCase();
 
-	console.log("size", { size, sizeClass: avatarSizeClass[size ?? "default"] });
-
 	return (
 		<Avatar className={cn(avatarSizeClass[size])}>
 			{profileImage && <AvatarImage src={profileImage} alt={initials} />}

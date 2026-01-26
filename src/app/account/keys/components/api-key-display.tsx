@@ -1,10 +1,11 @@
 "use client";
 
+import { obfuscateKeyString } from "@components/obfuscated-key";
 import { Button } from "@shared/shadcn/button";
 import { ButtonGroup } from "@shared/shadcn/button-group";
 import { Label } from "@shared/shadcn/label";
 import { CheckIcon, CopyIcon, EyeIcon, EyeOffIcon } from "lucide-react";
-import { useId, useState } from "react";
+import { useId, useMemo, useState } from "react";
 
 type CopyTextProps = Readonly<{
 	apiKey: string;
@@ -14,6 +15,12 @@ export default function ApiKeyDisplay({ apiKey }: CopyTextProps) {
 	const [show, setShow] = useState(false);
 	const [copied, setCopied] = useState(false);
 	const id = useId();
+	const apiKeyDisplay = useMemo(() => {
+		if (show) {
+			return apiKey;
+		}
+		return obfuscateKeyString(apiKey);
+	}, [apiKey, show]);
 
 	function handleCopy() {
 		if (!copied) {
@@ -30,11 +37,11 @@ export default function ApiKeyDisplay({ apiKey }: CopyTextProps) {
 
 			<ButtonGroup className="w-full" id={id}>
 				<input
-					type={show ? "text" : "password"}
+					type={"text"}
 					autoComplete="off"
 					disabled
 					className="font-mono border w-full rounded-md px-2 text-muted-foreground text-xs"
-					value={apiKey}
+					value={apiKeyDisplay}
 				/>
 				<Button variant={"secondary"} onClick={() => setShow(!show)} className="min-w-[12ch]">
 					{show ? (

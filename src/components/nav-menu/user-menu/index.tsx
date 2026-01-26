@@ -7,7 +7,7 @@ import LoginButtonSkeleton from "./login-button-skeleton";
 
 export default function UserProfileDisplay() {
 	const { isLoading, isAuthenticated, user } = useCurrentUser();
-	console.log("data", { isLoading, isAuthenticated, user });
+
 	if (isLoading) {
 		return <LoginButtonSkeleton />;
 	}
