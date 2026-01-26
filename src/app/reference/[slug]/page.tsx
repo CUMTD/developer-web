@@ -5,6 +5,7 @@ import { Separator } from "@shared/shadcn/separator";
 import type { Metadata } from "next";
 import React from "react";
 import "server-only";
+import { PrettyCodeFromFilepath } from "src/app/reference/[slug]/components/PrettyCodeFromFilepath";
 import type { ApiResponseAttribute } from "src/types/DocumentationTypes";
 import { API_INDEX, type ApiObject } from "../../../types/md.generated";
 import EndpointItem from "./components/endpoint-item";
@@ -39,7 +40,6 @@ export default async function Page({ params }: Props) {
 	const methods = API_INDEX[apiObject];
 
 	const { default: ObjectDescription } = await import(`../../markdown/${apiObject}/description.mdx`);
-	const { default: ResponseObject } = await import(`../../markdown/${apiObject}/response.mdx`);
 	const { response: responseAttributes } = await import(`../../markdown/${apiObject}/response.ts`);
 
 	var attributes = responseAttributes as ApiResponseAttribute[];
@@ -54,7 +54,7 @@ export default async function Page({ params }: Props) {
 			<Item className="items-start p-0 ">
 				<ItemContent className="w-full sticky top-0">
 					<ItemHeader className="text-xl">Object</ItemHeader>
-					<ResponseObject />
+					<PrettyCodeFromFilepath filepath={`src/app/markdown/${apiObject}/object.json`} language="json" />
 				</ItemContent>
 			</Item>
 			<div className="col-span-1 lg:col-span-2">
@@ -70,7 +70,7 @@ export default async function Page({ params }: Props) {
 					</React.Fragment>
 				);
 			})}
-			<div className="col-span-2 w-full min-h-[75vh] flex flex-col gap-5 ">
+			<div className=" col-span-1 lg:col-span-2 w-full min-h-[75vh] flex flex-col gap-5 ">
 				<Separator />
 				<span className="text-muted-foreground text-center text-xs">* * *</span>
 			</div>

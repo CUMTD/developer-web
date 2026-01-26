@@ -14,7 +14,6 @@ type EndpointItemProps<T extends ApiObject> = Readonly<{
 export default async function EndpointItem<T extends ApiObject>({ object, method }: EndpointItemProps<T>) {
 	// import the relevant .mdx files
 	const { default: EndpointDescription } = await import(`../../../markdown/${object}/${method}/description.mdx`);
-	const { default: ResponseObject } = await import(`../../../markdown/${object}/response.mdx`);
 	const { parameters } = await import(`../../../markdown/${object}/${method}/parameters.ts`);
 
 	// generate array of language names mapped to their example ReactElement
@@ -31,7 +30,7 @@ export default async function EndpointItem<T extends ApiObject>({ object, method
 
 	return (
 		<>
-			<div className="col-span-1 lg:col-span-1 flex flex-col gap-10">
+			<div className="col-span-1 lg:col-span-1 flex flex-col gap-10 px-2">
 				<div className="[&_p]:text-muted-foreground">
 					<EndpointDescription />
 				</div>
@@ -45,9 +44,7 @@ export default async function EndpointItem<T extends ApiObject>({ object, method
 				</Item>
 				<Item className="p-0">
 					<ItemHeader className="text-xl">Response</ItemHeader>
-					<ItemContent className="w-full">
-						<ResponseObject />
-					</ItemContent>
+					<ItemContent className="w-full">{/* <ResponseObject /> */}</ItemContent>
 				</Item>
 			</ItemGroup>
 		</>

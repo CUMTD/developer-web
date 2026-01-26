@@ -1,4 +1,3 @@
-```json
 {
 	"id": "[@2.0.86175868@]ORANGE 99",
 	"shapePoints": [
@@ -28,8 +27,6 @@
 			},
 			"distanceTraveled": 28.527,
 			"stopId": "BDWYNWTR:2"
-		},
-		{... etc.}
+		}
 	]
 }
-```

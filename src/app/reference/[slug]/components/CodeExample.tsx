@@ -7,11 +7,11 @@ import { EXAMPLE_LANGUAGES } from "src/app/markdown/languages";
 import { CodeExampleBody } from "./CodeExampleWithCopy";
 import { LanguageSelector } from "./LanguageSelector";
 
-interface EndpointClientProps {
+interface CodeExampleProps {
 	content: { [language: string]: ReactElement };
 }
 
-export default function CodeExample({ content }: EndpointClientProps) {
+export default function CodeExample({ content }: CodeExampleProps) {
 	const searchParams = useSearchParams();
 	const language = searchParams.get("language");
 
