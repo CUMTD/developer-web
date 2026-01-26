@@ -3,7 +3,6 @@
 
 import { createClient } from "@server/supabase/server";
 import { revalidatePath } from "next/cache";
-import "server-only";
 import { requireUserId } from "../_auth";
 
 export type AcceptTosActionState = { ok: true } | { ok: false; message: string };

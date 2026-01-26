@@ -2,7 +2,6 @@
 
 import { createClient } from "@server/supabase/server";
 import type { Database } from "@t/supabase";
-import "server-only";
 import { requireUserId } from "../_auth";
 
 type DeveloperRow = Database["public"]["Tables"]["developer"]["Row"];

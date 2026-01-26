@@ -2,7 +2,6 @@
 
 import { createClient } from "@server/supabase/server";
 import type { Database } from "@t/supabase";
-import "server-only";
 import { requireUserId } from "../_auth";
 
 type TosVersionRow = Database["public"]["Tables"]["tos_version"]["Row"];

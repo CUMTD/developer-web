@@ -3,7 +3,6 @@
 import { createClient } from "@server/supabase/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import "server-only";
 import { z } from "zod";
 import { requireUserId } from "../_auth";
 
