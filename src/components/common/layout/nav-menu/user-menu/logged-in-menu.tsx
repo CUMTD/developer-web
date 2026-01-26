@@ -1,6 +1,6 @@
 import UserAvatar from "@common/account/user-avatar";
+import { LogoutButton } from "@common/auth/logout-button";
 import { type CurrentUser, isUnknownUser } from "@hooks/use-current-user";
-import { Button } from "@ui/button";
 import {
 	NavigationMenuContent,
 	NavigationMenuItem,
@@ -45,11 +45,7 @@ export default function LoggedInUserMenu({ user }: Readonly<{ user: CurrentUser 
 						</li>
 
 						<li>
-							<form action="/account/auth/logout" method="POST">
-								<Button type="submit" variant="ghost" className="w-full justify-start">
-									Logout
-								</Button>
-							</form>
+							<LogoutButton />
 						</li>
 					</ul>
 				</div>

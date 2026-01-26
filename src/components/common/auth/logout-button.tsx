@@ -1,17 +1,18 @@
-"use client";
-
-import { createClient } from "@lib/supabase/client";
 import { Button } from "@ui/button";
-import { useRouter } from "next/navigation";
+import type { ComponentProps } from "react";
 
-export function LogoutButton() {
-	const router = useRouter();
+type LogoutButtonProps = Readonly<
+	{
+		variant?: "link" | "default" | "destructive" | "outline" | "secondary" | "ghost" | null | undefined;
+	} & Omit<ComponentProps<"button">, "type">
+>;
 
-	const logout = async () => {
-		const supabase = createClient();
-		await supabase.auth.signOut();
-		router.push("/account/auth/login");
-	};
-
-	return <Button onClick={logout}>Logout</Button>;
+export function LogoutButton({ variant = "ghost", className = "w-full justify-start", ...rest }: LogoutButtonProps) {
+	return (
+		<form action="/account/auth/logout" method="POST">
+			<Button type="submit" variant={variant} className={className} {...rest}>
+				Logout
+			</Button>
+		</form>
+	);
 }

@@ -15,6 +15,7 @@ export default function ApiKeyDisplay({ apiKey }: CopyTextProps) {
 	const [show, setShow] = useState(false);
 	const [copied, setCopied] = useState(false);
 	const id = useId();
+	const showId = useId();
 	const apiKeyDisplay = useMemo(() => {
 		if (show) {
 			return apiKey;
@@ -42,8 +43,9 @@ export default function ApiKeyDisplay({ apiKey }: CopyTextProps) {
 					disabled
 					className="font-mono border w-full rounded-md px-2 text-muted-foreground text-xs"
 					value={apiKeyDisplay}
+					id={showId}
 				/>
-				<Button variant={"secondary"} onClick={() => setShow(!show)} className="min-w-[12ch]">
+				<Button variant={"secondary"} onClick={() => setShow(!show)} className="min-w-[12ch]" aria-controls={showId}>
 					{show ? (
 						<>
 							<EyeOffIcon /> Hide
