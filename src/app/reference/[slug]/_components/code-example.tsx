@@ -7,11 +7,11 @@ import { type ReactElement, useEffect, useState } from "react";
 import { CodeExampleBody } from "./code-example-with-copy";
 import { LanguageSelector } from "./language-selector";
 
-interface EndpointClientProps {
+interface CodeExampleProps {
 	content: { [language: string]: ReactElement };
 }
 
-export default function CodeExample({ content }: EndpointClientProps) {
+export default function CodeExample({ content }: CodeExampleProps) {
 	const searchParams = useSearchParams();
 	const language = searchParams.get("language");
 

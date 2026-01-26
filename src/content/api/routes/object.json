@@ -1,4 +1,3 @@
-```json
 {
 	"id": "9773e862-95fa-4697-9e94-edb6d59bdd75",
 	"sortNumber": 1,
@@ -19,8 +18,6 @@
 				"sortOrder": 100
 			},
 			"gtfsRoutes": []
-		},
-		{...}
+		}
 	]
 }
-```

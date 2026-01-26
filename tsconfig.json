@@ -20,6 +20,7 @@
 			"@helpers/*": ["src/helpers/*"],
 			"@hooks/*": ["src/hooks/*"],
 			"@lib/*": ["src/lib/*"],
+			"@markdown/*": ["src/content/api/*"],
 			"@server/*": ["src/server/*"],
 			"@t/*": ["src/types/*"],
 			"@ui/*": ["src/components/ui/*"]

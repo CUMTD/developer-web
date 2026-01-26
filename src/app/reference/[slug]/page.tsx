@@ -8,6 +8,7 @@ import type { Metadata } from "next";
 import React from "react";
 import "server-only";
 import EndpointItem from "./_components/endpoint-item";
+import { PrettyCodeFromFilepath } from "./_components/pretty-code-from-file-path";
 
 // Disable dynamic route parameters
 // This ensures that only the statically generated routes are used
@@ -39,8 +40,7 @@ export default async function Page({ params }: Props) {
 	const { slug: apiObject } = await params;
 	const methods = API_INDEX[apiObject];
 
-	const { default: ObjectDescription } = await import(`@content/api/${apiObject}/description.mdx`);
-	const { default: ResponseObject } = await import(`@content/api/${apiObject}/response.mdx`);
+	const { default: ObjectDescription } = await import(`@content/api//${apiObject}/description.mdx`);
 	const { response: responseAttributes } = await import(`@content/api/${apiObject}/response.ts`);
 
 	var attributes = responseAttributes as ApiResponseAttribute[];
@@ -55,7 +55,7 @@ export default async function Page({ params }: Props) {
 			<Item className="items-start p-0 ">
 				<ItemContent className="w-full sticky top-0">
 					<ItemHeader className="text-xl">Object</ItemHeader>
-					<ResponseObject />
+					<PrettyCodeFromFilepath filepath={`@content/api/${apiObject}/object.json`} language="json" />
 				</ItemContent>
 			</Item>
 			<div className="col-span-1 lg:col-span-2">
@@ -71,7 +71,7 @@ export default async function Page({ params }: Props) {
 					</React.Fragment>
 				);
 			})}
-			<div className="col-span-2 w-full min-h-[75vh] flex flex-col gap-5 ">
+			<div className=" col-span-1 lg:col-span-2 w-full min-h-[75vh] flex flex-col gap-5 ">
 				<Separator />
 				<span className="text-muted-foreground text-center text-xs">* * *</span>
 			</div>
