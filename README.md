@@ -30,7 +30,7 @@ src/
 
   env/
     schema.ts                 # Zod schemas for env
-    client.ts                 # NEXT_PUBLIC_* only
+    global.ts                 # NEXT_PUBLIC_* only
     server.ts                 # server-only env
 
   hooks/                      # shared React hooks
