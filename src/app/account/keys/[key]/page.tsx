@@ -13,10 +13,16 @@ type ApiKeyPageProps = Readonly<{
 	}>;
 }>;
 
-export const metadata: Metadata = {
-	title: "Edit Key",
-	description: "Edit an API key.",
-};
+type MetaParams = Readonly<{ params: Promise<{ key: string }> }>;
+
+export async function generateMetadata({ params }: MetaParams): Promise<Metadata> {
+	const { key } = await params;
+	return {
+		title: "Edit Key",
+		description: "Edit an API key.",
+		alternates: { canonical: `/account/keys/${key}` },
+	};
+}
 
 export default async function ApiKeyPage({ params }: ApiKeyPageProps) {
 	const { key } = await params;

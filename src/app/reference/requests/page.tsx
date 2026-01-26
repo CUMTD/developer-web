@@ -1,6 +1,13 @@
 import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-navigator-button-interface";
 import { CloudUpload } from "lucide-react";
+import type { Metadata } from "next";
 import { CodeExampleBody } from "../[slug]/_components/code-example-with-copy";
+
+export const metadata: Metadata = {
+	title: "Requests",
+	description: "How to send API requests.",
+	alternates: { canonical: "/reference/requests" },
+};
 
 export default function RequestsPage() {
 	return (

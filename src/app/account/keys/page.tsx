@@ -10,6 +10,7 @@ import CannotAccess from "./_components/cannot-access";
 export const metadata: Metadata = {
 	title: "Keys",
 	description: "Manage your API keys.",
+	alternates: { canonical: "/account/keys" },
 };
 
 export default async function KeysPage() {

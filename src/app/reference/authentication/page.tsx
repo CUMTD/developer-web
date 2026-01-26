@@ -1,6 +1,13 @@
 import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-navigator-button-interface";
 import LinkButton from "@common/link-button";
 import { KeyRound, KeyRoundIcon } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Authentication",
+	description: "How to authenticate with the API.",
+	alternates: { canonical: "/reference/authentication" },
+};
 
 export default function AuthenticationPage() {
 	return (

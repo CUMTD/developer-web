@@ -1,4 +1,10 @@
 import { LoginForm } from "@common/auth/login-form";
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+	title: "Login",
+	description: "Login to your developer account.",
+	alternates: { canonical: "/account/auth/login" },
+};
 
 type LoginFormProps = Readonly<{
 	searchParams: Promise<{ redirectUrl?: string }>;

@@ -9,6 +9,7 @@ import ApiKeyAddForm from "./_components/api-key-add-form";
 export const metadata: Metadata = {
 	title: "Add Key",
 	description: "Add an API key.",
+	alternates: { canonical: "/account/keys/add" },
 };
 
 export default async function AddApiKeyPage() {

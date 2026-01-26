@@ -7,6 +7,7 @@ import AcceptTermsOfUse from "./_components/accept-terms-of-use";
 export const metadata: Metadata = {
 	title: "Terms of Use",
 	description: "Read and accept the Terms of Use for accessing MTD data.",
+	alternates: { canonical: "/terms-of-use" },
 };
 
 export default async function TermsOfUsePage() {

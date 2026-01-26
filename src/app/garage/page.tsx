@@ -1,5 +1,12 @@
 import BrushedMetal from "@common/brushed-metal";
+import type { Metadata } from "next";
 import GarageGallery from "./garage-gallery";
+
+export const metadata: Metadata = {
+	title: "Garage",
+	description: "Showcase of apps and projects.",
+	alternates: { canonical: "/garage" },
+};
 
 export default function AppGarage() {
 	return (

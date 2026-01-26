@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const title = toTitleCase(slug);
 	return {
 		title,
+		alternates: { canonical: `/reference/${slug}` },
 	};
 }
 

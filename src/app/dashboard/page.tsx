@@ -10,6 +10,14 @@ import {
 import { Separator } from "@ui/separator";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@ui/sidebar";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Dashboard",
+	description: "Developer dashboard.",
+	alternates: { canonical: "/dashboard" },
+};
+
 export default function Page() {
 	return (
 		<SidebarProvider>

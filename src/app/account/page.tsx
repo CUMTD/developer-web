@@ -10,6 +10,7 @@ import UserInfo from "./_components/user-info";
 export const metadata: Metadata = {
 	title: "Account",
 	description: "Manage your account details and API keys.",
+	alternates: { canonical: "/account" },
 };
 
 export default async function AccountPage() {

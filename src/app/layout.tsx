@@ -29,21 +29,30 @@ export const viewport: Viewport = {
 export async function generateMetadata(): Promise<Metadata> {
 	const defaultTitle = "MTD Developer";
 	const defaultDescription = "MTD Developer API."; // TODO: Update description
-	const metadataBase = globalEnv.NEXT_PUBLIC_BASE_URL;
+	const metadataBase = globalEnv.NEXT_PUBLIC_BASE_URL ? new URL(globalEnv.NEXT_PUBLIC_BASE_URL) : undefined;
 
 	return {
-		title: {
-			default: defaultTitle,
-			template: `%s | ${defaultTitle}`,
-		},
+		applicationName: defaultTitle,
 		description: defaultDescription,
+		formatDetection: {
+			email: true,
+			address: false,
+			telephone: false,
+		},
+		generator: "Next.js",
+		keywords: ["MTD", "API", "Developer", "Transit", "Public Transportation", "GTFS", "Open Data"],
 		metadataBase,
 		openGraph: {
 			type: "website",
-			...(metadataBase ? { url: metadataBase } : {}),
+			...(metadataBase ? { url: metadataBase.toString() } : {}),
 			siteName: defaultTitle,
 			title: defaultTitle,
 			description: defaultDescription,
+		},
+		referrer: "origin-when-cross-origin",
+		title: {
+			default: defaultTitle,
+			template: `%s | ${defaultTitle}`,
 		},
 		twitter: {
 			card: "summary",
