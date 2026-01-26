@@ -1,7 +1,7 @@
+import LinkButton from "@common/link-button";
 import { Button } from "@ui/button";
 import { ButtonGroup } from "@ui/button-group";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import Link from "next/link";
 
 function PreviousContent() {
 	return (
@@ -35,24 +35,25 @@ export default function NextPreviousPageNavigatorButtons({
 
 	return (
 		<ButtonGroup className="ml-auto">
-			<Button variant={"outline"} disabled={!previousLink} asChild={hasPrevious}>
-				{hasPrevious ? (
-					<Link href={previousLink ?? "#"}>
-						<PreviousContent />
-					</Link>
-				) : (
+			{hasPrevious ? (
+				<LinkButton href={previousLink ?? "#"} variant="outline">
 					<PreviousContent />
-				)}
-			</Button>
-			<Button variant={"outline"} disabled={!nextLink} asChild={hasNext}>
-				{hasNext ? (
-					<Link href={nextLink ?? "#"}>
-						<NextContent />
-					</Link>
-				) : (
+				</LinkButton>
+			) : (
+				<Button variant="outline" disabled>
+					<PreviousContent />
+				</Button>
+			)}
+
+			{hasNext ? (
+				<LinkButton href={nextLink ?? "#"} variant="outline">
 					<NextContent />
-				)}
-			</Button>
+				</LinkButton>
+			) : (
+				<Button variant="outline" disabled>
+					<NextContent />
+				</Button>
+			)}
 		</ButtonGroup>
 	);
 }

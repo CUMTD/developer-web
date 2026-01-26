@@ -1,7 +1,6 @@
+import LinkButton from "@common/link-button";
 import LocalTime from "@common/local-time";
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
-import { Button } from "@ui/button";
-import Link from "next/link";
 
 type AcceptedLatestTosProps = Readonly<{
 	acceptedOn: string | null;
@@ -27,9 +26,9 @@ export default function AcceptedLatestTos({ acceptedOn }: AcceptedLatestTosProps
 				</div>
 
 				<div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
-					<Button asChild className="w-full sm:w-auto">
-						<Link href="/terms-of-use">Read Terms</Link>
-					</Button>
+					<LinkButton href="/terms-of-use" className="w-full sm:w-auto">
+						Read Terms
+					</LinkButton>
 				</div>
 			</AlertDescription>
 		</Alert>

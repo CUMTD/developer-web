@@ -1,11 +1,11 @@
 "use client";
 import CopyTextButton from "@common/copy-text-button";
+import LinkButton from "@common/link-button";
 import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@ui/card";
 import { Separator } from "@ui/separator";
 import { ArrowRight, DownloadIcon, ExternalLink, FolderArchive, KeyRoundIcon, WorkflowIcon } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Homepage() {
 	return (
@@ -99,16 +99,12 @@ export default function Homepage() {
 						</CardContent>
 						<CardFooter className="mt-auto">
 							<div className="flex flex-row gap-4">
-								<Button variant={"secondary"} className="bg-blue-800 text-white" asChild>
-									<Link href="/account/keys">
-										Get an API Key <KeyRoundIcon />
-									</Link>
-								</Button>
-								<Button asChild>
-									<Link href="/reference/introduction">
-										API Reference <ArrowRight />
-									</Link>
-								</Button>
+								<LinkButton href="/account/keys" variant={"secondary"} className="bg-blue-800 text-white">
+									Get an API Key <KeyRoundIcon />
+								</LinkButton>
+								<LinkButton href="/reference/introduction">
+									API Reference <ArrowRight />
+								</LinkButton>
 							</div>
 						</CardFooter>
 					</Card>

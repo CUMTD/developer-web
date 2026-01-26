@@ -1,6 +1,5 @@
+import LinkButton from "@common/link-button";
 import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
-import { Button } from "@ui/button";
-import Link from "next/link";
 
 export default function CannotAccess() {
 	return (
@@ -15,9 +14,9 @@ export default function CannotAccess() {
 				</div>
 
 				<div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
-					<Button asChild className="w-full sm:w-auto">
-						<Link href="/terms-of-use">Read &amp; Accept Terms</Link>
-					</Button>
+					<LinkButton href="/terms-of-use" className="w-full sm:w-auto">
+						Read &amp; Accept Terms
+					</LinkButton>
 				</div>
 			</AlertDescription>
 		</Alert>

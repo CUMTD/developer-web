@@ -1,17 +1,19 @@
-import { Button } from "@ui/button";
+import LinkButton from "@common/link-button";
 import { NavigationMenuItem } from "@ui/navigation-menu";
 import { CircleUserIcon } from "lucide-react";
-import Link from "next/link";
 
 export default function LoggedOutMenu() {
 	return (
 		<NavigationMenuItem>
-			<Button asChild size={"sm"} className="md:min-w-28">
-				<Link href="/account/auth/login" className="w-full flex flex-row justify-center">
-					<CircleUserIcon className="mr-1 inline-block h-4 w-4" />
-					Sign In
-				</Link>
-			</Button>
+			<LinkButton
+				href="/account/auth/login"
+				size="sm"
+				className="md:min-w-28"
+				linkProps={{ className: "w-full flex flex-row justify-center" }}
+			>
+				<CircleUserIcon className="mr-1 inline-block h-4 w-4" />
+				Sign In
+			</LinkButton>
 		</NavigationMenuItem>
 	);
 }

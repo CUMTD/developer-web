@@ -1,12 +1,12 @@
 "use client";
 
+import LinkButton from "@common/link-button";
 import type { ApiKeyResult } from "@server/actions/api-keys/get-api-key";
 import { type UpdateApiKeyFormState, updateApiKeyFormAction } from "@server/actions/api-keys/update-api-key-form";
 import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { Label } from "@ui/label";
 import { Textarea } from "@ui/textarea";
-import Link from "next/link";
 import { useActionState } from "react";
 import DeleteApiKeyButton from "./delete-api-key-button";
 
@@ -43,9 +43,9 @@ export default function ApiKeyEditForm({ apiKey: { name, key, notes } }: ApiKeyE
 			</div>
 			<div className="flex gap-2 justify-end">
 				<DeleteApiKeyButton apiKeyName={name ?? ""} apiKeyValue={key} />
-				<Button asChild variant="ghost">
-					<Link href="/account/keys">Cancel</Link>
-				</Button>
+				<LinkButton href="/account/keys" variant="ghost">
+					Cancel
+				</LinkButton>
 
 				<Button type="submit" disabled={isPending}>
 					{isPending ? "Saving..." : "Save"}

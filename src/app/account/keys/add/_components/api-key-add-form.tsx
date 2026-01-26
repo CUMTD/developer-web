@@ -1,11 +1,11 @@
 "use client";
 
+import LinkButton from "@common/link-button";
 import { type AddApiKeyFormState, addApiKeyFormAction } from "@server/actions/api-keys/add-api-key-form";
 import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { Label } from "@ui/label";
 import { Textarea } from "@ui/textarea";
-import Link from "next/link";
 import { useActionState } from "react";
 
 const initialState: AddApiKeyFormState = { ok: false };
@@ -34,9 +34,9 @@ export default function ApiKeyAddForm() {
 				{message ? <p className={ok ? "text-sm text-foreground" : "text-sm text-destructive"}>{message}</p> : null}
 			</div>
 			<div className="flex gap-2 justify-end">
-				<Button asChild variant="ghost">
-					<Link href="/account/keys">Cancel</Link>
-				</Button>
+				<LinkButton href="/account/keys" variant="ghost">
+					Cancel
+				</LinkButton>
 
 				<Button type="submit" disabled={isPending}>
 					{isPending ? "Saving..." : "Save"}

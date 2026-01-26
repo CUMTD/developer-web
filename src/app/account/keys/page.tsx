@@ -1,10 +1,9 @@
 import Breadcrumbs from "@common/account/breadcrumbs";
+import LinkButton from "@common/link-button";
 import { H1 } from "@common/typography/heading";
 import { getApiKeys } from "@server/actions/api-keys/get-api-keys";
 import { getTosStatus } from "@server/actions/terms-of-use/get-tos-status";
-import { Button } from "@ui/button";
 import type { Metadata } from "next";
-import Link from "next/link";
 import ApiKey from "./_components/api-key";
 import CannotAccess from "./_components/cannot-access";
 
@@ -25,9 +24,9 @@ export default async function KeysPage() {
 				</H1>
 				{canAccessApi && (
 					<div className="flex flex-1 justify-end">
-						<Button asChild variant="default">
-							<Link href="/account/keys/add">Add Key</Link>
-						</Button>
+						<LinkButton href="/account/keys/add" variant="default">
+							Add Key
+						</LinkButton>
 					</div>
 				)}
 			</div>
