@@ -2,34 +2,25 @@
 
 import { parseIsoOffsetToInstant } from "@helpers/parse-supabase-date";
 import type { Temporal } from "@lib/temporal";
+import { useEffect, useMemo, useState } from "react";
+
+const DEFAULT_TZ = "America/Chicago";
 
 function getClientTimeZone(): string {
-	if (typeof window === "undefined") {
-		return "UTC";
-	}
-
 	return Intl.DateTimeFormat().resolvedOptions().timeZone;
 }
 
-function toLocal(value: Temporal.Instant | string): Temporal.ZonedDateTime {
-	const timeZone = getClientTimeZone();
+function toZdt(value: Temporal.Instant | string, timeZone: string): Temporal.ZonedDateTime {
 	const instant = typeof value === "string" ? parseIsoOffsetToInstant(value) : value;
 	return instant.toZonedDateTimeISO(timeZone);
 }
 
-export function toLocalString(
-	value: Temporal.Instant | string,
-	options: Intl.DateTimeFormatOptions = {
-		year: "numeric",
-		month: "long",
-		day: "2-digit",
-		hour: "2-digit",
-		minute: "2-digit",
-	},
+function formatZdt(
+	zdt: Temporal.ZonedDateTime,
+	locale: string | undefined,
+	options: Intl.DateTimeFormatOptions,
 ): string {
-	const zdt = toLocal(value);
-
-	return new Intl.DateTimeFormat(undefined, {
+	return new Intl.DateTimeFormat(locale, {
 		...options,
 		timeZone: zdt.timeZoneId,
 	}).format(new Date(zdt.epochMilliseconds));
@@ -38,46 +29,54 @@ export function toLocalString(
 type LocalTimeProps = Readonly<{
 	value: Temporal.Instant | string;
 	variant?: "short" | "long" | "verbose" | Intl.DateTimeFormatOptions;
+	locale?: string; // optional pinning; omit to use runtime default
 }>;
 
-export default function LocalTime({ value, variant = "short" }: LocalTimeProps) {
-	let formatOptions: Intl.DateTimeFormatOptions;
+export default function LocalTime({ value, variant = "short", locale }: LocalTimeProps) {
+	const [timeZone, setTimeZone] = useState<string>(DEFAULT_TZ);
 
-	switch (variant) {
-		case "short":
-			formatOptions = {
-				year: "numeric",
-				month: "numeric",
-				day: "numeric",
-				hour: "numeric",
-				minute: "2-digit",
-			};
-			break;
-		case "long":
-			formatOptions = {
-				year: "numeric",
-				month: "long",
-				day: "numeric",
-				hour: "numeric",
-				minute: "2-digit",
-				weekday: "long",
-			};
-			break;
-		case "verbose":
-			formatOptions = {
-				year: "numeric",
-				month: "long",
-				day: "2-digit",
-				hour: "2-digit",
-				minute: "2-digit",
-				second: "2-digit",
-				weekday: "long",
-				timeZoneName: "short",
-			};
-			break;
-		default:
-			formatOptions = variant;
-	}
+	useEffect(() => {
+		const tz = getClientTimeZone();
+		if (tz !== DEFAULT_TZ) {
+			setTimeZone(tz);
+		}
+	}, []);
 
-	return <>{toLocalString(value, formatOptions)}</>;
+	const formatOptions: Intl.DateTimeFormatOptions = useMemo(() => {
+		switch (variant) {
+			case "short": {
+				return { year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "2-digit" };
+			}
+			case "long": {
+				return {
+					year: "numeric",
+					month: "long",
+					day: "numeric",
+					hour: "numeric",
+					minute: "2-digit",
+					weekday: "long",
+				};
+			}
+			case "verbose": {
+				return {
+					year: "numeric",
+					month: "long",
+					day: "2-digit",
+					hour: "2-digit",
+					minute: "2-digit",
+					second: "2-digit",
+					weekday: "long",
+					timeZoneName: "short",
+				};
+			}
+			default: {
+				return variant;
+			}
+		}
+	}, [variant]);
+
+	const zdt = toZdt(value, timeZone);
+	const text = formatZdt(zdt, locale, formatOptions);
+
+	return <span suppressHydrationWarning>{text}</span>;
 }
