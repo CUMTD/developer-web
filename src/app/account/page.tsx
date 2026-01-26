@@ -1,3 +1,4 @@
+import ThemeSwitcher from "@common/account/theme-switcher";
 import { H1, H2 } from "@common/typography/heading";
 import { getDeveloperDetails } from "@server/actions/account/get-developer-details";
 import { createClient } from "@server/supabase/server";
@@ -42,6 +43,11 @@ export default async function AccountPage() {
 			<div className="space-y-4">
 				<H2 wrapProse>Terms of Use</H2>
 				<TermsOfUse />
+			</div>
+
+			<div className="space-y-4">
+				<H2 wrapProse>Theme</H2>
+				<ThemeSwitcher />
 			</div>
 		</div>
 	);

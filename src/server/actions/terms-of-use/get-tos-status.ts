@@ -1,19 +1,7 @@
 import assertUnreachable from "@helpers/assert-unreachable";
 import { getTosAcceptanceHistory, type TosStatusResult } from "@server/actions/terms-of-use/get-tos-acceptance-history";
+import { Status, type ToSStatus } from "@t/tos-status";
 import "server-only";
-
-export enum Status {
-	NeverAccepted = "NeverAccepted",
-	AcceptedOldValid = "AcceptedOldValid",
-	AcceptedOldInvalid = "AcceptedOldInvalid",
-	AcceptedLatest = "AcceptedLatest",
-}
-
-export type TosStatus = Readonly<{
-	status: Status;
-	canAccessApi: boolean;
-	lastAcceptedAt: string | null;
-}>;
 
 function parseTosStatus(statuses: TosStatusResult[]): Status {
 	if (statuses.length === 0) {
@@ -43,7 +31,7 @@ function parseSimpleStatus(status: Status): boolean {
 	}
 }
 
-export async function getTosStatus(): Promise<TosStatus> {
+export async function getTosStatus(): Promise<ToSStatus> {
 	const tos = await getTosAcceptanceHistory();
 
 	const status = parseTosStatus(tos);
