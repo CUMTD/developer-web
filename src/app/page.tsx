@@ -1,7 +1,7 @@
 import buildCanonicalUrl from "@helpers/build-canonical-url";
 import type { Metadata } from "next/types";
 import "server-only";
-import Homepage from "./Homepage";
+import Homepage from "./_components/homepage";
 
 const homeCanonical = buildCanonicalUrl("/");
 const homeTitle = "Home";

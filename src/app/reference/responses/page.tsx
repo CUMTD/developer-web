@@ -1,4 +1,4 @@
-import NextPreviousPageNavigatorButtons from "@components/NextPreviousPageNavigatorButtons";
+import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-navigator-button-interface";
 import { CloudDownload } from "lucide-react";
 
 export const dynamic = "force-static";

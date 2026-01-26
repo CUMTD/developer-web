@@ -1,7 +1,7 @@
 import { readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
-const ROOT = join(process.cwd(), "src", "app", "markdown");
+const ROOT = join(process.cwd(), "src", "content", "api");
 const OUT_FILE = join(process.cwd(), "src", "types", "md.generated.ts");
 
 async function main() {

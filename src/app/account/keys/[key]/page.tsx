@@ -1,11 +1,11 @@
-import { H1, H2 } from "@components/heading";
-import ObfuscatedKey from "@components/obfuscated-key";
-import { getApiKey } from "@shared/actions/api-keys/get-api-key";
-import { getTosStatus } from "@shared/actions/terms-of-use/get-tos-status";
+import Breadcrumbs from "@common/account/breadcrumbs";
+import ObfuscatedKey from "@common/obfuscated-key";
+import { H1, H2 } from "@common/typography/heading";
+import { getApiKey } from "@server/actions/api-keys/get-api-key";
+import { getTosStatus } from "@server/actions/terms-of-use/get-tos-status";
 import type { Metadata } from "next";
 import { notFound, unauthorized } from "next/navigation";
-import Breadcrumbs from "../../components/breadcrumbs";
-import ApiKeyEditForm from "./components/api-key-edit-form";
+import ApiKeyEditForm from "./_components/api-key-edit-form";
 
 type ApiKeyPageProps = Readonly<{
 	params: Promise<{

@@ -1,4 +1,4 @@
-import NextPreviousPageNavigatorButtons from "@components/NextPreviousPageNavigatorButtons";
+import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-navigator-button-interface";
 import { BookOpen, BusFrontIcon, HeartIcon } from "lucide-react";
 
 export default function IntroductionPage() {

@@ -1,11 +1,11 @@
-import { H1, H2 } from "@components/heading";
-import { getDeveloperDetails } from "@shared/actions/account/getDeveloperDetails";
-import { createClient } from "@shared/lib/supabase/server";
+import { H1, H2 } from "@common/typography/heading";
+import { getDeveloperDetails } from "@server/actions/account/get-developer-details";
+import { createClient } from "@server/supabase/server";
 import type { Metadata } from "next";
 import { unauthorized } from "next/navigation";
-import DeveloperInfo from "./components/developer-info";
-import TermsOfUse from "./components/terms-of-use";
-import UserInfo from "./components/user-info";
+import DeveloperInfo from "./_components/developer-info";
+import TermsOfUse from "./_components/terms-of-use";
+import UserInfo from "./_components/user-info";
 
 export const metadata: Metadata = {
 	title: "Account",

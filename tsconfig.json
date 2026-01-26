@@ -13,11 +13,16 @@
 		"moduleResolution": "bundler",
 		"noEmit": true,
 		"paths": {
-			"@apps/*": ["app/*"],
-			"@components/*": ["src/components/*"],
+			"@app/*": ["src/app/*"],
+			"@common/*": ["src/components/common/*"],
+			"@content/*": ["src/content/*"],
+			"@env/*": ["src/env/*"],
 			"@helpers/*": ["src/helpers/*"],
-			"@shared/*": ["src/shared/*"],
-			"@t/*": ["src/types/*"]
+			"@hooks/*": ["src/hooks/*"],
+			"@lib/*": ["src/lib/*"],
+			"@server/*": ["src/server/*"],
+			"@t/*": ["src/types/*"],
+			"@ui/*": ["src/components/ui/*"]
 		},
 		"plugins": [
 			{

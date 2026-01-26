@@ -1,4 +1,4 @@
-import { Temporal } from "@shared/lib/temporal";
+import { Temporal } from "@lib/temporal";
 
 export function parseIsoOffsetToInstant(value: string): Temporal.Instant {
 	try {

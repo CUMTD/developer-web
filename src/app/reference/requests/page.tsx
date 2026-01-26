@@ -1,6 +1,6 @@
-import NextPreviousPageNavigatorButtons from "@components/NextPreviousPageNavigatorButtons";
+import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-navigator-button-interface";
 import { CloudUpload } from "lucide-react";
-import { CodeExampleBody } from "../[slug]/components/CodeExampleWithCopy";
+import { CodeExampleBody } from "../[slug]/_components/code-example-with-copy";
 
 export default function RequestsPage() {
 	return (

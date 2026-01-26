@@ -1,4 +1,4 @@
-import { LoginForm } from "@shared/shadcn/login-form";
+import { LoginForm } from "@common/auth/login-form";
 
 type LoginFormProps = Readonly<{
 	searchParams: Promise<{ redirectUrl?: string }>;

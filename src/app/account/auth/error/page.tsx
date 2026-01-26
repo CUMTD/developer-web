@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@shared/shadcn/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@ui/card";
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ error: string }> }) {
 	const params = await searchParams;

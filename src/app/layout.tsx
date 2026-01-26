@@ -1,14 +1,14 @@
-import NavMenu from "@components/nav-menu";
-import { ThemeProvider } from "@components/theme-provider";
-import { globalEnv } from "@shared/config/env.global";
+import { ThemeProvider } from "@app/_components/theme-provider";
+import NavMenu from "@common/layout/nav-menu";
+import { globalEnv } from "@env/global";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VercelToolbar } from "@vercel/toolbar/next";
 import type { Metadata, Viewport } from "next";
 import { Overpass, Overpass_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import "server-only";
-import "./globals.css";
-import { PlausibleAnalytics } from "./plausible-analytics";
+import { PlausibleAnalytics } from "./_components/plausible-analytics";
+import "./_styles/globals.css";
 
 const overpass = Overpass({
 	subsets: ["latin"],

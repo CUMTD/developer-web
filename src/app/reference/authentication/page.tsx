@@ -1,5 +1,5 @@
-import NextPreviousPageNavigatorButtons from "@components/NextPreviousPageNavigatorButtons";
-import { Button } from "@shared/shadcn/button";
+import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-navigator-button-interface";
+import { Button } from "@ui/button";
 import { KeyRound, KeyRoundIcon } from "lucide-react";
 import Link from "next/link";
 

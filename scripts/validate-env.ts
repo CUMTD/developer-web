@@ -1,4 +1,4 @@
-import { GlobalEnvSchema, ServerEnvSchema } from "../src/shared/config/env.schema";
+import { GlobalEnvSchema, ServerEnvSchema } from "@env/schema";
 
 // Parse using process.env so it matches Next build environment
 GlobalEnvSchema.parse(process.env);
