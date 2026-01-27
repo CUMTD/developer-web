@@ -1,9 +1,11 @@
 "use client";
 
+import debounce from "@helpers/debounce";
 import type { ViewportState } from "@t/viewport";
 import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
 
 const MOBILE_BREAKPOINT = 768;
+const RESIZE_DEBOUNCE_MS = 100;
 
 const ViewportContext = createContext<ViewportState | undefined>(undefined);
 
@@ -39,9 +41,13 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 			updateViewport();
 		};
 
-		// Listen for resize events
-		const handleResize = () => {
+		// Debounce resize events to avoid excessive state updates
+		const [debouncedResize, teardownDebounce] = debounce<void, void>(() => {
 			updateViewport();
+		}, RESIZE_DEBOUNCE_MS);
+
+		const handleResize = () => {
+			void debouncedResize(undefined);
 		};
 
 		mql.addEventListener("change", handleMobileChange);
@@ -53,6 +59,7 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 		return () => {
 			mql.removeEventListener("change", handleMobileChange);
 			window.removeEventListener("resize", handleResize);
+			teardownDebounce();
 		};
 	}, []);
 
