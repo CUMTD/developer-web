@@ -31,7 +31,7 @@ export type CurrentUserState = Readonly<{
 	user: CurrentUser | null;
 }>;
 
-function mapSessionToUser(session: Session | null): CurrentUser | null {
+export function mapSessionToUser(session: Session | null): CurrentUser | null {
 	if (!session) {
 		return null;
 	}
@@ -54,14 +54,10 @@ function mapSessionToUser(session: Session | null): CurrentUser | null {
 }
 
 export function useCurrentUser(): CurrentUserState {
-	const [state, setState] = useState<CurrentUserState>(() => {
-		// Try to get cached session synchronously to avoid loading flash
-		// Note: This is a best-effort optimization; we'll still validate in useEffect
-		return {
-			isLoading: true,
-			isAuthenticated: false,
-			user: null,
-		};
+	const [state, setState] = useState<CurrentUserState>({
+		isLoading: true,
+		isAuthenticated: false,
+		user: null,
 	});
 
 	useEffect(() => {
