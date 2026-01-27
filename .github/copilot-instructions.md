@@ -34,6 +34,8 @@ This project uses a **layer-first** architecture with **explicit boundaries**. R
 
 ### Target Tree
 
+Don't deviate from this structure without explicit approval.
+
 ```txt
 src/
   app/                        # App Router routes only
@@ -45,6 +47,8 @@ src/
 
   content/
     api/                      # MDX and metadata
+
+  contexts/                   # React contexts
 
   env/
     schema.ts                 # Zod env schemas
@@ -76,6 +80,8 @@ src/
 - Always wrap control blocks (`if`, `else`, `for`, `while`, `do`) with curly braces.
 - Use **template literals** instead of string concatenation.
 - Run Biome before committing; code must pass without warnings.
+- Prefer specific imports over namespace imports. (e.g., `import { useState } from "react"` not `import * as React from "react"`).
+- User `type` when importing types only imports (e.g., `import type { Foo } from "bar"`)
 
 ### Functions & Components
 

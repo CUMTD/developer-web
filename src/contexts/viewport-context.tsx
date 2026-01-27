@@ -1,14 +1,9 @@
 "use client";
 
+import type { ViewportState } from "@t/viewport";
 import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
 
 const MOBILE_BREAKPOINT = 768;
-
-type ViewportState = Readonly<{
-	isMobile: boolean;
-	width: number | undefined;
-	height: number | undefined;
-}>;
 
 const ViewportContext = createContext<ViewportState | undefined>(undefined);
 
