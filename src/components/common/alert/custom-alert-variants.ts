@@ -45,6 +45,7 @@ const customAlertContainerVariants = cva("", {
 		{
 			color: "yellow",
 			tone: "soft",
+			// Note: Using amber instead of yellow for a warmer, more refined appearance
 			className: cn(
 				"border-amber-300/40",
 				"bg-amber-50/80",
@@ -107,6 +108,7 @@ const customAlertContainerVariants = cva("", {
 		{
 			color: "yellow",
 			tone: "outline",
+			// Note: Using amber instead of yellow for a warmer, more refined appearance
 			className: cn(
 				"border-amber-400/60",
 				"bg-amber-50/20",
@@ -169,6 +171,7 @@ const customAlertContainerVariants = cva("", {
 		{
 			color: "yellow",
 			tone: "solid",
+			// Note: Using amber instead of yellow for a warmer, more refined appearance
 			className: cn(
 				"border-amber-500",
 				"bg-amber-500",
@@ -228,6 +231,7 @@ const customAlertTitleVariants = cva("text-lg", {
 		// soft/outline: text color matches theme
 		{ color: "green", tone: "soft", className: cn("text-green-900", "dark:text-green-100") },
 		{ color: "blue", tone: "soft", className: cn("text-blue-900", "dark:text-blue-100") },
+		// Note: Using amber instead of yellow for a warmer, more refined appearance
 		{ color: "yellow", tone: "soft", className: cn("text-amber-900", "dark:text-amber-100") },
 		{ color: "red", tone: "soft", className: cn("text-red-900", "dark:text-red-100") },
 		{ color: "gray", tone: "soft", className: cn("text-gray-900", "dark:text-gray-100") },
@@ -270,6 +274,7 @@ const customAlertDescriptionVariants = cva("flex flex-col gap-3 font-medium", {
 		// soft/outline
 		{ color: "green", tone: "soft", className: cn("text-green-900", "dark:text-green-100") },
 		{ color: "blue", tone: "soft", className: cn("text-blue-900", "dark:text-blue-100") },
+		// Note: Using amber instead of yellow for a warmer, more refined appearance
 		{ color: "yellow", tone: "soft", className: cn("text-amber-900", "dark:text-amber-100") },
 		{ color: "red", tone: "soft", className: cn("text-red-900", "dark:text-red-100") },
 		{ color: "gray", tone: "soft", className: cn("text-gray-900", "dark:text-gray-100") },
