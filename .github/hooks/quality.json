@@ -1,0 +1,21 @@
+{
+	"version": 1,
+	"hooks": {
+		"sessionEnd": [
+			{
+				"type": "command",
+				"bash": "bash ./scripts/hooks/ci-verify.sh",
+				"cwd": ".",
+				"timeoutSec": 900
+			}
+		],
+		"preToolUse": [
+			{
+				"type": "command",
+				"bash": "bash ./scripts/hooks/block-dangerous-commands.sh",
+				"cwd": ".",
+				"timeoutSec": 5
+			}
+		]
+	}
+}

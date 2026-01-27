@@ -1,8 +1,41 @@
 {
+	"inputs": [
+		{
+			"type": "promptString",
+			"id": "supabase-project-ref",
+			"description": "Supabase Project Ref",
+			"password": false
+		},
+		{
+			"type": "promptString",
+			"id": "supabase-access-token",
+			"description": "Supabase Access Token (PAT)",
+			"password": true
+		}
+	],
 	"servers": {
 		"next-devtools": {
 			"command": "pnpm",
 			"args": ["dlx", "next-devtools-mcp@latest"]
+		},
+		"shadcn": {
+			"command": "pnpm",
+			"args": ["dlx", "shadcn@latest", "mcp"]
+		},
+		"supabase": {
+			"type": "http",
+			"url": "https://mcp.supabase.com/mcp?project_ref=${input:supabase-project-ref}&read_only=true&features=docs%2Cdatabase%2Cdebugging%2Cfunctions",
+			"headers": {
+				"Authorization": "Bearer ${input:supabase-access-token}"
+			}
+		},
+		"vercel": {
+			"type": "http",
+			"url": "https://mcp.vercel.com"
+		},
+		"github": {
+			"type": "http",
+			"url": "https://api.githubcopilot.com/mcp"
 		}
 	}
 }
