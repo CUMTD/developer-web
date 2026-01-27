@@ -1,6 +1,6 @@
 "use client";
 
-import { EXAMPLE_LANGUAGES } from "@content/api/languages";
+import { EXAMPLE_LANGUAGES } from "@content/templates/languages";
 import { cn } from "@lib/utils";
 import { Button } from "@ui/button";
 import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from "@ui/command";

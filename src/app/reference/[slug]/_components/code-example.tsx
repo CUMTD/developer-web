@@ -1,25 +1,32 @@
 "use client";
 
-import { EXAMPLE_LANGUAGES } from "@content/api/languages";
+import { EXAMPLE_LANGUAGES } from "@content/templates/languages";
 import { ItemHeader } from "@ui/item";
 import { useSearchParams } from "next/navigation";
 import { type ReactElement, useEffect, useState } from "react";
-import { CodeExampleBody } from "./code-example-with-copy";
 import { LanguageSelector } from "./language-selector";
 
 interface CodeExampleProps {
 	content: { [language: string]: ReactElement };
 }
 
+function isValidLanguage(language: string | null): language is string {
+	if (!language) return false;
+	return EXAMPLE_LANGUAGES.some((lang) => lang.name === language);
+}
+
 export default function CodeExample({ content }: CodeExampleProps) {
 	const searchParams = useSearchParams();
 	const language = searchParams.get("language");
 
-	const [currentLanguage, setCurrentLanguage] = useState<string>(language ?? EXAMPLE_LANGUAGES[0].name);
+	const [currentLanguage, setCurrentLanguage] = useState<string>(
+		isValidLanguage(language) ? language : EXAMPLE_LANGUAGES[0].name,
+	);
 
 	useEffect(() => {
 		const newLanguage = searchParams.get("language");
-		if (newLanguage) {
+
+		if (isValidLanguage(newLanguage)) {
 			setCurrentLanguage(newLanguage);
 		}
 	}, [searchParams]);
@@ -32,7 +39,7 @@ export default function CodeExample({ content }: CodeExampleProps) {
 					<LanguageSelector selectedLanguage={currentLanguage} />
 				</div>
 			</ItemHeader>
-			<CodeExampleBody>{currentLanguage && content[currentLanguage] ? content[currentLanguage] : null}</CodeExampleBody>
+			{currentLanguage && content[currentLanguage] ? content[currentLanguage] : null}
 		</>
 	);
 }

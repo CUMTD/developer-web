@@ -8,37 +8,8 @@ There are two ways to represent shapes:
 1. ### GTFS Shape Object
     GTFS shapes conform to <a href="https://gtfs.org/documentation/schedule/reference/#shapestxt" target="_blank" rel="noopener noreferrer">the GTFS definition of a shape.</a> This shape contains an array of shape points. Each shape point has a sequence, lat/long coordinates, distance travelled, and stopId.
 
-	<div className="[&_code]:max-h-50 overflow-y-scroll">
-	```json
-	{
-		"id": "130N SILVER EVENING 2",
-		"shapePoints": [
-			{
-			"sequence": 1,
-			"coordinates": {
-				"latitude": 40.09949000000001,
-				"longitude": -88.220416
-			},
-			"distanceTraveled": 0,
-			"stopId": null
-			},
-			{
-			"sequence": 2,
-			"coordinates": {
-				"latitude": 40.099466,
-				"longitude": -88.220416
-			},
-			"distanceTraveled": 2.667,
-			"stopId": null
-			}
-		]
-	}
-	```
-	</div>
-
-
 2. ### Encoded Polyline
-    Polyline encoding is a lossy compression algorithm created by Google that can create strings that represent a series of coordinates. An encoded polyline looks like this:
+    Polyline encoding is a lossy compression algorithm created by Google that can represent a series of coordinates with a string. An encoded polyline looks like this:
 
 		`ezsFv{qyO@fDbK?CfI`
 

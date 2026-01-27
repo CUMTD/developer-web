@@ -5,6 +5,8 @@ export type ApiRequestParameter = {
 	type: ApiDataType;
 	required: boolean;
 	description: string;
+	isPath: boolean;
+	exampleValue?: string;
 };
 
 export type ApiResponseAttribute = {

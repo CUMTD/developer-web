@@ -2,123 +2,96 @@ import type { ApiResponseAttribute } from "@t/documentation-types";
 
 export const response: ApiResponseAttribute[] = [
 	{
-		name: "type",
+		name: "id",
 		type: "string",
-		description: "Either 'stop-group' or 'boarding-point'",
+		description: "Unique identifier for the route group.",
 	},
 	{
-		name: "isStation",
-		type: "boolean",
-		description: "Whether the stop is a station.",
+		name: "sortNumber",
+		type: "integer",
+		description:
+			"Number used to sort the routes in a logical order. Lower numbers should be shown first on lists. This is not the route number.",
 	},
 	{
-		name: "isTimepoint",
-		type: "boolean",
-		description: "Whether the stop is a timepoint.",
-	},
-	{
-		name: "city",
+		name: "routeName",
 		type: "string",
-		description: "The city where the stop is located. Either Champaign, Urbana, or Savoy.",
+		description: 'The route name, e.g. "Silver Limited", "Gold", "Blue"',
 	},
 	{
-		name: "boardingPoints",
-		type: "Array of boardingPoints",
-		description: "Array of individual boarding points within this stop group.",
+		name: "color",
+		type: "string",
+		description: "Hex color code for the route group (without #).",
+	},
+	{
+		name: "textColor",
+		type: "string",
+		description: "Hex color code for foreground text on the route group color (without #).",
+	},
+	{
+		name: "routes",
+		type: "Array of routes",
+		description: "Array of individual routes within this route group.",
 		childAttributes: [
-			{
-				name: "subName",
-				type: "string",
-				description: "Sub-name or description of the boarding point.",
-			},
-			{
-				name: "platformCode",
-				type: "string | null",
-				description: "Platform code for the boarding point, if applicable.",
-			},
 			{
 				name: "id",
 				type: "string",
-				description: "Unique identifier for the boarding point.",
+				description: "Unique identifier for a route.",
 			},
 			{
-				name: "name",
+				name: "number",
 				type: "string",
-				description: "Full name of the boarding point.",
+				description: "Route number.",
 			},
 			{
-				name: "stopCode",
+				name: "firstTrip",
 				type: "string",
-				description: "Stop code for the boarding point.",
+				description:
+					"The time of the first trip of the day for this route. Day is arbitary and used to convey time only.",
 			},
 			{
-				name: "url",
+				name: "lastTrip",
 				type: "string",
-				description: "URL for more information about the boarding point.",
+				description:
+					"The time of the last trip of the day for this route. Day is arbitary and used to convey time only.",
 			},
 			{
-				name: "isAccessible",
+				name: "lastTripAfterMidnight",
 				type: "boolean",
-				description: "Whether the boarding point is accessible.",
+				description: "True if the last trip of the day is after midnight.",
 			},
 			{
-				name: "location",
+				name: "dayType",
 				type: "object",
-				description: "Geographic location of the boarding point.",
+				description: "The days and times of day this route is active.",
 				childAttributes: [
 					{
-						name: "latitude",
-						type: "float",
-						description: "Latitude coordinate.",
+						name: "daypart",
+						type: "string",
+						description: 'The parts of day e.g. "Weekday", "Saturday", "Gameday"',
 					},
 					{
-						name: "longitude",
-						type: "float",
-						description: "Longitude coordinate.",
+						name: "timepart",
+						type: "string",
+						description: 'The time of day e.g. "Day", "Night", "Late Night", "Non-UI Day"',
+					},
+					{
+						name: "daysOfWeek",
+						type: "string",
+						description:
+							'A zero-indexed comma-separated list of ints representing the days of the week this daytype is active. 0=Sunday, 1=Monday, 2=Tuesday, 3=Wednesday, 4=Thursday, 5=Friday, 6=Saturday. Examples: "1,2,3,4,5" for weekdays only, "0,6" for weekends only.',
+					},
+					{
+						name: "sortOrder",
+						type: "integer",
+						description:
+							"Number used to sort the daytypes in a logical order. Lower numbers should be shown first on lists.",
 					},
 				],
 			},
-		],
-	},
-	{
-		name: "id",
-		type: "string",
-		description: "Unique identifier for the stop group.",
-	},
-	{
-		name: "name",
-		type: "string",
-		description: "Name of the stop group.",
-	},
-	{
-		name: "stopCode",
-		type: "string",
-		description: "Stop code for the stop group.",
-	},
-	{
-		name: "url",
-		type: "string",
-		description: "URL for more information about the stop group.",
-	},
-	{
-		name: "isAccessible",
-		type: "boolean",
-		description: "Whether the stop group is accessible.",
-	},
-	{
-		name: "location",
-		type: "object",
-		description: "Geographic location of the stop group center.",
-		childAttributes: [
 			{
-				name: "latitude",
-				type: "number",
-				description: "Latitude coordinate.",
-			},
-			{
-				name: "longitude",
-				type: "number",
-				description: "Longitude coordinate.",
+				name: "gtfsRoutes",
+				type: "array of strings",
+				description: "Array of GTFS route IDs from routes.txt associated with this route.",
 			},
 		],
 	},
