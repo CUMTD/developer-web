@@ -40,7 +40,7 @@ export default async function Page({ params }: Props) {
 	const { slug: apiObject } = await params;
 	const methods = API_INDEX[apiObject];
 
-	const { default: ObjectDescription } = await import(`@content/api//${apiObject}/description.mdx`);
+	const { default: ObjectDescription } = await import(`@content/api/${apiObject}/description.mdx`);
 	const { response: responseAttributes } = await import(`@content/api/${apiObject}/response.ts`);
 
 	var attributes = responseAttributes as ApiResponseAttribute[];
