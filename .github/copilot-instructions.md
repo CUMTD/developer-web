@@ -81,7 +81,7 @@ src/
 - Use **template literals** instead of string concatenation.
 - Run Biome before committing; code must pass without warnings.
 - Prefer specific imports over namespace imports. (e.g., `import { useState } from "react"` not `import * as React from "react"`).
-- User `type` when importing types only imports (e.g., `import type { Foo } from "bar"`)
+- Use `import type` for type-only imports (e.g., `import type { Foo } from "bar"`).
 
 ### Functions & Components
 
