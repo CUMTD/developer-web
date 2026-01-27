@@ -34,7 +34,6 @@
 				"EditorConfig.EditorConfig",
 				"github.vscode-github-actions",
 				"redhat.vscode-yaml",
-				"sanity-io.vscode-sanity",
 				"streetsidesoftware.code-spell-checker"
 			]
 		}

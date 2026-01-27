@@ -16,3 +16,4 @@
 *.mp4 binary
 *.mov binary
 *.pdf binary
+*.sh text eol=lf

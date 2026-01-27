@@ -2,6 +2,7 @@
 // docs: Documentation only changes
 // feature: A new feature
 // bug: A bug fix
+// ci: CI/config changes
 // perf: A code change that improves performance
 // refactor: A code change that neither fixes a bug nor adds a feature
 // style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
@@ -27,7 +28,21 @@ const config = {
 		"type-enum": [
 			2,
 			"always",
-			["build", "add", "feature", "bug", "chore", "docs", "refactor", "revert", "test", "style", "perf", "package"],
+			[
+				"build",
+				"add",
+				"feature",
+				"bug",
+				"chore",
+				"ci",
+				"docs",
+				"refactor",
+				"revert",
+				"test",
+				"style",
+				"perf",
+				"package",
+			],
 		],
 	},
 };
