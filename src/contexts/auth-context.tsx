@@ -37,9 +37,12 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 	});
 
 	useEffect(() => {
+		let mounted = true;
+
 		const supabase = createClient();
 
 		const setFromSession = (session: Session | null) => {
+			if (!mounted) return;
 			setState({
 				isLoading: false,
 				isAuthenticated: Boolean(session),
@@ -48,12 +51,21 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 		};
 
 		const load = async () => {
-			const { data, error } = await supabase.auth.getSession();
-			if (error) {
-				console.error(error);
-			}
+			try {
+				const { data, error } = await supabase.auth.getSession();
+				if (error) {
+					console.error("Auth session error:", error);
+					// Still set loading to false even on error
+					setFromSession(null);
+					return;
+				}
 
-			setFromSession(data.session);
+				setFromSession(data.session);
+			} catch (error) {
+				console.error("Auth initialization error:", error);
+				// Ensure we exit loading state even on unexpected errors
+				setFromSession(null);
+			}
 		};
 
 		void load();
@@ -63,6 +75,7 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 		});
 
 		return () => {
+			mounted = false;
 			subscription.subscription.unsubscribe();
 		};
 	}, []);
