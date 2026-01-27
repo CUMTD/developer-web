@@ -84,10 +84,13 @@ function SidebarProvider({
 		[setOpenProp, open],
 	);
 
+	// Memoize setOpenMobile as a stable callback
+	const setOpenMobileStable = useCallback(setOpenMobile, []);
+
 	// Helper to toggle the sidebar.
 	const toggleSidebar = useCallback(() => {
-		return isMobile ? setOpenMobile((open) => !open) : setOpen((open) => !open);
-	}, [isMobile, setOpen]);
+		return isMobile ? setOpenMobileStable((open) => !open) : setOpen((open) => !open);
+	}, [isMobile, setOpen, setOpenMobileStable]);
 
 	// Adds a keyboard shortcut to toggle the sidebar.
 	useEffect(() => {
@@ -113,10 +116,10 @@ function SidebarProvider({
 			setOpen,
 			isMobile,
 			openMobile,
-			setOpenMobile,
+			setOpenMobile: setOpenMobileStable,
 			toggleSidebar,
 		}),
-		[state, open, setOpen, isMobile, openMobile, toggleSidebar],
+		[state, open, setOpen, isMobile, openMobile, setOpenMobileStable, toggleSidebar],
 	);
 
 	return (
