@@ -13,10 +13,12 @@ import {
 } from "@ui/navigation-menu";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { memo } from "react";
 import WordMark from "./word-mark";
 
-export default function NavMenu() {
+function NavMenu() {
 	const { isMobile } = useViewport();
+	console.log("[NavMenu] Render", { isMobile });
 
 	return (
 		<header className="flex flex-row justify-between lg:px-8 px-5 p-5 row-span-1 sticky top-0 bg-sidebar z-50">
@@ -83,3 +85,8 @@ export default function NavMenu() {
 		</header>
 	);
 }
+
+// Memoize NavMenu to prevent re-renders when props (none) haven't changed
+// This won't prevent re-renders when context values change, but will prevent
+// unnecessary re-renders from parent components
+export default memo(NavMenu);

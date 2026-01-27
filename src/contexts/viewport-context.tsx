@@ -19,6 +19,8 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 	});
 
 	useEffect(() => {
+		console.log("[ViewportProvider] Mount");
+
 		const updateViewport = () => {
 			const newState = {
 				isMobile: window.innerWidth < MOBILE_BREAKPOINT,
@@ -33,8 +35,10 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 					prevState.width === newState.width &&
 					prevState.height === newState.height
 				) {
+					console.log("[ViewportProvider] Skipping update - values unchanged");
 					return prevState; // Return same object reference to prevent re-render
 				}
+				console.log("[ViewportProvider] Updating state", { prev: prevState, new: newState });
 				return newState;
 			});
 		};
@@ -61,12 +65,14 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 		updateViewport();
 
 		return () => {
+			console.log("[ViewportProvider] Unmount");
 			mql.removeEventListener("change", handleMobileChange);
 			window.removeEventListener("resize", handleResize);
 			teardownDebounce();
 		};
 	}, []);
 
+	console.log("[ViewportProvider] Render", state);
 	return <ViewportContext.Provider value={state}>{children}</ViewportContext.Provider>;
 }
 
