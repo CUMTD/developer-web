@@ -10,20 +10,12 @@ const RESIZE_DEBOUNCE_MS = 100;
 const ViewportContext = createContext<ViewportState | undefined>(undefined);
 
 export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>) {
-	const [state, setState] = useState<ViewportState>(() => {
-		// Initialize with actual value on client, or default values on server
-		if (typeof window !== "undefined") {
-			return {
-				isMobile: window.innerWidth < MOBILE_BREAKPOINT,
-				width: window.innerWidth,
-				height: window.innerHeight,
-			};
-		}
-		return {
-			isMobile: false,
-			width: undefined,
-			height: undefined,
-		};
+	const [state, setState] = useState<ViewportState>({
+		// Initialize with consistent values on both server and client
+		// to avoid hydration mismatches. Real values are set in useEffect.
+		isMobile: false,
+		width: undefined,
+		height: undefined,
 	});
 
 	useEffect(() => {
