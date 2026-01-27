@@ -3,7 +3,7 @@ import type { ComponentProps } from "react";
 
 type LogoutButtonProps = Readonly<
 	{
-		variant?: "link" | "default" | "destructive" | "outline" | "secondary" | "ghost" | null | undefined;
+		variant?: ComponentProps<typeof Button>["variant"];
 	} & Omit<ComponentProps<"button">, "type">
 >;
 
