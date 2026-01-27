@@ -1,5 +1,11 @@
-import NextPreviousPageNavigatorButtons from "@components/NextPreviousPageNavigatorButtons";
+import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-navigator-button-interface";
 import { CloudDownload } from "lucide-react";
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+	title: "Responses",
+	description: "Understanding API responses.",
+	alternates: { canonical: "/reference/responses" },
+};
 
 export const dynamic = "force-static";
 

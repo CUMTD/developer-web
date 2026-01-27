@@ -1,4 +1,11 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@shared/shadcn/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@ui/card";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Login Error",
+	description: "An error occurred during login.",
+	alternates: { canonical: "/account/auth/error" },
+};
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ error: string }> }) {
 	const params = await searchParams;

@@ -1,12 +1,13 @@
-import { H1, H2 } from "@components/heading";
-import Prose from "@components/prose";
-import { createClient } from "@shared/lib/supabase/server";
+import { H1, H2 } from "@common/typography/heading";
+import Prose from "@common/typography/prose";
+import { createClient } from "@server/supabase/server";
 import type { Metadata } from "next";
-import AcceptTermsOfUse from "./accept-terms-of-use";
+import AcceptTermsOfUse from "./_components/accept-terms-of-use";
 
 export const metadata: Metadata = {
 	title: "Terms of Use",
 	description: "Read and accept the Terms of Use for accessing MTD data.",
+	alternates: { canonical: "/terms-of-use" },
 };
 
 export default async function TermsOfUsePage() {

@@ -1,4 +1,4 @@
-import { ReferenceSidebar } from "@shared/shadcn/app-sidebar";
+import { ReferenceSidebar } from "@common/layout/app-sidebar";
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -6,9 +6,17 @@ import {
 	BreadcrumbList,
 	BreadcrumbPage,
 	BreadcrumbSeparator,
-} from "@shared/shadcn/breadcrumb";
-import { Separator } from "@shared/shadcn/separator";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@shared/shadcn/sidebar";
+} from "@ui/breadcrumb";
+import { Separator } from "@ui/separator";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@ui/sidebar";
+
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Dashboard",
+	description: "Developer dashboard.",
+	alternates: { canonical: "/dashboard" },
+};
 
 export default function Page() {
 	return (

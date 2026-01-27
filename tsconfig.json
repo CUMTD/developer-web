@@ -13,12 +13,17 @@
 		"moduleResolution": "bundler",
 		"noEmit": true,
 		"paths": {
-			"@apps/*": ["app/*"],
-			"@components/*": ["src/components/*"],
+			"@app/*": ["src/app/*"],
+			"@common/*": ["src/components/common/*"],
+			"@content/*": ["src/content/*"],
+			"@env/*": ["src/env/*"],
 			"@helpers/*": ["src/helpers/*"],
-			"@shared/*": ["src/shared/*"],
+			"@hooks/*": ["src/hooks/*"],
+			"@lib/*": ["src/lib/*"],
+			"@markdown/*": ["src/content/api/*"],
+			"@server/*": ["src/server/*"],
 			"@t/*": ["src/types/*"],
-			"@markdown/*": ["src/app/markdown/*"]
+			"@ui/*": ["src/components/ui/*"]
 		},
 		"plugins": [
 			{

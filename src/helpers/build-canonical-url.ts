@@ -1,4 +1,4 @@
-import { globalEnv } from "@shared/config/env.global";
+import { globalEnv } from "@env/global";
 
 export default function buildCanonicalUrl(pathname: string, baseUrl?: string): string | undefined {
 	if (!pathname) {

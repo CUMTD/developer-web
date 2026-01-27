@@ -1,14 +1,15 @@
-import { H1 } from "@components/heading";
-import { getTosStatus } from "@shared/actions/terms-of-use/get-tos-status";
-import { createClient } from "@shared/lib/supabase/server";
+import Breadcrumbs from "@common/account/breadcrumbs";
+import { H1 } from "@common/typography/heading";
+import { getTosStatus } from "@server/actions/terms-of-use/get-tos-status";
+import { createClient } from "@server/supabase/server";
 import type { Metadata } from "next";
 import { unauthorized } from "next/navigation";
-import Breadcrumbs from "../../components/breadcrumbs";
-import ApiKeyAddForm from "./components/api-key-add-form";
+import ApiKeyAddForm from "./_components/api-key-add-form";
 
 export const metadata: Metadata = {
 	title: "Add Key",
 	description: "Add an API key.",
+	alternates: { canonical: "/account/keys/add" },
 };
 
 export default async function AddApiKeyPage() {

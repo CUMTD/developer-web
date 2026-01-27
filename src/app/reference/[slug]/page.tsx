@@ -1,14 +1,14 @@
-import ApiAttributeItem from "@components/ApiAttributeItem";
-import toTitleCase from "@helpers/toTitleCase";
-import { Item, ItemContent, ItemGroup, ItemHeader, ItemSeparator } from "@shared/shadcn/item";
-import { Separator } from "@shared/shadcn/separator";
+import ApiAttributeItem from "@common/docs/api-attribute-item";
+import toTitleCase from "@helpers/to-title-case";
+import type { ApiResponseAttribute } from "@t/documentation-types";
+import { API_INDEX, type ApiObject } from "@t/md.generated";
+import { Item, ItemContent, ItemGroup, ItemHeader, ItemSeparator } from "@ui/item";
+import { Separator } from "@ui/separator";
 import type { Metadata } from "next";
 import React from "react";
 import "server-only";
-import { PrettyCodeFromFilepath } from "src/app/reference/[slug]/components/PrettyCodeFromFilepath";
-import type { ApiResponseAttribute } from "src/types/DocumentationTypes";
-import { API_INDEX, type ApiObject } from "../../../types/md.generated";
-import EndpointItem from "./components/endpoint-item";
+import EndpointItem from "./_components/endpoint-item";
+import { PrettyCodeFromFilepath } from "./_components/pretty-code-from-file-path";
 
 // Disable dynamic route parameters
 // This ensures that only the statically generated routes are used
@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const title = toTitleCase(slug);
 	return {
 		title,
+		alternates: { canonical: `/reference/${slug}` },
 	};
 }
 
@@ -39,8 +40,8 @@ export default async function Page({ params }: Props) {
 	const { slug: apiObject } = await params;
 	const methods = API_INDEX[apiObject];
 
-	const { default: ObjectDescription } = await import(`../../markdown/${apiObject}/description.mdx`);
-	const { response: responseAttributes } = await import(`../../markdown/${apiObject}/response.ts`);
+	const { default: ObjectDescription } = await import(`@content/api/${apiObject}/description.mdx`);
+	const { response: responseAttributes } = await import(`@content/api/${apiObject}/response.ts`);
 
 	var attributes = responseAttributes as ApiResponseAttribute[];
 
@@ -54,7 +55,7 @@ export default async function Page({ params }: Props) {
 			<Item className="items-start p-0 ">
 				<ItemContent className="w-full sticky top-0">
 					<ItemHeader className="text-xl">Object</ItemHeader>
-					<PrettyCodeFromFilepath filepath={`src/app/markdown/${apiObject}/object.json`} language="json" />
+					<PrettyCodeFromFilepath filepath={`@content/api/${apiObject}/object.json`} language="json" />
 				</ItemContent>
 			</Item>
 			<div className="col-span-1 lg:col-span-2">

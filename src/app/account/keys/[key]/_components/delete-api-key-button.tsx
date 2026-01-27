@@ -1,0 +1,96 @@
+"use client";
+
+import ObfuscatedKey from "@common/obfuscated-key";
+import { useCurrentUser } from "@hooks/use-current-user";
+import { disableApiKeyAction } from "@server/actions/api-keys/disable-api-key";
+import { Button } from "@ui/button";
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@ui/dialog";
+import { Input } from "@ui/input";
+import { Label } from "@ui/label";
+import { useMemo, useState } from "react";
+
+type Props = Readonly<{
+	apiKeyName: string;
+	apiKeyValue: string;
+}>;
+
+export default function DeleteApiKeyButton({ apiKeyName, apiKeyValue }: Props) {
+	const { isLoading, isAuthenticated, user } = useCurrentUser();
+	const confirmString = useMemo(() => user?.email || "Confirm", [user?.email]);
+	const [typedEmail, setTypedEmail] = useState("");
+
+	const canConfirm = useMemo(() => {
+		if (isLoading || !isAuthenticated) {
+			return false;
+		}
+
+		if (!confirmString) {
+			return false;
+		}
+		return typedEmail.trim().toLowerCase() === confirmString.trim().toLowerCase();
+	}, [typedEmail, confirmString, isAuthenticated, isLoading]);
+
+	if (!isLoading && !isAuthenticated) {
+		return null;
+	}
+
+	return (
+		<Dialog>
+			<DialogTrigger asChild>
+				<Button variant="destructive" type="button" className="justify-self-start mr-auto">
+					Delete
+				</Button>
+			</DialogTrigger>
+
+			<DialogContent>
+				<DialogHeader>
+					<DialogTitle>Delete API key</DialogTitle>
+					<DialogDescription>
+						This will disable the key immediately. Type
+						<code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">{confirmString}</code> to enable the
+						delete button
+					</DialogDescription>
+				</DialogHeader>
+
+				<div className="grid gap-2">
+					<Label>Key</Label>
+					<div className="rounded-md border p-3">
+						<p className="font-medium">{apiKeyName || "Untitled key"}</p>
+						<p className="font-mono text-xs text-muted-foreground break-all">
+							<ObfuscatedKey apiKey={apiKeyValue} />
+						</p>
+					</div>
+				</div>
+
+				<div className="grid gap-2">
+					<Label htmlFor="confirm-email">Confirm email</Label>
+					<Input
+						id="confirm-email"
+						autoComplete="off"
+						disabled={!confirmString}
+						placeholder={confirmString ?? ""}
+						value={typedEmail}
+						onChange={(e) => setTypedEmail(e.target.value)}
+					/>
+				</div>
+
+				<form action={disableApiKeyAction}>
+					<input type="hidden" name="key" value={apiKeyValue} />
+					<DialogFooter className="mt-2">
+						<Button type="submit" variant="destructive" disabled={!canConfirm}>
+							Confirm delete
+						</Button>
+					</DialogFooter>
+				</form>
+			</DialogContent>
+		</Dialog>
+	);
+}

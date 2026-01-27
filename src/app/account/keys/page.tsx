@@ -1,16 +1,16 @@
-import { H1 } from "@components/heading";
-import { getApiKeys } from "@shared/actions/api-keys/get-api-keys";
-import { getTosStatus } from "@shared/actions/terms-of-use/get-tos-status";
-import { Button } from "@shared/shadcn/button";
+import Breadcrumbs from "@common/account/breadcrumbs";
+import LinkButton from "@common/link-button";
+import { H1 } from "@common/typography/heading";
+import { getApiKeys } from "@server/actions/api-keys/get-api-keys";
+import { getTosStatus } from "@server/actions/terms-of-use/get-tos-status";
 import type { Metadata } from "next";
-import Link from "next/link";
-import Breadcrumbs from "../components/breadcrumbs";
-import ApiKey from "./components/api-key";
-import CannotAccess from "./components/cannot-access";
+import ApiKey from "./_components/api-key";
+import CannotAccess from "./_components/cannot-access";
 
 export const metadata: Metadata = {
 	title: "Keys",
 	description: "Manage your API keys.",
+	alternates: { canonical: "/account/keys" },
 };
 
 export default async function KeysPage() {
@@ -25,9 +25,9 @@ export default async function KeysPage() {
 				</H1>
 				{canAccessApi && (
 					<div className="flex flex-1 justify-end">
-						<Button asChild variant="default">
-							<Link href="/account/keys/add">Add Key</Link>
-						</Button>
+						<LinkButton href="/account/keys/add" variant="default">
+							Add Key
+						</LinkButton>
 					</div>
 				)}
 			</div>

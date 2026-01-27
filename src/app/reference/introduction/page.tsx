@@ -1,5 +1,12 @@
-import NextPreviousPageNavigatorButtons from "@components/NextPreviousPageNavigatorButtons";
+import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-navigator-button-interface";
 import { BookOpen, BusFrontIcon, HeartIcon } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "Introduction",
+	description: "API documentation introduction.",
+	alternates: { canonical: "/reference/introduction" },
+};
 
 export default function IntroductionPage() {
 	return (

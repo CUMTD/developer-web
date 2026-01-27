@@ -1,6 +1,6 @@
-import { ReferenceSidebar } from "@shared/shadcn/app-sidebar";
+import { ReferenceSidebar } from "@common/layout/app-sidebar";
 
-import { SidebarInset, SidebarProvider } from "@shared/shadcn/sidebar";
+import { SidebarInset, SidebarProvider } from "@ui/sidebar";
 import type { ReactNode } from "react";
 
 export default async function ReferenceLayout({ children }: { children: ReactNode }) {

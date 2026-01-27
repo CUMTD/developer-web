@@ -1,11 +1,11 @@
-import { H1, H2 } from "@components/heading";
-import ObfuscatedKey from "@components/obfuscated-key";
-import { getApiKey } from "@shared/actions/api-keys/get-api-key";
-import { getTosStatus } from "@shared/actions/terms-of-use/get-tos-status";
+import Breadcrumbs from "@common/account/breadcrumbs";
+import ObfuscatedKey from "@common/obfuscated-key";
+import { H1, H2 } from "@common/typography/heading";
+import { getApiKey } from "@server/actions/api-keys/get-api-key";
+import { getTosStatus } from "@server/actions/terms-of-use/get-tos-status";
 import type { Metadata } from "next";
 import { notFound, unauthorized } from "next/navigation";
-import Breadcrumbs from "../../components/breadcrumbs";
-import ApiKeyEditForm from "./components/api-key-edit-form";
+import ApiKeyEditForm from "./_components/api-key-edit-form";
 
 type ApiKeyPageProps = Readonly<{
 	params: Promise<{
@@ -13,10 +13,16 @@ type ApiKeyPageProps = Readonly<{
 	}>;
 }>;
 
-export const metadata: Metadata = {
-	title: "Edit Key",
-	description: "Edit an API key.",
-};
+type MetaParams = Readonly<{ params: Promise<{ key: string }> }>;
+
+export async function generateMetadata({ params }: MetaParams): Promise<Metadata> {
+	const { key } = await params;
+	return {
+		title: "Edit Key",
+		description: "Edit an API key.",
+		alternates: { canonical: `/account/keys/${key}` },
+	};
+}
 
 export default async function ApiKeyPage({ params }: ApiKeyPageProps) {
 	const { key } = await params;
