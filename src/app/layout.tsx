@@ -1,7 +1,5 @@
 import { ThemeProvider } from "@app/_components/theme-provider";
 import NavMenu from "@common/layout/nav-menu";
-import { AuthProvider } from "@contexts/auth-context";
-import { ViewportProvider } from "@contexts/viewport-context";
 import { globalEnv } from "@env/global";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VercelToolbar } from "@vercel/toolbar/next";
@@ -9,6 +7,7 @@ import type { Metadata, Viewport } from "next";
 import { Overpass, Overpass_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import "server-only";
+import { ClientProviders } from "./_components/client-providers";
 import { PlausibleAnalytics } from "./_components/plausible-analytics";
 import "./_styles/globals.css";
 
@@ -73,14 +72,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 			<body className={`${overpass.variable} ${overpassMono.variable} font-sans antialiased`}>
 				<PlausibleAnalytics />
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-					<AuthProvider>
-						<ViewportProvider>
-							<div className="grid grid-rows-[auto_1fr] h-screen">
-								<NavMenu />
-								<main className="overflow-auto">{children}</main>
-							</div>
-						</ViewportProvider>
-					</AuthProvider>
+					<ClientProviders>
+						<div className="grid grid-rows-[auto_1fr] h-screen">
+							<NavMenu />
+							<main className="overflow-auto">{children}</main>
+						</div>
+					</ClientProviders>
 					{shouldInjectToolbar && <VercelToolbar />}
 				</ThemeProvider>
 				<SpeedInsights />
