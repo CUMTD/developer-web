@@ -20,10 +20,22 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 
 	useEffect(() => {
 		const updateViewport = () => {
-			setState({
+			const newState = {
 				isMobile: window.innerWidth < MOBILE_BREAKPOINT,
 				width: window.innerWidth,
 				height: window.innerHeight,
+			};
+
+			// Only update if values actually changed to prevent unnecessary re-renders
+			setState((prevState) => {
+				if (
+					prevState.isMobile === newState.isMobile &&
+					prevState.width === newState.width &&
+					prevState.height === newState.height
+				) {
+					return prevState; // Return same object reference to prevent re-render
+				}
+				return newState;
 			});
 		};
 
