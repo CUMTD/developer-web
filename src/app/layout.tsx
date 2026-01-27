@@ -13,11 +13,13 @@ import "./_styles/globals.css";
 const overpass = Overpass({
 	subsets: ["latin"],
 	variable: "--font-sans",
+	fallback: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
 });
 
 const overpassMono = Overpass_Mono({
 	subsets: ["latin"],
 	variable: "--font-mono",
+	fallback: ["ui-monospace", "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", "monospace"],
 });
 
 export const viewport: Viewport = {
