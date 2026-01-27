@@ -1,7 +1,7 @@
 "use client";
 
+import { useViewport } from "@contexts/viewport-context";
 import { readStorageBoolean, writeStorage } from "@helpers/local-storage";
-import { useIsMobile } from "@hooks/use-mobile";
 import { cn } from "@lib/utils";
 import { Slot } from "@radix-ui/react-slot";
 import { Button } from "@ui/button";
@@ -63,7 +63,7 @@ function SidebarProvider({
 	open?: boolean;
 	onOpenChange?: (open: boolean) => void;
 }) {
-	const isMobile = useIsMobile();
+	const { isMobile } = useViewport();
 	const [openMobile, setOpenMobile] = useState(false);
 
 	// This is the internal state of the sidebar.

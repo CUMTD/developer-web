@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@app/_components/theme-provider";
 import NavMenu from "@common/layout/nav-menu";
 import { AuthProvider } from "@contexts/auth-context";
+import { ViewportProvider } from "@contexts/viewport-context";
 import { globalEnv } from "@env/global";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VercelToolbar } from "@vercel/toolbar/next";
@@ -73,10 +74,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 				<PlausibleAnalytics />
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 					<AuthProvider>
-						<div className="grid grid-rows-[auto_1fr] h-screen">
-							<NavMenu />
-							<main className="overflow-auto">{children}</main>
-						</div>
+						<ViewportProvider>
+							<div className="grid grid-rows-[auto_1fr] h-screen">
+								<NavMenu />
+								<main className="overflow-auto">{children}</main>
+							</div>
+						</ViewportProvider>
 					</AuthProvider>
 					{shouldInjectToolbar && <VercelToolbar />}
 				</ThemeProvider>

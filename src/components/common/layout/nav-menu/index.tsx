@@ -1,7 +1,7 @@
 "use client";
 
 import UserMenu from "@common/layout/nav-menu/user-menu";
-import { useIsMobile } from "@hooks/use-mobile";
+import { useViewport } from "@contexts/viewport-context";
 import {
 	NavigationMenu,
 	NavigationMenuContent,
@@ -16,7 +16,7 @@ import Link from "next/link";
 import WordMark from "./word-mark";
 
 export default function NavMenu() {
-	const isMobile = useIsMobile();
+	const { isMobile } = useViewport();
 
 	return (
 		<header className="flex flex-row justify-between lg:px-8 px-5 p-5 row-span-1 sticky top-0 bg-sidebar z-50">
