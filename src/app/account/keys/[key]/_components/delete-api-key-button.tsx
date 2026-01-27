@@ -1,7 +1,7 @@
 "use client";
 
 import ObfuscatedKey from "@common/obfuscated-key";
-import { useCurrentUser } from "@hooks/use-current-user";
+import { useAuth } from "@contexts/auth-context";
 import { disableApiKeyAction } from "@server/actions/api-keys/disable-api-key";
 import { Button } from "@ui/button";
 import {
@@ -23,7 +23,7 @@ type Props = Readonly<{
 }>;
 
 export default function DeleteApiKeyButton({ apiKeyName, apiKeyValue }: Props) {
-	const { isLoading, isAuthenticated, user } = useCurrentUser();
+	const { isLoading, isAuthenticated, user } = useAuth();
 	const confirmString = useMemo(() => user?.email || "Confirm", [user?.email]);
 	const [typedEmail, setTypedEmail] = useState("");
 

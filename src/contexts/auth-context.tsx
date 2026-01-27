@@ -1,35 +1,11 @@
+"use client";
+
+import type { CurrentUser, CurrentUserState } from "@hooks/use-current-user";
 import { createClient } from "@lib/supabase/client";
 import type { Session } from "@supabase/supabase-js";
-import { useEffect, useState } from "react";
+import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
 
-type CurrentUserShared = {
-	email: string | null;
-	profileImageUrl: string | null;
-};
-
-type UnknownCurrentUser = Readonly<
-	{
-		name: "Unknown User";
-	} & CurrentUserShared
->;
-
-type KnownCurrentUser = Readonly<
-	{
-		name: string;
-	} & CurrentUserShared
->;
-
-export type CurrentUser = KnownCurrentUser | UnknownCurrentUser;
-
-export function isUnknownUser(user: CurrentUser): user is UnknownCurrentUser {
-	return user.name === "Unknown User";
-}
-
-export type CurrentUserState = Readonly<{
-	isLoading: boolean;
-	isAuthenticated: boolean;
-	user: CurrentUser | null;
-}>;
+const AuthContext = createContext<CurrentUserState | undefined>(undefined);
 
 function mapSessionToUser(session: Session | null): CurrentUser | null {
 	if (!session) {
@@ -53,15 +29,11 @@ function mapSessionToUser(session: Session | null): CurrentUser | null {
 	};
 }
 
-export function useCurrentUser(): CurrentUserState {
-	const [state, setState] = useState<CurrentUserState>(() => {
-		// Try to get cached session synchronously to avoid loading flash
-		// Note: This is a best-effort optimization; we'll still validate in useEffect
-		return {
-			isLoading: true,
-			isAuthenticated: false,
-			user: null,
-		};
+export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
+	const [state, setState] = useState<CurrentUserState>({
+		isLoading: true,
+		isAuthenticated: false,
+		user: null,
 	});
 
 	useEffect(() => {
@@ -95,5 +67,13 @@ export function useCurrentUser(): CurrentUserState {
 		};
 	}, []);
 
-	return state;
+	return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;
+}
+
+export function useAuth(): CurrentUserState {
+	const context = useContext(AuthContext);
+	if (context === undefined) {
+		throw new Error("useAuth must be used within an AuthProvider");
+	}
+	return context;
 }
