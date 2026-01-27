@@ -215,7 +215,7 @@ Tooling rules (MCP / Agent mode):
 3) Supabase / GitHub / Vercel MCP:
    - Only use these tools when they are required for the request.
      - Supabase: schema inspection, table metadata, read-only SQL queries, Supabase docs.
-		   - Supabase is read-only: do not attempt inserts/updates/migrations.
+     - Supabase is read-only: do not attempt inserts/updates/migrations.
      - GitHub: issues/PR context, repo search, Actions logs.
      - Vercel: deployment/platform info (VS Code only; OAuth).
    - If not needed, do not invoke them.
