@@ -28,6 +28,8 @@ src/
   content/
     api/                      # MDX and metadata
 
+  contexts/                   # React contexts
+
   env/
     schema.ts                 # Zod schemas for env
     global.ts                 # NEXT_PUBLIC_* only
