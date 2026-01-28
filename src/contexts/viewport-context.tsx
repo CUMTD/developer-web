@@ -2,7 +2,7 @@
 
 import debounce from "@helpers/debounce";
 import type { ViewportState } from "@t/viewport";
-import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, type ReactNode, useContext, useEffect, useRef, useState } from "react";
 
 const MOBILE_BREAKPOINT = 768;
 const RESIZE_DEBOUNCE_MS = 100;
@@ -18,8 +18,18 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 		height: undefined,
 	});
 
+	// Guard to prevent double initialization in React StrictMode
+	const initializedRef = useRef(false);
+
 	useEffect(() => {
-		console.log("[ViewportProvider] Mount");
+		// Prevent effect from running multiple times (React 18 StrictMode can cause this)
+		if (initializedRef.current) {
+			console.log("[ViewportProvider] Effect re-run detected, skipping initialization");
+			return;
+		}
+
+		console.log("[ViewportProvider] Mount - initializing");
+		initializedRef.current = true;
 
 		const updateViewport = (source: string) => {
 			const newState = {
