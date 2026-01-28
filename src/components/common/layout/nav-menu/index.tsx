@@ -18,7 +18,6 @@ import WordMark from "./word-mark";
 
 function NavMenu() {
 	const { isMobile } = useViewport();
-	console.log("[NavMenu] Render", { isMobile });
 
 	return (
 		<header className="flex flex-row justify-between lg:px-8 px-5 p-5 row-span-1 sticky top-0 bg-sidebar z-50">
