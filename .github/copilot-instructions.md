@@ -134,6 +134,9 @@ export type ApiKey = z.infer<typeof apiKeySchema>;
 - Pages and layouts must include appropriate metadata. At minimum, set the `title`, `description`, and `alternates.canonical`.
 - Prefer server components by default.
 - Add `"use client"` **only when necessary**.
+- Always use the `Link` component from `next/link` for declarative internal navigation.
+- Always use `<a>` for external links, and include `rel="noopener noreferrer"` when using `target="_blank".`
+- Always use the `Image` component from `next/image` for images.
 
 ### Server-only Rules
 
