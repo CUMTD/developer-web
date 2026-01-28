@@ -18,6 +18,8 @@ A comprehensive web application for third-party developers to interact with MTD'
 - [Code Quality](#-code-quality)
 - [Deployment](#-deployment)
 - [Contributing](#-contributing)
+- [Additional Resources](#-additional-resources)
+- [Support](#-support)
 
 ---
 
@@ -255,10 +257,12 @@ src/
 | Layer | Purpose | Can Import From | Cannot Import From |
 |-------|---------|-----------------|-------------------|
 | `app/` | Routing & layouts | All layers | None |
-| `components/` | UI components | `lib/`, `hooks/`, `contexts/` | `server/`, `app/` |
+| `components/ui/` & `components/common/` | Shared UI components | `lib/`, `hooks/`, `contexts/` | `server/`, `app/` |
 | `server/` | Server-only logic | `types/`, `env/server.ts` | `components/`, client code |
 | `content/` | Static content | None | All |
 | `lib/` & `hooks/` | Utilities | Each other | `server/`, `app/`, `components/` |
+
+**Note**: Route-local components within `app/` (prefixed with `_components/`) can import from their parent route but should avoid deep coupling to other routes.
 
 **Critical**: Never import from `src/server` in client components!
 
