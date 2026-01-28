@@ -29,9 +29,35 @@ function mapSessionToUser(session: Session | null): CurrentUser | null {
 
 const AuthContext = createContext<CurrentUserState | undefined>(undefined);
 
-// Module-level cache to persist auth state across component re-initializations
-// This prevents skeleton flash when navigating in /reference section
-let cachedAuthState: CurrentUserState | null = null;
+// localStorage key for caching auth state
+// Using localStorage instead of module-level variable to survive Fast Refresh/HMR
+const STORAGE_KEY = "developer-web:auth-cache";
+
+// Helper to get cached auth state from localStorage
+function getCachedAuthState(): CurrentUserState | null {
+	if (typeof window === "undefined") return null;
+	try {
+		const cached = localStorage.getItem(STORAGE_KEY);
+		if (cached) {
+			return JSON.parse(cached) as CurrentUserState;
+		}
+		return null;
+	} catch (error) {
+		console.error("[AuthProvider] Error reading from localStorage:", error);
+		return null;
+	}
+}
+
+// Helper to save auth state to localStorage
+function setCachedAuthState(state: CurrentUserState): void {
+	if (typeof window === "undefined") return;
+	try {
+		localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+	} catch (error) {
+		// Silently ignore localStorage errors (quota exceeded, privacy mode, etc.)
+		console.warn("[AuthProvider] Error writing to localStorage:", error);
+	}
+}
 
 export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 	const instanceId = useId();
@@ -40,15 +66,16 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 	const [state, setState] = useState<CurrentUserState>(() => {
 		console.log(`[AuthProvider ${instanceId}] Initial state setup`);
 
-		// If we have cached state from a previous render, use it
-		// This prevents skeleton flash during navigation
-		if (cachedAuthState) {
-			console.log(`[AuthProvider ${instanceId}] Restoring from cache:`, cachedAuthState);
-			return cachedAuthState;
+		// Try to restore from localStorage cache
+		// This survives Fast Refresh/HMR and prevents loading state flash
+		const cached = getCachedAuthState();
+		if (cached) {
+			console.log(`[AuthProvider ${instanceId}] Restoring auth state from localStorage:`, cached);
+			return cached;
 		}
 
-		// First time only: show loading state
-		console.log(`[AuthProvider ${instanceId}] Initializing with loading state for initial fetch`);
+		// No cache: initialize with loading state
+		console.log(`[AuthProvider ${instanceId}] No cached state, initializing with loading state`);
 		return {
 			isLoading: true,
 			isAuthenticated: false,
@@ -129,10 +156,10 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 		};
 	}, [instanceId]);
 
-	// Update module-level cache whenever state changes
-	// This ensures the next time the component initializes, it uses the current state
+	// Sync state to localStorage whenever it changes
+	// This persists auth state across Fast Refresh, HMR, and navigation
 	useEffect(() => {
-		cachedAuthState = state;
+		setCachedAuthState(state);
 	}, [state]);
 
 	console.log(`[AuthProvider ${instanceId}] Render`, state);
