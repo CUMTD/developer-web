@@ -29,6 +29,10 @@ function mapSessionToUser(session: Session | null): CurrentUser | null {
 
 const AuthContext = createContext<CurrentUserState | undefined>(undefined);
 
+// Module-level cache to persist auth state across component re-initializations
+// This prevents skeleton flash when navigating in /reference section
+let cachedAuthState: CurrentUserState | null = null;
+
 export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 	const instanceId = useId();
 	const loadedOnceRef = useRef(false);
@@ -36,8 +40,14 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 	const [state, setState] = useState<CurrentUserState>(() => {
 		console.log(`[AuthProvider ${instanceId}] Initial state setup`);
 
-		// Start with isLoading: true on initial mount (show skeleton while fetching)
-		// After first load, loadedOnceRef prevents skeleton from showing on re-renders
+		// If we have cached state from a previous render, use it
+		// This prevents skeleton flash during navigation
+		if (cachedAuthState) {
+			console.log(`[AuthProvider ${instanceId}] Restoring from cache:`, cachedAuthState);
+			return cachedAuthState;
+		}
+
+		// First time only: show loading state
 		console.log(`[AuthProvider ${instanceId}] Initializing with loading state for initial fetch`);
 		return {
 			isLoading: true,
@@ -118,6 +128,12 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 			subscription.subscription.unsubscribe();
 		};
 	}, [instanceId]);
+
+	// Update module-level cache whenever state changes
+	// This ensures the next time the component initializes, it uses the current state
+	useEffect(() => {
+		cachedAuthState = state;
+	}, [state]);
 
 	console.log(`[AuthProvider ${instanceId}] Render`, state);
 	return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;
