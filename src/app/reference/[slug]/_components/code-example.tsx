@@ -7,9 +7,9 @@ import { type ReactElement, useEffect, useState } from "react";
 import { CodeExampleBody } from "./code-example-with-copy";
 import { LanguageSelector } from "./language-selector";
 
-interface CodeExampleProps {
+type CodeExampleProps = Readonly<{
 	content: { [language: string]: ReactElement };
-}
+}>;
 
 export default function CodeExample({ content }: CodeExampleProps) {
 	const searchParams = useSearchParams();

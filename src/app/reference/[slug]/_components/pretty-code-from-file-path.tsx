@@ -7,10 +7,10 @@ import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import { CodeExampleBody } from "./code-example-with-copy";
 
-interface PrettyCodeFromFilepathProps {
+type PrettyCodeFromFilepathProps = Readonly<{
 	filepath: string;
 	language: string;
-}
+}>;
 
 export async function PrettyCodeFromFilepath({ filepath, language }: PrettyCodeFromFilepathProps) {
 	const resolvedPath = filepath.replace("@content/", "src/content/");

@@ -3,12 +3,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@u
 import { Item, ItemContent, ItemDescription, ItemGroup, ItemHeader, ItemSeparator, ItemTitle } from "@ui/item";
 import React from "react";
 
-interface ApiAttributeItemProps {
+type ApiAttributeItemProps = Readonly<{
 	attribute: ApiResponseAttribute | ApiRequestParameter;
 	required?: boolean;
 	showOptional?: boolean;
 	childAttributes?: ApiResponseAttribute[];
-}
+}>;
 export default function ApiAttributeItem({
 	attribute,
 	childAttributes,

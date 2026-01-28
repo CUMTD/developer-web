@@ -4,11 +4,11 @@ import { Button } from "@ui/button";
 import { Check, Copy } from "lucide-react";
 import { useRef, useState } from "react";
 
-interface CodeExampleWithCopyProps {
+type CodeExampleWithCopyProps = Readonly<{
 	children: React.ReactNode;
 	copyable?: boolean;
 	mini?: boolean;
-}
+}>;
 
 export function CodeExampleBody({ children, copyable = true, mini = false }: CodeExampleWithCopyProps) {
 	const [copied, setCopied] = useState(false);
