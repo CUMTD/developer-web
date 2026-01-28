@@ -2,7 +2,7 @@
 
 import debounce from "@helpers/debounce";
 import type { ViewportState } from "@t/viewport";
-import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, type ReactNode, useContext, useEffect, useId, useState } from "react";
 
 const MOBILE_BREAKPOINT = 768;
 const RESIZE_DEBOUNCE_MS = 100;
@@ -10,16 +10,23 @@ const RESIZE_DEBOUNCE_MS = 100;
 const ViewportContext = createContext<ViewportState | undefined>(undefined);
 
 export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>) {
+	// Generate unique ID for this component instance
+	const instanceId = useId();
+
 	const [state, setState] = useState<ViewportState>(() => {
+		console.log(`[ViewportProvider ${instanceId}] Initial state setup`);
 		// On client: initialize with actual values to avoid flash
 		// On server: use defaults for SSR consistency
 		if (typeof window !== "undefined") {
-			return {
+			const initial = {
 				isMobile: window.innerWidth < MOBILE_BREAKPOINT,
 				width: window.innerWidth,
 				height: window.innerHeight,
 			};
+			console.log(`[ViewportProvider ${instanceId}] Client-side init:`, initial);
+			return initial;
 		}
+		console.log(`[ViewportProvider ${instanceId}] Server-side init`);
 		return {
 			isMobile: false,
 			width: undefined,
@@ -28,7 +35,7 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 	});
 
 	useEffect(() => {
-		console.log("[ViewportProvider] Mount - setting up event listeners");
+		console.log(`[ViewportProvider ${instanceId}] Effect: Setting up event listeners`);
 
 		const updateViewport = (source: string) => {
 			const newState = {
@@ -44,13 +51,13 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 					prevState.width === newState.width &&
 					prevState.height === newState.height
 				) {
-					console.log(`[ViewportProvider] Skipping update from ${source} - values unchanged`, {
-						prev: prevState,
-						new: newState,
-					});
+					console.log(`[ViewportProvider ${instanceId}] Skipping update from ${source} - values unchanged`);
 					return prevState; // Return same object reference to prevent re-render
 				}
-				console.log(`[ViewportProvider] Updating state from ${source}`, { prev: prevState, new: newState });
+				console.log(`[ViewportProvider ${instanceId}] Updating state from ${source}`, {
+					prev: prevState,
+					new: newState,
+				});
 				return newState;
 			});
 		};
@@ -58,7 +65,7 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 		// Use matchMedia for more efficient mobile breakpoint detection
 		const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
 		const handleMobileChange = () => {
-			console.log("[ViewportProvider] matchMedia change event");
+			console.log(`[ViewportProvider ${instanceId}] matchMedia change event`);
 			updateViewport("matchMedia");
 		};
 
@@ -68,7 +75,7 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 		}, RESIZE_DEBOUNCE_MS);
 
 		const handleResize = () => {
-			console.log("[ViewportProvider] resize event");
+			console.log(`[ViewportProvider ${instanceId}] resize event`);
 			void debouncedResize(undefined);
 		};
 
@@ -76,16 +83,17 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 		window.addEventListener("resize", handleResize);
 
 		// No initial update needed - state is already initialized with correct values!
+		console.log(`[ViewportProvider ${instanceId}] Event listeners attached, current state:`, state);
 
 		return () => {
-			console.log("[ViewportProvider] Unmount");
+			console.log(`[ViewportProvider ${instanceId}] Cleanup: Removing event listeners`);
 			mql.removeEventListener("change", handleMobileChange);
 			window.removeEventListener("resize", handleResize);
 			teardownDebounce();
 		};
-	}, []);
+	}, [instanceId, state]);
 
-	console.log("[ViewportProvider] Render", state);
+	console.log(`[ViewportProvider ${instanceId}] Render`, state);
 	return <ViewportContext.Provider value={state}>{children}</ViewportContext.Provider>;
 }
 
