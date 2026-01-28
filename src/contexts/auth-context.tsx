@@ -3,7 +3,7 @@
 import { createClient } from "@lib/supabase/client";
 import type { Session } from "@supabase/supabase-js";
 import type { CurrentUser, CurrentUserState } from "@t/current-user";
-import { createContext, type ReactNode, useContext, useEffect, useId, useState } from "react";
+import { createContext, type ReactNode, useContext, useEffect, useId, useRef, useState } from "react";
 
 function mapSessionToUser(session: Session | null): CurrentUser | null {
 	if (!session) {
@@ -31,16 +31,16 @@ const AuthContext = createContext<CurrentUserState | undefined>(undefined);
 
 export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 	const instanceId = useId();
+	const loadedOnceRef = useRef(false);
 
 	const [state, setState] = useState<CurrentUserState>(() => {
 		console.log(`[AuthProvider ${instanceId}] Initial state setup`);
 
-		// Start with isLoading: false to prevent skeleton flash
-		// The useEffect will update immediately with the actual auth state
-		// This optimistic approach prevents the loading skeleton from flashing on every render
-		console.log(`[AuthProvider ${instanceId}] Initializing with no loading state`);
+		// Start with isLoading: true on initial mount (show skeleton while fetching)
+		// After first load, loadedOnceRef prevents skeleton from showing on re-renders
+		console.log(`[AuthProvider ${instanceId}] Initializing with loading state for initial fetch`);
 		return {
-			isLoading: false,
+			isLoading: true,
 			isAuthenticated: false,
 			user: null,
 		};
@@ -97,6 +97,11 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 				console.error(`[AuthProvider ${instanceId}] Auth initialization error:`, error);
 				// Ensure we exit loading state even on unexpected errors
 				setFromSession(null);
+			} finally {
+				// Mark that we've loaded auth state at least once
+				// This prevents skeleton from showing on subsequent re-renders/navigation
+				loadedOnceRef.current = true;
+				console.log(`[AuthProvider ${instanceId}] Initial auth load complete`);
 			}
 		};
 
