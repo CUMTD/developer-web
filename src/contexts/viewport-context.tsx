@@ -21,7 +21,7 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 	useEffect(() => {
 		console.log("[ViewportProvider] Mount");
 
-		const updateViewport = () => {
+		const updateViewport = (source: string) => {
 			const newState = {
 				isMobile: window.innerWidth < MOBILE_BREAKPOINT,
 				width: window.innerWidth,
@@ -35,10 +35,13 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 					prevState.width === newState.width &&
 					prevState.height === newState.height
 				) {
-					console.log("[ViewportProvider] Skipping update - values unchanged");
+					console.log(`[ViewportProvider] Skipping update from ${source} - values unchanged`, {
+						prev: prevState,
+						new: newState,
+					});
 					return prevState; // Return same object reference to prevent re-render
 				}
-				console.log("[ViewportProvider] Updating state", { prev: prevState, new: newState });
+				console.log(`[ViewportProvider] Updating state from ${source}`, { prev: prevState, new: newState });
 				return newState;
 			});
 		};
@@ -46,15 +49,17 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 		// Use matchMedia for more efficient mobile breakpoint detection
 		const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
 		const handleMobileChange = () => {
-			updateViewport();
+			console.log("[ViewportProvider] matchMedia change event");
+			updateViewport("matchMedia");
 		};
 
 		// Debounce resize events to avoid excessive state updates
 		const [debouncedResize, teardownDebounce] = debounce<void, void>(() => {
-			updateViewport();
+			updateViewport("resize");
 		}, RESIZE_DEBOUNCE_MS);
 
 		const handleResize = () => {
+			console.log("[ViewportProvider] resize event");
 			void debouncedResize(undefined);
 		};
 
@@ -62,7 +67,7 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 		window.addEventListener("resize", handleResize);
 
 		// Set initial value in case it changed between initial render and effect
-		updateViewport();
+		updateViewport("initial");
 
 		return () => {
 			console.log("[ViewportProvider] Unmount");
