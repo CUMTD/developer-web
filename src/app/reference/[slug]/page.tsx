@@ -79,9 +79,9 @@ export default async function Page({ params }: Props) {
 	);
 }
 
-interface ObjectAttributesProps {
+type ObjectAttributesProps = Readonly<{
 	attributes: ApiResponseAttribute[];
-}
+}>;
 function ObjectAttributes({ attributes }: ObjectAttributesProps) {
 	return (
 		<>
