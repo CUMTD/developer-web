@@ -3,9 +3,9 @@ import { Item, ItemGroup } from "@ui/item";
 import { Separator } from "@ui/separator";
 import ApiAttributeItem from "./api-attribute-item";
 
-interface EndpointParametersProps {
+type EndpointParametersProps = Readonly<{
 	parameters: ApiRequestParameter[];
-}
+}>;
 
 export default function EndpointParameters({ parameters }: EndpointParametersProps) {
 	// TODO: replace with ApiAttributeItem

@@ -73,6 +73,7 @@
 	"prettier.requireConfig": true,
 	"search.exclude": {
 		"**/.git": true,
+		"**/.github/skills": true,
 		"**/.next": true,
 		"**/.nitro": true,
 		"**/.output": true,

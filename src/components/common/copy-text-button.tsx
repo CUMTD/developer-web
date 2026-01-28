@@ -7,10 +7,10 @@ import { CopyIcon } from "lucide-react";
 import { useCallback, useId } from "react";
 import { toast } from "sonner";
 
-interface CopyTextProps {
+type CopyTextProps = Readonly<{
 	text: string;
 	title?: string;
-}
+}>;
 
 async function copyToClipboard(text: string): Promise<void> {
 	if (typeof window === "undefined" || typeof navigator === "undefined") {
@@ -40,7 +40,7 @@ async function copyToClipboard(text: string): Promise<void> {
 	}
 }
 
-export default function CopyTextButton({ text, title }: Readonly<CopyTextProps>) {
+export default function CopyTextButton({ text, title }: CopyTextProps) {
 	const inputId = useId();
 
 	const copyButtonClick = useCallback(() => {

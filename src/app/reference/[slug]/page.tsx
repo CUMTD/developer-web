@@ -43,7 +43,7 @@ export default async function Page({ params }: Props) {
 	const { default: ObjectDescription } = await import(`@content/api/${apiObject}/description.mdx`);
 	const { response: responseAttributes } = await import(`@content/api/${apiObject}/response.ts`);
 
-	var attributes = responseAttributes as ApiResponseAttribute[];
+	const attributes = responseAttributes as ApiResponseAttribute[];
 
 	return (
 		<>
@@ -79,9 +79,9 @@ export default async function Page({ params }: Props) {
 	);
 }
 
-interface ObjectAttributesProps {
+type ObjectAttributesProps = Readonly<{
 	attributes: ApiResponseAttribute[];
-}
+}>;
 function ObjectAttributes({ attributes }: ObjectAttributesProps) {
 	return (
 		<>
