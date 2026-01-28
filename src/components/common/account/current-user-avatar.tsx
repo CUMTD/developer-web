@@ -1,6 +1,6 @@
 "use client";
 
-import { useCurrentUser } from "@hooks/use-current-user";
+import { useAuth } from "@contexts/auth-context";
 import { Skeleton } from "@ui/skeleton";
 import UserAvatar from "./user-avatar";
 
@@ -15,7 +15,7 @@ const skeletonSizeClass: Record<Props["size"], string> = {
 };
 
 export default function CurrentUserAvatar({ size }: Props) {
-	const { isAuthenticated, isLoading, user } = useCurrentUser();
+	const { isAuthenticated, isLoading, user } = useAuth();
 
 	if (isLoading) {
 		return <Skeleton className={`${skeletonSizeClass[size]} rounded-full`} aria-label="Loading user avatar" />;

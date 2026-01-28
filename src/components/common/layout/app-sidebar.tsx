@@ -12,6 +12,7 @@ import {
 	SidebarMenuSubItem,
 	SidebarRail,
 } from "@ui/sidebar";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type * as React from "react";
 
@@ -179,11 +180,11 @@ export function ReferenceSidebar({ ...props }: React.ComponentProps<typeof Sideb
 										<SidebarMenuItem>
 											{/* <CollapsibleTrigger asChild> */}
 											<SidebarMenuButton asChild isActive={isMainActive} className="font-bold">
-												<a href={item.url}>
+												<Link href={item.url}>
 													{item.title}
 													<span className="font-mono text-muted-foreground">{item.subtitle}</span>
 													{/* <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" /> */}
-												</a>
+												</Link>
 											</SidebarMenuButton>
 											{/* </CollapsibleTrigger> */}
 											{/* <CollapsibleContent> */}
@@ -194,7 +195,7 @@ export function ReferenceSidebar({ ...props }: React.ComponentProps<typeof Sideb
 													return (
 														<SidebarMenuSubItem key={subItem.title}>
 															<SidebarMenuSubButton asChild isActive={isSubActive}>
-																<a href={subItem.url}>{subItem.title}</a>
+																<Link href={subItem.url}>{subItem.title}</Link>
 															</SidebarMenuSubButton>
 														</SidebarMenuSubItem>
 													);
@@ -209,9 +210,9 @@ export function ReferenceSidebar({ ...props }: React.ComponentProps<typeof Sideb
 								return (
 									<SidebarMenuItem key={item.title}>
 										<SidebarMenuButton asChild isActive={isMainActive}>
-											<a href={item.url} className="font-bold">
+											<Link href={item.url} className="font-bold">
 												{item.title} {item.subtitle}
-											</a>
+											</Link>
 										</SidebarMenuButton>
 									</SidebarMenuItem>
 								);
