@@ -2,7 +2,7 @@
 
 import debounce from "@helpers/debounce";
 import type { ViewportState } from "@t/viewport";
-import { createContext, type ReactNode, useContext, useEffect, useRef, useState } from "react";
+import { createContext, type ReactNode, useContext, useEffect, useState } from "react";
 
 const MOBILE_BREAKPOINT = 768;
 const RESIZE_DEBOUNCE_MS = 100;
@@ -10,26 +10,25 @@ const RESIZE_DEBOUNCE_MS = 100;
 const ViewportContext = createContext<ViewportState | undefined>(undefined);
 
 export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>) {
-	const [state, setState] = useState<ViewportState>({
-		// Initialize with consistent values on both server and client
-		// to avoid hydration mismatches. Real values are set in useEffect.
-		isMobile: false,
-		width: undefined,
-		height: undefined,
+	const [state, setState] = useState<ViewportState>(() => {
+		// On client: initialize with actual values to avoid flash
+		// On server: use defaults for SSR consistency
+		if (typeof window !== "undefined") {
+			return {
+				isMobile: window.innerWidth < MOBILE_BREAKPOINT,
+				width: window.innerWidth,
+				height: window.innerHeight,
+			};
+		}
+		return {
+			isMobile: false,
+			width: undefined,
+			height: undefined,
+		};
 	});
 
-	// Guard to prevent double initialization in React StrictMode
-	const initializedRef = useRef(false);
-
 	useEffect(() => {
-		// Prevent effect from running multiple times (React 18 StrictMode can cause this)
-		if (initializedRef.current) {
-			console.log("[ViewportProvider] Effect re-run detected, skipping initialization");
-			return;
-		}
-
-		console.log("[ViewportProvider] Mount - initializing");
-		initializedRef.current = true;
+		console.log("[ViewportProvider] Mount - setting up event listeners");
 
 		const updateViewport = (source: string) => {
 			const newState = {
@@ -76,8 +75,7 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 		mql.addEventListener("change", handleMobileChange);
 		window.addEventListener("resize", handleResize);
 
-		// Set initial value in case it changed between initial render and effect
-		updateViewport("initial");
+		// No initial update needed - state is already initialized with correct values!
 
 		return () => {
 			console.log("[ViewportProvider] Unmount");
