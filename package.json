@@ -90,6 +90,7 @@
 	},
 	"scripts": {
 		"build": "next build",
+		"clean": "pnpm exec tsx scripts/clean.ts",
 		"dev": "next dev",
 		"start": "next start",
 		"prebuild": "pnpm run validate:env && pnpm run typegen:md && pnpm run typegen:supabase",
