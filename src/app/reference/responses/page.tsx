@@ -1,6 +1,7 @@
 import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-navigator-button-interface";
 import { CloudDownload } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 export const metadata: Metadata = {
 	title: "Responses",
 	description: "Understanding API responses.",
@@ -23,7 +24,7 @@ export default async function RequestsPage() {
 				If your API call was successful, response data will be under <code>result</code>. If your call was not
 				successful (whether by user or server error), error details will be provided under <code>error</code> in
 				addition to the proper{" "}
-				<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status">HTTP status code</a>.
+				<Link href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status">HTTP status code</Link>.
 			</p>
 			<h2>Successful Response</h2>
 			<Sample />

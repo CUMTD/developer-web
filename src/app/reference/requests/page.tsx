@@ -1,6 +1,7 @@
 import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-navigator-button-interface";
 import { CloudUpload } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CodeExampleBody } from "../[slug]/_components/code-example-with-copy";
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export default function RequestsPage() {
 			<p>Check out the sidebar for all of the different kinds of data you can get.</p>
 			<p>
 				For this example, let's fetch departures for IU:1 #2439 using the{" "}
-				<a href="/reference/vehicles">vehicles endpoint.</a>
+				<Link href="/reference/vehicles">vehicles endpoint.</Link>
 			</p>
 			<h2>Include Query Parameters</h2>
 			<p>Some endpoints can take in query parameters that will shape the response output.</p>

@@ -1,12 +1,13 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@shared/shadcn/accordion";
+import Link from "next/link";
 
 # Shapes
-Shapes are geographical lines. Shapes are used by <a href="/reference/trips">trips</a> to represent the physical path a bus takes.
+Shapes are geographical lines. Shapes are used by <Link href="/reference/trips">trips</Link> to represent the physical path a bus takes.
 
 There are two ways to represent shapes:
 
 1. ### GTFS Shape Object
-    GTFS shapes conform to <a href="https://gtfs.org/documentation/schedule/reference/#shapestxt" target="_blank" rel="noopener noreferrer">the GTFS definition of a shape.</a> This shape contains an array of shape points. Each shape point has a sequence, lat/long coordinates, distance travelled, and stopId.
+    GTFS shapes conform to <Link href="https://gtfs.org/documentation/schedule/reference/#shapestxt" target="_blank" rel="noopener noreferrer">the GTFS definition of a shape.</Link> This shape contains an array of shape points. Each shape point has a sequence, lat/long coordinates, distance travelled, and stopId.
 
 	<div className="[&_code]:max-h-50 overflow-y-scroll">
 	```json
