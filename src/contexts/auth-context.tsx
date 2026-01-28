@@ -29,53 +29,32 @@ function mapSessionToUser(session: Session | null): CurrentUser | null {
 
 const AuthContext = createContext<CurrentUserState | undefined>(undefined);
 
-// localStorage key for caching auth state
-// Using localStorage instead of module-level variable to survive Fast Refresh/HMR
-const STORAGE_KEY = "developer-web:auth-cache";
-
-// Helper to get cached auth state from localStorage
-function getCachedAuthState(): CurrentUserState | null {
-	if (typeof window === "undefined") return null;
-	try {
-		const cached = localStorage.getItem(STORAGE_KEY);
-		if (cached) {
-			return JSON.parse(cached) as CurrentUserState;
-		}
-		return null;
-	} catch (error) {
-		console.error("[AuthProvider] Error reading from localStorage:", error);
-		return null;
-	}
-}
-
-// Helper to save auth state to localStorage
-function setCachedAuthState(state: CurrentUserState): void {
-	if (typeof window === "undefined") return;
-	try {
-		localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-	} catch (error) {
-		// Silently ignore localStorage errors (quota exceeded, privacy mode, etc.)
-		console.warn("[AuthProvider] Error writing to localStorage:", error);
-	}
-}
+/**
+ * Module-level flag to track if we've successfully loaded auth at least once.
+ * This prevents showing loading state on re-initialization after the first load.
+ * Does NOT cache the actual auth state - Supabase handles that via cookies.
+ */
+let hasLoadedAuthOnce = false;
 
 export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 	const instanceId = useId();
-	const loadedOnceRef = useRef(false);
 
 	const [state, setState] = useState<CurrentUserState>(() => {
 		console.log(`[AuthProvider ${instanceId}] Initial state setup`);
 
-		// Try to restore from localStorage cache
-		// This survives Fast Refresh/HMR and prevents loading state flash
-		const cached = getCachedAuthState();
-		if (cached) {
-			console.log(`[AuthProvider ${instanceId}] Restoring auth state from localStorage:`, cached);
-			return cached;
+		// After first successful load, don't show loading state on re-initialization
+		// This prevents skeleton flash during navigation while still showing it on initial load
+		if (hasLoadedAuthOnce) {
+			console.log(`[AuthProvider ${instanceId}] Auth loaded previously, starting with non-loading state`);
+			return {
+				isLoading: false,
+				isAuthenticated: false,
+				user: null,
+			};
 		}
 
-		// No cache: initialize with loading state
-		console.log(`[AuthProvider ${instanceId}] No cached state, initializing with loading state`);
+		// First time: show loading state while we fetch the session
+		console.log(`[AuthProvider ${instanceId}] First load, initializing with loading state`);
 		return {
 			isLoading: true,
 			isAuthenticated: false,
@@ -135,10 +114,10 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 				// Ensure we exit loading state even on unexpected errors
 				setFromSession(null);
 			} finally {
-				// Mark that we've loaded auth state at least once
-				// This prevents skeleton from showing on subsequent re-renders/navigation
-				loadedOnceRef.current = true;
-				console.log(`[AuthProvider ${instanceId}] Initial auth load complete`);
+				// Mark that we've successfully loaded auth at least once
+				// This prevents showing loading state on re-initialization
+				hasLoadedAuthOnce = true;
+				console.log(`[AuthProvider ${instanceId}] Initial auth load complete, hasLoadedAuthOnce = true`);
 			}
 		};
 
@@ -155,12 +134,6 @@ export function AuthProvider({ children }: Readonly<{ children: ReactNode }>) {
 			subscription.subscription.unsubscribe();
 		};
 	}, [instanceId]);
-
-	// Sync state to localStorage whenever it changes
-	// This persists auth state across Fast Refresh, HMR, and navigation
-	useEffect(() => {
-		setCachedAuthState(state);
-	}, [state]);
 
 	console.log(`[AuthProvider ${instanceId}] Render`, state);
 	return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;
