@@ -30,9 +30,6 @@ Sentry.init({
 			blockAllMedia: true,
 		}),
 		Sentry.browserTracingIntegration(),
-		Sentry.feedbackIntegration({
-			colorScheme: "system",
-		}),
 	],
 	tracePropagationTargets: ["localhost", /^https:\/\/mtd\.dev/],
 
