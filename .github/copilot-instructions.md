@@ -149,7 +149,7 @@ export type ApiKey = z.infer<typeof apiKeySchema>;
 - Client components must never access Supabase server clients.
 - **All files in `/src/server/*` are server-only** and cannot be imported by client components.
 - Types needed by both client and server must be defined in `/src/types/` (e.g., `api-key-types.ts`, `terms-of-use-types.ts`, `developer-types.ts`).
-- Server actions can re-export types from `@t/` for convenience, but client components should import types directly from `@t/`.
+- Server actions should NOT re-export types. Components should import types directly from `@t/`.
 - Server Actions must:
   - Live in `src/server/actions`
   - Use the `"use server"` directive

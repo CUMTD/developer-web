@@ -263,7 +263,7 @@ src/
 - Never import from `src/server` in client components!
 - All files in `/src/server/*` are server-only and cannot be used in client components.
 - Types needed by both client and server are extracted to `/src/types/` (e.g., `api-key-types.ts`, `terms-of-use-types.ts`, `developer-types.ts`).
-- Server actions can re-export types from `@t/` for convenience, but client components should import types directly from `@t/`.
+- Server actions should NOT re-export types - components should import types directly from `@t/`.
 
 ---
 
