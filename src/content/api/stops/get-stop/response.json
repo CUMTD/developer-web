@@ -1,0 +1,16 @@
+{
+	"result": {
+		"type": 1,
+		"subName": "Platform A",
+		"id": "IT:1",
+		"name": "Illinois Terminal (Platform A)",
+		"stopCode": "3678",
+		"url": "https://mtd.org/maps-and-schedules/bus-stops/info/it-1/",
+		"isAccessible": true,
+		"location": {
+			"latitude": 40.115935,
+			"longitude": -88.24094667
+		}
+	},
+	"error": null
+}

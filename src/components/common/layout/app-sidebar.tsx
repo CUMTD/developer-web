@@ -16,7 +16,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type * as React from "react";
 
-// this should mirror app/markdown
 const data = {
 	navMain: [
 		{
@@ -110,6 +109,10 @@ const data = {
 					title: "Get stop's departures",
 					url: "/reference/stops#get-stop-departures",
 				},
+				{
+					title: "Search for a stop",
+					url: "/reference/stops#search-stop",
+				},
 			],
 		},
 		{
@@ -129,6 +132,14 @@ const data = {
 				{
 					title: "Get a vehicle's current location",
 					url: "/reference/vehicles#get-vehicle-location",
+				},
+				{
+					title: "Get a vehicle configuration",
+					url: "/reference/vehicles#get-vehicle-configuration",
+				},
+				{
+					title: "Get all vehicle configurations",
+					url: "/reference/vehicles#get-vehicle-configurations",
 				},
 			],
 		},

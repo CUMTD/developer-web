@@ -1,0 +1,39 @@
+{
+	"result": [
+		{
+			"id": "[@6.0.66478040@][42][1749224043234]/8__R3_SA",
+			"gtfsRouteId": "RED SATURDAY",
+			"blockId": "R3 SA",
+			"shapeId": "[@6.0.66478040@]16",
+			"headsign": "Urbana Meijer",
+			"direction": {
+				"longNames": {
+					"0": "Champaign",
+					"1": "Urbana"
+				},
+				"shortNames": {
+					"0": "C",
+					"1": "U"
+				}
+			}
+		},
+		{
+			"id": "[@6.0.66478040@][42][1749224136147]/10__R1_SA",
+			"gtfsRouteId": "RED SATURDAY",
+			"blockId": "R1 SA",
+			"shapeId": "[@6.0.66478040@]17",
+			"headsign": "Urbana Meijer",
+			"direction": {
+				"longNames": {
+					"0": "Champaign",
+					"1": "Urbana"
+				},
+				"shortNames": {
+					"0": "C",
+					"1": "U"
+				}
+			}
+		}
+	],
+	"error": null
+}

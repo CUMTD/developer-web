@@ -42,14 +42,12 @@ export default async function Page({ params }: Props) {
 
 	const { default: ObjectDescription } = await import(`@content/api/${apiObject}/description.mdx`);
 	const { response: responseAttributes } = await import(`@content/api/${apiObject}/response.ts`);
-
-	const attributes = responseAttributes as ApiResponseAttribute[];
+	var attributes = responseAttributes as ApiResponseAttribute[];
 
 	return (
 		<>
 			<div className="col-span-1 lg:col-span-1 prose dark:prose-invert max-w-full " id={apiObject}>
 				<ObjectDescription />
-				<Separator className="my-10" />
 				<ObjectAttributes attributes={attributes} />
 			</div>
 			<Item className="items-start p-0 ">
@@ -85,7 +83,7 @@ type ObjectAttributesProps = Readonly<{
 function ObjectAttributes({ attributes }: ObjectAttributesProps) {
 	return (
 		<>
-			<h3 className="prose dark:prose-invert font-normal">Return Object Attributes</h3>
+			<h3 className="prose dark:prose-invert font-normal">Attributes</h3>
 			<ItemGroup>
 				{attributes.map((attr) => {
 					return (

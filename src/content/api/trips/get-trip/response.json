@@ -1,0 +1,20 @@
+{
+	"result": {
+		"id": "[@124.0.92344750@][1484579800344]/84__GN2_UISA",
+		"gtfsRouteId": "GREEN LATE NIGHT SATURDAY",
+		"blockId": "GN2 UISA",
+		"shapeId": "[@124.0.92344750@]50E->50WLNIGHT",
+		"headsign": "Lincoln Square",
+		"direction": {
+			"longNames": {
+				"0": "East",
+				"1": "West"
+			},
+			"shortNames": {
+				"0": "E",
+				"1": "W"
+			}
+		}
+	},
+	"error": null
+}
