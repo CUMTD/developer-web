@@ -3,8 +3,8 @@ import type { ApiResponseAttribute } from "@t/documentation-types";
 export const response: ApiResponseAttribute[] = [
 	{
 		name: "type",
-		type: "string",
-		description: "Either 'stop-group' or 'boarding-point'",
+		type: "integer",
+		description: "0 if stop group, 1 if boarding point",
 	},
 	{
 		name: "isStation",

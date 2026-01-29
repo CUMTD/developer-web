@@ -1,0 +1,71 @@
+{
+	"result": [
+		{
+			"isStation": false,
+			"city": "Urbana",
+			"boardingPoints": [
+				{
+					"subName": "NE Corner",
+					"id": "150DALE:1",
+					"name": "U.S. 150 & Dale (NE Corner)",
+					"stopCode": "0114",
+					"url": "https://mtd.org/maps-and-schedules/bus-stops/info/150dale-1/",
+					"isAccessible": true,
+					"location": {
+						"latitude": 40.11451167,
+						"longitude": -88.18067333
+					}
+				},
+				{
+					"subName": "South Side",
+					"id": "150DALE:3",
+					"name": "U.S. 150 & Dale (South Side)",
+					"stopCode": "0114",
+					"url": "https://mtd.org/maps-and-schedules/bus-stops/info/150dale-3/",
+					"isAccessible": true,
+					"location": {
+						"latitude": 40.11450333,
+						"longitude": -88.18084833
+					}
+				}
+			],
+			"id": "150DALE",
+			"name": "U.S. 150 & Dale",
+			"stopCode": "0114",
+			"url": "https://mtd.org/maps-and-schedules/bus-stops/info/150dale/",
+			"isAccessible": true,
+			"location": {
+				"latitude": 40.1145075,
+				"longitude": -88.18076083
+			}
+		},
+		{
+			"isStation": false,
+			"city": "Urbana",
+			"boardingPoints": [
+				{
+					"subName": "NE Far Side",
+					"id": "150DOD:5",
+					"name": "U.S. 150 & Dodson (NE Far Side)",
+					"stopCode": "3695",
+					"url": "https://mtd.org/maps-and-schedules/bus-stops/info/150dod-5/",
+					"isAccessible": true,
+					"location": {
+						"latitude": 40.11415833,
+						"longitude": -88.173105
+					}
+				}
+			],
+			"id": "150DOD",
+			"name": "U.S. 150 & Dodson Dr.",
+			"stopCode": "3695",
+			"url": "https://mtd.org/maps-and-schedules/bus-stops/info/150dod/",
+			"isAccessible": true,
+			"location": {
+				"latitude": 40.11415833,
+				"longitude": -88.173105
+			}
+		}
+	],
+	"error": null
+}

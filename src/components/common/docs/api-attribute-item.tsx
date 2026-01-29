@@ -12,7 +12,7 @@ type ApiAttributeItemProps = Readonly<{
 export default function ApiAttributeItem({
 	attribute,
 	childAttributes,
-	required = false,
+	required,
 	showOptional = false,
 }: ApiAttributeItemProps) {
 	return (
@@ -25,7 +25,7 @@ export default function ApiAttributeItem({
 					<ItemDescription className="m-0!">{attribute.type}</ItemDescription>
 					<ItemDescription>
 						<span className={`${required && "text-destructive"} `}>
-							{required ?? "required"}
+							{required && "required"}
 							{!required && showOptional && "optional"}
 						</span>
 					</ItemDescription>
@@ -42,7 +42,7 @@ export default function ApiAttributeItem({
 									{childAttributes?.map((childAttr, idx) => {
 										return (
 											<React.Fragment key={attribute.name + childAttr.name}>
-												<ApiAttributeItem attribute={childAttr} />
+												<ApiAttributeItem attribute={childAttr} childAttributes={childAttr.childAttributes ?? []} />
 												{idx !== childAttributes.length - 1 && <ItemSeparator />}
 											</React.Fragment>
 										);

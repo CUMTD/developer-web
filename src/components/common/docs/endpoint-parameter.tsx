@@ -5,22 +5,22 @@ import ApiAttributeItem from "./api-attribute-item";
 
 type EndpointParametersProps = Readonly<{
 	parameters: ApiRequestParameter[];
+	type: "path" | "query";
 }>;
 
-export default function EndpointParameters({ parameters }: EndpointParametersProps) {
-	// TODO: replace with ApiAttributeItem
+export default function EndpointParameters({ type, parameters }: EndpointParametersProps) {
 	return (
-		<>
+		<div>
 			<div className="mb-2">
-				<h3>Query Parameters</h3>
+				<h3>{type === "path" ? "Path Parameters" : "Query Parameters"}</h3>
 			</div>
 			<Separator />
 			<ItemGroup className="flex  w-full">
-				{parameters.length === 0 && <Item className="text-muted-foreground">No parameters.</Item>}
+				{parameters.length === 0 && <Item className="text-muted-foreground">No {type} parameters.</Item>}
 				{parameters.map((param) => {
 					return <ApiAttributeItem key={param.name} attribute={param} required={param.required} showOptional />;
 				})}
 			</ItemGroup>
-		</>
+		</div>
 	);
 }

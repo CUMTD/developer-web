@@ -2,123 +2,46 @@ import type { ApiResponseAttribute } from "@t/documentation-types";
 
 export const response: ApiResponseAttribute[] = [
 	{
-		name: "type",
+		name: "id",
 		type: "string",
-		description: "Either 'stop-group' or 'boarding-point'",
+		description: "Unique identifier for the shape.",
 	},
 	{
-		name: "isStation",
-		type: "boolean",
-		description: "Whether the stop is a station.",
-	},
-	{
-		name: "isTimepoint",
-		type: "boolean",
-		description: "Whether the stop is a timepoint.",
-	},
-	{
-		name: "city",
-		type: "string",
-		description: "The city where the stop is located. Either Champaign, Urbana, or Savoy.",
-	},
-	{
-		name: "boardingPoints",
-		type: "Array of boardingPoints",
-		description: "Array of individual boarding points within this stop group.",
+		name: "shapePoints",
+		type: "array of shapePoints",
+		description: "Array of points that define the shape path.",
 		childAttributes: [
 			{
-				name: "subName",
-				type: "string",
-				description: "Sub-name or description of the boarding point.",
+				name: "sequence",
+				type: "integer",
+				description: "1-indexed sequence number of the point in the shape path.",
 			},
 			{
-				name: "platformCode",
-				type: "string | null",
-				description: "Platform code for the boarding point, if applicable.",
-			},
-			{
-				name: "id",
-				type: "string",
-				description: "Unique identifier for the boarding point.",
-			},
-			{
-				name: "name",
-				type: "string",
-				description: "Full name of the boarding point.",
-			},
-			{
-				name: "stopCode",
-				type: "string",
-				description: "Stop code for the boarding point.",
-			},
-			{
-				name: "url",
-				type: "string",
-				description: "URL for more information about the boarding point.",
-			},
-			{
-				name: "isAccessible",
-				type: "boolean",
-				description: "Whether the boarding point is accessible.",
-			},
-			{
-				name: "location",
+				name: "coordinates",
 				type: "object",
-				description: "Geographic location of the boarding point.",
+				description: "Geographic coordinates of the shape point.",
 				childAttributes: [
 					{
 						name: "latitude",
 						type: "float",
-						description: "Latitude coordinate.",
+						description: "Latitude coordinate of the shape point.",
 					},
 					{
 						name: "longitude",
 						type: "float",
-						description: "Longitude coordinate.",
+						description: "Longitude coordinate of the shape point.",
 					},
 				],
 			},
-		],
-	},
-	{
-		name: "id",
-		type: "string",
-		description: "Unique identifier for the stop group.",
-	},
-	{
-		name: "name",
-		type: "string",
-		description: "Name of the stop group.",
-	},
-	{
-		name: "stopCode",
-		type: "string",
-		description: "Stop code for the stop group.",
-	},
-	{
-		name: "url",
-		type: "string",
-		description: "URL for more information about the stop group.",
-	},
-	{
-		name: "isAccessible",
-		type: "boolean",
-		description: "Whether the stop group is accessible.",
-	},
-	{
-		name: "location",
-		type: "object",
-		description: "Geographic location of the stop group center.",
-		childAttributes: [
 			{
-				name: "latitude",
-				type: "number",
-				description: "Latitude coordinate.",
+				name: "distanceTraveled",
+				type: "float",
+				description: "Distance traveled, in meters, along the shape from the first point to this point.",
 			},
 			{
-				name: "longitude",
-				type: "number",
-				description: "Longitude coordinate.",
+				name: "stopId",
+				type: "string | null",
+				description: "Stop ID if this shape point corresponds to a stop, otherwise null.",
 			},
 		],
 	},
