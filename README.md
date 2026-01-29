@@ -2,11 +2,15 @@
 
 **Live Site**: [mtd.dev](https://mtd.dev)
 
-A comprehensive web application for third-party developers to interact with MTD's Open API. Features include API documentation, reference guides, account management, and API key generation.
+[![CI](https://github.com/CUMTD/developer-web/actions/workflows/ci.yml/badge.svg)](https://github.com/CUMTD/developer-web/actions/workflows/ci.yml)
+![GitHub deployments](https://img.shields.io/github/deployments/CUMTD/developer-web/Production?logo=vercel&logoSize=auto&label=Vercel%20Deployment&labelColor=24292E&color=28A745&link=https%3A%2F%2Fmtd.dev%2F)
+![GitHub Release](https://img.shields.io/github/v/release/CUMTD/developer-web?include_prereleases&sort=date&display_name=release&logo=release&labelColor=24292E&color=28A745&cacheSeconds=3600)
+
+MTD's Open API documentation and developer account management portal.
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Tech Stack](#-tech-stack)
 - [Prerequisites](#-prerequisites)
@@ -23,10 +27,10 @@ A comprehensive web application for third-party developers to interact with MTD'
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Core Framework
-- **Next.js 16** (App Router) - React framework with server-side rendering
+- **Next.js 16** (App Router)
 - **React 19** - UI library
 - **TypeScript** - Type-safe development
 
@@ -40,7 +44,7 @@ A comprehensive web application for third-party developers to interact with MTD'
 - **Supabase** - PostgreSQL database and authentication
   - `@supabase/supabase-js` - JavaScript client
   - `@supabase/ssr` - Server-side rendering support
-- **Zod 4** - Schema validation and environment variable validation
+- **Zod 4** - Schema and environment variable validation
 
 ### Content & Documentation
 - **MDX** - Markdown with React components for API documentation
@@ -48,7 +52,7 @@ A comprehensive web application for third-party developers to interact with MTD'
 - **remark-gfm** - GitHub Flavored Markdown support
 
 ### Developer Tools
-- **Biome** - Fast linter and formatter (replaces ESLint + Prettier)
+- **Biome** - Linter and formatter
 - **TypeScript 5.9** - Static type checking
 - **Husky** - Git hooks for pre-commit validation
 - **lint-staged** - Run linters on staged files
@@ -64,7 +68,7 @@ A comprehensive web application for third-party developers to interact with MTD'
 
 ---
 
-## ✅ Prerequisites
+## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
@@ -77,12 +81,10 @@ You'll need access to MTD's Supabase project for:
 - Database connection
 - Authentication
 - API key management
-
-Contact the team lead for Supabase credentials.
-
+-
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the Repository
 
@@ -93,7 +95,7 @@ cd developer-web
 
 ### 2. Enable Corepack (for pnpm)
 
-Node.js includes Corepack to manage package managers:
+Node.js includes Corepack to manage package managers. From the repository root:
 
 ```bash
 corepack enable
@@ -122,33 +124,21 @@ cp .env.example .env
 
 Edit `.env` and fill in the required values (see [Environment Variables](#-environment-variables) section).
 
-### 5. Generate Types
-
-Before running the dev server, generate TypeScript types:
+### 5. Start the Development Server
 
 ```bash
-# Generate Supabase types from database schema
-pnpm run typegen:supabase
-
-# Generate MDX content index
-pnpm run typegen:md
-```
-
-### 6. Start the Development Server
-
-```bash
-pnpm dev
+pnpm run dev
 ```
 
 The site will be available at [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## 💻 Development Workflow
+## Development Workflow
 
 ### Daily Development
 
-1. **Start the dev server**: `pnpm dev`
+1. **Start the dev server**: `pnpm run dev`
 2. **Make changes** to TypeScript, React components, or MDX files
 3. **Hot reload** happens automatically
 4. **Commit** your changes (git hooks will run linters automatically)
@@ -168,14 +158,16 @@ pnpm run ci:verify
 
 ### Working with the Database
 
-When database schema changes:
+When database schema changes supabase:typegen needs to be run.
+This happens automatically when running `pnpm run build` or `pnpm run dev`.
+If you need to trigger typegen manually:
 
 ```bash
 # Regenerate Supabase types
 pnpm run typegen:supabase
 ```
 
-**Note**: Don't manually edit `src/types/supabase.ts` - it's auto-generated.
+**Note**: Do not manually edit `src/types/supabase.ts` - it's auto-generated.
 
 ### Working with API Documentation
 
@@ -187,7 +179,7 @@ API documentation is written in MDX format in `src/content/api/`:
 
 ---
 
-## 🏗️ Project Architecture
+## Project Architecture
 
 This project uses a **layer-first** architecture with **explicit boundaries**:
 
@@ -254,13 +246,13 @@ src/
 
 ### Layer Rules
 
-| Layer | Purpose | Can Import From | Cannot Import From |
-|-------|---------|-----------------|-------------------|
-| `app/` | Routing & layouts | All layers | None |
-| `components/ui/` & `components/common/` | Shared UI components | `lib/`, `hooks/`, `contexts/` | `server/`, `app/` |
-| `server/` | Server-only logic | `types/`, `env/server.ts` | `components/`, client code |
-| `content/` | Static content | None | All |
-| `lib/` & `hooks/` | Utilities | Each other | `server/`, `app/`, `components/` |
+| Layer                                   | Purpose              | Can Import From               | Cannot Import From               |
+|-----------------------------------------|----------------------|-------------------------------|----------------------------------|
+| `app/`                                  | Routing & layouts    | All layers                    | None                             |
+| `components/ui/` & `components/common/` | Shared UI components | `lib/`, `hooks/`, `contexts/` | `server/`, `app/`                |
+| `server/`                               | Server-only logic    | `types/`, `env/server.ts`     | `components/`, client code       |
+| `content/`                              | Static content       | None                          | All                              |
+| `lib/` & `hooks/`                       | Utilities            | Each other                    | `server/`, `app/`, `components/` |
 
 **Note**: Route-local components within `app/` (prefixed with `_components/`) can import from their parent route but should avoid deep coupling to other routes.
 
@@ -268,7 +260,7 @@ src/
 
 ---
 
-## 🔐 Environment Variables
+## Environment Variables
 
 ### Required Variables
 
@@ -297,8 +289,8 @@ NEXT_PUBLIC_PLAUSIBLE_DOMAIN=mtd.dev
 ### Validation
 
 Environment variables are validated at build time using Zod schemas:
-- `src/env/global.ts` - Client-safe variables
-- `src/env/server.ts` - Server-only variables
+- `src/env/global.ts` - Client-safe variables. Can be used anywhere. No secrets should be stored here.
+- `src/env/server.ts` - Server-only variables. Cannot be used in client components.
 - `src/env/schema.ts` - Shared schemas
 
 Run validation manually:
@@ -309,7 +301,7 @@ pnpm run validate:env
 
 ---
 
-## 📜 Available Scripts
+## Available Scripts
 
 ### Development
 
@@ -351,7 +343,7 @@ Before running dev/build, these run automatically:
 
 ---
 
-## ✨ Code Quality
+## Code Quality
 
 ### Biome Configuration
 
@@ -370,7 +362,7 @@ This project uses **Biome** instead of ESLint + Prettier for:
 
 ### Type Safety
 
-- **No `any` types** - Use specific types or `unknown`
+- **No `any` types** - Use specific types whenever possible. Prefer or `unknown` to `any` if types are truly not known.
 - **Strict mode enabled** - TypeScript strict checks
 - **Import types separately** - Use `import type` for type-only imports
 
@@ -401,7 +393,7 @@ Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `perf`, `ci`
 
 ---
 
-## 🚢 Deployment
+## Deployment
 
 ### Hosting
 
@@ -439,7 +431,7 @@ Set these in Vercel project settings:
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 ### Development Process
 
@@ -486,7 +478,7 @@ Set these in Vercel project settings:
 
 ---
 
-## 📚 Additional Resources
+## Additional Resources
 
 - [Next.js Documentation](https://nextjs.org/docs)
 - [React Documentation](https://react.dev)
@@ -500,17 +492,13 @@ Set these in Vercel project settings:
 ## 📞 Support
 
 For questions or issues:
-- **Internal Team**: Contact the development team lead
-- **Supabase Access**: Request credentials from team lead
 - **Bug Reports**: Create a GitHub issue
 - **Feature Requests**: Create a GitHub issue with label `enhancement`
 
 ---
 
-## 📄 License
+## License
 
 See [LICENSE](LICENSE) file for details.
 
 ---
-
-**Happy Coding! 🚀**

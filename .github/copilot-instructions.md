@@ -190,7 +190,8 @@ export async function createApiKey(userId: string): Promise<void> {
 ## Documentation
 
 - Document public functions, components, and server actions using TypeScript doc comments.
-- Update README or docs when adding significant features.
+- Update README and other docs when adding features or changing behavior.
+  - **Important**: Always keep the README in sync with the project state. If you make a change that renders the README inaccurate, update it before committing.
 
 ---
 
