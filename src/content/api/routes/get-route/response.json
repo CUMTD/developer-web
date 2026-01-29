@@ -1,0 +1,17 @@
+{
+	"result": {
+		"id": "ac3fc3d037af468f8b24d061de7bea93",
+		"number": "1",
+		"firstTrip": "06:10:00",
+		"lastTrip": "19:19:00",
+		"lastTripAfterMidnight": false,
+		"dayType": {
+			"daypart": "Weekday",
+			"timepart": "Day",
+			"daysOfWeek": "1,2,3,4,5",
+			"sortOrder": 100
+		},
+		"gtfsRoutes": ["YELLOW", "YELLOW ALT", "YELLOWHOPPER"]
+	},
+	"error": null
+}

@@ -1,0 +1,12 @@
+{
+	"result": {
+		"id": "string",
+		"displayId": "string",
+		"text": "string",
+		"startTime": "2026-01-27T20:47:09.885Z",
+		"endTime": "2026-01-27T20:47:09.885Z",
+		"blockRealtime": true,
+		"stopIds": ["string"]
+	},
+	"error": null
+}

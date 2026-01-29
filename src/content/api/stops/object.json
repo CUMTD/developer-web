@@ -1,5 +1,5 @@
 {
-	"type": "stop-group",
+	"type": 0,
 	"isStation": false,
 	"isTimepoint": false,
 	"city": "Champaign",

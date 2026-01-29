@@ -1,0 +1,23 @@
+{
+	"result": [
+		{
+			"id": "973ee9b7-9d3a-463c-abac-466f5ad40ab7",
+			"vehicleNumber": "104",
+			"vehicleConfigurationId": "2e275d30-f52a-4053-900c-1a509d13e17c",
+			"isActive": false,
+			"vin": "5FYD2UM091U023185",
+			"licensePlateNumber": null,
+			"dateInService": "2002-01-16"
+		},
+		{
+			"id": "6b63cfaf-4736-4c55-b297-a5619258c1bd",
+			"vehicleNumber": "108",
+			"vehicleConfigurationId": "2e275d30-f52a-4053-900c-1a509d13e17c",
+			"isActive": false,
+			"vin": "5FYD2UM061U023189",
+			"licensePlateNumber": null,
+			"dateInService": "2002-01-17"
+		}
+	],
+	"error": null
+}

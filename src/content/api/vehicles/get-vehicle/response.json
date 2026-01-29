@@ -1,0 +1,12 @@
+{
+	"result": {
+		"id": "973ee9b7-9d3a-463c-abac-466f5ad40ab7",
+		"vehicleNumber": "104",
+		"vehicleConfigurationId": "2e275d30-f52a-4053-900c-1a509d13e17c",
+		"isActive": false,
+		"vin": "5FYD2UM091U023185",
+		"licensePlateNumber": null,
+		"dateInService": "2002-01-16"
+	},
+	"error": null
+}

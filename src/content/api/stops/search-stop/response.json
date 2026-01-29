@@ -1,0 +1,65 @@
+{
+	"result": [
+		{
+			"stopId": "IU",
+			"name": "Illini Union",
+			"highlightedName": "Illini [Union]",
+			"type": 1,
+			"latitude": 40.110380917499995,
+			"longitude": -88.2274086675,
+			"city": "Urbana",
+			"isIStop": true,
+			"stopCode": "2405",
+			"accessible": true
+		},
+		{
+			"stopId": "IU:9",
+			"name": "Illini Union (Island Shelter)",
+			"highlightedName": "Illini [Union] (Island Shelter)",
+			"type": 2,
+			"latitude": 40.110456,
+			"longitude": -88.227023,
+			"city": "Urbana",
+			"isIStop": true,
+			"stopCode": "2405",
+			"accessible": true
+		},
+		{
+			"stopId": "IU:1",
+			"name": "Illini Union (South Side Shelter)",
+			"highlightedName": "Illini [Union] (South Side Shelter)",
+			"type": 2,
+			"latitude": 40.110364,
+			"longitude": -88.226834,
+			"city": "Urbana",
+			"isIStop": true,
+			"stopCode": "2405",
+			"accessible": true
+		},
+		{
+			"stopId": "IU:2",
+			"name": "Illini Union (North Side Shelter)",
+			"highlightedName": "Illini [Union] (North Side Shelter)",
+			"type": 2,
+			"latitude": 40.11044667,
+			"longitude": -88.22740167,
+			"city": "Urbana",
+			"isIStop": true,
+			"stopCode": "2405",
+			"accessible": true
+		},
+		{
+			"stopId": "BDWYUNI",
+			"name": "Broadway & University",
+			"highlightedName": "Broadway & University",
+			"type": 1,
+			"latitude": 40.11619139,
+			"longitude": -88.20756805666666,
+			"city": "Urbana",
+			"isIStop": false,
+			"stopCode": "3110",
+			"accessible": true
+		}
+	],
+	"error": null
+}
