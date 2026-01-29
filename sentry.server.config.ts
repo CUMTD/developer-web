@@ -3,11 +3,11 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import { globalEnv } from "@env/global";
-import * as Sentry from "@sentry/nextjs";
+import { captureConsoleIntegration, extraErrorDataIntegration, init } from "@sentry/nextjs";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
-Sentry.init({
+init({
 	dsn: globalEnv.NEXT_PUBLIC_SENTRY_DSN ?? undefined,
 
 	// Set release version for tracking errors by deployment
@@ -36,11 +36,11 @@ Sentry.init({
 	// Add server-specific integrations
 	integrations: [
 		// Automatically capture console logs, warnings, and errors
-		Sentry.captureConsoleIntegration({
+		captureConsoleIntegration({
 			levels: ["error", "warn"],
 		}),
 		// Capture additional context about Node.js environment
-		Sentry.extraErrorDataIntegration(),
+		extraErrorDataIntegration(),
 	],
 
 	// Filter and enhance errors before sending to Sentry

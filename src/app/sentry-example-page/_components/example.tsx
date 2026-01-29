@@ -3,7 +3,7 @@
 import Alert from "@common/alert";
 import { H1 } from "@common/typography/heading";
 import Prose from "@common/typography/prose";
-import * as Sentry from "@sentry/nextjs";
+import { diagnoseSdkConnectivity, logger, startSpan } from "@sentry/nextjs";
 import { Button } from "@ui/button";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -25,9 +25,9 @@ export default function Page({ isDevelopment }: SentryExamplePageProps) {
 	const [isConnected, setIsConnected] = useState(true);
 
 	useEffect(() => {
-		Sentry.logger.info("Sentry example page loaded");
+		logger.info("Sentry example page loaded");
 		async function checkConnectivity() {
-			const result = await Sentry.diagnoseSdkConnectivity();
+			const result = await diagnoseSdkConnectivity();
 			setIsConnected(result !== "sentry-unreachable");
 		}
 		checkConnectivity();
@@ -77,8 +77,8 @@ export default function Page({ isDevelopment }: SentryExamplePageProps) {
 						type="button"
 						className="mt-4"
 						onClick={async () => {
-							Sentry.logger.info("User clicked the button, throwing a sample error");
-							await Sentry.startSpan(
+							logger.info("User clicked the button, throwing a sample error");
+							await startSpan(
 								{
 									name: "Example Frontend/Backend Span",
 									op: "test",

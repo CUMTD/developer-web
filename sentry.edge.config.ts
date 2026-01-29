@@ -4,11 +4,11 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import { globalEnv } from "@env/global";
-import * as Sentry from "@sentry/nextjs";
+import { init } from "@sentry/nextjs";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
-Sentry.init({
+init({
 	dsn: globalEnv.NEXT_PUBLIC_SENTRY_DSN ?? undefined,
 
 	// Set release version for tracking errors by deployment

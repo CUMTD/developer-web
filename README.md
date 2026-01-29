@@ -309,7 +309,6 @@ When deployed to Vercel, the following environment variables are automatically i
 
 **Note**: You don't need to manually set these variables in Vercel. They're automatically provided by the platform during builds.
 
-For detailed Sentry configuration and setup, see [docs/SENTRY_SETUP.md](./docs/SENTRY_SETUP.md) and [docs/SENTRY_AUDIT_REPORT.md](./docs/SENTRY_AUDIT_REPORT.md).
 ```
 
 ### Variable Categories

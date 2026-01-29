@@ -3,11 +3,11 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import { globalEnv } from "@env/global";
-import * as Sentry from "@sentry/nextjs";
+import { browserTracingIntegration, captureRouterTransitionStart, init, replayIntegration } from "@sentry/nextjs";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
-Sentry.init({
+init({
 	dsn: globalEnv.NEXT_PUBLIC_SENTRY_DSN ?? undefined,
 
 	// Set release version for tracking errors by deployment
@@ -24,12 +24,12 @@ Sentry.init({
 
 	// Add optional integrations for additional features
 	integrations: [
-		Sentry.replayIntegration({
+		replayIntegration({
 			// Mask all text and user input for privacy
 			maskAllText: true,
 			blockAllMedia: true,
 		}),
-		Sentry.browserTracingIntegration(),
+		browserTracingIntegration(),
 	],
 	tracePropagationTargets: ["localhost", /^https:\/\/mtd\.dev/],
 
@@ -72,4 +72,4 @@ Sentry.init({
 	],
 });
 
-export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
+export const onRouterTransitionStart = captureRouterTransitionStart;
