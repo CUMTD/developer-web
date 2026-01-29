@@ -17,7 +17,7 @@ type LoginFormProps = Readonly<
 
 export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) {
 	const [error, setError] = useState<string | null>(null);
-	const [isLoading, setIsLoading] = useState(false);
+	const [isEmailLoading, setIsEmailLoading] = useState(false);
 	const [email, setEmail] = useState("");
 	const [emailSent, setEmailSent] = useState(false);
 	const [emailError, setEmailError] = useState<string | null>(null);
@@ -25,13 +25,13 @@ export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) 
 	const handleEmailLogin = async (e: FormEvent) => {
 		e.preventDefault();
 		const supabase = createClient();
-		setIsLoading(true);
+		setIsEmailLoading(true);
 		setEmailError(null);
 		setEmailSent(false);
 
 		if (!email || !email.includes("@")) {
 			setEmailError("Please enter a valid email address");
-			setIsLoading(false);
+			setIsEmailLoading(false);
 			return;
 		}
 
@@ -50,7 +50,7 @@ export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) 
 		} catch (error: unknown) {
 			setEmailError(error instanceof Error ? error.message : "An error occurred");
 		} finally {
-			setIsLoading(false);
+			setIsEmailLoading(false);
 		}
 	};
 
@@ -75,7 +75,7 @@ export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) 
 									placeholder="you@example.com"
 									value={email}
 									onChange={(e) => setEmail(e.target.value)}
-									disabled={isLoading || emailSent}
+									disabled={isEmailLoading || emailSent}
 									required
 								/>
 								<FieldError>{emailError}</FieldError>
@@ -86,8 +86,8 @@ export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) 
 								)}
 								{!emailSent && <FieldDescription>We'll send you a magic link to sign in</FieldDescription>}
 							</Field>
-							<Button type="submit" className="mt-4 w-full" disabled={isLoading || emailSent}>
-								{isLoading ? "Sending..." : emailSent ? "Email Sent!" : "Continue with Email"}
+							<Button type="submit" className="mt-4 w-full" disabled={isEmailLoading || emailSent}>
+								{isEmailLoading ? "Sending..." : emailSent ? "Email Sent!" : "Continue with Email"}
 							</Button>
 						</form>
 
@@ -106,16 +106,12 @@ export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) 
 							<SocialLoginButton
 								provider="github"
 								redirectUrl={redirectUrl}
-								isLoading={isLoading}
-								onLoadingChange={setIsLoading}
 								onAuthError={(err: string) => setError(err)}
 								className="w-full"
 							/>
 							<SocialLoginButton
 								provider="google"
 								redirectUrl={redirectUrl}
-								isLoading={isLoading}
-								onLoadingChange={setIsLoading}
 								onAuthError={(err: string) => setError(err)}
 								className="w-full"
 							/>

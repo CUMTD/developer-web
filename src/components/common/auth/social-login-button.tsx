@@ -2,7 +2,7 @@
 
 import { createClient } from "@lib/supabase/client";
 import { Button } from "@ui/button";
-import type { ComponentPropsWithoutRef, FormEvent } from "react";
+import { type ComponentPropsWithoutRef, type FormEvent, useState } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 
 type Provider = "github" | "google";
@@ -11,8 +11,6 @@ type SocialLoginButtonProps = Readonly<
 	{
 		provider: Provider;
 		redirectUrl: string;
-		isLoading: boolean;
-		onLoadingChange: (loading: boolean) => void;
 		onAuthError: (error: string) => void;
 	} & Omit<ComponentPropsWithoutRef<typeof Button>, "onClick" | "type">
 >;
@@ -28,21 +26,15 @@ const providerConfig = {
 	},
 } as const;
 
-export function SocialLoginButton({
-	provider,
-	redirectUrl,
-	isLoading,
-	onLoadingChange,
-	onAuthError,
-	...props
-}: SocialLoginButtonProps) {
+export function SocialLoginButton({ provider, redirectUrl, onAuthError, ...props }: SocialLoginButtonProps) {
+	const [isLoading, setIsLoading] = useState(false);
 	const config = providerConfig[provider];
 	const Icon = config.icon;
 
 	const handleLogin = async (e: FormEvent) => {
 		e.preventDefault();
 		const supabase = createClient();
-		onLoadingChange(true);
+		setIsLoading(true);
 		onAuthError("");
 
 		const next = redirectUrl.startsWith("/") ? redirectUrl : "/account";
@@ -58,7 +50,7 @@ export function SocialLoginButton({
 			if (error) throw error;
 		} catch (error: unknown) {
 			onAuthError(error instanceof Error ? error.message : "An error occurred");
-			onLoadingChange(false);
+			setIsLoading(false);
 		}
 	};
 
