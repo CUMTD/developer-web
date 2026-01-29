@@ -13,10 +13,10 @@ Sentry.init({
 	// Set release version for tracking errors by deployment
 	// Uses Vercel's Git commit SHA when available (production/preview)
 	// Falls back to "development" for local development
-	release: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA || "development",
+	release: globalEnv.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ?? "development",
 
 	// Set environment for better error categorization
-	environment: process.env.NEXT_PUBLIC_VERCEL_ENV || process.env.NODE_ENV || "development",
+	environment: globalEnv.NEXT_PUBLIC_VERCEL_ENV ?? process.env.NODE_ENV ?? "development",
 
 	// Performance monitoring - traces user interactions and page loads
 	// https://docs.sentry.io/platforms/javascript/guides/nextjs/tracing/
