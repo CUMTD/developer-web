@@ -76,7 +76,7 @@ export default withSentryConfig(withMDX(withVercelToolBarConfig), {
 
 		// Tree-shaking options for reducing bundle size
 		treeshake: {
-			// Automatically tree-shake Sentry logger statements to reduce bundle size
+			// Webpack-specific option to strip Sentry debug logging statements during bundling
 			removeDebugLogging: true,
 		},
 	},
