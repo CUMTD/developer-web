@@ -10,7 +10,9 @@ const isDevelopment = process.env.NODE_ENV === "development";
 Sentry.init({
 	dsn:
 		process.env.NEXT_PUBLIC_SENTRY_DSN ||
-		"https://a5cd1538aefa7f9985bbf2c754a4fca8@o1048537.ingest.us.sentry.io/4510794685546496",
+		(isDevelopment
+			? "https://a5cd1538aefa7f9985bbf2c754a4fca8@o1048537.ingest.us.sentry.io/4510794685546496"
+			: undefined),
 
 	// Set release version for tracking errors by deployment
 	// Uses Vercel's Git commit SHA when available (production/preview)
