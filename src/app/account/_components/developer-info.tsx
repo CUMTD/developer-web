@@ -1,5 +1,5 @@
 import { H2 } from "@common/typography/heading";
-import type { DeveloperResult } from "@server/actions/account/get-developer-details";
+import type { DeveloperResult } from "@t/developer-types";
 import { Item, ItemContent, ItemDescription, ItemHeader } from "@ui/item";
 import Keys from "./keys";
 

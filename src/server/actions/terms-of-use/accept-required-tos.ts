@@ -2,10 +2,11 @@
 "use server";
 
 import { createClient } from "@server/supabase/server";
+import type { AcceptTosActionState } from "@t/terms-of-use-types";
 import { revalidatePath } from "next/cache";
 import { requireUserId } from "../_auth";
 
-export type AcceptTosActionState = { ok: true } | { ok: false; message: string };
+export type { AcceptTosActionState };
 
 export async function acceptRequiredTos(
 	_prevState: AcceptTosActionState | undefined,

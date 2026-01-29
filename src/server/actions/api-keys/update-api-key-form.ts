@@ -1,16 +1,13 @@
 "use server";
 
 import { createClient } from "@server/supabase/server";
+import type { UpdateApiKeyFormState } from "@t/api-key-types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireUserId } from "../_auth";
 
-export type UpdateApiKeyFormState = Readonly<{
-	ok: boolean;
-	message?: string;
-	fieldErrors?: Partial<Record<"name" | "notes", string>>;
-}>;
+export type { UpdateApiKeyFormState };
 
 const schema = z.object({
 	key: z.uuid(),

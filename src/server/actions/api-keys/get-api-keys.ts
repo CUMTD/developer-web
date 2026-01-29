@@ -1,11 +1,10 @@
 "use server";
 
 import { createClient } from "@server/supabase/server";
-import type { Database } from "@t/supabase";
+import type { ApiKeyResult } from "@t/api-key-types";
 import { requireUserId } from "../_auth";
 
-type ApiKeyRow = Database["public"]["Tables"]["api_key"]["Row"];
-export type ApiKeyResult = Pick<ApiKeyRow, "key" | "name" | "notes" | "created_at" | "is_active">;
+export type { ApiKeyResult };
 
 export async function getApiKeys(): Promise<ReadonlyArray<ApiKeyResult>> {
 	const userId = await requireUserId();

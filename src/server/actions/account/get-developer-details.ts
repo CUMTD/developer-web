@@ -1,14 +1,10 @@
 "use server";
 
 import { createClient } from "@server/supabase/server";
-import type { Database } from "@t/supabase";
+import type { DeveloperResult } from "@t/developer-types";
 import { requireUserId } from "../_auth";
 
-type DeveloperRow = Database["public"]["Tables"]["developer"]["Row"];
-export type DeveloperResult = Pick<
-	DeveloperRow,
-	"id" | "created_at" | "name" | "tokens_per_hour" | "current_tokens" | "last_token_count_update" | "is_active"
->;
+export type { DeveloperResult };
 
 export async function getDeveloperDetails(): Promise<Readonly<DeveloperResult>> {
 	const userId = await requireUserId();
