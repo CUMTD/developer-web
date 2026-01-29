@@ -190,7 +190,8 @@ export async function createApiKey(userId: string): Promise<void> {
 ## Documentation
 
 - Document public functions, components, and server actions using TypeScript doc comments.
-- Update README or docs when adding significant features.
+- Update README and other docs when adding features or changing behavior.
+  - **Important**: Always keep the README in sync with the project state. If you make a change that renders the README inaccurate, update it before committing.
 
 ---
 
@@ -200,6 +201,7 @@ export async function createApiKey(userId: string): Promise<void> {
 - One feature or fix per PR.
 - Reference related issues when applicable.
 - Always run `pnpm run ci:verify` before submitting.
+- Be concise but descriptive in PR titles and descriptions. Try to avoid walls of text unless truly necessary to explain complex changes.
 
 ---
 
