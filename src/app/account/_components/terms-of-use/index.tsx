@@ -1,5 +1,6 @@
 import assertUnreachable from "@helpers/assert-unreachable";
-import { getTosStatus, Status } from "@server/actions/terms-of-use/get-tos-status";
+import { getTosStatus } from "@server/actions/terms-of-use/get-tos-status";
+import { Status } from "@t/terms-of-use-types";
 import AcceptedLatestTos from "./accepted-latest";
 import AcceptedOldInvalid from "./accepted-old-invalid";
 import AcceptedOldValid from "./accepted-old-valid";

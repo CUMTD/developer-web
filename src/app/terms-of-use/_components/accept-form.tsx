@@ -1,8 +1,8 @@
 "use client";
 
 import { acceptRequiredTos } from "@server/actions/terms-of-use/accept-required-tos";
-import { Status } from "@server/actions/terms-of-use/get-tos-status";
 import type { AcceptTosActionState } from "@t/terms-of-use-types";
+import { Status } from "@t/terms-of-use-types";
 import { Button } from "@ui/button";
 import { Label } from "@ui/label";
 import { Switch } from "@ui/switch";
