@@ -1,6 +1,7 @@
 import type { ApiRequestParameter } from "@t/documentation-types";
 
 export const endpoint = "/routes/groups/{id}";
+export const endpointTitle = "Get a route group";
 
 export const pathParameters: ApiRequestParameter[] = [
 	{

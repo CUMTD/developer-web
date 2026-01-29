@@ -1,6 +1,7 @@
 import type { ApiRequestParameter } from "@t/documentation-types";
 
 export const endpoint = "/stops/search";
+export const endpointTitle = "Search for a stop";
 
 export const pathParameters: ApiRequestParameter[] = [];
 

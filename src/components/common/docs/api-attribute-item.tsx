@@ -42,7 +42,7 @@ export default function ApiAttributeItem({
 									{childAttributes?.map((childAttr, idx) => {
 										return (
 											<React.Fragment key={attribute.name + childAttr.name}>
-												<ApiAttributeItem attribute={childAttr} />
+												<ApiAttributeItem attribute={childAttr} childAttributes={childAttr.childAttributes ?? []} />
 												{idx !== childAttributes.length - 1 && <ItemSeparator />}
 											</React.Fragment>
 										);

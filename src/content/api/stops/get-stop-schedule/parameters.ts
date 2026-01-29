@@ -1,6 +1,7 @@
 import type { ApiRequestParameter } from "@t/documentation-types";
 
 export const endpoint = "/stops/{id}/schedule";
+export const endpointTitle = "Get the schedule for a stop";
 
 export const pathParameters: ApiRequestParameter[] = [
 	{

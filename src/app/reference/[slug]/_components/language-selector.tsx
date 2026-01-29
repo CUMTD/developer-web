@@ -20,7 +20,7 @@ export function LanguageSelector({ selectedLanguage }: LanguageSelectorProps) {
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
-				<Button variant="outline" role="combobox" aria-expanded={open} className="w-50 justify-between">
+				<Button variant="outline" role="combobox" aria-expanded={open} className="w-35 justify-between">
 					<div className="flex items-center gap-2">
 						{(() => {
 							const selectedLanguageObj = EXAMPLE_LANGUAGES.find((language) => language.name === selectedLanguage);
@@ -32,7 +32,7 @@ export function LanguageSelector({ selectedLanguage }: LanguageSelectorProps) {
 					<ChevronsUpDown className="opacity-50" />
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className="w-50 p-0">
+			<PopoverContent className="w-35 p-0">
 				<Command>
 					<CommandList>
 						<CommandEmpty>No language found.</CommandEmpty>

@@ -1,6 +1,7 @@
 import type { ApiRequestParameter } from "@t/documentation-types";
 
 export const endpoint = "/vehicles/{id}";
+export const endpointTitle = "Get a vehicle";
 
 export const pathParameters: ApiRequestParameter[] = [
 	{

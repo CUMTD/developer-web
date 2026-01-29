@@ -8,6 +8,7 @@ import { LanguageSelector } from "./language-selector";
 
 interface CodeExampleProps {
 	content: { [language: string]: ReactElement };
+	endpoint: string;
 }
 
 function isValidLanguage(language: string | null): language is string {
@@ -15,7 +16,7 @@ function isValidLanguage(language: string | null): language is string {
 	return EXAMPLE_LANGUAGES.some((lang) => lang.name === language);
 }
 
-export default function CodeExample({ content }: CodeExampleProps) {
+export default function CodeExample({ content, endpoint }: CodeExampleProps) {
 	const searchParams = useSearchParams();
 	const language = searchParams.get("language");
 
@@ -34,7 +35,7 @@ export default function CodeExample({ content }: CodeExampleProps) {
 	return (
 		<>
 			<ItemHeader className="text-xl">
-				Example
+				<span className="font-mono text-sm">{endpoint}</span>
 				<div>
 					<LanguageSelector selectedLanguage={currentLanguage} />
 				</div>
