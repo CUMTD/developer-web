@@ -285,10 +285,14 @@ SUPABASE_ACCESS_TOKEN=your-access-token
 # Analytics
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=mtd.dev
 
-# Sentry (Error Tracking)
+# Sentry (Error Tracking & Performance Monitoring)
+NEXT_PUBLIC_SENTRY_DSN=https://your-dsn@sentry.io/project-id
 SENTRY_AUTH_TOKEN=auth-token-for-sentry.io
+SENTRY_ORG=ridemtd
+SENTRY_PROJECT=developer-web
 # The following is automatically injected by Vercel during builds - leave empty for local dev
 NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA=
+NEXT_PUBLIC_VERCEL_ENV=
 ```
 
 ### Vercel System Environment Variables
@@ -300,7 +304,13 @@ When deployed to Vercel, the following environment variables are automatically i
   - Automatically available in production and preview deployments
   - Not available in local development (falls back to "development")
 
-**Note**: You don't need to manually set `NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA` in Vercel. It's automatically provided by the platform during builds.
+- **`NEXT_PUBLIC_VERCEL_ENV`** - Deployment environment (`production`, `preview`, or `development`)
+  - Used for Sentry environment tracking
+  - Automatically available in Vercel deployments
+
+**Note**: You don't need to manually set these variables in Vercel. They're automatically provided by the platform during builds.
+
+For detailed Sentry configuration and setup, see [docs/SENTRY_SETUP.md](./docs/SENTRY_SETUP.md) and [docs/SENTRY_AUDIT_REPORT.md](./docs/SENTRY_AUDIT_REPORT.md).
 ```
 
 ### Variable Categories
