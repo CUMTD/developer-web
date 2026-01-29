@@ -240,6 +240,9 @@ src/
     supabase/                 # Supabase client factories
 
   types/
+    api-key-types.ts          # API key types (used by both client and server)
+    developer-types.ts        # Developer account types (used by both client and server)
+    terms-of-use-types.ts     # Terms of Use types (used by both client and server)
     md.generated.ts           # Generated MDX content types (DO NOT edit)
     supabase.ts               # Generated Supabase types (DO NOT edit)
 ```
@@ -256,7 +259,11 @@ src/
 
 **Note**: Route-local components within `app/` (prefixed with `_components/`) can import from their parent route but should avoid deep coupling to other routes.
 
-**Critical**: Never import from `src/server` in client components!
+**Critical**: 
+- Never import from `src/server` in client components!
+- All files in `/src/server/*` are server-only and cannot be used in client components.
+- Types needed by both client and server are extracted to `/src/types/` (e.g., `api-key-types.ts`, `terms-of-use-types.ts`, `developer-types.ts`).
+- Server actions can re-export types from `@t/` for convenience, but client components should import types directly from `@t/`.
 
 ---
 
