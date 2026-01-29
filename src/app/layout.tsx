@@ -86,7 +86,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					{shouldInjectToolbar && (
 						<>
 							<VercelToolbar />
-							<SentryToolbar organizationSlug={serverEnv.SENTRY_ORG} projectIdOrSlug={serverEnv.SENTRY_PROJECT} />
+							{Boolean(serverEnv.SENTRY_ORG) && Boolean(serverEnv.SENTRY_PROJECT) && (
+								<SentryToolbar
+									organizationSlug={serverEnv.SENTRY_ORG ?? ""}
+									projectIdOrSlug={serverEnv.SENTRY_PROJECT ?? ""}
+								/>
+							)}
 						</>
 					)}
 				</ThemeProvider>
