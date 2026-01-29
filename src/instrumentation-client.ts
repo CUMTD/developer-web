@@ -2,16 +2,13 @@
 // The added config here will be used whenever a users loads a page in their browser.
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
+import { globalEnv } from "@env/global";
 import * as Sentry from "@sentry/nextjs";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
 Sentry.init({
-	dsn:
-		process.env.NEXT_PUBLIC_SENTRY_DSN ||
-		(isDevelopment
-			? "https://a5cd1538aefa7f9985bbf2c754a4fca8@o1048537.ingest.us.sentry.io/4510794685546496"
-			: undefined),
+	dsn: globalEnv.NEXT_PUBLIC_SENTRY_DSN ?? undefined,
 
 	// Set release version for tracking errors by deployment
 	// Uses Vercel's Git commit SHA when available (production/preview)
@@ -52,28 +49,6 @@ Sentry.init({
 	// Enable sending user PII (Personally Identifiable Information)
 	// https://docs.sentry.io/platforms/javascript/guides/nextjs/configuration/options/#sendDefaultPii
 	sendDefaultPii: false,
-
-	// Filter and enhance errors before sending to Sentry
-	beforeSend(event, hint) {
-		// Filter out certain errors that are not actionable
-		const error = hint.originalException;
-
-		// Filter out network errors from ad blockers
-		if (error && typeof error === "object" && "message" in error) {
-			const message = String(error.message);
-			if (message.includes("Failed to fetch") || message.includes("NetworkError") || message.includes("Load failed")) {
-				// Could be ad blocker or network issue, reduce noise
-				return null;
-			}
-		}
-
-		// Filter out ResizeObserver errors (common browser quirk)
-		if (event.exception?.values?.[0]?.value?.includes("ResizeObserver")) {
-			return null;
-		}
-
-		return event;
-	},
 
 	// Ignore certain errors that are known to be noisy
 	ignoreErrors: [
