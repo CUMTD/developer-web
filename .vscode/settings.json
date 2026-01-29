@@ -55,7 +55,8 @@
 		"**/.vercel": true,
 		"**/bin": true,
 		"**/node_modules": true,
-		"**/obj": true
+		"**/obj": true,
+		"next-env.d.ts": true
 	},
 	"files.insertFinalNewline": true,
 	"files.trimTrailingWhitespace": true,
