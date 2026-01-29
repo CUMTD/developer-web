@@ -3,7 +3,7 @@
 
 ## Verification
 - [ ] `pnpm run ci:verify`
-- [ ] If applicable: `pnpm run build`
+- [ ] If applicable: `pnpm build`
 
 ## Notes
 - [ ] No changes to server/client boundaries

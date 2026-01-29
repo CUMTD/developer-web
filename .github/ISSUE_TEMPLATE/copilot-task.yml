@@ -33,4 +33,4 @@ body:
       label: Verification
       value: |
         - Must pass: `pnpm run ci:verify`
-        - If applicable: `pnpm run build`
+        - If applicable: `pnpm build`
