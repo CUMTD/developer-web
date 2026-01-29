@@ -277,6 +277,7 @@ NEXT_PUBLIC_BASE_URL=http://localhost:3000
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
+SENTRY_AUTH_TOKEN=auth-token-for-sentry.io
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 SUPABASE_PROJECT_REF=your-project-ref
 SUPABASE_ACCESS_TOKEN=your-access-token

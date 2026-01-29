@@ -7,8 +7,10 @@ import type { Metadata, Viewport } from "next";
 import { Overpass, Overpass_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import "server-only";
+import { Toaster } from "sonner";
 import { ClientProviders } from "./_components/client-providers";
 import { PlausibleAnalytics } from "./_components/plausible-analytics";
+import SentryToolbar from "./_components/sentry-toolbar";
 import "./_styles/globals.css";
 
 const overpass = Overpass({
@@ -80,9 +82,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 							<main className="overflow-auto">{children}</main>
 						</div>
 					</ClientProviders>
-					{shouldInjectToolbar && <VercelToolbar />}
+					{shouldInjectToolbar && (
+						<>
+							<VercelToolbar />
+							<SentryToolbar />
+						</>
+					)}
 				</ThemeProvider>
 				<SpeedInsights />
+				<Toaster richColors duration={3_000} />
 			</body>
 		</html>
 	);
