@@ -3,7 +3,6 @@ import { getTosAcceptanceHistory, type TosStatusResult } from "@server/actions/t
 import { Status, type ToSStatus } from "@t/terms-of-use-types";
 
 export { Status };
-export type { ToSStatus };
 
 function parseTosStatus(statuses: TosStatusResult[]): Status {
 	if (statuses.length === 0) {

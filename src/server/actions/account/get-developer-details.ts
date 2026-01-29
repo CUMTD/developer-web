@@ -4,8 +4,6 @@ import { createClient } from "@server/supabase/server";
 import type { DeveloperResult } from "@t/developer-types";
 import { requireUserId } from "../_auth";
 
-export type { DeveloperResult };
-
 export async function getDeveloperDetails(): Promise<Readonly<DeveloperResult>> {
 	const userId = await requireUserId();
 	const supabase = await createClient();

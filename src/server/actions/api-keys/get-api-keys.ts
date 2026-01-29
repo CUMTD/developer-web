@@ -4,8 +4,6 @@ import { createClient } from "@server/supabase/server";
 import type { ApiKeyResult } from "@t/api-key-types";
 import { requireUserId } from "../_auth";
 
-export type { ApiKeyResult };
-
 export async function getApiKeys(): Promise<ReadonlyArray<ApiKeyResult>> {
 	const userId = await requireUserId();
 	const supabase = await createClient();
