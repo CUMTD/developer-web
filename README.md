@@ -273,6 +273,7 @@ Create a `.env` file with the following:
 ```bash
 # Application Base URL
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
+NEXT_PUBLIC_MTD_API_URL=https://api.mtd.dev
 
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
