@@ -13,6 +13,6 @@ export const GlobalEnvSchema = z.object({
 export const ServerEnvSchema = z.object({
 	SUPABASE_SERVICE_ROLE_KEY: z.string().min(1),
 	SUPABASE_PROJECT_REF: z.string().min(1),
-	SENTRY_ORG: z.string().min(1),
-	SENTRY_PROJECT: z.string().min(1),
+	SENTRY_ORG: z.string().min(1).optional(),
+	SENTRY_PROJECT: z.string().min(1).optional(),
 });
