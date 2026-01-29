@@ -67,6 +67,8 @@ src/
     supabase/                 # Supabase server clients
 
   types/                      # generated + handwritten types
+    md.generated.ts           # Generated MDX types (DO NOT edit)
+    supabase.ts               # Generated Supabase types (DO NOT edit)
 ```
 
 ---
@@ -142,6 +144,7 @@ export type ApiKey = z.infer<typeof apiKeySchema>;
 
 - Do not import server-only modules into client components.
 - Client components must never access Supabase server clients.
+- Server actions should NOT re-export types. Components should import types directly from `@t/`.
 - Server Actions must:
   - Live in `src/server/actions`
   - Use the `"use server"` directive
@@ -192,6 +195,7 @@ export async function createApiKey(userId: string): Promise<void> {
 - Document public functions, components, and server actions using TypeScript doc comments.
 - Update README and other docs when adding features or changing behavior.
   - **Important**: Always keep the README in sync with the project state. If you make a change that renders the README inaccurate, update it before committing.
+	- The "Directory Structure" section of the README and the "Target Tree" section of these instructions should be kept in sync. However, individual files do not need to be listed here. Update directories and list individual files only when specifically relevant. The intention of these sections is to show project structure, not a comprehensive file list.
 
 ---
 
@@ -200,7 +204,7 @@ export async function createApiKey(userId: string): Promise<void> {
 - Keep PRs focused and minimal.
 - One feature or fix per PR.
 - Reference related issues when applicable.
-- Always run `pnpm run ci:verify` before submitting.
+- Always run `pnpm run ci:verify` before submitting. If making code changes, run `pnpm run clean` and `pnpm build` to ensure no build errors.
 - Be concise but descriptive in PR titles and descriptions. Try to avoid walls of text unless truly necessary to explain complex changes.
 
 ---

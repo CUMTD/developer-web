@@ -1,7 +1,8 @@
 "use client";
 
 import LinkButton from "@common/link-button";
-import { type AddApiKeyFormState, addApiKeyFormAction } from "@server/actions/api-keys/add-api-key-form";
+import { addApiKeyFormAction } from "@server/actions/api-keys/add-api-key-form";
+import type { AddApiKeyFormState } from "@t/api-key-types";
 import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { Label } from "@ui/label";

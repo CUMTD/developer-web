@@ -127,7 +127,7 @@ Edit `.env` and fill in the required values (see [Environment Variables](#-envir
 ### 5. Start the Development Server
 
 ```bash
-pnpm run dev
+pnpm dev
 ```
 
 The site will be available at [http://localhost:3000](http://localhost:3000).
@@ -138,7 +138,7 @@ The site will be available at [http://localhost:3000](http://localhost:3000).
 
 ### Daily Development
 
-1. **Start the dev server**: `pnpm run dev`
+1. **Start the dev server**: `pnpm dev`
 2. **Make changes** to TypeScript, React components, or MDX files
 3. **Hot reload** happens automatically
 4. **Commit** your changes (git hooks will run linters automatically)
@@ -159,7 +159,7 @@ pnpm run ci:verify
 ### Working with the Database
 
 When database schema changes supabase:typegen needs to be run.
-This happens automatically when running `pnpm run build` or `pnpm run dev`.
+This happens automatically when running `pnpm build` or `pnpm dev`.
 If you need to trigger typegen manually:
 
 ```bash
@@ -239,7 +239,7 @@ src/
     auth/                     # Auth helpers (requireUserId, session)
     supabase/                 # Supabase client factories
 
-  types/
+  types/                      # Typescript types
     md.generated.ts           # Generated MDX content types (DO NOT edit)
     supabase.ts               # Generated Supabase types (DO NOT edit)
 ```
@@ -256,7 +256,11 @@ src/
 
 **Note**: Route-local components within `app/` (prefixed with `_components/`) can import from their parent route but should avoid deep coupling to other routes.
 
-**Critical**: Never import from `src/server` in client components!
+**Critical**:
+- Never import from `src/server` in client components!
+- All files in `/src/server/*` are server-only and cannot be used in client components.
+- Types needed by both client and server are extracted to `/src/types/` (e.g., `api-key-types.ts`, `terms-of-use-types.ts`, `developer-types.ts`).
+- Server actions should NOT re-export types - components should import types directly from `@t/`.
 
 ---
 

@@ -1,18 +1,8 @@
 import assertUnreachable from "@helpers/assert-unreachable";
 import { getTosAcceptanceHistory, type TosStatusResult } from "@server/actions/terms-of-use/get-tos-acceptance-history";
+import { Status, type ToSStatus } from "@t/terms-of-use-types";
 
-export enum Status {
-	NeverAccepted = "NeverAccepted",
-	AcceptedOldValid = "AcceptedOldValid",
-	AcceptedOldInvalid = "AcceptedOldInvalid",
-	AcceptedLatest = "AcceptedLatest",
-}
-
-export type ToSStatus = Readonly<{
-	status: Status;
-	canAccessApi: boolean;
-	lastAcceptedAt: string | null;
-}>;
+export { Status };
 
 function parseTosStatus(statuses: TosStatusResult[]): Status {
 	if (statuses.length === 0) {

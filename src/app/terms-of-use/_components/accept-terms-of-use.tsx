@@ -1,6 +1,7 @@
 import Alert from "@common/alert";
 import LocalTime from "@common/local-time";
-import { getTosStatus, Status } from "@server/actions/terms-of-use/get-tos-status";
+import { getTosStatus } from "@server/actions/terms-of-use/get-tos-status";
+import { Status } from "@t/terms-of-use-types";
 import AcceptForm from "./accept-form";
 
 export default async function AcceptTermsOfUse() {
