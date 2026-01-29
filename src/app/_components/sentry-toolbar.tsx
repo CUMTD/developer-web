@@ -3,15 +3,20 @@ import { useSentryToolbar } from "@sentry/toolbar";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 
-export default function SentryToolbar() {
+type SentryToolbarProps = Readonly<{
+	organizationSlug: string;
+	projectIdOrSlug: string;
+}>;
+
+export default function SentryToolbar({ organizationSlug, projectIdOrSlug }: SentryToolbarProps) {
 	useSentryToolbar({
 		// Remember to conditionally enable the Toolbar.
 		// This will reduce network traffic for users
 		// who do not have credentials to login to Sentry.
 		enabled: isDevelopment,
 		initProps: {
-			organizationSlug: "ridemtd",
-			projectIdOrSlug: "developer-web",
+			organizationSlug,
+			projectIdOrSlug,
 			environment: process.env.NODE_ENV || "development",
 			placement: "bottom-right-corner",
 		},

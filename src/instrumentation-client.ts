@@ -16,7 +16,7 @@ Sentry.init({
 	release: globalEnv.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA ?? "development",
 
 	// Set environment for better error categorization
-	environment: globalEnv.NEXT_PUBLIC_VERCEL_ENV ?? process.env.NODE_ENV ?? "development",
+	environment: process.env.NEXT_PUBLIC_VERCEL_ENV ?? process.env.NODE_ENV ?? "development",
 
 	// Performance monitoring - traces user interactions and page loads
 	// https://docs.sentry.io/platforms/javascript/guides/nextjs/tracing/

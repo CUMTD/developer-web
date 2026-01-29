@@ -287,7 +287,6 @@ NEXT_PUBLIC_PLAUSIBLE_DOMAIN=mtd.dev
 
 # Sentry (Error Tracking & Performance Monitoring)
 NEXT_PUBLIC_SENTRY_DSN=https://your-dsn@sentry.io/project-id
-SENTRY_AUTH_TOKEN=auth-token-for-sentry.io
 SENTRY_ORG=ridemtd
 SENTRY_PROJECT=developer-web
 # The following is automatically injected by Vercel during builds - leave empty for local dev

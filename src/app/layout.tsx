@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@app/_components/theme-provider";
 import NavMenu from "@common/layout/nav-menu";
 import { globalEnv } from "@env/global";
+import { serverEnv } from "@env/server";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VercelToolbar } from "@vercel/toolbar/next";
 import type { Metadata, Viewport } from "next";
@@ -85,7 +86,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					{shouldInjectToolbar && (
 						<>
 							<VercelToolbar />
-							<SentryToolbar />
+							<SentryToolbar organizationSlug={serverEnv.SENTRY_ORG} projectIdOrSlug={serverEnv.SENTRY_PROJECT} />
 						</>
 					)}
 				</ThemeProvider>

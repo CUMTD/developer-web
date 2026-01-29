@@ -1,6 +1,7 @@
 "use client";
 
 import Alert from "@common/alert";
+import { H1 } from "@common/typography/heading";
 import Prose from "@common/typography/prose";
 import * as Sentry from "@sentry/nextjs";
 import { Button } from "@ui/button";
@@ -67,22 +68,8 @@ export default function Page() {
 							/>
 						</svg>
 
-						<h1>sentry-example-page</h1>
+						<H1 wrapProse>sentry-example-page</H1>
 					</div>
-
-					<Prose>
-						<p className="description">
-							Click the button below, and view the sample error on the Sentry{" "}
-							<a target="_blank" rel="noopener" href="https://ridemtd.sentry.io/issues/?project=4510794685546496">
-								Issues Page
-							</a>
-							. For more details about setting up Sentry,{" "}
-							<a target="_blank" rel="noopener" href="https://docs.sentry.io/platforms/javascript/guides/nextjs/">
-								read our docs
-							</a>
-							.
-						</p>
-					</Prose>
 
 					<Button
 						type="button"
