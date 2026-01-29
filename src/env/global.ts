@@ -10,6 +10,7 @@ const rawClientEnv = {
 	NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
 	NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
 	NEXT_PUBLIC_PLAUSIBLE_DOMAIN: process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN,
+	NEXT_PUBLIC_MTD_API_URL: process.env.NEXT_PUBLIC_MTD_API_URL,
 } as const;
 
 export const globalEnv = GlobalEnvSchema.parse(rawClientEnv);

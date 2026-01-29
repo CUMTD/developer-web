@@ -1,0 +1,13 @@
+{
+	"result": {
+		"id": "0e029025-5166-4486-9ee0-f9c34207aeed",
+		"vehicleType": 0,
+		"year": 2011,
+		"make": "New Flyer",
+		"model": "DE40LFR",
+		"lengthFeet": 40,
+		"powertrain": 2,
+		"isPublic": true
+	},
+	"error": null
+}

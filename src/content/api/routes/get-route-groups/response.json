@@ -1,0 +1,51 @@
+{
+	"result": [
+		{
+			"id": "9773e862-95fa-4697-9e94-edb6d59bdd75",
+			"sortNumber": 1,
+			"routeName": "Yellow",
+			"color": "fcee1f",
+			"textColor": "000000",
+			"routes": [
+				{
+					"id": "ac3fc3d037af468f8b24d061de7bea93",
+					"number": "1",
+					"firstTrip": "06:10:00",
+					"lastTrip": "19:19:00",
+					"lastTripAfterMidnight": false,
+					"dayType": {
+						"daypart": "Weekday",
+						"timepart": "Day",
+						"daysOfWeek": "1,2,3,4,5",
+						"sortOrder": 100
+					},
+					"gtfsRoutes": ["YELLOW", "YELLOW ALT", "YELLOWHOPPER"]
+				}
+			]
+		},
+		{
+			"id": "01ba67cc-b207-43b0-a7c7-a7b2f7e63514",
+			"sortNumber": 2,
+			"routeName": "Red",
+			"color": "e7131a",
+			"textColor": "ffffff",
+			"routes": [
+				{
+					"id": "dac5f56a9c544a6aa4ab389d2eee31a3",
+					"number": "2",
+					"firstTrip": "06:03:00",
+					"lastTrip": "19:15:00",
+					"lastTripAfterMidnight": false,
+					"dayType": {
+						"daypart": "Weekday",
+						"timepart": "Day",
+						"daysOfWeek": "1,2,3,4,5",
+						"sortOrder": 100
+					},
+					"gtfsRoutes": ["RED"]
+				}
+			]
+		}
+	],
+	"error": null
+}

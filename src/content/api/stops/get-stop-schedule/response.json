@@ -1,0 +1,25 @@
+{
+	"result": [
+		{
+			"stopId": "IT:1",
+			"tripId": "[@124.0.92344750@][1484579800344]/84__GN2_UISA",
+			"stopSequence": 1,
+			"arrivalTime": "2026-01-21T00:00:00",
+			"arrivalPastMidnight": true,
+			"departureTime": "2026-01-21T00:00:00",
+			"departurePastMidnight": true,
+			"stopHeadsign": "Lincoln Square"
+		},
+		{
+			"stopId": "IT:1",
+			"tripId": "[@7.0.38112640@][3][1219153533843]/0__GR3_UI",
+			"stopSequence": 1,
+			"arrivalTime": "2026-01-21T00:00:00",
+			"arrivalPastMidnight": true,
+			"departureTime": "2026-01-21T00:00:00",
+			"departurePastMidnight": true,
+			"stopHeadsign": "Lincoln Square"
+		}
+	],
+	"error": null
+}

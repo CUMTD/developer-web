@@ -1,0 +1,26 @@
+{
+	"result": {
+		"id": "130N SILVER EVENING 999",
+		"shapePoints": [
+			{
+				"sequence": 1,
+				"coordinates": {
+					"latitude": 40.09949000000001,
+					"longitude": -88.220416
+				},
+				"distanceTraveled": 0,
+				"stopId": null
+			},
+			{
+				"sequence": 2,
+				"coordinates": {
+					"latitude": 40.099466,
+					"longitude": -88.220416
+				},
+				"distanceTraveled": 2.667,
+				"stopId": "STOP:1"
+			}
+		]
+	},
+	"error": null
+}
