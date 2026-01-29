@@ -32,10 +32,16 @@ export default function Page() {
 	}, []);
 
 	useEffect(() => {
-		if (hasSentError) {
-			toast.success("Error sent to Sentry.");
+		if (!hasSentError) {
+			return;
 		}
-		setTimeout(() => setHasSentError(false), 3_000);
+
+		toast.success("Error sent to Sentry.");
+		const timeoutId = window.setTimeout(() => setHasSentError(false), 3_000);
+
+		return () => {
+			clearTimeout(timeoutId);
+		};
 	}, [hasSentError]);
 
 	if (!isDevelopment) {
