@@ -36,6 +36,10 @@
 		"github": {
 			"type": "http",
 			"url": "https://api.githubcopilot.com/mcp"
+		},
+		"Sentry": {
+			"url": "https://mcp.sentry.dev/mcp/ridemtd/developer-web",
+			"type": "http"
 		}
 	}
 }

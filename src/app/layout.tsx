@@ -1,14 +1,17 @@
 import { ThemeProvider } from "@app/_components/theme-provider";
 import NavMenu from "@common/layout/nav-menu";
 import { globalEnv } from "@env/global";
+import { serverEnv } from "@env/server";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VercelToolbar } from "@vercel/toolbar/next";
 import type { Metadata, Viewport } from "next";
 import { Overpass, Overpass_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import "server-only";
+import { Toaster } from "sonner";
 import { ClientProviders } from "./_components/client-providers";
 import { PlausibleAnalytics } from "./_components/plausible-analytics";
+import SentryToolbar from "./_components/sentry-toolbar";
 import "./_styles/globals.css";
 
 const overpass = Overpass({
@@ -80,9 +83,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 							<main className="overflow-auto">{children}</main>
 						</div>
 					</ClientProviders>
-					{shouldInjectToolbar && <VercelToolbar />}
+					{shouldInjectToolbar && (
+						<>
+							<VercelToolbar />
+							{Boolean(serverEnv.SENTRY_ORG) && Boolean(serverEnv.SENTRY_PROJECT) && (
+								<SentryToolbar
+									organizationSlug={serverEnv.SENTRY_ORG ?? ""}
+									projectIdOrSlug={serverEnv.SENTRY_PROJECT ?? ""}
+								/>
+							)}
+						</>
+					)}
 				</ThemeProvider>
 				<SpeedInsights />
+				<Toaster richColors duration={3_000} />
 			</body>
 		</html>
 	);

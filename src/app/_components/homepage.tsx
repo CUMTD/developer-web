@@ -1,6 +1,8 @@
 "use client";
 import CopyTextButton from "@common/copy-text-button";
 import LinkButton from "@common/link-button";
+import { H2 } from "@common/typography/heading";
+import Prose from "@common/typography/prose";
 import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@ui/card";
 import { Separator } from "@ui/separator";
@@ -10,23 +12,20 @@ import Image from "next/image";
 export default function Homepage() {
 	return (
 		<div className=" max-w-7xl mx-auto pt-4 flex ">
-			<div className="prose dark:prose-invert  p-5 min-w-full! flex flex-col gap-5 ">
-				{/* <h2 className="">Welcome to MTD Developer Resources!</h2>
-				<p>
-					Students, developers, and general tinkerers our invited to explore the world of transit data through MTD's
-					public data feeds.
-				</p> */}
+			<div className="p-5 min-w-full! flex flex-col gap-5 ">
 				<div className="grid grid-cols-3 grid-rows-1 gap-6 bg">
 					<div className="col-span-2 my-auto ">
-						<h2 className="mt-0! mb-2 text-5xl leading-tight tracking-tight  ">
-							Welcome to the wonderful world of transit data!
-						</h2>
+						<Prose>
+							<H2 className="mt-0! mb-2 text-5xl leading-tight tracking-tight">
+								Welcome to the wonderful world of transit data!
+							</H2>
 
-						<p>
-							As part of our commitment to staying on the frontline of technology, MTD is proud to offer various ways
-							for students, academics, developers and tinkerers to access our service data. On this page you'll find
-							links to some of the various data feeds we offer.
-						</p>
+							<p>
+								As part of our commitment to staying on the frontline of technology, MTD is proud to offer various ways
+								for students, academics, developers and tinkerers to access our service data. On this page you'll find
+								links to some of the various data feeds we offer.
+							</p>
+						</Prose>
 					</div>
 
 					<div className="bg-sidebar p-5 ml-6 aspect-square col-span-1 rounded-2xl flex items-center justify-center">
@@ -43,7 +42,7 @@ export default function Homepage() {
 							<CardDescription>General Transit Feed Specification</CardDescription>
 						</CardHeader>
 						<CardContent>
-							<p className="">
+							<p>
 								Industry standard for representing static transit schedules as data. Essentially a virtual timetable.
 								Data comes in a .zip file that contains multiple comma-delimited text files.
 							</p>
