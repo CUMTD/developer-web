@@ -43,7 +43,7 @@ export function SocialLoginButton({ provider, redirectUrl, onAuthError, ...props
 			const { error } = await supabase.auth.signInWithOAuth({
 				provider,
 				options: {
-					redirectTo: `${window.location.origin}/account/auth/oauth?next=${next}`,
+					redirectTo: `${window.location.origin}/account/auth/callback?next=${next}`,
 				},
 			});
 
