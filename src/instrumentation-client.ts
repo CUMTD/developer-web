@@ -7,6 +7,11 @@ import * as Sentry from "@sentry/nextjs";
 Sentry.init({
 	dsn: "https://a5cd1538aefa7f9985bbf2c754a4fca8@o1048537.ingest.us.sentry.io/4510794685546496",
 
+	// Set release version for tracking errors by deployment
+	// Uses Vercel's Git commit SHA when available (production/preview)
+	// Falls back to "development" for local development
+	release: process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA || "development",
+
 	// Add optional integrations for additional features
 	integrations: [Sentry.replayIntegration()],
 	// Enable logs to be sent to Sentry
