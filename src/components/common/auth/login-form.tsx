@@ -4,7 +4,11 @@ import { createClient } from "@lib/supabase/client";
 import { cn } from "@lib/utils";
 import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
+import { Field, FieldDescription, FieldError, FieldLabel } from "@ui/field";
+import { Input } from "@ui/input";
+import { Separator } from "@ui/separator";
 import { type ComponentPropsWithoutRef, type FormEvent, useState } from "react";
+import { SocialLoginButton } from "./social-login-button";
 
 type LoginFormProps = Readonly<
 	{
@@ -14,28 +18,40 @@ type LoginFormProps = Readonly<
 
 export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) {
 	const [error, setError] = useState<string | null>(null);
-	const [isLoading, setIsLoading] = useState(false);
+	const [isEmailLoading, setIsEmailLoading] = useState(false);
+	const [email, setEmail] = useState("");
+	const [emailSent, setEmailSent] = useState(false);
+	const [emailError, setEmailError] = useState<string | null>(null);
 
-	const handleSocialLogin = async (e: FormEvent) => {
+	const handleEmailLogin = async (e: FormEvent) => {
 		e.preventDefault();
 		const supabase = createClient();
-		setIsLoading(true);
-		setError(null);
+		setIsEmailLoading(true);
+		setEmailError(null);
+		setEmailSent(false);
+
+		if (!email || !email.includes("@")) {
+			setEmailError("Please enter a valid email address");
+			setIsEmailLoading(false);
+			return;
+		}
 
 		const next = redirectUrl.startsWith("/") ? redirectUrl : "/account";
 
 		try {
-			const { error } = await supabase.auth.signInWithOAuth({
-				provider: "github",
+			const { error } = await supabase.auth.signInWithOtp({
+				email,
 				options: {
-					redirectTo: `${window.location.origin}/account/auth/oauth?next=${next}`,
+					emailRedirectTo: `${window.location.origin}/account/auth/callback?next=${next}`,
 				},
 			});
 
 			if (error) throw error;
+			setEmailSent(true);
 		} catch (error: unknown) {
-			setError(error instanceof Error ? error.message : "An error occurred");
-			setIsLoading(false);
+			setEmailError(error instanceof Error ? error.message : "An error occurred");
+		} finally {
+			setIsEmailLoading(false);
 		}
 	};
 
@@ -47,14 +63,60 @@ export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) 
 					<CardDescription>Sign in to your account to continue</CardDescription>
 				</CardHeader>
 				<CardContent>
-					<form onSubmit={handleSocialLogin}>
-						<div className="flex flex-col gap-6">
-							{error && <p className="text-sm text-destructive-500">{error}</p>}
-							<Button type="submit" className="w-full" disabled={isLoading}>
-								{isLoading ? "Logging in..." : "Continue with GitHub"}
+					<div className="flex flex-col gap-6">
+						{error && <p className="text-sm text-destructive">{error}</p>}
+
+						{/* Email Magic Link Form */}
+						<form onSubmit={handleEmailLogin}>
+							<Field>
+								<FieldLabel htmlFor="email">Email address</FieldLabel>
+								<Input
+									id="email"
+									type="email"
+									placeholder="you@example.com"
+									value={email}
+									onChange={(e) => setEmail(e.target.value)}
+									disabled={isEmailLoading || emailSent}
+									required
+								/>
+								<FieldError>{emailError}</FieldError>
+								{emailSent && (
+									<FieldDescription className="text-primary">
+										Check your email for a magic link to sign in!
+									</FieldDescription>
+								)}
+								{!emailSent && <FieldDescription>We'll send you a magic link to sign in</FieldDescription>}
+							</Field>
+							<Button
+								type="submit"
+								className="mt-4 w-full"
+								disabled={isEmailLoading || emailSent}
+								variant={"secondary"}
+							>
+								{isEmailLoading ? "Sending..." : emailSent ? "Email Sent!" : "Continue with Email"}
 							</Button>
+						</form>
+
+						<Separator />
+
+						{/* Social Login Buttons */}
+						<div className="flex flex-col gap-3">
+							<SocialLoginButton
+								provider="github"
+								redirectUrl={redirectUrl}
+								onAuthError={(err: string) => setError(err)}
+								className="w-full"
+								variant={"secondary"}
+							/>
+							<SocialLoginButton
+								provider="google"
+								redirectUrl={redirectUrl}
+								onAuthError={(err: string) => setError(err)}
+								className="w-full"
+								variant={"secondary"}
+							/>
 						</div>
-					</form>
+					</div>
 				</CardContent>
 			</Card>
 		</div>
