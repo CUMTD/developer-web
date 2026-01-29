@@ -6,6 +6,7 @@ import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@ui/card";
 import { Field, FieldDescription, FieldError, FieldLabel } from "@ui/field";
 import { Input } from "@ui/input";
+import { Separator } from "@ui/separator";
 import { type ComponentPropsWithoutRef, type FormEvent, useState } from "react";
 import { SocialLoginButton } from "./social-login-button";
 
@@ -86,20 +87,17 @@ export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) 
 								)}
 								{!emailSent && <FieldDescription>We'll send you a magic link to sign in</FieldDescription>}
 							</Field>
-							<Button type="submit" className="mt-4 w-full" disabled={isEmailLoading || emailSent}>
+							<Button
+								type="submit"
+								className="mt-4 w-full"
+								disabled={isEmailLoading || emailSent}
+								variant={"secondary"}
+							>
 								{isEmailLoading ? "Sending..." : emailSent ? "Email Sent!" : "Continue with Email"}
 							</Button>
 						</form>
 
-						{/* Divider */}
-						<div className="relative">
-							<div className="absolute inset-0 flex items-center">
-								<span className="w-full border-t" />
-							</div>
-							<div className="relative flex justify-center text-xs uppercase">
-								<span className="bg-background text-muted-foreground px-2">Or continue with</span>
-							</div>
-						</div>
+						<Separator />
 
 						{/* Social Login Buttons */}
 						<div className="flex flex-col gap-3">
@@ -108,12 +106,14 @@ export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) 
 								redirectUrl={redirectUrl}
 								onAuthError={(err: string) => setError(err)}
 								className="w-full"
+								variant={"secondary"}
 							/>
 							<SocialLoginButton
 								provider="google"
 								redirectUrl={redirectUrl}
 								onAuthError={(err: string) => setError(err)}
 								className="w-full"
+								variant={"secondary"}
 							/>
 						</div>
 					</div>
