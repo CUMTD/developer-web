@@ -20,7 +20,7 @@ Sentry.init({
 
 	// Performance monitoring - traces user interactions and page loads
 	// https://docs.sentry.io/platforms/javascript/guides/nextjs/tracing/
-	tracesSampleRate: isDevelopment ? 1.0 : 0.1,
+	tracesSampleRate: isDevelopment ? 1.0 : 0.05,
 
 	// Add optional integrations for additional features
 	integrations: [
@@ -34,6 +34,7 @@ Sentry.init({
 			colorScheme: "system",
 		}),
 	],
+	tracePropagationTargets: ["localhost", /^https:\/\/mtd\.dev/],
 
 	// Enable logs to be sent to Sentry
 	enableLogs: true,
