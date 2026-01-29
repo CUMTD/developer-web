@@ -1,6 +1,7 @@
 import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-navigator-button-interface";
 import { BookOpen, BusFrontIcon, HeartIcon } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
 	title: "Introduction",
@@ -25,12 +26,12 @@ export default function IntroductionPage() {
 
 			<p>
 				Students, researchers, developers and tinkerers are welcome to use the API provided they agree to and abide by
-				the <a href="/toc">Terms of Use</a>.
+				the <Link href="/toc">Terms of Use</Link>.
 			</p>
 			<h2>Have you tried our GTFS Feed?</h2>
 			<p>
 				This API is built for retrieving small, specific collections of service data. If you are attempting to get large
-				amounts of information, use our <a href="/">our GTFS and GTFS-RT feeds instead.</a>
+				amounts of information, use our <Link href="/">our GTFS and GTFS-RT feeds instead.</Link>
 			</p>
 
 			<NextPreviousPageNavigatorButtons nextLink="/reference/authentication" />

@@ -2,6 +2,7 @@
 "use server";
 
 import { createClient } from "@server/supabase/server";
+import "server-only";
 
 export async function requireUserId(): Promise<string> {
 	const supabase = await createClient();

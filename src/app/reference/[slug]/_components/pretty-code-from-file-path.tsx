@@ -9,13 +9,13 @@ import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import { CodeExampleBody } from "./code-example-with-copy";
 
-interface PrettyCodeFromFilepathProps {
+type PrettyCodeFromFilepathProps = Readonly<{
 	filepath: string;
 	language: string;
 	endpoint?: string;
 	apiKey?: string;
 	queryParameters?: ApiRequestParameter[];
-}
+}>;
 
 export async function PrettyCodeFromFilepath({
 	filepath,

@@ -6,10 +6,10 @@ import { useSearchParams } from "next/navigation";
 import { type ReactElement, useEffect, useState } from "react";
 import { LanguageSelector } from "./language-selector";
 
-interface CodeExampleProps {
+type CodeExampleProps = Readonly<{
 	content: { [language: string]: ReactElement };
 	endpoint: string;
-}
+}>;
 
 function isValidLanguage(language: string | null): language is string {
 	if (!language) return false;

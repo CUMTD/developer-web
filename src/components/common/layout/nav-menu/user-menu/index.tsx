@@ -1,12 +1,12 @@
 "use client";
 
-import { useCurrentUser } from "@hooks/use-current-user";
+import { useAuth } from "@contexts/auth-context";
 import LoggedInUserMenu from "./logged-in-menu";
 import LoggedOutMenu from "./logged-out-menu";
 import LoginButtonSkeleton from "./login-button-skeleton";
 
 export default function UserProfileDisplay() {
-	const { isLoading, isAuthenticated, user } = useCurrentUser();
+	const { isLoading, isAuthenticated, user } = useAuth();
 
 	if (isLoading) {
 		return <LoginButtonSkeleton />;

@@ -1,0 +1,36 @@
+name: Copilot Task
+description: A well-scoped task for Copilot coding agent
+title: "[Copilot] "
+labels: ["copilot-task"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: Goal
+      description: What should be true when this is done?
+    validations:
+      required: true
+
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals
+      description: What should NOT change?
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints / Rules
+      value: |
+        - Must follow App Router (no Pages Router).
+        - Always use braces for control blocks.
+        - No new dependencies unless required.
+        - Do not change DB state (Supabase MCP is read-only).
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification
+      value: |
+        - Must pass: `pnpm run ci:verify`
+        - If applicable: `pnpm build`

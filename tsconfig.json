@@ -16,6 +16,7 @@
 			"@app/*": ["src/app/*"],
 			"@common/*": ["src/components/common/*"],
 			"@content/*": ["src/content/*"],
+			"@contexts/*": ["src/contexts/*"],
 			"@env/*": ["src/env/*"],
 			"@helpers/*": ["src/helpers/*"],
 			"@hooks/*": ["src/hooks/*"],

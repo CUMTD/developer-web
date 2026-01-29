@@ -1,12 +1,12 @@
 import LinkButton from "@common/link-button";
-import type { ApiKeyResult } from "@server/actions/api-keys/get-api-keys";
+import type { ApiKeyResult } from "@t/api-key-types";
 import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@ui/card";
 import { KeyRoundIcon, PencilIcon } from "lucide-react";
 import ApiKeyDisplay from "./api-key-display";
 
-interface ApiKeyProps {
+type ApiKeyProps = Readonly<{
 	apiKey: ApiKeyResult;
-}
+}>;
 
 export default function ApiKey({ apiKey: { key, name, notes, created_at } }: ApiKeyProps) {
 	return (

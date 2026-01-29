@@ -1,16 +1,11 @@
 "use server";
 
 import { createClient } from "@server/supabase/server";
+import type { AddApiKeyFormState } from "@t/api-key-types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireUserId } from "../_auth";
-
-export type AddApiKeyFormState = Readonly<{
-	ok: boolean;
-	message?: string;
-	fieldErrors?: Partial<Record<"name" | "notes", string>>;
-}>;
 
 const schema = z.object({
 	name: z.string().trim().min(1, "Name is required.").max(80, "Name must be 80 characters or fewer."),

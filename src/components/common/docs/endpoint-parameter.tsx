@@ -3,10 +3,10 @@ import { Item, ItemGroup } from "@ui/item";
 import { Separator } from "@ui/separator";
 import ApiAttributeItem from "./api-attribute-item";
 
-interface EndpointParametersProps {
+type EndpointParametersProps = Readonly<{
 	parameters: ApiRequestParameter[];
 	type: "path" | "query";
-}
+}>;
 
 export default function EndpointParameters({ type, parameters }: EndpointParametersProps) {
 	return (
