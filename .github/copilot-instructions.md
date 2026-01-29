@@ -201,6 +201,7 @@ export async function createApiKey(userId: string): Promise<void> {
 - One feature or fix per PR.
 - Reference related issues when applicable.
 - Always run `pnpm run ci:verify` before submitting.
+- Be concise but descriptive in PR titles and descriptions. Try to avoid walls of text unless truly necessary to explain complex changes.
 
 ---
 
