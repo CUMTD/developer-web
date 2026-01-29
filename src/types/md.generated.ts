@@ -5,9 +5,23 @@ export const API_INDEX = {
 	routes: ["get-route", "get-route-group", "get-route-groups"],
 	"service-alerts": ["get-service-alert", "get-service-alerts"],
 	shapes: ["get-shape"],
-	stops: ["get-stop", "get-stop-departures", "get-stop-routes", "get-stop-schedule", "get-stop-trips", "get-stops"],
+	stops: [
+		"get-stop",
+		"get-stop-departures",
+		"get-stop-routes",
+		"get-stop-schedule",
+		"get-stop-trips",
+		"get-stops",
+		"search-stop",
+	],
 	trips: ["get-trip", "get-trips"],
-	vehicles: ["get-vehicle", "get-vehicle-location", "get-vehicles"],
+	vehicles: [
+		"get-vehicle",
+		"get-vehicle-configuration",
+		"get-vehicle-configurations",
+		"get-vehicle-location",
+		"get-vehicles",
+	],
 } as const;
 
 export type ApiObject = keyof typeof API_INDEX;

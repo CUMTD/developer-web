@@ -17,7 +17,7 @@
 				"daysOfWeek": "1,2,3,4,5",
 				"sortOrder": 100
 			},
-			"gtfsRoutes": []
+			"gtfsRoutes": ["YELLOW", "YELLOW ALT", "YELLOWHOPPER"]
 		}
 	]
 }

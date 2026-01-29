@@ -28,5 +28,5 @@ export function useMDXComponents(components: MDXComponents = {}): MDXComponents 
 }
 
 export function CodeComponent({ children }: { children: ReactNode }) {
-	return <code className="rounded-md bg-sidebar-accent border  p-2 overflow-y-scroll ">{children}</code>;
+	return <code className="rounded-md bg-sidebar-accent border w-full p-2 overflow-y-scroll ">{children}</code>;
 }
