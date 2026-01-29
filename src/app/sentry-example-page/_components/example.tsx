@@ -5,7 +5,6 @@ import { H1 } from "@common/typography/heading";
 import Prose from "@common/typography/prose";
 import * as Sentry from "@sentry/nextjs";
 import { Button } from "@ui/button";
-import Head from "next/head";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -56,11 +55,6 @@ export default function Page({ isDevelopment }: SentryExamplePageProps) {
 		<div className=" max-w-7xl mx-auto pt-4 flex ">
 			<Prose>
 				<div className="p-5 min-w-full! flex flex-col gap-5 ">
-					<Head>
-						<title>sentry-example-page</title>
-						<meta name="description" content="Test Sentry for your Next.js app!" />
-					</Head>
-
 					<div className="flex gap-2 items-center mb-4">
 						<svg
 							height="40"
