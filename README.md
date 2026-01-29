@@ -61,6 +61,7 @@ MTD's Open API documentation and developer account management portal.
 ### Analytics & Monitoring
 - **Plausible Analytics** - Privacy-friendly analytics
 - **Vercel Speed Insights** - Performance monitoring
+- **Sentry** - Error tracking and performance monitoring with release tracking
 
 ### Package Management
 - **pnpm 10** - Fast, disk-efficient package manager
@@ -277,13 +278,29 @@ NEXT_PUBLIC_BASE_URL=http://localhost:3000
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
-SENTRY_AUTH_TOKEN=auth-token-for-sentry.io
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 SUPABASE_PROJECT_REF=your-project-ref
 SUPABASE_ACCESS_TOKEN=your-access-token
 
 # Analytics
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=mtd.dev
+
+# Sentry (Error Tracking)
+SENTRY_AUTH_TOKEN=auth-token-for-sentry.io
+# The following is automatically injected by Vercel during builds - leave empty for local dev
+NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA=
+```
+
+### Vercel System Environment Variables
+
+When deployed to Vercel, the following environment variables are automatically injected:
+
+- **`NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA`** - Git commit SHA of the deployment
+  - Used for Sentry release tracking
+  - Automatically available in production and preview deployments
+  - Not available in local development (falls back to "development")
+
+**Note**: You don't need to manually set `NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA` in Vercel. It's automatically provided by the platform during builds.
 ```
 
 ### Variable Categories
