@@ -355,6 +355,47 @@ async function main(): Promise<void> {
 		);
 	}
 
+	// === Validate documentation consistency (optional but recommended) ===
+
+	const docRoot = resolve("./src/content/api");
+	const docMismatches: Array<{ object: ApiObject; method: string; issue: string }> = [];
+
+	for (const [method, object] of methodToObject.entries()) {
+		const op = operationsById.get(method);
+		if (!op) {
+			continue; // Already caught above
+		}
+
+		const parametersPath = resolve(docRoot, object, method, "parameters.ts");
+		try {
+			if (readFileSync(parametersPath, "utf-8")) {
+				const content = readFileSync(parametersPath, "utf-8");
+				const endpointMatch = content.match(/export\s+const\s+endpoint\s*=\s*["']([^"']+)["']/);
+
+				if (endpointMatch) {
+					const docEndpoint = endpointMatch[1];
+					if (docEndpoint !== op.path) {
+						docMismatches.push({
+							object,
+							method,
+							issue: `parameters.ts endpoint '${docEndpoint}' does not match OpenAPI path '${op.path}'`,
+						});
+					}
+				}
+			}
+		} catch {
+			// parameters.ts doesn't exist or can't be read - that's OK, docs are optional
+		}
+	}
+
+	if (docMismatches.length > 0) {
+		const lines = docMismatches.map((m) => `- ${m.object}/${m.method}: ${m.issue}`);
+		throw new Error(
+			`Documentation consistency errors found:\n${lines.join("\n")}\n\n` +
+				`Fix the endpoint values in parameters.ts files to match OpenAPI paths, or update OpenAPI spec.`,
+		);
+	}
+
 	// === Generate index ===
 
 	const objects: GeneratedIndex["objects"] = {};

@@ -77,7 +77,8 @@ export type OpenApiIndex = {
 /**
  * Method help response returned by MCP tool: get_method_help.
  *
- * This intentionally returns OpenAPI truth first, then optionally adds doc enhancements from /src/content.
+ * This returns OpenAPI data as the source of truth.
+ * Documentation enhancements from /src/content are validated at build time.
  */
 export type MethodHelp = {
 	object: ApiObject;
@@ -96,7 +97,7 @@ export type MethodHelp = {
 	summary: string;
 	description: string;
 
-	/** Parameters as described by OpenAPI (doc enhancements may add more text, but do not change the list) */
+	/** Parameters as described by OpenAPI */
 	pathParameters: OpenApiParameter[];
 	queryParameters: OpenApiParameter[];
 
@@ -106,20 +107,11 @@ export type MethodHelp = {
 	/** Convenience: primary API key header if the spec declares an apiKey scheme */
 	apiKeyHeaderName: string;
 
-	/** Documentation URLs inside your developer site */
+	/** Documentation URL to the reference page */
 	referenceUrl: string;
 
 	/** Whether /src/content contains example response.json */
 	hasExampleResponse: boolean;
-
-	/**
-	 * If true, extra details were loaded from /src/content.
-	 * If false, result reflects OpenAPI only (docs missing or mismatched).
-	 */
-	enhancementsApplied: boolean;
-
-	/** Non-fatal problems when applying /src/content enhancements */
-	enhancementWarnings: string[];
 };
 
 export type ObjectHelp = {
