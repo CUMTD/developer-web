@@ -1,4 +1,4 @@
-import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import {
 	CallToolRequestSchema,
 	ListResourcesRequestSchema,
@@ -13,8 +13,8 @@ import { getMethodHelp, listMethods, listObjects } from "./tools";
 /**
  * Creates and configures the MCP server with all resources and tools
  */
-export function createMcpServer(baseUrl: string): Server {
-	const server = new Server(
+export function createMcpServer(baseUrl: string): McpServer {
+	const mcpServer = new McpServer(
 		{
 			name: "mtd-api-navigator",
 			version: "1.0.0",
@@ -26,6 +26,9 @@ export function createMcpServer(baseUrl: string): Server {
 			},
 		},
 	);
+
+	// Access the underlying server for low-level request handler registration
+	const { server } = mcpServer;
 
 	// Register resource handlers
 	server.setRequestHandler(ListResourcesRequestSchema, async () => ({
@@ -190,5 +193,5 @@ export function createMcpServer(baseUrl: string): Server {
 		}
 	});
 
-	return server;
+	return mcpServer;
 }
