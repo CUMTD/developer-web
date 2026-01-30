@@ -12,8 +12,13 @@ import Image from "next/image";
 export default function Homepage() {
 	return (
 		<div className=" max-w-7xl mx-auto pt-4 flex ">
-			<div className="p-5 min-w-full! flex flex-col gap-5 ">
-				<div className="grid grid-cols-3 grid-rows-1 gap-6 bg">
+			<div className="prose dark:prose-invert  p-5 min-w-full! flex flex-col gap-5 ">
+				{/* <h2 className="">Welcome to MTD Developer Resources!</h2>
+				<p>
+					Students, developers, and general tinkerers our invited to explore the world of transit data through MTD's
+					public data feeds.
+				</p> */}
+				<div className="grid grid-cols-1 grid-rows-1 gap-6 bg lg:grid-cols-3">
 					<div className="col-span-2 my-auto ">
 						<Prose>
 							<H2 className="mt-0! mb-2 text-5xl leading-tight tracking-tight">
@@ -28,7 +33,7 @@ export default function Homepage() {
 						</Prose>
 					</div>
 
-					<div className="bg-sidebar p-5 ml-6 aspect-square col-span-1 rounded-2xl flex items-center justify-center">
+					<div className="bg-sidebar p-5 ml-6 aspect-square col-span-1 rounded-2xl  items-center justify-center hidden lg:flex">
 						<Image alt="" src={"/isobus2.png"} priority width={300} height={200} />
 					</div>
 				</div>
@@ -50,7 +55,7 @@ export default function Homepage() {
 						<CardFooter className="mt-auto flex flex-col items-start gap-3">
 							<CopyTextButton text="https://mtd.dev/gtfs.zip" />
 
-							<div className="flex flex-row gap-4">
+							<div className="flex flex-row gap-4 flex-wrap">
 								<Button>
 									<DownloadIcon /> Download GTFS Feed
 								</Button>
@@ -73,7 +78,7 @@ export default function Homepage() {
 							</p>
 						</CardContent>
 						<CardFooter className="mt-auto">
-							<div className="flex flex-row gap-4">
+							<div className="flex flex-row gap-4 flex-wrap">
 								<Button>
 									<DownloadIcon />
 									Download GTFS-RT Feed

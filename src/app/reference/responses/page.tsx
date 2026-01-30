@@ -2,6 +2,7 @@ import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-na
 import { CloudDownload } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CodeExampleBody } from "../[slug]/_components/code-example-with-copy";
 export const metadata: Metadata = {
 	title: "Responses",
 	description: "Understanding API responses.",
@@ -27,7 +28,9 @@ export default async function RequestsPage() {
 				<Link href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status">HTTP status code</Link>.
 			</p>
 			<h2>Successful Response</h2>
-			<Sample />
+			<CodeExampleBody copyable={false}>
+				<Sample />
+			</CodeExampleBody>
 
 			<h2>Unsuccessful Response</h2>
 			<Sample />

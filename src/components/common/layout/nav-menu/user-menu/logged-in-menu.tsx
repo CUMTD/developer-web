@@ -1,13 +1,6 @@
 import UserAvatar from "@common/account/user-avatar";
-import { LogoutButton } from "@common/auth/logout-button";
 import { type CurrentUser, isUnknownUser } from "@t/current-user";
-import {
-	NavigationMenuContent,
-	NavigationMenuItem,
-	NavigationMenuLink,
-	NavigationMenuTrigger,
-} from "@ui/navigation-menu";
-import Link from "next/link";
+import { NavigationMenuItem, NavigationMenuLink } from "@ui/navigation-menu";
 
 function getDisplayName(currentUser: CurrentUser) {
 	if (isUnknownUser(currentUser)) {
@@ -21,11 +14,17 @@ export default function LoggedInUserMenu({ user }: Readonly<{ user: CurrentUser 
 	const { profileImageUrl } = user;
 
 	return (
-		<NavigationMenuItem className="hidden md:flex">
-			<NavigationMenuTrigger>
+		<NavigationMenuItem className="">
+			<NavigationMenuLink href="/account">
 				<div className="flex flex-row gap-2 items-center">
 					<UserAvatar profileImage={profileImageUrl} name={name} size="sm" />
-					<span className="font-medium">{name}</span>
+					<span className="font-medium hidden md:block">{name}</span>
+				</div>
+			</NavigationMenuLink>
+			{/* <NavigationMenuTrigger>
+				<div className="flex flex-row gap-2 items-center">
+					<UserAvatar profileImage={profileImageUrl} name={name} size="sm" />
+					<span className="font-medium hidden md:block">{name}</span>
 				</div>
 			</NavigationMenuTrigger>
 
@@ -49,7 +48,7 @@ export default function LoggedInUserMenu({ user }: Readonly<{ user: CurrentUser 
 						</li>
 					</ul>
 				</div>
-			</NavigationMenuContent>
+			</NavigationMenuContent> */}
 		</NavigationMenuItem>
 	);
 }

@@ -39,7 +39,6 @@ export async function PrettyCodeFromFilepath({
 				searchParams.set(param.name, exampleValue);
 			}
 
-			console.log(searchParams);
 			url += `?${searchParams.toString()}`;
 		}
 

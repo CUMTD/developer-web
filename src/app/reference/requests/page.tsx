@@ -36,7 +36,7 @@ export default function RequestsPage() {
 			<p>Some endpoints can take in query parameters that will shape the response output.</p>
 			<h2>Include your API Key</h2>
 			<p>
-				Every request you make must contain your API key in the <code>X-Api-Key</code> header. How you include this key
+				Every request you make must contain your API key in the <code>X-ApiKey</code> header. How you include this key
 				will vary by what you are using to make the HTTP request, but here are some examples:
 			</p>
 			<h2>Send!</h2>

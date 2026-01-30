@@ -16,32 +16,6 @@
 				"latitude": 40.115935,
 				"longitude": -88.24094667
 			}
-		},
-		{
-			"subName": "Platform B",
-			"platformCode": null,
-			"id": "IT:2",
-			"name": "Illinois Terminal (Platform B)",
-			"stopCode": "3678",
-			"url": "https://mtd.org/maps-and-schedules/bus-stops/info/it-2/",
-			"isAccessible": true,
-			"location": {
-				"latitude": 40.115535,
-				"longitude": -88.241104
-			}
-		},
-		{
-			"subName": "Platform C",
-			"platformCode": null,
-			"id": "IT:5",
-			"name": "Illinois Terminal (Platform C)",
-			"stopCode": "3678",
-			"url": "https://mtd.org/maps-and-schedules/bus-stops/info/it-5/",
-			"isAccessible": true,
-			"location": {
-				"latitude": 40.115363,
-				"longitude": -88.241442
-			}
 		}
 	],
 	"id": "IT",

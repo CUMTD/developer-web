@@ -1,21 +1,20 @@
 import LinkButton from "@common/link-button";
-import { Button } from "@ui/button";
 import { ButtonGroup } from "@ui/button-group";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-function PreviousContent() {
+function PreviousContent({ title }: Readonly<{ title: string }>) {
 	return (
 		<>
 			<ArrowLeft />
-			Previous
+			{title}
 		</>
 	);
 }
 
-function NextContent() {
+function NextContent({ title }: Readonly<{ title: string }>) {
 	return (
 		<>
-			Next
+			{title}
 			<ArrowRight />
 		</>
 	);
@@ -23,36 +22,32 @@ function NextContent() {
 
 type NextPreviousPageNavigatorButtonsInterface = Readonly<{
 	nextLink?: string;
+	nextLinkTitle?: string;
 	previousLink?: string;
+	previousLinkTitle?: string;
 }>;
 
 export default function NextPreviousPageNavigatorButtons({
 	nextLink,
+	nextLinkTitle,
 	previousLink,
+	previousLinkTitle,
 }: NextPreviousPageNavigatorButtonsInterface) {
 	const hasPrevious = Boolean(previousLink);
 	const hasNext = Boolean(nextLink);
 
 	return (
-		<ButtonGroup className="ml-auto">
-			{hasPrevious ? (
-				<LinkButton href={previousLink ?? "#"} variant="outline">
-					<PreviousContent />
+		<ButtonGroup className="ml-auto py-20">
+			{hasPrevious && hasNext && (
+				<LinkButton href={previousLink ?? "#"} variant="ghost">
+					<PreviousContent title={previousLinkTitle ?? "Previous"} />
 				</LinkButton>
-			) : (
-				<Button variant="outline" disabled>
-					<PreviousContent />
-				</Button>
 			)}
 
-			{hasNext ? (
-				<LinkButton href={nextLink ?? "#"} variant="outline">
-					<NextContent />
+			{hasNext && (
+				<LinkButton href={nextLink ?? "#"} variant="ghost">
+					<NextContent title={nextLinkTitle ?? "Next"} />
 				</LinkButton>
-			) : (
-				<Button variant="outline" disabled>
-					<NextContent />
-				</Button>
 			)}
 		</ButtonGroup>
 	);

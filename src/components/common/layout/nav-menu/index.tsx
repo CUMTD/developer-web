@@ -4,14 +4,11 @@ import UserMenu from "@common/layout/nav-menu/user-menu";
 import { useViewport } from "@contexts/viewport-context";
 import {
 	NavigationMenu,
-	NavigationMenuContent,
 	NavigationMenuItem,
 	NavigationMenuLink,
 	NavigationMenuList,
-	NavigationMenuTrigger,
 	navigationMenuTriggerStyle,
 } from "@ui/navigation-menu";
-import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { memo } from "react";
 import WordMark from "./word-mark";
@@ -20,17 +17,23 @@ function NavMenu() {
 	const { isMobile } = useViewport();
 
 	return (
-		<header className="flex flex-row justify-between lg:px-8 px-5 p-5 row-span-1 sticky top-0 bg-sidebar z-50">
-			<WordMark />
-			<NavigationMenu viewport={isMobile}>
-				<NavigationMenuList className="flex-wrap">
-					<NavigationMenuItem>
-						<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-							<Link href="/">Home</Link>
-						</NavigationMenuLink>
-					</NavigationMenuItem>
+		<>
+			<header className="flex flex-row justify-between lg:px-8 px-5 p-5 row-span-1 sticky top-0 bg-sidebar z-50">
+				<WordMark />
+				<NavigationMenu viewport={isMobile}>
+					<NavigationMenuList className="flex-wrap">
+						<NavigationMenuItem>
+							<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+								<Link href="/">Home</Link>
+							</NavigationMenuLink>
+						</NavigationMenuItem>
 
-					<NavigationMenuItem className="hidden md:block">
+						<NavigationMenuItem>
+							<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+								<Link href="/reference/introduction">Documentation</Link>
+							</NavigationMenuLink>
+						</NavigationMenuItem>
+						{/* <NavigationMenuItem className="">
 						<NavigationMenuTrigger>Documentation</NavigationMenuTrigger>
 
 						<NavigationMenuContent className="absolute right-0 left-auto top-full mt-2 z-50">
@@ -51,18 +54,6 @@ function NavMenu() {
 									<li>
 										<NavigationMenuLink asChild>
 											<Link
-												href="/guides"
-												className="block rounded-md px-3 py-2 hover:bg-accent focus:bg-accent outline-none"
-											>
-												<div className="font-medium">Guides</div>
-												<div className="text-muted-foreground">A handful of examples on using transit data.</div>
-											</Link>
-										</NavigationMenuLink>
-									</li>
-
-									<li>
-										<NavigationMenuLink asChild>
-											<Link
 												href="#"
 												className="block rounded-md px-3 py-2 hover:bg-accent focus:bg-accent outline-none"
 											>
@@ -76,12 +67,16 @@ function NavMenu() {
 								</ul>
 							</div>
 						</NavigationMenuContent>
-					</NavigationMenuItem>
+					</NavigationMenuItem> */}
 
-					<UserMenu />
-				</NavigationMenuList>
-			</NavigationMenu>
-		</header>
+						<UserMenu />
+					</NavigationMenuList>
+				</NavigationMenu>
+			</header>
+			<div className="h-6 w-full text-sm bg-[linear-gradient(45deg,#000_25%,#18181b_25%,#18181b_50%,#000_50%,#000_75%,#18181b_75%,#18181b_100%)] bg-[length:40px_40px] flex items-center justify-center">
+				<span className="text-white font-bold  px-10">BETA - INFORMATION NOT FINAL</span>
+			</div>
+		</>
 	);
 }
 
