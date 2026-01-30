@@ -536,11 +536,31 @@ Set these in Vercel project settings:
 
 This project includes an MCP server that allows AI assistants to explore and query the MTD Open API documentation programmatically.
 
-### Overview
+### Architecture
 
-The MCP server exposes:
-- **Resources**: OpenAPI specification (YAML) and API Index (JSON mapping of objects and methods)
-- **Tools**: `list_objects`, `list_methods`, and `get_method_help` for navigating the API
+The MCP implementation follows a build-time validation strategy to ensure consistency:
+
+1. **OpenAPI Spec** (from `OPENAPI_SPEC_URL`) → Source of truth for API operations (paths, methods, parameters, security)
+2. **Documentation Structure** (`/src/content/api`) → Defines available objects and methods
+3. **Build Script** (`scripts/build-mcp.ts`) → Validates consistency and generates index
+4. **Generated Index** (`src/mcp/generated/openapi-index.json`) → Fast lookup for MCP tools at runtime
+
+**Build-time Validation:**
+```bash
+pnpm run build:mcp
+```
+
+This script:
+- Fetches the OpenAPI spec from `OPENAPI_SPEC_URL`
+- Compares it with the documentation structure from `md.generated.ts`
+- **Throws errors** if they're inconsistent (missing methods, mismatched endpoints)
+- Generates `openapi-index.json` for fast runtime access
+
+**Design Philosophy:**
+- OpenAPI spec is the single source of truth for API operations
+- Documentation in `/src/content/api` provides examples and human-readable context
+- Build-time validation ensures docs stay in sync with the API
+- Runtime tools are simple lookups against the validated index
 
 ### Configuration
 
@@ -552,7 +572,7 @@ Add to your `.env` file:
 
 ```bash
 # OpenAPI Specification URL for the MCP server
-# Default: https://mtdintunedeployments.blob.core.windows.net/apps/v3.0.0.yml
+# Used by both build:mcp script and runtime resource fetch
 OPENAPI_SPEC_URL=https://mtdintunedeployments.blob.core.windows.net/apps/v3.0.0.yml
 ```
 
@@ -597,6 +617,18 @@ Lists all methods for a specific API object.
 }
 ```
 
+#### `get_object_help`
+Gets object-level documentation including methods list, description, and example object.
+
+```json
+{
+  "name": "get_object_help",
+  "arguments": {
+    "object": "stops"
+  }
+}
+```
+
 #### `get_method_help`
 Gets detailed information about an API method including endpoint, parameters, and reference URL.
 
@@ -615,8 +647,8 @@ Gets detailed information about an API method including endpoint, parameters, an
 #### `openapi://spec`
 The complete OpenAPI specification in YAML format, fetched from `OPENAPI_SPEC_URL`.
 
-#### `api://index`
-A JSON mapping of all API objects and their available methods, generated from the `/content/api` directory structure.
+#### `openapi://index`
+The build-generated JSON index containing validated mappings between objects, methods, and OpenAPI operations.
 
 ### Implementation Details
 
@@ -624,6 +656,7 @@ A JSON mapping of all API objects and their available methods, generated from th
 - **SDK**: `@modelcontextprotocol/sdk` for MCP protocol implementation
 - **Transport**: Streamable HTTP with SSE support for real-time streaming
 - **Safe by default**: Read-only access; no authenticated API calls
+- **Build validation**: Run `pnpm run build:mcp` to validate docs/OpenAPI consistency
 
 ---
 
