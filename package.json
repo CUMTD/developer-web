@@ -98,7 +98,7 @@
 		"clean": "pnpm exec tsx scripts/clean.ts",
 		"dev": "next dev",
 		"start": "next start",
-		"prebuild": "pnpm run validate:env && pnpm run typegen:md && pnpm run typegen:supabase",
+		"prebuild": "pnpm run validate:env && pnpm run typegen:md && pnpm run typegen:supabase && pnpm run build:mcp",
 		"predev": "pnpm run validate:env && pnpm run typegen:md && pnpm run typegen:supabase",
 		"preinstall": "corepack enable",
 		"prepare": "husky",
