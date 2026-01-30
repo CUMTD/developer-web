@@ -33,6 +33,20 @@ function asNonEmptyTuple<T extends string>(arr: readonly T[]): [T, ...T[]] {
 }
 
 /**
+ * Gets all unique method names from API_INDEX.
+ * Used to provide a complete enum of valid methods in the MCP tool schema.
+ */
+function getAllMethods(): string[] {
+	const allMethods = new Set<string>();
+	for (const methods of Object.values(API_INDEX)) {
+		for (const method of methods) {
+			allMethods.add(method);
+		}
+	}
+	return Array.from(allMethods).sort();
+}
+
+/**
  * Builds a Zod schema where:
  * - object is one of ApiObject
  * - method is restricted to the methods of that object
@@ -163,6 +177,7 @@ export function createMcpServer(baseUrl: string): McpServer {
 						method: {
 							type: "string",
 							description: "The method (operationId) for that object.",
+							enum: getAllMethods(),
 						},
 					},
 					required: ["object", "method"],
