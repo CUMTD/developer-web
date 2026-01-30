@@ -1,0 +1,555 @@
+{
+	"version": 1,
+	"generatedAt": "2026-01-30T21:46:39.803Z",
+	"spec": {
+		"title": "Developer API",
+		"version": "3.0.0"
+	},
+	"objects": {
+		"routes": {
+			"methods": ["get-route", "get-route-group", "get-route-groups"]
+		},
+		"service-alerts": {
+			"methods": ["get-service-alert", "get-service-alerts"]
+		},
+		"shapes": {
+			"methods": ["get-shape"]
+		},
+		"stops": {
+			"methods": [
+				"get-stop",
+				"get-stop-departures",
+				"get-stop-routes",
+				"get-stop-schedule",
+				"get-stop-trips",
+				"get-stops",
+				"search-stop"
+			]
+		},
+		"trips": {
+			"methods": ["get-trip", "get-trips"]
+		},
+		"vehicles": {
+			"methods": [
+				"get-vehicle",
+				"get-vehicle-configuration",
+				"get-vehicle-configurations",
+				"get-vehicle-location",
+				"get-vehicles"
+			]
+		}
+	},
+	"methods": {
+		"get-route": {
+			"object": "routes",
+			"operationId": "get-route",
+			"method": "GET",
+			"path": "/routes/{id}",
+			"parameters": {
+				"path": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"query": []
+			},
+			"summary": "Get an individual route by Id.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-route-group": {
+			"object": "routes",
+			"operationId": "get-route-group",
+			"method": "GET",
+			"path": "/routes/groups/{routeGroupId}",
+			"parameters": {
+				"path": [
+					{
+						"name": "routeGroupId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"format": "uuid"
+						}
+					}
+				],
+				"query": []
+			},
+			"summary": "Get an individual route group by ID.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-route-groups": {
+			"object": "routes",
+			"operationId": "get-route-groups",
+			"method": "GET",
+			"path": "/routes/groups",
+			"parameters": {
+				"path": [],
+				"query": []
+			},
+			"summary": "Get all route groups in the system.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-service-alert": {
+			"object": "service-alerts",
+			"operationId": "get-service-alert",
+			"method": "GET",
+			"path": "/service-alerts/{stopId}",
+			"parameters": {
+				"path": [
+					{
+						"name": "stopId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"query": []
+			},
+			"summary": "Get current service alerts for a stop.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-service-alerts": {
+			"object": "service-alerts",
+			"operationId": "get-service-alerts",
+			"method": "GET",
+			"path": "/service-alerts",
+			"parameters": {
+				"path": [],
+				"query": []
+			},
+			"summary": "Get all current service alerts.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-shape": {
+			"object": "shapes",
+			"operationId": "get-shape",
+			"method": "GET",
+			"path": "/shapes/{shapeId}",
+			"parameters": {
+				"path": [
+					{
+						"name": "shapeId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"query": [
+					{
+						"name": "polyline",
+						"in": "query",
+						"schema": {
+							"type": "boolean"
+						}
+					}
+				]
+			},
+			"summary": "Get a route shape with the provided shape ID.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-stop": {
+			"object": "stops",
+			"operationId": "get-stop",
+			"method": "GET",
+			"path": "/stops/{stopId}",
+			"parameters": {
+				"path": [
+					{
+						"name": "stopId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"pattern": "^[A-Za-z\\d]+(:\\d)?$",
+							"type": "string"
+						}
+					}
+				],
+				"query": []
+			},
+			"summary": "Get a stop with the provided ID.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-stop-departures": {
+			"object": "stops",
+			"operationId": "get-stop-departures",
+			"method": "GET",
+			"path": "/stops/{stopId}/departures",
+			"parameters": {
+				"path": [
+					{
+						"name": "stopId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"pattern": "^[A-Za-z\\d]+(:\\d)?$",
+							"type": "string"
+						}
+					}
+				],
+				"query": [
+					{
+						"name": "routes",
+						"in": "query",
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "time",
+						"in": "query",
+						"schema": {
+							"maximum": 120,
+							"minimum": 0,
+							"pattern": "^-?(?:0|[1-9]\\d*)$",
+							"type": ["integer", "string"],
+							"format": "int32",
+							"default": 30
+						}
+					}
+				]
+			},
+			"summary": "Get upcoming departures for a stop.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-stop-routes": {
+			"object": "stops",
+			"operationId": "get-stop-routes",
+			"method": "GET",
+			"path": "/stops/{stopId}/routes",
+			"parameters": {
+				"path": [
+					{
+						"name": "stopId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"pattern": "^[A-Za-z\\d]+(:\\d)?$",
+							"type": "string"
+						}
+					}
+				],
+				"query": []
+			},
+			"summary": "Get all routes that serve this stop.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-stop-schedule": {
+			"object": "stops",
+			"operationId": "get-stop-schedule",
+			"method": "GET",
+			"path": "/stops/{stopId}/schedule",
+			"parameters": {
+				"path": [
+					{
+						"name": "stopId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"pattern": "^[A-Za-z\\d]+(:\\d)?$",
+							"type": "string"
+						}
+					}
+				],
+				"query": []
+			},
+			"summary": "Get scheduled stop times serving a stop.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-stop-trips": {
+			"object": "stops",
+			"operationId": "get-stop-trips",
+			"method": "GET",
+			"path": "/stops/{stopId}/trips",
+			"parameters": {
+				"path": [
+					{
+						"name": "stopId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"pattern": "^[A-Za-z\\d]+(:\\d)?$",
+							"type": "string"
+						}
+					}
+				],
+				"query": []
+			},
+			"summary": "Get all trips that serve this stop.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-stops": {
+			"object": "stops",
+			"operationId": "get-stops",
+			"method": "GET",
+			"path": "/stops",
+			"parameters": {
+				"path": [],
+				"query": [
+					{
+						"name": "excludeBoardingPoints",
+						"in": "query",
+						"schema": {
+							"type": "boolean",
+							"default": false
+						}
+					}
+				]
+			},
+			"summary": "Get all active stops in the system.",
+			"description": "By default a list of stop groups with all associated boarding points will be returned.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"search-stop": {
+			"object": "stops",
+			"operationId": "search-stop",
+			"method": "GET",
+			"path": "/stops/search",
+			"parameters": {
+				"path": [],
+				"query": [
+					{
+						"name": "query",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"maxLength": 50,
+							"minLength": 1,
+							"type": "string"
+						}
+					}
+				]
+			},
+			"summary": "Search for stops using a text query.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-trip": {
+			"object": "trips",
+			"operationId": "get-trip",
+			"method": "GET",
+			"path": "/trips/{tripId}",
+			"parameters": {
+				"path": [
+					{
+						"name": "tripId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"query": []
+			},
+			"summary": "Get a trip with the provided ID.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-trips": {
+			"object": "trips",
+			"operationId": "get-trips",
+			"method": "GET",
+			"path": "/trips",
+			"parameters": {
+				"path": [],
+				"query": []
+			},
+			"summary": "Get all trips in the system.",
+			"description": "By default a list of all trips will be returned.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-vehicle": {
+			"object": "vehicles",
+			"operationId": "get-vehicle",
+			"method": "GET",
+			"path": "/vehicles/{vehicleId}",
+			"parameters": {
+				"path": [
+					{
+						"name": "vehicleId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"query": []
+			},
+			"summary": "Get a vehicle with the provided ID.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-vehicle-configuration": {
+			"object": "vehicles",
+			"operationId": "get-vehicle-configuration",
+			"method": "GET",
+			"path": "/vehicles/configurations/{configurationId}",
+			"parameters": {
+				"path": [
+					{
+						"name": "configurationId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"query": []
+			},
+			"summary": "Get a vehicle configuration by id.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-vehicle-configurations": {
+			"object": "vehicles",
+			"operationId": "get-vehicle-configurations",
+			"method": "GET",
+			"path": "/vehicles/configurations",
+			"parameters": {
+				"path": [],
+				"query": []
+			},
+			"summary": "Get all possible vehicle configurations.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-vehicle-location": {
+			"object": "vehicles",
+			"operationId": "get-vehicle-location",
+			"method": "GET",
+			"path": "/vehicles/{vehicleId}/location",
+			"parameters": {
+				"path": [
+					{
+						"name": "vehicleId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"query": []
+			},
+			"summary": "Get the current location of a vehicle.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		},
+		"get-vehicles": {
+			"object": "vehicles",
+			"operationId": "get-vehicles",
+			"method": "GET",
+			"path": "/vehicles",
+			"parameters": {
+				"path": [],
+				"query": [
+					{
+						"name": "excludeInactive",
+						"in": "query",
+						"schema": {
+							"type": "boolean",
+							"default": false
+						}
+					}
+				]
+			},
+			"summary": "Get all vehicles in the system.",
+			"description": "By default a list of all vehicles will be returned.",
+			"security": [
+				{
+					"ApiKey": []
+				}
+			]
+		}
+	},
+	"securitySchemes": {
+		"ApiKey": {
+			"type": "apiKey",
+			"name": "X-ApiKey",
+			"in": "header",
+			"description": "Provide your API key in the header using X-ApiKey."
+		}
+	}
+}

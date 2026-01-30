@@ -1,16 +1,26 @@
+// /src/mcp/resources.ts
+//
+// Resource helpers for MCP server.
+//
+// Resources exposed:
+// - openapi://spec  -> fetches YAML from configured URL (runtime truth)
+// - openapi://index -> build-generated index JSON (fast lookup for tools)
+
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { serverEnv } from "@env/server";
-import { API_INDEX } from "@t/md.generated";
+
+const GENERATED_INDEX_PATH = join(process.cwd(), "src", "mcp", "generated", "openapi-index.json");
 
 /**
- * Fetches the OpenAPI specification from the configured URL
+ * Fetches the OpenAPI specification from the configured URL.
+ * This is the runtime source of truth for the spec content.
  */
 export async function fetchOpenApiSpec(): Promise<string> {
 	const url = serverEnv.OPENAPI_SPEC_URL;
 
 	try {
-		const response = await fetch(url, {
-			cache: "no-store",
-		});
+		const response = await fetch(url, { cache: "no-store" });
 
 		if (!response.ok) {
 			throw new Error(`Failed to fetch OpenAPI spec: ${response.status} ${response.statusText}`);
@@ -26,8 +36,18 @@ export async function fetchOpenApiSpec(): Promise<string> {
 }
 
 /**
- * Returns the API Index as a JSON string
+ * Loads the build-generated OpenAPI index JSON from disk.
+ * This file is created by scripts/build-mcp.ts and should exist in normal builds.
  */
-export function getApiIndex(): string {
-	return JSON.stringify(API_INDEX, null, 2);
+export function getOpenApiIndexJson(): string {
+	try {
+		const text = readFileSync(GENERATED_INDEX_PATH, "utf-8");
+		return text;
+	} catch (error) {
+		const message = error instanceof Error ? error.message : "Unknown error";
+		throw new Error(
+			`Unable to read generated OpenAPI index at '${GENERATED_INDEX_PATH}'. ` +
+				`Run the build script (scripts/build-mcp.ts). Details: ${message}`,
+		);
+	}
 }

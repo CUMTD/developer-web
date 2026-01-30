@@ -1,14 +1,14 @@
 import type { ApiRequestParameter } from "@t/documentation-types";
 
-export const endpoint = "/stops/{id}/trips";
+export const endpoint = "/stops/{stopId}/trips";
 export const endpointTitle = "Get all trips that serve a stop";
 
 export const pathParameters: ApiRequestParameter[] = [
 	{
-		name: "id",
+		name: "stopId",
 		type: "string",
 		required: true,
-		description: "The id of a stop.",
+		description: "The stopId of a stop.",
 		isPath: true,
 	},
 ];

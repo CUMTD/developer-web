@@ -55,6 +55,7 @@
 		"sonner": "^2.0.7",
 		"unified": "^11.0.5",
 		"vaul": "^1.1.2",
+		"yaml": "^2.8.2",
 		"zod": "^4.3.6"
 	},
 	"devDependencies": {
@@ -93,6 +94,7 @@
 	},
 	"scripts": {
 		"build": "next build",
+		"build:mcp": "tsx --require dotenv/config scripts/build-mcp.ts",
 		"clean": "pnpm exec tsx scripts/clean.ts",
 		"dev": "next dev",
 		"start": "next start",
