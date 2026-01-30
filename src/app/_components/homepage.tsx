@@ -1,6 +1,8 @@
 "use client";
 import CopyTextButton from "@common/copy-text-button";
 import LinkButton from "@common/link-button";
+import { H2 } from "@common/typography/heading";
+import Prose from "@common/typography/prose";
 import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@ui/card";
 import { Separator } from "@ui/separator";
@@ -18,15 +20,17 @@ export default function Homepage() {
 				</p> */}
 				<div className="grid grid-cols-1 grid-rows-1 gap-6 bg lg:grid-cols-3">
 					<div className="col-span-2 my-auto ">
-						<h2 className="mt-0! mb-2 text-5xl leading-tight tracking-tight  ">
-							Welcome to the wonderful world of transit data!
-						</h2>
+						<Prose>
+							<H2 className="mt-0! mb-2 text-5xl leading-tight tracking-tight">
+								Welcome to the wonderful world of transit data!
+							</H2>
 
-						<p>
-							As part of our commitment to staying on the frontline of technology, MTD is proud to offer various ways
-							for students, academics, developers and tinkerers to access our service data. On this page you'll find
-							links to some of the various data feeds we offer.
-						</p>
+							<p>
+								As part of our commitment to staying on the frontline of technology, MTD is proud to offer various ways
+								for students, academics, developers and tinkerers to access our service data. On this page you'll find
+								links to some of the various data feeds we offer.
+							</p>
+						</Prose>
 					</div>
 
 					<div className="bg-sidebar p-5 ml-6 aspect-square col-span-1 rounded-2xl  items-center justify-center hidden lg:flex">
@@ -43,7 +47,7 @@ export default function Homepage() {
 							<CardDescription>General Transit Feed Specification</CardDescription>
 						</CardHeader>
 						<CardContent>
-							<p className="">
+							<p>
 								Industry standard for representing static transit schedules as data. Essentially a virtual timetable.
 								Data comes in a .zip file that contains multiple comma-delimited text files.
 							</p>
