@@ -8,11 +8,11 @@
 // - Throw at build time if they diverge, so MCP stays consistent as the API evolves.
 //
 // Usage:
-//   OPENAPI_SPEC_URL=https://example.com/v3.0.0.yml pnpm tsx scripts/build-mcp.ts
-//   (Fallback) OPENAPI_SPEC_PATH=./v3.0.0.yml pnpm tsx scripts/build-mcp.ts
-// Defaults:
-//   If OPENAPI_SPEC_URL is provided, the spec is fetched over HTTP(S).
-//   Otherwise OPENAPI_SPEC_PATH is used and defaults to "./v3.0.0.yml".
+//   pnpm run build:mcp
+//
+// Environment variables:
+//   OPENAPI_SPEC_URL - URL to fetch OpenAPI spec (preferred)
+//   OPENAPI_SPEC_PATH - Local path to OpenAPI spec (fallback, defaults to "./v3.0.0.yml")
 //
 // Output:
 //   Writes to: ./src/mcp/generated/openapi-index.json

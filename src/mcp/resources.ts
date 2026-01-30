@@ -37,7 +37,7 @@ export async function fetchOpenApiSpec(): Promise<string> {
 
 /**
  * Loads the build-generated OpenAPI index JSON from disk.
- * This file is created by scripts/build-mcp.ts and should exist in normal builds.
+ * This file is created by scripts/build-mcp.ts and should exist after running `pnpm run build:mcp`.
  */
 export function getOpenApiIndexJson(): string {
 	try {
@@ -47,7 +47,7 @@ export function getOpenApiIndexJson(): string {
 		const message = error instanceof Error ? error.message : "Unknown error";
 		throw new Error(
 			`Unable to read generated OpenAPI index at '${GENERATED_INDEX_PATH}'. ` +
-				`Run the build script (scripts/build-mcp.ts). Details: ${message}`,
+				`Run: pnpm run build:mcp. Details: ${message}`,
 		);
 	}
 }

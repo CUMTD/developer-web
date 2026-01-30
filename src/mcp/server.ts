@@ -11,7 +11,7 @@
 //   - get_method_help
 //
 // The OpenAPI spec + build-generated index are the source of truth.
-// /src/content docs are used only for optional enhancements.
+// /src/content docs provide optional examples and descriptions.
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import {
