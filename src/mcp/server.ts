@@ -173,7 +173,7 @@ export function createMcpServer(baseUrl: string): Server {
 				});
 
 				const parsed = schema.parse(args);
-				const help = await getMethodHelp(parsed.object as ApiObject, parsed.method, baseUrl);
+				const help = getMethodHelp(parsed.object as ApiObject, parsed.method, baseUrl);
 
 				return {
 					content: [
