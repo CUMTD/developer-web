@@ -16,7 +16,7 @@ export default async function Keys() {
 			</ItemContent>
 			{canAccessApi && (
 				<ItemActions>
-					<LinkButton variant="ghost" href="/account/keys" className="flex items-center gap-2">
+					<LinkButton variant="default" href="/account/keys" className="flex items-center gap-2">
 						<KeyRound className="h-4 w-4" />
 						Manage
 					</LinkButton>

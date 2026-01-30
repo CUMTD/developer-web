@@ -8,7 +8,7 @@ export default function LoggedOutMenu() {
 			<LinkButton
 				href="/account/auth/login"
 				size="sm"
-				className="md:min-w-28"
+				className=""
 				linkProps={{ className: "w-full flex flex-row justify-center" }}
 			>
 				<CircleUserIcon className="mr-1 inline-block h-4 w-4" />

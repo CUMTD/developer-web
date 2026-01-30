@@ -1,5 +1,5 @@
 "use client";
-import { Collapsible } from "@ui/collapsible";
+import { Separator } from "@ui/separator";
 import {
 	Sidebar,
 	SidebarContent,
@@ -15,6 +15,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type * as React from "react";
+import { Fragment } from "react";
 
 const data = {
 	navMain: [
@@ -33,6 +34,10 @@ const data = {
 		{
 			title: "Interpreting Responses",
 			url: "/reference/responses",
+		},
+		{
+			type: "header",
+			title: "API Reference",
 		},
 		{
 			title: "Routes",
@@ -182,52 +187,76 @@ export function ReferenceSidebar({ ...props }: React.ComponentProps<typeof Sideb
 				<SidebarGroup>
 					<SidebarMenu>
 						{data.navMain.map((item) => {
+							if (item.type === "header") {
+								return (
+									<Fragment key={`header-${item.title}`}>
+										<SidebarMenuItem key={`${item.title}-separator`}>
+											<Separator className="my-3" />
+										</SidebarMenuItem>
+										<SidebarMenuItem
+											key={item.title}
+											className="px-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground"
+										>
+											<span>{item.title}</span>
+										</SidebarMenuItem>
+									</Fragment>
+								);
+							}
+
+							if (!item.url) {
+								return null;
+							}
+
 							const isMainActive = pathname === item.url || pathname.startsWith(`${item.url}/`);
 
 							if (item.items?.length) {
 								// Collapsible item with sub-items
 								return (
-									<Collapsible key={item.title} defaultOpen={isMainActive} className="group/collapsible">
-										<SidebarMenuItem>
-											{/* <CollapsibleTrigger asChild> */}
-											<SidebarMenuButton asChild isActive={isMainActive} className="font-bold">
-												<Link href={item.url}>
-													{item.title}
-													<span className="font-mono text-muted-foreground">{item.subtitle}</span>
-													{/* <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" /> */}
-												</Link>
-											</SidebarMenuButton>
-											{/* </CollapsibleTrigger> */}
-											{/* <CollapsibleContent> */}
-											<SidebarMenuSub>
-												{item.items.map((subItem) => {
-													const isSubActive =
-														pathname === subItem.url || (subItem.url !== "#" && pathname.startsWith(`${subItem.url}/`));
-													return (
-														<SidebarMenuSubItem key={subItem.title}>
-															<SidebarMenuSubButton asChild isActive={isSubActive}>
-																<Link href={subItem.url}>{subItem.title}</Link>
-															</SidebarMenuSubButton>
-														</SidebarMenuSubItem>
-													);
-												})}
-											</SidebarMenuSub>
-											{/* </CollapsibleContent> */}
-										</SidebarMenuItem>
-									</Collapsible>
-								);
-							} else {
-								// Regular item without sub-items
-								return (
+									// <Collapsible key={item.title} defaultOpen={isMainActive} className="group/collapsible">
 									<SidebarMenuItem key={item.title}>
-										<SidebarMenuButton asChild isActive={isMainActive}>
-											<Link href={item.url} className="font-bold">
-												{item.title} {item.subtitle}
+										{/* <CollapsibleTrigger asChild> */}
+										<SidebarMenuButton
+											asChild
+											isActive={isMainActive}
+											className={`font-bold rounded-xs border-0 ${isMainActive && "border-l-4 transition-[border-width] duration-150 ease-out border-accent-foreground"}`}
+										>
+											<Link href={item.url}>
+												{item.title}
+												{/* <span className="font-mono text-muted-foreground">{item.subtitle}</span> */}
+												{/* <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" /> */}
 											</Link>
 										</SidebarMenuButton>
+										{/* </CollapsibleTrigger> */}
+										{/* <CollapsibleContent> */}
+										<SidebarMenuSub>
+											{item.items.map((subItem) => {
+												const isSubActive =
+													pathname === subItem.url || (subItem.url !== "#" && pathname.startsWith(`${subItem.url}/`));
+												return (
+													<SidebarMenuSubItem key={subItem.title}>
+														<SidebarMenuSubButton asChild isActive={isSubActive}>
+															<Link href={subItem.url}>{subItem.title}</Link>
+														</SidebarMenuSubButton>
+													</SidebarMenuSubItem>
+												);
+											})}
+										</SidebarMenuSub>
+										{/* </CollapsibleContent> */}
 									</SidebarMenuItem>
+									// </Collapsible>
 								);
 							}
+
+							// Regular item without sub-items
+							return (
+								<SidebarMenuItem key={item.title}>
+									<SidebarMenuButton asChild isActive={isMainActive}>
+										<Link href={item.url} className="font-bold">
+											{item.title} {item.subtitle}
+										</Link>
+									</SidebarMenuButton>
+								</SidebarMenuItem>
+							);
 						})}
 					</SidebarMenu>
 				</SidebarGroup>

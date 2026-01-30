@@ -16,7 +16,7 @@ export default function Homepage() {
 					Students, developers, and general tinkerers our invited to explore the world of transit data through MTD's
 					public data feeds.
 				</p> */}
-				<div className="grid grid-cols-3 grid-rows-1 gap-6 bg">
+				<div className="grid grid-cols-1 grid-rows-1 gap-6 bg lg:grid-cols-3">
 					<div className="col-span-2 my-auto ">
 						<h2 className="mt-0! mb-2 text-5xl leading-tight tracking-tight  ">
 							Welcome to the wonderful world of transit data!
@@ -29,7 +29,7 @@ export default function Homepage() {
 						</p>
 					</div>
 
-					<div className="bg-sidebar p-5 ml-6 aspect-square col-span-1 rounded-2xl flex items-center justify-center">
+					<div className="bg-sidebar p-5 ml-6 aspect-square col-span-1 rounded-2xl  items-center justify-center hidden lg:flex">
 						<Image alt="" src={"/isobus2.png"} priority width={300} height={200} />
 					</div>
 				</div>
@@ -51,7 +51,7 @@ export default function Homepage() {
 						<CardFooter className="mt-auto flex flex-col items-start gap-3">
 							<CopyTextButton text="https://mtd.dev/gtfs.zip" />
 
-							<div className="flex flex-row gap-4">
+							<div className="flex flex-row gap-4 flex-wrap">
 								<Button>
 									<DownloadIcon /> Download GTFS Feed
 								</Button>
@@ -74,7 +74,7 @@ export default function Homepage() {
 							</p>
 						</CardContent>
 						<CardFooter className="mt-auto">
-							<div className="flex flex-row gap-4">
+							<div className="flex flex-row gap-4 flex-wrap">
 								<Button>
 									<DownloadIcon />
 									Download GTFS-RT Feed

@@ -3,6 +3,7 @@ import LinkButton from "@common/link-button";
 import { H1 } from "@common/typography/heading";
 import { getApiKeys } from "@server/actions/api-keys/get-api-keys";
 import { getTosStatus } from "@server/actions/terms-of-use/get-tos-status";
+import { PlusIcon } from "lucide-react";
 import type { Metadata } from "next";
 import ApiKey from "./_components/api-key";
 import CannotAccess from "./_components/cannot-access";
@@ -26,6 +27,7 @@ export default async function KeysPage() {
 				{canAccessApi && (
 					<div className="flex flex-1 justify-end">
 						<LinkButton href="/account/keys/add" variant="default">
+							<PlusIcon />
 							Add Key
 						</LinkButton>
 					</div>

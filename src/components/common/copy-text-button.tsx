@@ -3,9 +3,8 @@
 import { Button } from "@ui/button";
 import { Input } from "@ui/input";
 import { Label } from "@ui/label";
-import { CopyIcon } from "lucide-react";
-import { useCallback, useId } from "react";
-import { toast } from "sonner";
+import { CheckIcon, CopyIcon } from "lucide-react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 
 type CopyTextProps = Readonly<{
 	text: string;
@@ -42,16 +41,33 @@ async function copyToClipboard(text: string): Promise<void> {
 
 export default function CopyTextButton({ text, title }: CopyTextProps) {
 	const inputId = useId();
+	const [copied, setCopied] = useState(false);
+	const resetTimerRef = useRef<number | null>(null);
 
-	const copyButtonClick = useCallback(() => {
-		async function runCopy() {
-			toast.promise(copyToClipboard(text), {
-				loading: "Copying to clipboard...",
-				success: "Copied to clipboard!",
-				error: "Failed to copy to clipboard.",
-			});
+	useEffect(() => {
+		return () => {
+			if (resetTimerRef.current !== null) {
+				window.clearTimeout(resetTimerRef.current);
+			}
+		};
+	}, []);
+
+	const copyButtonClick = useCallback(async () => {
+		try {
+			await copyToClipboard(text);
+			setCopied(true);
+
+			if (resetTimerRef.current !== null) {
+				window.clearTimeout(resetTimerRef.current);
+			}
+
+			resetTimerRef.current = window.setTimeout(() => {
+				setCopied(false);
+				resetTimerRef.current = null;
+			}, 1500);
+		} catch {
+			// No UI changes on failure.
 		}
-		runCopy();
 	}, [text]);
 
 	return (
@@ -63,7 +79,7 @@ export default function CopyTextButton({ text, title }: CopyTextProps) {
 					id={inputId}
 					value={text}
 					readOnly
-					className="font-mono w-full max-w-60 min-w-0 rounded-r-none"
+					className="font-mono w-full max-w-60 min-w-0 rounded-r-none text-sm"
 					onFocus={(e) => {
 						e.currentTarget.select();
 					}}
@@ -73,10 +89,10 @@ export default function CopyTextButton({ text, title }: CopyTextProps) {
 					type="button"
 					variant="outline"
 					onClick={copyButtonClick}
-					aria-label="Copy to clipboard"
+					aria-label={copied ? "Copied" : "Copy to clipboard"}
 					className="w-10 shrink-0 rounded-l-none border-l-0"
 				>
-					<CopyIcon aria-hidden="true" />
+					{copied ? <CheckIcon aria-hidden="true" /> : <CopyIcon aria-hidden="true" />}
 				</Button>
 			</fieldset>
 		</div>

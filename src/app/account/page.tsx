@@ -1,5 +1,6 @@
 import ThemeSwitcher from "@common/account/theme-switcher";
-import { H1, H2 } from "@common/typography/heading";
+import { LogoutButton } from "@common/auth/logout-button";
+import { H2 } from "@common/typography/heading";
 import { getDeveloperDetails } from "@server/actions/account/get-developer-details";
 import { createClient } from "@server/supabase/server";
 import type { Metadata } from "next";
@@ -34,9 +35,9 @@ export default async function AccountPage() {
 
 	return (
 		<div className="space-y-12">
-			<div className="space-y-4">
-				<H1 wrapProse>Developer Info</H1>
+			<div className="space-y-4 flex flex-row justify-between items-center">
 				<UserInfo name={name} email={email} avatarUrl={avatarUrl} />
+				<LogoutButton variant={"destructive"} />
 			</div>
 			<DeveloperInfo developer={developerDetails} />
 

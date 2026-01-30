@@ -11,7 +11,7 @@ export function LogoutButton({ variant = "ghost", className = "w-full justify-st
 	return (
 		<form action="/account/auth/logout" method="POST">
 			<Button type="submit" variant={variant} className={className} {...rest}>
-				Logout
+				Sign Out
 			</Button>
 		</form>
 	);

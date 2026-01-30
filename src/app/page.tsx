@@ -6,7 +6,6 @@ const homeTitle = "Home";
 const homeDescription = "MTD Developer API."; // TODO: Update description
 
 export const metadata: Metadata = {
-	title: homeTitle,
 	description: homeDescription,
 	alternates: { canonical: "/" },
 	openGraph: {

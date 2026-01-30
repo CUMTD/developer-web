@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import type { Props } from "./page";
+import type { Props } from "./reference/[slug]/page";
 export const dynamicParams = false;
 export const dynamic = "force-static";
 
@@ -18,8 +18,9 @@ async function loadGoogleFont(font: string, text: string, weight = 400) {
 	throw new Error("failed to load font data");
 }
 
+// TODO: adapt this function so it works app-wide
 export default async function Image({ params }: Props) {
-	const { slug } = await params;
+	const { slug } = (await params) ?? "";
 
 	const logoAbsoluteUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/mtd-white-red.svg`;
 
