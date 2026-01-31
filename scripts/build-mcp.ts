@@ -463,6 +463,142 @@ async function main(): Promise<void> {
 	console.log(`   Spec: ${specSourceForLog}`);
 	console.log(`   Objects: ${Object.keys(objects).length}`);
 	console.log(`   Methods: ${Object.keys(methods).length}`);
+
+	// === Generate all tool responses ===
+
+	const toolResponsesPath = resolve("./src/mcp/generated/tool-responses.json");
+	const specCachePath = resolve("./src/mcp/generated/openapi-spec.yml");
+
+	// Placeholder baseUrl - will be replaced at runtime if needed
+	const baseUrl = "http://localhost:3000";
+
+	// Helper to check if example response exists
+	function hasExampleResponse(object: ApiObject, methodId: string): boolean {
+		const responsePath = resolve(docRoot, object, methodId, "response.json");
+		try {
+			return readFileSync(responsePath, "utf-8").length > 0;
+		} catch {
+			return false;
+		}
+	}
+
+	// Helper to extract API key header name
+	function extractApiKeyHeaderName(operationId: string): string {
+		const fallback = "X-ApiKey";
+		const op = methods[operationId];
+		if (!op) {
+			return fallback;
+		}
+
+		const securityReqs = op.security ?? [];
+		for (const sec of securityReqs) {
+			for (const schemeName of Object.keys(sec)) {
+				const scheme = securitySchemes[schemeName];
+				if (scheme && scheme.type === "apiKey") {
+					return scheme.name;
+				}
+			}
+		}
+
+		for (const scheme of Object.values(securitySchemes)) {
+			if (scheme.type === "apiKey") {
+				return scheme.name;
+			}
+		}
+
+		return fallback;
+	}
+
+	// Helper to read doc files
+	function readDocFile(object: ApiObject, fileName: string): string {
+		try {
+			const path = resolve(docRoot, object, fileName);
+			return readFileSync(path, "utf-8");
+		} catch {
+			return "";
+		}
+	}
+
+	function readDocJson(object: ApiObject, fileName: string): unknown {
+		try {
+			const path = resolve(docRoot, object, fileName);
+			return JSON.parse(readFileSync(path, "utf-8")) as unknown;
+		} catch {
+			return {};
+		}
+	}
+
+	// Generate list_objects response
+	const listObjectsResponse = Object.keys(API_INDEX) as ApiObject[];
+
+	// Generate list_methods responses (one per object)
+	const listMethodsResponses: Record<string, string[]> = {};
+	for (const object of Object.keys(API_INDEX) as ApiObject[]) {
+		listMethodsResponses[object] = [...API_INDEX[object]];
+	}
+
+	// Generate get_object_help responses (one per object)
+	const getObjectHelpResponses: Record<string, unknown> = {};
+	for (const object of Object.keys(API_INDEX) as ApiObject[]) {
+		const descriptionText = readDocFile(object, "description.mdx");
+		const exampleObject = readDocJson(object, "object.json");
+
+		getObjectHelpResponses[object] = {
+			object,
+			methods: [...API_INDEX[object]],
+			descriptionText,
+			exampleObject,
+			referenceUrl: `${baseUrl}/reference/${object}`,
+		};
+	}
+
+	// Generate get_method_help responses (one per method)
+	const getMethodHelpResponses: Record<string, unknown> = {};
+	for (const [methodId, methodData] of Object.entries(methods)) {
+		const object = methodData.object;
+		const summary = methodData.summary ?? "";
+		const description = methodData.description ?? "";
+		const apiKeyHeaderName = extractApiKeyHeaderName(methodId);
+
+		getMethodHelpResponses[methodId] = {
+			object,
+			method: methodId,
+			operationId: methodData.operationId,
+			httpMethod: methodData.method,
+			path: methodData.path,
+			summary,
+			description,
+			pathParameters: methodData.parameters.path,
+			queryParameters: methodData.parameters.query,
+			security: methodData.security ?? [],
+			apiKeyHeaderName,
+			referenceUrl: `${baseUrl}/reference/${methodId}`,
+			hasExampleResponse: hasExampleResponse(object, methodId),
+		};
+	}
+
+	const toolResponses = {
+		version: 1,
+		generatedAt: new Date().toISOString(),
+		baseUrl,
+		responses: {
+			list_objects: listObjectsResponse,
+			list_methods: listMethodsResponses,
+			get_object_help: getObjectHelpResponses,
+			get_method_help: getMethodHelpResponses,
+		},
+	};
+
+	writeFileSync(toolResponsesPath, `${JSON.stringify(toolResponses, null, 2)}\n`, "utf-8");
+	console.log(`✅ Wrote tool responses to ${toolResponsesPath}`);
+	console.log(`   list_objects: 1 response`);
+	console.log(`   list_methods: ${Object.keys(listMethodsResponses).length} responses`);
+	console.log(`   get_object_help: ${Object.keys(getObjectHelpResponses).length} responses`);
+	console.log(`   get_method_help: ${Object.keys(getMethodHelpResponses).length} responses`);
+
+	// Cache the OpenAPI spec YAML
+	writeFileSync(specCachePath, raw, "utf-8");
+	console.log(`✅ Cached OpenAPI spec to ${specCachePath}`);
 }
 
 main().catch((err) => {

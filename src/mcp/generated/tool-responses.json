@@ -1,0 +1,781 @@
+{
+	"version": 1,
+	"generatedAt": "2026-01-31T00:44:17.929Z",
+	"baseUrl": "http://localhost:3000",
+	"responses": {
+		"list_objects": ["routes", "service-alerts", "shapes", "stops", "trips", "vehicles"],
+		"list_methods": {
+			"routes": ["get-route", "get-route-group", "get-route-groups"],
+			"service-alerts": ["get-service-alert", "get-service-alerts"],
+			"shapes": ["get-shape"],
+			"stops": [
+				"get-stop",
+				"get-stop-departures",
+				"get-stop-routes",
+				"get-stop-schedule",
+				"get-stop-trips",
+				"get-stops",
+				"search-stop"
+			],
+			"trips": ["get-trip", "get-trips"],
+			"vehicles": [
+				"get-vehicle",
+				"get-vehicle-configuration",
+				"get-vehicle-configurations",
+				"get-vehicle-location",
+				"get-vehicles"
+			]
+		},
+		"get_object_help": {
+			"routes": {
+				"object": "routes",
+				"methods": ["get-route", "get-route-group", "get-route-groups"],
+				"descriptionText": "# Routes\n\nAll bus Routes belong to a Route Group. The Route Group dictates universal properties like color, foreground text color and sort order for the routes it contains.\n",
+				"exampleObject": {
+					"id": "9773e862-95fa-4697-9e94-edb6d59bdd75",
+					"sortNumber": 1,
+					"routeName": "Yellow",
+					"color": "fcee1f",
+					"textColor": "000000",
+					"routes": [
+						{
+							"id": "ac3fc3d037af468f8b24d061de7bea93",
+							"number": "1",
+							"firstTrip": "06:10:00",
+							"lastTrip": "19:19:00",
+							"lastTripAfterMidnight": false,
+							"dayType": {
+								"daypart": "Weekday",
+								"timepart": "Day",
+								"daysOfWeek": "1,2,3,4,5",
+								"sortOrder": 100
+							},
+							"gtfsRoutes": ["YELLOW", "YELLOW ALT", "YELLOWHOPPER"]
+						}
+					]
+				},
+				"referenceUrl": "http://localhost:3000/reference/routes"
+			},
+			"service-alerts": {
+				"object": "service-alerts",
+				"methods": ["get-service-alert", "get-service-alerts"],
+				"descriptionText": "# Service Alerts\nService alerts are important text messages that convey reroutes, delays, and other important service information to riders.\n",
+				"exampleObject": {
+					"id": "string",
+					"displayId": "string",
+					"text": "string",
+					"startTime": "2026-01-21T17:27:31.807Z",
+					"endTime": "2026-01-21T17:27:31.807Z",
+					"blockRealtime": true,
+					"stopIds": ["string"]
+				},
+				"referenceUrl": "http://localhost:3000/reference/service-alerts"
+			},
+			"shapes": {
+				"object": "shapes",
+				"methods": ["get-shape"],
+				"descriptionText": "import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from \"@shared/shadcn/accordion\";\nimport Link from \"next/link\";\n\n# Shapes\nShapes are geographical lines. Shapes are used by <Link href=\"/reference/trips\">trips</Link> to represent the physical path a bus takes.\n\nThere are two ways to represent shapes:\n\n1. ### GTFS Shape Object\n    GTFS shapes conform to <Link href=\"https://gtfs.org/documentation/schedule/reference/#shapestxt\" target=\"_blank\" rel=\"noopener noreferrer\">the GTFS definition of a shape.</Link> This shape contains an array of shape points. Each shape point has a sequence, lat/long coordinates, distance travelled, and stopId.\n\n2. ### Encoded Polyline\n    Polyline encoding is a lossy compression algorithm created by Google that can represent a series of coordinates with a string. An encoded polyline looks like this:\n\n\t\t`ezsFv{qyO@fDbK?CfI`\n\n\tSee Google's Encoded Polyline Algorithm documentation for more information on how to encode and decode these strings, as well as the Polyline Utility.\n\n",
+				"exampleObject": {
+					"id": "[@2.0.86175868@]ORANGE 99",
+					"shapePoints": [
+						{
+							"sequence": 1,
+							"coordinates": {
+								"latitude": 40.111934,
+								"longitude": -88.207296
+							},
+							"distanceTraveled": 0,
+							"stopId": null
+						},
+						{
+							"sequence": 2,
+							"coordinates": {
+								"latitude": 40.111927,
+								"longitude": -88.207374
+							},
+							"distanceTraveled": 6.675,
+							"stopId": null
+						},
+						{
+							"sequence": 3,
+							"coordinates": {
+								"latitude": 40.112121,
+								"longitude": -88.207412
+							},
+							"distanceTraveled": 28.527,
+							"stopId": "BDWYNWTR:2"
+						}
+					]
+				},
+				"referenceUrl": "http://localhost:3000/reference/shapes"
+			},
+			"stops": {
+				"object": "stops",
+				"methods": [
+					"get-stop",
+					"get-stop-departures",
+					"get-stop-routes",
+					"get-stop-schedule",
+					"get-stop-trips",
+					"get-stops",
+					"search-stop"
+				],
+				"descriptionText": "# Stops\n## Stop Group\nA stop group is a collection of one or more boarding points in a logical or geographic grouping. For example, Illini Union (IU) is a collection of four boarding points.\n\n## Boarding Points\nA boarding point is where a passenger may board or alight the bus. Every boarding point corresponds to a single bus stop sign. All passenger journeys start and end at a boarding point.\n\n## <span className=\"flex flex-row  items-center gap-[.5ch] \"> <img className='m-0! -translate-y-0.5' src=\"/istop.svg\" width={20}  /> iStops </span>\niStops are special University of Illinois campus bus stops where fare is not required to board.\n\n",
+				"exampleObject": {
+					"type": 0,
+					"isStation": false,
+					"isTimepoint": false,
+					"city": "Champaign",
+					"boardingPoints": [
+						{
+							"subName": "Platform A",
+							"platformCode": null,
+							"id": "IT:1",
+							"name": "Illinois Terminal (Platform A)",
+							"stopCode": "3678",
+							"url": "https://mtd.org/maps-and-schedules/bus-stops/info/it-1/",
+							"isAccessible": true,
+							"location": {
+								"latitude": 40.115935,
+								"longitude": -88.24094667
+							}
+						},
+						{
+							"subName": "Platform B",
+							"platformCode": null,
+							"id": "IT:2",
+							"name": "Illinois Terminal (Platform B)",
+							"stopCode": "3678",
+							"url": "https://mtd.org/maps-and-schedules/bus-stops/info/it-2/",
+							"isAccessible": true,
+							"location": {
+								"latitude": 40.115535,
+								"longitude": -88.241104
+							}
+						},
+						{
+							"subName": "Platform C",
+							"platformCode": null,
+							"id": "IT:5",
+							"name": "Illinois Terminal (Platform C)",
+							"stopCode": "3678",
+							"url": "https://mtd.org/maps-and-schedules/bus-stops/info/it-5/",
+							"isAccessible": true,
+							"location": {
+								"latitude": 40.115363,
+								"longitude": -88.241442
+							}
+						}
+					],
+					"id": "IT",
+					"name": "Illinois Terminal",
+					"stopCode": "3678",
+					"url": "https://mtd.org/maps-and-schedules/bus-stops/info/it/",
+					"isAccessible": true,
+					"location": {
+						"latitude": 40.115698,
+						"longitude": -88.24109153399999
+					}
+				},
+				"referenceUrl": "http://localhost:3000/reference/stops"
+			},
+			"trips": {
+				"object": "trips",
+				"methods": ["get-trip", "get-trips"],
+				"descriptionText": "# Trips\nA trip is an individual run of a route at a specific time. While multiple trips may follow the same stop pattern, a trip is a single instance of that pattern.\n",
+				"exampleObject": {
+					"id": "[@12.0.42224456@][3][1246897112109]/0__SV4_NOSCH_UIF",
+					"gtfsRouteId": "SILVER EVENING",
+					"blockId": "SV4 NOSCH UIF",
+					"shapeId": "130N SILVER EVENING 2",
+					"headsign": "Lincoln Square",
+					"direction": null
+				},
+				"referenceUrl": "http://localhost:3000/reference/trips"
+			},
+			"vehicles": {
+				"object": "vehicles",
+				"methods": [
+					"get-vehicle",
+					"get-vehicle-configuration",
+					"get-vehicle-configurations",
+					"get-vehicle-location",
+					"get-vehicles"
+				],
+				"descriptionText": "# Vehicles\nIncludes buses and some auxillary service vehicles. All vehicles have a vehicle configuration, which contains details about that fleet's powertrain and aquisition.\n",
+				"exampleObject": {
+					"id": "88371d32-191b-462c-ab9e-6305baad3ef8",
+					"vehicleNumber": "2439",
+					"vehicleConfigurationId": "ddc37e18-cf5b-497f-8460-fac1f7f2bf68",
+					"isActive": true,
+					"vin": "5FYH8FR04RB110326",
+					"licensePlateNumber": null,
+					"dateInService": "2025-02-18"
+				},
+				"referenceUrl": "http://localhost:3000/reference/vehicles"
+			}
+		},
+		"get_method_help": {
+			"get-route": {
+				"object": "routes",
+				"method": "get-route",
+				"operationId": "get-route",
+				"httpMethod": "GET",
+				"path": "/routes/{id}",
+				"summary": "Get an individual route by Id.",
+				"description": "",
+				"pathParameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-route",
+				"hasExampleResponse": true
+			},
+			"get-route-group": {
+				"object": "routes",
+				"method": "get-route-group",
+				"operationId": "get-route-group",
+				"httpMethod": "GET",
+				"path": "/routes/groups/{routeGroupId}",
+				"summary": "Get an individual route group by ID.",
+				"description": "",
+				"pathParameters": [
+					{
+						"name": "routeGroupId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string",
+							"format": "uuid"
+						}
+					}
+				],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-route-group",
+				"hasExampleResponse": true
+			},
+			"get-route-groups": {
+				"object": "routes",
+				"method": "get-route-groups",
+				"operationId": "get-route-groups",
+				"httpMethod": "GET",
+				"path": "/routes/groups",
+				"summary": "Get all route groups in the system.",
+				"description": "",
+				"pathParameters": [],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-route-groups",
+				"hasExampleResponse": true
+			},
+			"get-service-alert": {
+				"object": "service-alerts",
+				"method": "get-service-alert",
+				"operationId": "get-service-alert",
+				"httpMethod": "GET",
+				"path": "/service-alerts/{stopId}",
+				"summary": "Get current service alerts for a stop.",
+				"description": "",
+				"pathParameters": [
+					{
+						"name": "stopId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-service-alert",
+				"hasExampleResponse": true
+			},
+			"get-service-alerts": {
+				"object": "service-alerts",
+				"method": "get-service-alerts",
+				"operationId": "get-service-alerts",
+				"httpMethod": "GET",
+				"path": "/service-alerts",
+				"summary": "Get all current service alerts.",
+				"description": "",
+				"pathParameters": [],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-service-alerts",
+				"hasExampleResponse": true
+			},
+			"get-shape": {
+				"object": "shapes",
+				"method": "get-shape",
+				"operationId": "get-shape",
+				"httpMethod": "GET",
+				"path": "/shapes/{shapeId}",
+				"summary": "Get a route shape with the provided shape ID.",
+				"description": "",
+				"pathParameters": [
+					{
+						"name": "shapeId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"queryParameters": [
+					{
+						"name": "polyline",
+						"in": "query",
+						"schema": {
+							"type": "boolean"
+						}
+					}
+				],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-shape",
+				"hasExampleResponse": true
+			},
+			"get-stop": {
+				"object": "stops",
+				"method": "get-stop",
+				"operationId": "get-stop",
+				"httpMethod": "GET",
+				"path": "/stops/{stopId}",
+				"summary": "Get a stop with the provided ID.",
+				"description": "",
+				"pathParameters": [
+					{
+						"name": "stopId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"pattern": "^[A-Za-z\\d]+(:\\d)?$",
+							"type": "string"
+						}
+					}
+				],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-stop",
+				"hasExampleResponse": true
+			},
+			"get-stop-departures": {
+				"object": "stops",
+				"method": "get-stop-departures",
+				"operationId": "get-stop-departures",
+				"httpMethod": "GET",
+				"path": "/stops/{stopId}/departures",
+				"summary": "Get upcoming departures for a stop.",
+				"description": "",
+				"pathParameters": [
+					{
+						"name": "stopId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"pattern": "^[A-Za-z\\d]+(:\\d)?$",
+							"type": "string"
+						}
+					}
+				],
+				"queryParameters": [
+					{
+						"name": "routes",
+						"in": "query",
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"name": "time",
+						"in": "query",
+						"schema": {
+							"maximum": 120,
+							"minimum": 0,
+							"pattern": "^-?(?:0|[1-9]\\d*)$",
+							"type": ["integer", "string"],
+							"format": "int32",
+							"default": 30
+						}
+					}
+				],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-stop-departures",
+				"hasExampleResponse": true
+			},
+			"get-stop-routes": {
+				"object": "stops",
+				"method": "get-stop-routes",
+				"operationId": "get-stop-routes",
+				"httpMethod": "GET",
+				"path": "/stops/{stopId}/routes",
+				"summary": "Get all routes that serve this stop.",
+				"description": "",
+				"pathParameters": [
+					{
+						"name": "stopId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"pattern": "^[A-Za-z\\d]+(:\\d)?$",
+							"type": "string"
+						}
+					}
+				],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-stop-routes",
+				"hasExampleResponse": true
+			},
+			"get-stop-schedule": {
+				"object": "stops",
+				"method": "get-stop-schedule",
+				"operationId": "get-stop-schedule",
+				"httpMethod": "GET",
+				"path": "/stops/{stopId}/schedule",
+				"summary": "Get scheduled stop times serving a stop.",
+				"description": "",
+				"pathParameters": [
+					{
+						"name": "stopId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"pattern": "^[A-Za-z\\d]+(:\\d)?$",
+							"type": "string"
+						}
+					}
+				],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-stop-schedule",
+				"hasExampleResponse": true
+			},
+			"get-stop-trips": {
+				"object": "stops",
+				"method": "get-stop-trips",
+				"operationId": "get-stop-trips",
+				"httpMethod": "GET",
+				"path": "/stops/{stopId}/trips",
+				"summary": "Get all trips that serve this stop.",
+				"description": "",
+				"pathParameters": [
+					{
+						"name": "stopId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"pattern": "^[A-Za-z\\d]+(:\\d)?$",
+							"type": "string"
+						}
+					}
+				],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-stop-trips",
+				"hasExampleResponse": true
+			},
+			"get-stops": {
+				"object": "stops",
+				"method": "get-stops",
+				"operationId": "get-stops",
+				"httpMethod": "GET",
+				"path": "/stops",
+				"summary": "Get all active stops in the system.",
+				"description": "By default a list of stop groups with all associated boarding points will be returned.",
+				"pathParameters": [],
+				"queryParameters": [
+					{
+						"name": "excludeBoardingPoints",
+						"in": "query",
+						"schema": {
+							"type": "boolean",
+							"default": false
+						}
+					}
+				],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-stops",
+				"hasExampleResponse": true
+			},
+			"search-stop": {
+				"object": "stops",
+				"method": "search-stop",
+				"operationId": "search-stop",
+				"httpMethod": "GET",
+				"path": "/stops/search",
+				"summary": "Search for stops using a text query.",
+				"description": "",
+				"pathParameters": [],
+				"queryParameters": [
+					{
+						"name": "query",
+						"in": "query",
+						"required": true,
+						"schema": {
+							"maxLength": 50,
+							"minLength": 1,
+							"type": "string"
+						}
+					}
+				],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/search-stop",
+				"hasExampleResponse": true
+			},
+			"get-trip": {
+				"object": "trips",
+				"method": "get-trip",
+				"operationId": "get-trip",
+				"httpMethod": "GET",
+				"path": "/trips/{tripId}",
+				"summary": "Get a trip with the provided ID.",
+				"description": "",
+				"pathParameters": [
+					{
+						"name": "tripId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-trip",
+				"hasExampleResponse": true
+			},
+			"get-trips": {
+				"object": "trips",
+				"method": "get-trips",
+				"operationId": "get-trips",
+				"httpMethod": "GET",
+				"path": "/trips",
+				"summary": "Get all trips in the system.",
+				"description": "By default a list of all trips will be returned.",
+				"pathParameters": [],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-trips",
+				"hasExampleResponse": true
+			},
+			"get-vehicle": {
+				"object": "vehicles",
+				"method": "get-vehicle",
+				"operationId": "get-vehicle",
+				"httpMethod": "GET",
+				"path": "/vehicles/{vehicleId}",
+				"summary": "Get a vehicle with the provided ID.",
+				"description": "",
+				"pathParameters": [
+					{
+						"name": "vehicleId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-vehicle",
+				"hasExampleResponse": true
+			},
+			"get-vehicle-configuration": {
+				"object": "vehicles",
+				"method": "get-vehicle-configuration",
+				"operationId": "get-vehicle-configuration",
+				"httpMethod": "GET",
+				"path": "/vehicles/configurations/{configurationId}",
+				"summary": "Get a vehicle configuration by id.",
+				"description": "",
+				"pathParameters": [
+					{
+						"name": "configurationId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-vehicle-configuration",
+				"hasExampleResponse": true
+			},
+			"get-vehicle-configurations": {
+				"object": "vehicles",
+				"method": "get-vehicle-configurations",
+				"operationId": "get-vehicle-configurations",
+				"httpMethod": "GET",
+				"path": "/vehicles/configurations",
+				"summary": "Get all possible vehicle configurations.",
+				"description": "",
+				"pathParameters": [],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-vehicle-configurations",
+				"hasExampleResponse": true
+			},
+			"get-vehicle-location": {
+				"object": "vehicles",
+				"method": "get-vehicle-location",
+				"operationId": "get-vehicle-location",
+				"httpMethod": "GET",
+				"path": "/vehicles/{vehicleId}/location",
+				"summary": "Get the current location of a vehicle.",
+				"description": "",
+				"pathParameters": [
+					{
+						"name": "vehicleId",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"queryParameters": [],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-vehicle-location",
+				"hasExampleResponse": true
+			},
+			"get-vehicles": {
+				"object": "vehicles",
+				"method": "get-vehicles",
+				"operationId": "get-vehicles",
+				"httpMethod": "GET",
+				"path": "/vehicles",
+				"summary": "Get all vehicles in the system.",
+				"description": "By default a list of all vehicles will be returned.",
+				"pathParameters": [],
+				"queryParameters": [
+					{
+						"name": "excludeInactive",
+						"in": "query",
+						"schema": {
+							"type": "boolean",
+							"default": false
+						}
+					}
+				],
+				"security": [
+					{
+						"ApiKey": []
+					}
+				],
+				"apiKeyHeaderName": "X-ApiKey",
+				"referenceUrl": "http://localhost:3000/reference/get-vehicles",
+				"hasExampleResponse": true
+			}
+		}
+	}
+}

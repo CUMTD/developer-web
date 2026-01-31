@@ -22,7 +22,7 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 import { API_INDEX, type ApiMethod, type ApiObject } from "@t/md.generated";
 import { z } from "zod";
-import { fetchOpenApiSpec, getOpenApiIndexJson } from "./resources";
+import { fetchOpenApiSpec, getOpenApiIndexJson, getToolResponses } from "./resources";
 import { getMethodHelp, getObjectHelp, listMethods, listObjects } from "./tools";
 
 function asNonEmptyTuple<T extends string>(arr: readonly T[]): [T, ...T[]] {
@@ -68,6 +68,39 @@ function buildObjectMethodSchema(): z.ZodTypeAny {
  * Creates and configures the MCP server with all resources and tools.
  */
 export function createMcpServer(baseUrl: string): McpServer {
+	// Load pre-generated tool responses
+	let toolResponsesData: {
+		version: number;
+		generatedAt: string;
+		baseUrl: string;
+		responses: {
+			list_objects: unknown;
+			list_methods: Record<string, unknown>;
+			get_object_help: Record<string, unknown>;
+			get_method_help: Record<string, unknown>;
+		};
+	};
+
+	try {
+		const toolResponsesJson = getToolResponses();
+		toolResponsesData = JSON.parse(toolResponsesJson) as typeof toolResponsesData;
+	} catch (_error) {
+		// Fallback to runtime computation if pre-generated responses don't exist
+		console.warn("Warning: Pre-generated tool responses not found. Falling back to runtime computation.");
+		console.warn("Run: pnpm run build:mcp");
+		toolResponsesData = {
+			version: 0,
+			generatedAt: "",
+			baseUrl: "",
+			responses: {
+				list_objects: null,
+				list_methods: {},
+				get_object_help: {},
+				get_method_help: {},
+			},
+		};
+	}
+
 	const mcpServer = new McpServer(
 		{ name: "mtd-api-navigator", version: "1.0.0" },
 		{
@@ -197,6 +230,13 @@ export function createMcpServer(baseUrl: string): McpServer {
 
 		switch (name) {
 			case "list_objects": {
+				// Use pre-generated response if available
+				if (toolResponsesData.responses.list_objects) {
+					return {
+						content: [{ type: "text", text: JSON.stringify(toolResponsesData.responses.list_objects, null, 2) }],
+					};
+				}
+				// Fallback to runtime computation
 				const objects = listObjects();
 				return {
 					content: [{ type: "text", text: JSON.stringify(objects, null, 2) }],
@@ -205,6 +245,14 @@ export function createMcpServer(baseUrl: string): McpServer {
 
 			case "list_methods": {
 				const parsed = objectSchema.parse(args);
+				// Use pre-generated response if available
+				const pregenerated = toolResponsesData.responses.list_methods[parsed.object];
+				if (pregenerated) {
+					return {
+						content: [{ type: "text", text: JSON.stringify(pregenerated, null, 2) }],
+					};
+				}
+				// Fallback to runtime computation
 				const methods = listMethods(parsed.object);
 				return {
 					content: [{ type: "text", text: JSON.stringify(methods, null, 2) }],
@@ -213,6 +261,19 @@ export function createMcpServer(baseUrl: string): McpServer {
 
 			case "get_object_help": {
 				const parsed = objectSchema.parse(args);
+				// Use pre-generated response if available
+				const pregenerated = toolResponsesData.responses.get_object_help[parsed.object];
+				if (pregenerated) {
+					// Replace baseUrl placeholder with actual baseUrl
+					const response =
+						typeof pregenerated === "object" && pregenerated !== null
+							? JSON.parse(JSON.stringify(pregenerated).replace(/http:\/\/localhost:3000/g, baseUrl))
+							: pregenerated;
+					return {
+						content: [{ type: "text", text: JSON.stringify(response, null, 2) }],
+					};
+				}
+				// Fallback to runtime computation
 				const help = getObjectHelp(parsed.object, baseUrl);
 				return {
 					content: [{ type: "text", text: JSON.stringify(help, null, 2) }],
@@ -222,6 +283,20 @@ export function createMcpServer(baseUrl: string): McpServer {
 			case "get_method_help": {
 				const parsed = objectMethodSchema.parse(args) as { object: ApiObject; method: string };
 
+				// Use pre-generated response if available
+				const pregenerated = toolResponsesData.responses.get_method_help[parsed.method];
+				if (pregenerated) {
+					// Replace baseUrl placeholder with actual baseUrl
+					const response =
+						typeof pregenerated === "object" && pregenerated !== null
+							? JSON.parse(JSON.stringify(pregenerated).replace(/http:\/\/localhost:3000/g, baseUrl))
+							: pregenerated;
+					return {
+						content: [{ type: "text", text: JSON.stringify(response, null, 2) }],
+					};
+				}
+
+				// Fallback to runtime computation
 				// `parsed.method` is already validated to the correct method union for that object.
 				const help = getMethodHelp(parsed.object, parsed.method as ApiMethod<typeof parsed.object>, baseUrl);
 

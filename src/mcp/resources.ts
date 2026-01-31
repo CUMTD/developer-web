@@ -3,7 +3,7 @@
 // Resource helpers for MCP server.
 //
 // Resources exposed:
-// - openapi://spec  -> fetches YAML from configured URL (runtime truth)
+// - openapi://spec  -> cached YAML from build time (or fetches from URL as fallback)
 // - openapi://index -> build-generated index JSON (fast lookup for tools)
 
 import { readFileSync } from "node:fs";
@@ -11,12 +11,24 @@ import { join } from "node:path";
 import { serverEnv } from "@env/server";
 
 const GENERATED_INDEX_PATH = join(process.cwd(), "src", "mcp", "generated", "openapi-index.json");
+const CACHED_SPEC_PATH = join(process.cwd(), "src", "mcp", "generated", "openapi-spec.yml");
 
 /**
- * Fetches the OpenAPI specification from the configured URL.
- * This is the runtime source of truth for the spec content.
+ * Gets the OpenAPI specification.
+ * Prefers the cached version from build time, falls back to fetching from URL.
  */
 export async function fetchOpenApiSpec(): Promise<string> {
+	// Try to use cached spec first
+	try {
+		const cached = readFileSync(CACHED_SPEC_PATH, "utf-8");
+		if (cached) {
+			return cached;
+		}
+	} catch {
+		// Cached spec doesn't exist, fall back to fetching
+	}
+
+	// Fallback: fetch from URL
 	const url = serverEnv.OPENAPI_SPEC_URL;
 
 	try {
@@ -47,6 +59,25 @@ export function getOpenApiIndexJson(): string {
 		const message = error instanceof Error ? error.message : "Unknown error";
 		throw new Error(
 			`Unable to read generated OpenAPI index at '${GENERATED_INDEX_PATH}'. ` +
+				`Run: pnpm run build:mcp. Details: ${message}`,
+		);
+	}
+}
+
+/**
+ * Loads the build-generated tool responses JSON from disk.
+ * This file contains all pre-computed responses for MCP tools.
+ */
+export function getToolResponses(): string {
+	const TOOL_RESPONSES_PATH = join(process.cwd(), "src", "mcp", "generated", "tool-responses.json");
+
+	try {
+		const text = readFileSync(TOOL_RESPONSES_PATH, "utf-8");
+		return text;
+	} catch (error) {
+		const message = error instanceof Error ? error.message : "Unknown error";
+		throw new Error(
+			`Unable to read generated tool responses at '${TOOL_RESPONSES_PATH}'. ` +
 				`Run: pnpm run build:mcp. Details: ${message}`,
 		);
 	}
