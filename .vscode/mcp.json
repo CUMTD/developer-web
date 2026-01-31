@@ -14,6 +14,14 @@
 		}
 	],
 	"servers": {
+		"mtd-api-navigator": {
+			"type": "http",
+			"url": "http://localhost:3000/api/mcp",
+			"metadata": {
+				"description": "Local MTD API documentation navigator - provides tools and resources for exploring the MTD Open API",
+				"requiresDevServer": true
+			}
+		},
 		"next-devtools": {
 			"command": "pnpm",
 			"args": ["dlx", "next-devtools-mcp@latest"]

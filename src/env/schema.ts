@@ -15,4 +15,5 @@ export const ServerEnvSchema = z.object({
 	SUPABASE_PROJECT_REF: z.string().min(1),
 	SENTRY_ORG: z.string().min(1).optional(),
 	SENTRY_PROJECT: z.string().min(1).optional(),
+	OPENAPI_SPEC_URL: z.url().default("https://mtdintunedeployments.blob.core.windows.net/apps/v3.0.0.yml"),
 });

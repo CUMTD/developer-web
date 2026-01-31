@@ -1,0 +1,84 @@
+// /src/mcp/resources.ts
+//
+// Resource helpers for MCP server.
+//
+// Resources exposed:
+// - openapi://spec  -> cached YAML from build time (or fetches from URL as fallback)
+// - openapi://index -> build-generated index JSON (fast lookup for tools)
+
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { serverEnv } from "@env/server";
+
+const GENERATED_INDEX_PATH = join(process.cwd(), "src", "mcp", "generated", "openapi-index.json");
+const CACHED_SPEC_PATH = join(process.cwd(), "src", "mcp", "generated", "openapi-spec.yml");
+
+/**
+ * Gets the OpenAPI specification.
+ * Prefers the cached version from build time, falls back to fetching from URL.
+ */
+export async function fetchOpenApiSpec(): Promise<string> {
+	// Try to use cached spec first
+	try {
+		const cached = readFileSync(CACHED_SPEC_PATH, "utf-8");
+		if (cached) {
+			return cached;
+		}
+	} catch {
+		// Cached spec doesn't exist, fall back to fetching
+	}
+
+	// Fallback: fetch from URL
+	const url = serverEnv.OPENAPI_SPEC_URL;
+
+	try {
+		const response = await fetch(url, { cache: "no-store" });
+
+		if (!response.ok) {
+			throw new Error(`Failed to fetch OpenAPI spec: ${response.status} ${response.statusText}`);
+		}
+
+		return await response.text();
+	} catch (error) {
+		if (error instanceof Error) {
+			throw new Error(`Error fetching OpenAPI spec from ${url}: ${error.message}`);
+		}
+		throw new Error(`Unknown error fetching OpenAPI spec from ${url}`);
+	}
+}
+
+/**
+ * Loads the build-generated OpenAPI index JSON from disk.
+ * This file is created by scripts/build-mcp.ts and should exist after running `pnpm run build:mcp`.
+ */
+export function getOpenApiIndexJson(): string {
+	try {
+		const text = readFileSync(GENERATED_INDEX_PATH, "utf-8");
+		return text;
+	} catch (error) {
+		const message = error instanceof Error ? error.message : "Unknown error";
+		throw new Error(
+			`Unable to read generated OpenAPI index at '${GENERATED_INDEX_PATH}'. ` +
+				`Run: pnpm run build:mcp. Details: ${message}`,
+		);
+	}
+}
+
+/**
+ * Loads the build-generated tool responses JSON from disk.
+ * This file contains all pre-computed responses for MCP tools.
+ */
+export function getToolResponses(): string {
+	const TOOL_RESPONSES_PATH = join(process.cwd(), "src", "mcp", "generated", "tool-responses.json");
+
+	try {
+		const text = readFileSync(TOOL_RESPONSES_PATH, "utf-8");
+		return text;
+	} catch (error) {
+		const message = error instanceof Error ? error.message : "Unknown error";
+		throw new Error(
+			`Unable to read generated tool responses at '${TOOL_RESPONSES_PATH}'. ` +
+				`Run: pnpm run build:mcp. Details: ${message}`,
+		);
+	}
+}

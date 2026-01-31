@@ -23,6 +23,7 @@ MTD's Open API documentation and developer account management portal.
 - [Deployment](#-deployment)
 - [Contributing](#-contributing)
 - [Additional Resources](#-additional-resources)
+- [MCP Server (Model Context Protocol)](#mcp-server-model-context-protocol)
 - [Support](#-support)
 
 ---
@@ -232,6 +233,12 @@ src/
     utils/                    # UI helpers (cn(), etc.)
     temporal/                 # Date/time utilities
 
+  mcp/                        # Model Context Protocol server
+    server.ts                 # MCP server setup and configuration
+    resources.ts              # MCP resource handlers (OpenAPI spec, API index)
+    tools.ts                  # MCP tool implementations (list_objects, list_methods, get_method_help)
+    types.ts                  # MCP-specific type definitions
+
   server/                     # SERVER-ONLY CODE
     actions/                  # Server actions grouped by domain
       api-keys/               # API key management
@@ -275,12 +282,18 @@ Create a `.env` file with the following:
 # Application Base URL
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 
+# MTD API URL (for examples and documentation)
+NEXT_PUBLIC_MTD_API_URL=https://developer.mtd.org/api/v2.2/json
+
 # Supabase Configuration
 NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 SUPABASE_PROJECT_REF=your-project-ref
 SUPABASE_ACCESS_TOKEN=your-access-token
+
+# OpenAPI Specification URL (for MCP server)
+OPENAPI_SPEC_URL=https://mtdintunedeployments.blob.core.windows.net/apps/v3.0.0.yml
 
 # Analytics
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=mtd.dev
@@ -516,6 +529,134 @@ Set these in Vercel project settings:
 - [shadcn/ui Documentation](https://ui.shadcn.com)
 - [Supabase Documentation](https://supabase.com/docs)
 - [Biome Documentation](https://biomejs.dev)
+
+---
+
+## MCP Server (Model Context Protocol)
+
+This project includes an MCP server that allows AI assistants to explore and query the MTD Open API documentation programmatically.
+
+### Architecture
+
+The MCP implementation follows a build-time validation strategy to ensure consistency:
+
+1. **OpenAPI Spec** (from `OPENAPI_SPEC_URL`) → Source of truth for API operations (paths, methods, parameters, security)
+2. **Documentation Structure** (`/src/content/api`) → Defines available objects and methods
+3. **Build Script** (`scripts/build-mcp.ts`) → Validates consistency and generates index
+4. **Generated Index** (`src/mcp/generated/openapi-index.json`) → Fast lookup for MCP tools at runtime
+
+**Build-time Validation:**
+```bash
+pnpm run build:mcp
+```
+
+This script:
+- Fetches the OpenAPI spec from `OPENAPI_SPEC_URL`
+- Compares it with the documentation structure from `md.generated.ts`
+- **Throws errors** if they're inconsistent (missing methods, mismatched endpoints)
+- Generates `openapi-index.json` for fast runtime access
+
+**Design Philosophy:**
+- OpenAPI spec is the single source of truth for API operations
+- Documentation in `/src/content/api` provides examples and human-readable context
+- Build-time validation ensures docs stay in sync with the API
+- Runtime tools are simple lookups against the validated index
+
+### Configuration
+
+The MCP server runs locally alongside the Next.js dev server at `http://localhost:3000/api/mcp`.
+
+#### Environment Variables
+
+Add to your `.env` file:
+
+```bash
+# OpenAPI Specification URL for the MCP server
+# Used by both build:mcp script and runtime resource fetch
+OPENAPI_SPEC_URL=https://mtdintunedeployments.blob.core.windows.net/apps/v3.0.0.yml
+```
+
+#### VS Code / Copilot Configuration
+
+The `.vscode/mcp.json` file is pre-configured with the `mtd-api-navigator` server:
+
+```json
+{
+  "servers": {
+    "mtd-api-navigator": {
+      "type": "http",
+      "url": "http://localhost:3000/api/mcp"
+    }
+  }
+}
+```
+
+**Note**: The MCP server requires the Next.js dev server to be running (`pnpm run dev`).
+
+### Available Tools
+
+#### `list_objects`
+Lists all API object types (e.g., routes, stops, vehicles).
+
+```json
+{
+  "name": "list_objects",
+  "arguments": {}
+}
+```
+
+#### `list_methods`
+Lists all methods for a specific API object.
+
+```json
+{
+  "name": "list_methods",
+  "arguments": {
+    "object": "stops"
+  }
+}
+```
+
+#### `get_object_help`
+Gets object-level documentation including methods list, description, and example object.
+
+```json
+{
+  "name": "get_object_help",
+  "arguments": {
+    "object": "stops"
+  }
+}
+```
+
+#### `get_method_help`
+Gets detailed information about an API method including endpoint, parameters, and reference URL.
+
+```json
+{
+  "name": "get_method_help",
+  "arguments": {
+    "object": "stops",
+    "method": "get-stop"
+  }
+}
+```
+
+### Available Resources
+
+#### `openapi://spec`
+The complete OpenAPI specification in YAML format, fetched from `OPENAPI_SPEC_URL`.
+
+#### `openapi://index`
+The build-generated JSON index containing validated mappings between objects, methods, and OpenAPI operations.
+
+### Implementation Details
+
+- **Location**: `src/mcp/` (server logic) and `src/app/api/mcp/route.ts` (Next.js API route)
+- **SDK**: `@modelcontextprotocol/sdk` for MCP protocol implementation
+- **Transport**: Streamable HTTP with SSE support for real-time streaming
+- **Safe by default**: Read-only access; no authenticated API calls
+- **Build validation**: Run `pnpm run build:mcp` to validate docs/OpenAPI consistency
 
 ---
 
