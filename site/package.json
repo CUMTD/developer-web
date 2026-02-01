@@ -100,7 +100,8 @@
 		"start": "next start",
 		"typecheck": "tsc -p tsconfig.json --noEmit",
 		"typegen:md": "pnpm exec tsx scripts/generate-markdown-index.ts",
-		"typegen:supabase": "dotenv -e .env -- cross-env-shell \"supabase gen types typescript --project-id $SUPABASE_PROJECT_REF\" > types/supabase.ts && pnpm exec biome format --write types/supabase.ts",
+		"typegen:supabase": "pnpm exec tsx scripts/check-supabase-types.ts --silent || pnpm run typegen:supabase:force",
+		"typegen:supabase:force": "dotenv -e .env -- cross-env-shell \"supabase gen types typescript --project-id $SUPABASE_PROJECT_REF\" > types/supabase.ts && pnpm exec biome format --write types/supabase.ts",
 		"validate:env": "pnpm exec tsx --require dotenv/config scripts/validate-env.ts"
 	},
 	"type": "module",

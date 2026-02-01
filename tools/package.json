@@ -11,7 +11,7 @@
 	"private": true,
 	"scripts": {
 		"gen:spec": "tsx src/gen-spec.ts",
-		"gen:types": "pnpm exec openapi-typescript ../../packages/spec/dist/openapi.yml -o ../../packages/types/src/openapi.generated.ts"
+		"gen:types": "pnpm exec openapi-typescript ../packages/spec/dist/openapi.yml -o ../packages/types/src/openapi.generated.ts"
 	},
 	"type": "module"
 }
