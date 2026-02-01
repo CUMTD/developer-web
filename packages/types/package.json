@@ -16,7 +16,7 @@
 	"scripts": {
 		"build": "tsc -p tsconfig.build.json",
 		"clean": "pnpm exec tsx ../../scripts/clean dist tsconfig.build.tsbuildinfo tsconfig.tsbuildinfo src/openapi.generated.ts",
-		"gen": "pnpm -C ../../tools/generate gen:types",
+		"gen": "pnpm -C ../../tools gen:types",
 		"prebuild": "pnpm run gen"
 	},
 	"sideEffects": false,

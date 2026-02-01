@@ -15,7 +15,7 @@
 	},
 	"scripts": {
 		"clean": "pnpm exec tsx ../../scripts/clean dist",
-		"gen": "dotenv -e ../../.env -- pnpm -C ../../tools/generate gen:spec",
+		"gen": "dotenv -e ../../.env -- pnpm -C ../../tools gen:spec",
 		"build": "pnpm run clean && pnpm run gen"
 	},
 	"type": "module",

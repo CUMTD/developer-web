@@ -1,10 +1,10 @@
 packages:
   - ./site
   - ./packages/*
-  - ./tools/*
+  - ./tools
 
 onlyBuiltDependencies:
-  - '@sentry/cli'
+  - "@sentry/cli"
   - esbuild
   - sharp
   - supabase
