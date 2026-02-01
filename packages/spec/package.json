@@ -5,6 +5,11 @@
 	"license": "Apache-2.0",
 	"name": "@mtd/developer-api-spec",
 	"private": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/CUMTD/developer-web",
+		"directory": "packages/spec"
+	},
 	"files": [
 		"dist"
 	],

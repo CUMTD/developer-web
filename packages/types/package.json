@@ -1,4 +1,5 @@
 {
+	"author": "Ryan Blackman",
 	"devDependencies": {
 		"@mtd/developer-api-spec": "workspace:*",
 		"typescript": "^5.9.3"
@@ -13,6 +14,12 @@
 	],
 	"license": "Apache-2.0",
 	"name": "@mtd/developer-api-types",
+	"private": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/CUMTD/developer-web",
+		"directory": "packages/types"
+	},
 	"scripts": {
 		"build": "tsc -p tsconfig.build.json",
 		"clean": "pnpm exec tsx ../../scripts/clean dist tsconfig.build.tsbuildinfo tsconfig.tsbuildinfo src/openapi.generated.ts",
