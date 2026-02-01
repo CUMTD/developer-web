@@ -93,13 +93,12 @@
 	},
 	"scripts": {
 		"build": "next build",
-		"ci:verify": "pnpm exec biome check . && pnpm exec tsc -p tsconfig.json --noEmit",
-		"clean": "pnpm exec tsx ../scripts/clean.ts .next",
+		"ci:verify": "tsc -p tsconfig.json --noEmit",
 		"dev": "next dev",
 		"prebuild": "pnpm run validate:env && pnpm run typegen:md && pnpm run typegen:supabase",
 		"predev": "pnpm run validate:env && pnpm run typegen:md && pnpm run typegen:supabase",
 		"start": "next start",
-		"typecheck": "pnpm exec tsc -p tsconfig.json --noEmit",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
 		"typegen:md": "pnpm exec tsx scripts/generate-markdown-index.ts",
 		"typegen:supabase": "dotenv -e .env -- cross-env-shell \"supabase gen types typescript --project-id $SUPABASE_PROJECT_REF\" > types/supabase.ts && pnpm exec biome format --write types/supabase.ts",
 		"validate:env": "pnpm exec tsx --require dotenv/config scripts/validate-env.ts"

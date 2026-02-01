@@ -39,7 +39,7 @@
 		"build": "pnpm -r --workspace-concurrency=1 --sort build",
 		"check": "biome check .",
 		"check:fix": "biome check . --write",
-		"ci:verify": "pnpm -r ci:verify",
+		"ci:verify": "pnpm check && pnpm typecheck",
 		"clean": "pnpm -r clean",
 		"dev": "pnpm -r dev",
 		"format": "biome format .",
