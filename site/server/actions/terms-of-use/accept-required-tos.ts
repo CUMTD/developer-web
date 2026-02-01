@@ -1,4 +1,3 @@
-// src/actions/tos/accept-required-tos.ts
 "use server";
 
 import { createClient } from "@server/supabase/server";

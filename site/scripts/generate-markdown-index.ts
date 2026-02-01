@@ -1,11 +1,11 @@
 import { readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
-const ROOT = join(process.cwd(), "src", "content", "api");
-const OUT_FILE = join(process.cwd(), "src", "types", "md.generated.ts");
+const ROOT = join(process.cwd(), "content", "api");
+const OUT_FILE = join(process.cwd(), "types", "md.generated.ts");
 
 async function main() {
-	// top-level objects (folders under src/app/markdown)
+	// top-level objects (folders under app/markdown)
 	const topEntries = await readdir(ROOT, { withFileTypes: true });
 	const objects = topEntries
 		.filter((e) => e.isDirectory())

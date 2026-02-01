@@ -5,18 +5,18 @@
 	"tsx": true,
 	"tailwind": {
 		"config": "",
-		"css": "src/app/_styles/globals.css",
+		"css": "app/_styles/globals.css",
 		"baseColor": "slate",
 		"cssVariables": true,
 		"prefix": ""
 	},
 	"iconLibrary": "lucide",
 	"aliases": {
-		"components": "src/components/ui",
-		"ui": "src/components/ui",
-		"utils": "src/lib/utils",
-		"lib": "src/lib",
-		"hooks": "src/hooks"
+		"components": "components/ui",
+		"ui": "components/ui",
+		"utils": "lib/utils",
+		"lib": "lib",
+		"hooks": "hooks"
 	},
 	"registries": {
 		"@supabase": "https://supabase.com/ui/r/{name}.json"

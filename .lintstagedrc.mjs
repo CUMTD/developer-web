@@ -32,9 +32,45 @@ const biomeCheck = (filenames) => {
 	return `pnpm exec biome check --write --no-errors-on-unmatched --files-ignore-unknown=true --colors=off ${files}`;
 };
 
+function stagedFilesUnder(filenames, prefix) {
+	return (
+		toRepoRelative(filenames).filter((f) => {
+			return !isIgnored(f) && f.startsWith(prefix);
+		}).length > 0
+	);
+}
+
 export default {
-	// Typecheck website if any website TS/TSX files are staged
-	"**/*.{ts,tsx}": () => ["pnpm exec tsc -p tsconfig.json --noEmit"],
+	"**/*.{ts,tsx}": (filenames) => {
+		const cmds = [];
+
+		if (stagedFilesUnder(filenames, "site")) {
+			cmds.push("pnpm -w exec tsc -p site/tsconfig.json --noEmit");
+		}
+
+		if (stagedFilesUnder(filenames, "packages/types/")) {
+			cmds.push("pnpm -w exec tsc -p packages/types/tsconfig.json --noEmit");
+		}
+
+		if (stagedFilesUnder(filenames, "packages/spec/")) {
+			cmds.push("pnpm -w exec tsc -p packages/spec/tsconfig.json --noEmit");
+		}
+
+		if (stagedFilesUnder(filenames, "packages/client/")) {
+			cmds.push("pnpm -w exec tsc -p packages/client/tsconfig.json --noEmit");
+		}
+
+		if (stagedFilesUnder(filenames, "tools/")) {
+			cmds.push("pnpm -w exec tsc -p tsconfig.json --noEmit");
+		}
+
+		// If TS/TSX staged but none under website/cms (rare), do nothing.
+		if (cmds.length === 0) {
+			cmds.push('node -e "process.exit(0)"');
+		}
+
+		return cmds;
+	},
 	// Format/lint staged files (skip generated output)
 	"**/*.{js,jsx,ts,tsx,md,json}": biomeCheck,
 };

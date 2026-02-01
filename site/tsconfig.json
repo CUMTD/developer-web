@@ -1,0 +1,28 @@
+{
+	"extends": "../tsconfig.base.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@app/*": ["app/*"],
+			"@common/*": ["components/common/*"],
+			"@content/*": ["content/*"],
+			"@contexts/*": ["contexts/*"],
+			"@env/*": ["env/*"],
+			"@helpers/*": ["helpers/*"],
+			"@hooks/*": ["hooks/*"],
+			"@lib/*": ["lib/*"],
+			"@markdown/*": ["content/api/*"],
+			"@server/*": ["server/*"],
+			"@t/*": ["types/*"],
+			"@ui/*": ["components/ui/*"]
+		},
+		"plugins": [
+			{
+				"name": "next"
+			}
+		],
+		"typeRoots": ["./types", "./node_modules/@types"]
+	},
+	"exclude": ["node_modules", "content/templates/*"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "types/**/*.d.ts"]
+}

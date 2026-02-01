@@ -73,8 +73,15 @@ function NavMenu() {
 					</NavigationMenuList>
 				</NavigationMenu>
 			</header>
-			<div className="h-6 w-full text-sm bg-[linear-gradient(45deg,#000_25%,#18181b_25%,#18181b_50%,#000_50%,#000_75%,#18181b_75%,#18181b_100%)] bg-[length:40px_40px] flex items-center justify-center">
-				<span className="text-white font-bold  px-10">BETA - INFORMATION NOT FINAL</span>
+			<div
+				className={`
+				h-6 w-full text-sm
+				bg-[linear-gradient(45deg,var(--background)_25%,var(--muted)_25%,var(--muted)_50%,var(--background)_50%,var(--background)_75%,var(--muted)_75%,var(--muted)_100%)]
+				bg-size-[40px_40px] flex items-center justify-center`}
+			>
+				<p className="text-foreground font-bold px-10">
+					<strong className="uppercase">Beta - Informational not Final</strong>
+				</p>
 			</div>
 		</>
 	);

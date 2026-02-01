@@ -23,7 +23,7 @@ export async function PrettyCodeFromFilepath({
 	endpoint,
 	queryParameters,
 }: PrettyCodeFromFilepathProps) {
-	const resolvedPath = filepath.replace("@content/", "src/content/");
+	const resolvedPath = filepath.replace("@content/", "content/");
 	const fileContent = await readFile(resolvedPath, { encoding: "utf-8" });
 
 	var trimmedContent = fileContent.replace(/\n+$/, "");
