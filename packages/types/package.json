@@ -1,0 +1,26 @@
+{
+	"devDependencies": {
+		"@mtd/developer-api-spec": "workspace:*",
+		"typescript": "^5.9.3"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"license": "Apache-2.0",
+	"name": "@mtd/developer-api-types",
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"clean": "pnpm exec tsx ../../scripts/clean dist tsconfig.build.tsbuildinfo tsconfig.tsbuildinfo src/openapi.generated.ts",
+		"gen": "pnpm -C ../../tools/generate gen:types",
+		"prebuild": "pnpm run gen"
+	},
+	"sideEffects": false,
+	"type": "module",
+	"types": "./dist/index.d.ts",
+	"version": "3.0.0"
+}

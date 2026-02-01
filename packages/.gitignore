@@ -1,0 +1,4 @@
+*.generated.ts
+*.generated.d.ts
+*.generated.js
+*.generated.json

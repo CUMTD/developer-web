@@ -1,0 +1,27 @@
+{
+	"dependencies": {
+		"@mtd/developer-api-types": "workspace:*",
+		"openapi-fetch": "^0.15.0"
+	},
+	"devDependencies": {
+		"typescript": "^5.9.3"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"license": "Apache-2.0",
+	"name": "@mtd/developer-api-client",
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"clean": "pnpm exec tsx ../../scripts/clean dist src/operations.generated.ts tsconfig.build.tsbuildinfo tsconfig.tsbuildinfo",
+		"typecheck": "tsc -p tsconfig.json --noEmit"
+	},
+	"sideEffects": false,
+	"type": "module",
+	"version": "3.0.0"
+}

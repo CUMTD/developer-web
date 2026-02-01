@@ -1,0 +1,23 @@
+{
+	"author": "Ryan Blackman",
+	"dependencies": {},
+	"devDependencies": {},
+	"license": "Apache-2.0",
+	"name": "@mtd/developer-api-spec",
+	"private": false,
+	"files": [
+		"dist"
+	],
+	"exports": {
+		"./openapi.json": "./dist/openapi.json",
+		"./openapi.yml": "./dist/openapi.yml",
+		"./package.json": "./package.json"
+	},
+	"scripts": {
+		"clean": "pnpm exec tsx ../../scripts/clean dist",
+		"gen": "dotenv -e ../../.env -- pnpm -C ../../tools/generate gen:spec",
+		"build": "pnpm run clean && pnpm run gen"
+	},
+	"type": "module",
+	"version": "3.0.0"
+}

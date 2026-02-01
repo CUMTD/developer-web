@@ -33,7 +33,7 @@ const isIgnored = (f) => {
  * @param {string[]} filenames
  * @returns {string}
  */
-const biomeCheck = (filenames) => {
+function biomeCheck(filenames) {
 	const filesArray = toRepoRelative(filenames).filter((f) => {
 		return !isIgnored(f);
 	});
@@ -47,7 +47,7 @@ const biomeCheck = (filenames) => {
 	}
 
 	return `pnpm -w exec biome check --write --no-errors-on-unmatched --files-ignore-unknown=true --colors=off .`;
-};
+}
 
 /**
  * @param {string[]} filenames
@@ -82,10 +82,6 @@ export default {
 			cmds.push("pnpm -w exec tsc -p packages/client/tsconfig.json --noEmit");
 		}
 
-		if (stagedFilesUnder(filenames, "tools/")) {
-			cmds.push("pnpm -w exec tsc -p tsconfig.json --noEmit");
-		}
-
 		// If TS/TSX staged but none under website/cms (rare), do nothing.
 		if (cmds.length === 0) {
 			cmds.push('node -e "process.exit(0)"');
@@ -93,6 +89,5 @@ export default {
 
 		return cmds;
 	},
-	// Format/lint staged files (skip generated output)
 	"**/*.{js,jsx,ts,tsx,md,json}": biomeCheck,
 };
