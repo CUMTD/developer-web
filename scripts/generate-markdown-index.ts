@@ -1,5 +1,9 @@
+import { exec } from "node:child_process";
 import { readdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import { promisify } from "node:util";
+
+const execAsync = promisify(exec);
 
 const ROOT = join(process.cwd(), "src", "content", "api");
 const OUT_FILE = join(process.cwd(), "src", "types", "md.generated.ts");
@@ -41,6 +45,14 @@ export type AnyApiMethod = ApiMethod<ApiObject>;
 
 	await writeFile(OUT_FILE, fileContents, "utf8");
 	console.log(`✅ Generated: ${OUT_FILE}`);
+
+	// Format the generated file with biome
+	try {
+		await execAsync(`pnpm exec biome format --write ${OUT_FILE}`);
+		console.log(`✅ Formatted: ${OUT_FILE}`);
+	} catch (error) {
+		console.warn(`⚠️  Failed to format ${OUT_FILE}:`, error);
+	}
 }
 
 main().catch((err) => {

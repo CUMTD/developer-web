@@ -42,6 +42,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Generate types needed for typecheck (no secrets required)
+      - name: Generate markdown types
+        run: pnpm run typegen:md
+
       # biome + tsc (no secrets required)
       - name: Verify
         run: pnpm run ci:verify
