@@ -77,10 +77,15 @@ site/
 
 ## Generated Files (Do Not Edit)
 
-- `types/supabase.ts`
-- `types/md.generated.ts`
+- `types/supabase.ts` - Generated from Supabase schema
+- `types/md.generated.ts` - Generated from MDX content
 
-These are regenerated automatically during dev and build.
+These files are committed to git but regenerated when needed. To force regeneration:
+
+```
+pnpm run typegen:supabase:force  # Requires Supabase credentials
+pnpm run typegen:md
+```
 
 ---
 

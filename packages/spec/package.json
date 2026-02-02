@@ -5,6 +5,11 @@
 	"license": "Apache-2.0",
 	"name": "@mtd/developer-api-spec",
 	"private": false,
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/CUMTD/developer-web",
+		"directory": "packages/spec"
+	},
 	"files": [
 		"dist"
 	],
@@ -15,8 +20,9 @@
 	},
 	"scripts": {
 		"clean": "pnpm exec tsx ../../scripts/clean dist",
-		"gen": "dotenv -e ../../.env -- pnpm -C ../../tools gen:spec",
-		"build": "pnpm run clean && pnpm run gen"
+		"gen": "pnpm exec tsx ../../scripts/check-spec-exists.ts --silent || dotenv -e ../../.env -- pnpm -C ../../tools gen:spec",
+		"gen:force": "pnpm run clean && dotenv -e ../../.env -- pnpm -C ../../tools gen:spec",
+		"build": "pnpm exec tsx ../../scripts/check-spec-exists.ts"
 	},
 	"type": "module",
 	"version": "3.0.0"

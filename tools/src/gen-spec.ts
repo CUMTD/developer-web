@@ -6,7 +6,7 @@ import type { OpenAPIV3 } from "openapi-types";
 
 const ENV_VAR = "OPENAPI_SPEC_URL";
 
-const repoRoot = path.resolve(process.cwd(), "..", "..");
+const repoRoot = path.resolve(process.cwd(), "..");
 const specPkgDir = path.join(repoRoot, "packages", "spec");
 const distDir = path.join(specPkgDir, "dist");
 
