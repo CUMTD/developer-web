@@ -65,7 +65,7 @@ import createClient from '@mtd/developer-api-client';
 const client = createClient({
 	apiKey: 'your-api-key',
 	// Optional: override base URL
-	baseUrl: 'https://developer.cumtd.com/api/v2.2/json'
+	baseUrl: 'https://api.mtd.dev/v3.0.0'
 });
 ```
 
