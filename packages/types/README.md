@@ -14,10 +14,6 @@ npm install @mtd.org/developer-api-types
 pnpm add @mtd.org/developer-api-types
 ```
 
-```bash
-yarn add @mtd.org/developer-api-types
-```
-
 ## Usage
 
 Import the types you need for your MTD API integration:
