@@ -2,7 +2,8 @@
 
 Type-safe API client for the [MTD Developer API](https://mtd.dev).
 
-This package provides a fully type-safe HTTP client for the MTD (Champaign-Urbana Mass Transit District) Developer API, built on [openapi-fetch](https://github.com/drwpow/openapi-typescript/tree/main/packages/openapi-fetch) with types generated from the official OpenAPI specification.
+This package provides a fully type-safe HTTP client for the Champaign-Urbana Mass Transit District (MTD) Developer API, built on [openapi-fetch](https://github.com/drwpow/openapi-typescript/tree/main/packages/openapi-fetch)
+with types generated from the official OpenAPI specification.
 
 ## Features
 
@@ -22,37 +23,57 @@ npm install @mtd/developer-api-client
 pnpm add @mtd/developer-api-client
 ```
 
-```bash
-yarn add @mtd/developer-api-client
-```
-
 ## Quick Start
 
 ```typescript
 import createClient from '@mtd/developer-api-client';
 
 // Create a client with your API key
-const client = createClient({
-	apiKey: 'your-api-key-here'
+const client = createMtdApiClient({
+	apiKey: "your-api-key",
 });
 
-// Make fully typed API calls
-const { data, error } = await client.GET('/GetDeparturesByStop', {
+// Error here contains any transport errors.
+const {
+    data, // only present if 2XX response
+    error: httpError // only present if 4XX or 5XX response
+} = await client.GET("/stops/{stopId}/departures", {
 	params: {
-		query: {
-			stop_id: 'TERMINAL'
-		}
-	}
+		path: { stopId: "IT" },
+	},
 });
 
-if (error) {
-	console.error('API Error:', error);
-} else {
-	// data is fully typed!
-	data.departures.forEach(departure => {
-		console.log(`${departure.headsign} - ${departure.expected_mins} min`);
+if (httpError) {
+	console.error("API Error:", httpError);
+    return;
+}
+
+if (!data) {
+	console.log("No data received");
+	return;
+}
+
+const { result, error: apiError } = data;
+
+// Non-http errors returned by the MTD API
+if (apiError) {
+	console.error("API returned an error:", apiError);
+	return;
+}
+
+if (!result || result.length === 0) {
+	console.log("No departures found for this stop.");
+	return;
+}
+
+// data is fully typed!
+for (const departure of result) {
+	console.log("Departure:", {
+		headsign: departure.headsign,
+		expected_mins: departure.estimatedDeparture,
 	});
 }
+
 ```
 
 ## API Reference
@@ -65,81 +86,26 @@ import createClient from '@mtd/developer-api-client';
 const client = createClient({
 	apiKey: 'your-api-key',
 	// Optional: override base URL
-	baseUrl: 'https://api.mtd.dev/v3.0.0'
+	// baseUrl: 'url override'
 });
 ```
 
 ### Making Requests
 
-All API methods are fully typed based on the OpenAPI specification:
+All API methods are fully typed based on the OpenAPI specification.
+Path and query params are specified as objects inside `params`.
 
 ```typescript
-// GET requests
-const { data, error } = await client.GET('/GetRoutes', {
+const { data, error } = client.GET("/shapes/{shapeId}", {
 	params: {
 		query: {
-			// Query parameters are typed
-		}
-	}
+			polyline: true,
+		},
+		path: {
+			shapeId: "12345",
+		},
+	},
 });
-
-// POST requests (if applicable)
-const { data, error } = await client.POST('/endpoint', {
-	body: {
-		// Request body is typed
-	}
-});
-```
-
-## Common Examples
-
-### Get Routes
-
-```typescript
-const { data, error } = await client.GET('/GetRoutes');
-
-if (data) {
-	data.routes.forEach(route => {
-		console.log(`${route.route_short_name}: ${route.route_long_name}`);
-	});
-}
-```
-
-### Get Departures by Stop
-
-```typescript
-const { data, error } = await client.GET('/GetDeparturesByStop', {
-	params: {
-		query: {
-			stop_id: 'TERMINAL',
-			pt: 30 // preview time in minutes
-		}
-	}
-});
-
-if (data) {
-	data.departures.forEach(dep => {
-		console.log(`${dep.headsign} arriving in ${dep.expected_mins} minutes`);
-	});
-}
-```
-
-### Get Vehicle Positions
-
-```typescript
-const { data, error } = await client.GET('/GetVehicles', {
-	params: {
-		query: {
-			route_id: '100YELLOW'
-		}
-	}
-});
-
-if (data) {
-	data.vehicles.forEach(vehicle => {
-		console.log(`Vehicle ${vehicle.vehicle_id} at ${vehicle.location.lat}, ${vehicle.location.lon}`);
-	});
-}
 ```
 
 ## Error Handling

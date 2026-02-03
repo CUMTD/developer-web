@@ -2,9 +2,10 @@
 
 OpenAPI Specification for the [MTD Developer API](https://mtd.dev).
 
-This package provides the complete OpenAPI specification for the MTD (Champaign-Urbana Mass Transit District) Developer API, enabling developers to build transit applications with real-time bus information, route data, and more.
+This package provides the complete OpenAPI specification for the Champaign-Urbana Mass Transit District (MTD) Developer API, enabling developers to build transit applications with real-time bus information, route data, and more.
 
 ## Installation
+
 
 ```bash
 npm install @mtd/developer-api-spec
@@ -12,10 +13,6 @@ npm install @mtd/developer-api-spec
 
 ```bash
 pnpm add @mtd/developer-api-spec
-```
-
-```bash
-yarn add @mtd/developer-api-spec
 ```
 
 ## Usage
@@ -34,8 +31,6 @@ console.log(openapi.info.version);
 
 ```javascript
 import openapiYaml from '@mtd/developer-api-spec/openapi.yml';
-
-// Use with your favorite YAML parser or OpenAPI tools
 ```
 
 ## Use Cases

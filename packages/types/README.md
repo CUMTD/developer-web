@@ -2,7 +2,7 @@
 
 TypeScript type definitions for the [MTD Developer API](https://mtd.dev).
 
-This package provides comprehensive TypeScript types generated from the MTD (Champaign-Urbana Mass Transit District) OpenAPI specification, enabling type-safe development with the MTD API.
+This package provides comprehensive TypeScript types generated from the Champaign-Urbana Mass Transit District (MTD) OpenAPI specification, enabling type-safe development with the MTD API.
 
 ## Installation
 
@@ -23,7 +23,7 @@ yarn add @mtd/developer-api-types
 Import the types you need for your MTD API integration:
 
 ```typescript
-import type { 
+import type {
 	components,
 	paths,
 	operations
@@ -32,13 +32,14 @@ import type {
 // Use component schemas
 type Vehicle = components['schemas']['Vehicle'];
 type Route = components['schemas']['Route'];
-type Stop = components['schemas']['Stop'];
+type Stop = components['schemas']['StopBase'];
 
 // Use path types
-type GetDeparturesResponse = paths['/GetDeparturesByStop']['get']['responses']['200']['content']['application/json'];
+type GetDeparturesResponse =
+	paths["/stops/{stopId}/departures"]["get"]["responses"]["200"]["content"]["application/json"];
 
 // Use operation types
-type GetRoutesOperation = operations['GetRoutes'];
+type GetRoutesOperation = operations['get-route-groups'];
 ```
 
 ## Type Safety Benefits
@@ -48,56 +49,10 @@ type GetRoutesOperation = operations['GetRoutes'];
 - **Documentation**: Types serve as inline documentation for the API
 - **Refactoring**: Safely refactor code with confidence
 
-## Common Types
-
-```typescript
-import type { components } from '@mtd/developer-api-types';
-
-// Transit data types
-type Vehicle = components['schemas']['Vehicle'];
-type Route = components['schemas']['Route'];
-type Stop = components['schemas']['Stop'];
-type Trip = components['schemas']['Trip'];
-type Departure = components['schemas']['Departure'];
-
-// Response types
-type ApiResponse<T> = components['schemas']['ApiResponse'] & {
-	data: T;
-};
-```
-
 ## Related Packages
 
 - [`@mtd/developer-api-spec`](https://www.npmjs.com/package/@mtd/developer-api-spec) - OpenAPI specification (source for these types)
 - [`@mtd/developer-api-client`](https://www.npmjs.com/package/@mtd/developer-api-client) - Type-safe API client that uses these types
-
-## Recommended Usage
-
-For the best developer experience, use this package with the type-safe API client:
-
-```typescript
-import createClient from '@mtd/developer-api-client';
-
-const client = createClient({ 
-	apiKey: 'your-api-key'
-});
-
-// Fully typed requests and responses
-const { data, error } = await client.GET('/GetDeparturesByStop', {
-	params: {
-		query: {
-			stop_id: '123',
-		},
-	},
-});
-
-// data is fully typed!
-if (data) {
-	data.departures.forEach(departure => {
-		console.log(departure.headsign);
-	});
-}
-```
 
 ## Getting Started with the API
 
