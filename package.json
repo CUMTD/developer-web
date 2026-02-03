@@ -16,6 +16,7 @@
 	"description": "Monorepo for MTD Developer API docs site and NPM packages",
 	"devDependencies": {
 		"@biomejs/biome": "2.3.13",
+		"@changesets/cli": "^2.29.8",
 		"@commitlint/cli": "^20.4.0",
 		"@commitlint/config-conventional": "^20.4.0",
 		"@types/node": "^25.1.0",
@@ -41,6 +42,8 @@
 	},
 	"scripts": {
 		"build": "pnpm -r --workspace-concurrency=1 --sort build",
+		"changeset": "changeset",
+		"changeset:version": "changeset version && pnpm install --lockfile-only",
 		"check": "biome check .",
 		"check:fix": "biome check . --write",
 		"ci:verify": "pnpm check && pnpm typecheck",
@@ -54,6 +57,7 @@
 		"prebuild": "pnpm run gen",
 		"preinstall": "corepack enable",
 		"prepare": "husky",
+		"release": "pnpm build && changeset publish",
 		"start": "pnpm -r start",
 		"typecheck": "pnpm -r typecheck",
 		"typegen": "pnpm -r typegen"

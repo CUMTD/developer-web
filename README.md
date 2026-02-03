@@ -97,6 +97,27 @@ These packages are built using tooling in `/tools` and are not directly used by 
 
 ---
 
+## Releasing
+
+This project uses [Changesets](https://github.com/changesets/changesets) for version management and npm publishing.
+
+### Quick Start
+
+```bash
+# Create a changeset for your changes
+pnpm changeset
+
+# Commit the changeset with your changes
+git add .changeset/*.md
+git commit -m "feat: your changes"
+```
+
+When merged to `main`, a Release PR is automatically created. Merging the Release PR publishes to npm using [npm Trusted Publishing](https://docs.npmjs.com/trusted-publishers).
+
+For detailed information, see [RELEASE.md](./RELEASE.md).
+
+---
+
 ## AI / Copilot Guidance
 
 AI agents and contributors should read:
