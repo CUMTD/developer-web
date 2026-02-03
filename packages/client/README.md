@@ -7,11 +7,11 @@ with types generated from the official OpenAPI specification.
 
 ## Features
 
-- ✅ **Fully Type-Safe**: Complete TypeScript support with autocomplete and compile-time validation
-- ✅ **Lightweight**: Minimal dependencies, tree-shakeable
-- ✅ **Spec-Driven**: Generated directly from the official OpenAPI spec
-- ✅ **Modern**: Built on native `fetch` API
-- ✅ **Framework Agnostic**: Works anywhere JavaScript runs
+- **Fully Type-Safe**: Complete TypeScript support with autocomplete and compile-time validation
+- **Lightweight**: Minimal dependencies, tree-shakeable
+- **Spec-Driven**: Generated directly from the official OpenAPI spec
+- **Modern**: Built on native `fetch` API
+- **Framework Agnostic**: Works anywhere JavaScript runs
 
 ## Installation
 
