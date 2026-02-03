@@ -2,7 +2,10 @@
 
 [![CI](https://github.com/CUMTD/developer-web/actions/workflows/ci.yml/badge.svg)](https://github.com/CUMTD/developer-web/actions/workflows/ci.yml)
 ![GitHub deployments](https://img.shields.io/github/deployments/CUMTD/developer-web/Production?logo=vercel&logoSize=auto&label=Vercel%20Deployment&labelColor=24292E&color=28A745&link=https%3A%2F%2Fmtd.dev%2F)
-![GitHub Release](https://img.shields.io/github/v/release/CUMTD/developer-web?include_prereleases&sort=date&display_name=release&logo=release&labelColor=24292E&color=28A745&cacheSeconds=3600)
+![NPM Version](https://img.shields.io/npm/v/%40mtd.org%2Fdeveloper-api-spec?label=%40mtd.org%2Fdeveloper-api-spec&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40mtd.org%2Fdeveloper-api-spec)
+![NPM Version](https://img.shields.io/npm/v/%40mtd.org%2Fdeveloper-api-types?label=%40mtd.org%2Fdeveloper-api-types&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40mtd.org%2Fdeveloper-api-types)
+![NPM Version](https://img.shields.io/npm/v/%40mtd.org%2Fdeveloper-api-client?label=%40mtd.org%2Fdeveloper-api-client&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40mtd.org%2Fdeveloper-api-client)
+
 
 This repository is a **pnpm monorepo** containing everything related to MTD's public Developer API:
 
