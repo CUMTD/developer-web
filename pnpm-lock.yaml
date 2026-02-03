@@ -38,6 +38,9 @@ importers:
       lint-staged:
         specifier: ^16.2.7
         version: 16.2.7
+      supabase:
+        specifier: ^2.72.9
+        version: 2.74.5
       tsx:
         specifier: ^4.21.0
         version: 4.21.0
@@ -249,9 +252,6 @@ importers:
       postcss:
         specifier: ^8.5.6
         version: 8.5.6
-      supabase:
-        specifier: ^2.72.9
-        version: 2.74.5
       tailwind-merge:
         specifier: ^3.4.0
         version: 3.4.0
