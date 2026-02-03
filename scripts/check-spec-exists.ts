@@ -16,7 +16,7 @@ import process from "node:process";
 
 const SILENT = process.argv.includes("--silent");
 
-const repoRoot = path.resolve(process.cwd(), "..", "..");
+const repoRoot = path.resolve(__dirname, "..");
 const specDistDir = path.join(repoRoot, "packages", "spec", "dist");
 const openApiJson = path.join(specDistDir, "openapi.json");
 const openApiYml = path.join(specDistDir, "openapi.yml");
