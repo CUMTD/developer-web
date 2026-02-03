@@ -50,16 +50,12 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          # This expects you to have a script called release which does a build for your packages and calls changeset publish
           version: pnpm changeset:version
           publish: pnpm release
           title: "chore: version packages"
           commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # npm Trusted Publishing uses OIDC, so no NPM_TOKEN needed
-          # The publish command will automatically authenticate via OIDC
-          # Make sure to configure trusted publishing for each package on npmjs.com
           NEXT_PUBLIC_BASE_URL: ${{ vars.NEXT_PUBLIC_BASE_URL }}
           NEXT_PUBLIC_MTD_API_URL: ${{ vars.NEXT_PUBLIC_MTD_API_URL }}
           OPENAPI_SPEC_URL: ${{ vars.OPENAPI_SPEC_URL }}
