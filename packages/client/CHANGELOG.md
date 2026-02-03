@@ -1,4 +1,4 @@
-# @mtd/developer-api-client
+# @mtd.org/developer-api-client
 
 ## 3.0.0
 
@@ -9,4 +9,4 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @mtd/developer-api-types@3.0.0
+  - @mtd.org/developer-api-types@3.0.0

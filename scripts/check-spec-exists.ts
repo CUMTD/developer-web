@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 /**
  * Check if OpenAPI spec files exist in packages/spec/dist.
- * This is used as the build command for @mtd/developer-api-spec.
+ * This is used as the build command for @mtd.org/developer-api-spec.
  *
  * The spec files are committed to git, so during normal builds (CI, local development),
  * we don't need to regenerate them. To regenerate, use `pnpm run gen:force` in the spec package.

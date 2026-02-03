@@ -1,4 +1,4 @@
-import type { paths } from "@mtd/developer-api-types";
+import type { paths } from "@mtd.org/developer-api-types";
 import createClient from "openapi-fetch";
 
 export type MtdApiClientOptions = {

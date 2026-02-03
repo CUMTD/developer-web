@@ -86,7 +86,7 @@
 	},
 	"homepage": "https://mtd.dev/",
 	"license": "UNLICENSED",
-	"name": "@mtd/developer-web",
+	"name": "@mtd.org/developer-web",
 	"packageManager": "pnpm@10.28.2",
 	"private": true,
 	"repository": {

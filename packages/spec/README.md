@@ -1,4 +1,4 @@
-# @mtd/developer-api-spec
+# @mtd.org/developer-api-spec
 
 OpenAPI Specification for the [MTD Developer API](https://mtd.dev).
 
@@ -8,11 +8,11 @@ This package provides the complete OpenAPI specification for the Champaign-Urban
 
 
 ```bash
-npm install @mtd/developer-api-spec
+npm install @mtd.org/developer-api-spec
 ```
 
 ```bash
-pnpm add @mtd/developer-api-spec
+pnpm add @mtd.org/developer-api-spec
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ This package exports the OpenAPI specification in both JSON and YAML formats.
 ### JSON Format
 
 ```javascript
-import openapi from '@mtd/developer-api-spec/openapi.json';
+import openapi from '@mtd.org/developer-api-spec/openapi.json';
 
 console.log(openapi.info.version);
 ```
@@ -30,7 +30,7 @@ console.log(openapi.info.version);
 ### YAML Format
 
 ```javascript
-import openapiYaml from '@mtd/developer-api-spec/openapi.yml';
+import openapiYaml from '@mtd.org/developer-api-spec/openapi.yml';
 ```
 
 ## Use Cases
@@ -43,8 +43,8 @@ import openapiYaml from '@mtd/developer-api-spec/openapi.yml';
 
 ## Related Packages
 
-- [`@mtd/developer-api-types`](https://www.npmjs.com/package/@mtd/developer-api-types) - TypeScript type definitions generated from this spec
-- [`@mtd/developer-api-client`](https://www.npmjs.com/package/@mtd/developer-api-client) - Type-safe API client built from this spec
+- [`@mtd.org/developer-api-types`](https://www.npmjs.com/package/@mtd.org/developer-api-types) - TypeScript type definitions generated from this spec
+- [`@mtd.org/developer-api-client`](https://www.npmjs.com/package/@mtd.org/developer-api-client) - Type-safe API client built from this spec
 
 ## Getting Started with the API
 

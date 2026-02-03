@@ -4,7 +4,7 @@ This repository uses [Changesets](https://github.com/changesets/changesets) for 
 
 ## How it works
 
-1. **Adding a changeset**: When you make changes to any of the publishable packages (`@mtd/developer-api-spec`, `@mtd/developer-api-types`, `@mtd/developer-api-client`), you create a changeset file describing your changes.
+1. **Adding a changeset**: When you make changes to any of the publishable packages (`@mtd.org/developer-api-spec`, `@mtd.org/developer-api-types`, `@mtd.org/developer-api-client`), you create a changeset file describing your changes.
 
 2. **Automatic Release PRs**: When changesets are merged to `main`, a Release PR is automatically created/updated with version bumps and changelog updates.
 
@@ -39,7 +39,7 @@ vim packages/types/src/index.ts
 
 # 2. Create a changeset
 pnpm changeset
-# Select: @mtd/developer-api-types
+# Select: @mtd.org/developer-api-types
 # Select: minor (new feature)
 # Enter: "Add support for new route type"
 
@@ -84,7 +84,7 @@ Trusted Publishing eliminates the need for long-lived npm tokens by using OIDC a
 
 ### Initial Setup (One-time per package)
 
-For each package (`@mtd/developer-api-spec`, `@mtd/developer-api-types`, `@mtd/developer-api-client`):
+For each package (`@mtd.org/developer-api-spec`, `@mtd.org/developer-api-types`, `@mtd.org/developer-api-client`):
 
 1. Go to https://www.npmjs.com/ and log in
 2. Navigate to the package settings

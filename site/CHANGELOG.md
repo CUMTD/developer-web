@@ -1,4 +1,4 @@
-# @mtd/developer-web
+# @mtd.org/developer-web
 
 ## 3.0.0
 

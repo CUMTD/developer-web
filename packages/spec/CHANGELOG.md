@@ -1,4 +1,4 @@
-# @mtd/developer-api-spec
+# @mtd.org/developer-api-spec
 
 ## 3.0.0
 

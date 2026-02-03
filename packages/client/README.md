@@ -1,4 +1,4 @@
-# @mtd/developer-api-client
+# @mtd.org/developer-api-client
 
 Type-safe API client for the [MTD Developer API](https://mtd.dev).
 
@@ -16,17 +16,17 @@ with types generated from the official OpenAPI specification.
 ## Installation
 
 ```bash
-npm install @mtd/developer-api-client
+npm install @mtd.org/developer-api-client
 ```
 
 ```bash
-pnpm add @mtd/developer-api-client
+pnpm add @mtd.org/developer-api-client
 ```
 
 ## Quick Start
 
 ```typescript
-import createClient from '@mtd/developer-api-client';
+import createClient from '@mtd.org/developer-api-client';
 
 // Create a client with your API key
 const client = createMtdApiClient({
@@ -81,7 +81,7 @@ for (const departure of result) {
 ### Creating a Client
 
 ```typescript
-import createClient from '@mtd/developer-api-client';
+import createClient from '@mtd.org/developer-api-client';
 
 const client = createClient({
 	apiKey: 'your-api-key',
@@ -131,7 +131,7 @@ console.log(data.routes);
 The client provides full TypeScript support out of the box:
 
 ```typescript
-import type { paths, components } from '@mtd/developer-api-types';
+import type { paths, components } from '@mtd.org/developer-api-types';
 
 // Use types from the spec
 type Route = components['schemas']['Route'];
@@ -144,8 +144,8 @@ const response = await client.GET('/GetRoutes'); // response is typed!
 
 ## Related Packages
 
-- [`@mtd/developer-api-spec`](https://www.npmjs.com/package/@mtd/developer-api-spec) - OpenAPI specification
-- [`@mtd/developer-api-types`](https://www.npmjs.com/package/@mtd/developer-api-types) - TypeScript types (used internally)
+- [`@mtd.org/developer-api-spec`](https://www.npmjs.com/package/@mtd.org/developer-api-spec) - OpenAPI specification
+- [`@mtd.org/developer-api-types`](https://www.npmjs.com/package/@mtd.org/developer-api-types) - TypeScript types (used internally)
 
 ## Getting Your API Key
 

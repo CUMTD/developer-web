@@ -1,4 +1,4 @@
-# @mtd/developer-api-types
+# @mtd.org/developer-api-types
 
 TypeScript type definitions for the [MTD Developer API](https://mtd.dev).
 
@@ -7,15 +7,15 @@ This package provides comprehensive TypeScript types generated from the Champaig
 ## Installation
 
 ```bash
-npm install @mtd/developer-api-types
+npm install @mtd.org/developer-api-types
 ```
 
 ```bash
-pnpm add @mtd/developer-api-types
+pnpm add @mtd.org/developer-api-types
 ```
 
 ```bash
-yarn add @mtd/developer-api-types
+yarn add @mtd.org/developer-api-types
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ import type {
 	components,
 	paths,
 	operations
-} from '@mtd/developer-api-types';
+} from '@mtd.org/developer-api-types';
 
 // Use component schemas
 type Vehicle = components['schemas']['Vehicle'];
@@ -51,8 +51,8 @@ type GetRoutesOperation = operations['get-route-groups'];
 
 ## Related Packages
 
-- [`@mtd/developer-api-spec`](https://www.npmjs.com/package/@mtd/developer-api-spec) - OpenAPI specification (source for these types)
-- [`@mtd/developer-api-client`](https://www.npmjs.com/package/@mtd/developer-api-client) - Type-safe API client that uses these types
+- [`@mtd.org/developer-api-spec`](https://www.npmjs.com/package/@mtd.org/developer-api-spec) - OpenAPI specification (source for these types)
+- [`@mtd.org/developer-api-client`](https://www.npmjs.com/package/@mtd.org/developer-api-client) - Type-safe API client that uses these types
 
 ## Getting Started with the API
 

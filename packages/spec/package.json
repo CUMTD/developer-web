@@ -25,7 +25,7 @@
 		"dist"
 	],
 	"license": "Apache-2.0",
-	"name": "@mtd/developer-api-spec",
+	"name": "@mtd.org/developer-api-spec",
 	"private": false,
 	"publishConfig": {
 		"access": "public"

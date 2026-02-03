@@ -34,7 +34,7 @@
 	},
 	"homepage": "https://mtd.dev/",
 	"license": "Apache-2.0",
-	"name": "@mtd/developer-web-monorepo",
+	"name": "@mtd.org/developer-web-monorepo",
 	"packageManager": "pnpm@10.28.2",
 	"private": true,
 	"repository": {

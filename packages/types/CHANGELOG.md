@@ -1,4 +1,4 @@
-# @mtd/developer-api-types
+# @mtd.org/developer-api-types
 
 ## 3.0.0
 

@@ -14,7 +14,7 @@
 		}
 	],
 	"dependencies": {
-		"@mtd/developer-api-types": "workspace:*",
+		"@mtd.org/developer-api-types": "workspace:*",
 		"openapi-fetch": "^0.15.0"
 	},
 	"description": "Typescript types for MTD's Developer API",
@@ -31,7 +31,7 @@
 		"dist"
 	],
 	"license": "Apache-2.0",
-	"name": "@mtd/developer-api-client",
+	"name": "@mtd.org/developer-api-client",
 	"private": false,
 	"publishConfig": {
 		"access": "public"
