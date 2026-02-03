@@ -1,6 +1,7 @@
 import { access } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+import { fileURLToPath } from "node:url";
 
 /**
  * Check if OpenAPI spec files exist in packages/spec/dist.
@@ -16,6 +17,8 @@ import process from "node:process";
 
 const SILENT = process.argv.includes("--silent");
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, "..");
 const specDistDir = path.join(repoRoot, "packages", "spec", "dist");
 const openApiJson = path.join(specDistDir, "openapi.json");
