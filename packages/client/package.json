@@ -1,16 +1,30 @@
 {
-	"author": "Ryan Blackman",
+	"author": "MTD",
+	"bugs": {
+		"url": "https://github.com/CUMTD/developer-web/issues"
+	},
+	"contributors": [
+		{
+			"name": "Ryan Blackman",
+			"url": "https://github.com/rblackman"
+		},
+		{
+			"name": "Matt Novelli",
+			"url": "https://github.com/mattnovelli"
+		}
+	],
 	"dependencies": {
 		"@mtd/developer-api-types": "workspace:*",
 		"openapi-fetch": "^0.15.0"
 	},
+	"description": "Typescript types for MTD's Developer API",
 	"devDependencies": {
 		"typescript": "^5.9.3"
 	},
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"import": "./dist/index.js"
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
 		}
 	},
 	"files": [
@@ -20,9 +34,9 @@
 	"name": "@mtd/developer-api-client",
 	"private": false,
 	"repository": {
+		"directory": "packages/client",
 		"type": "git",
-		"url": "https://github.com/CUMTD/developer-web",
-		"directory": "packages/client"
+		"url": "https://github.com/CUMTD/developer-web"
 	},
 	"scripts": {
 		"build": "tsc -p tsconfig.build.json",

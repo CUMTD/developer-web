@@ -1,28 +1,42 @@
 {
-	"author": "Ryan Blackman",
+	"author": "MTD",
+	"bugs": {
+		"url": "https://github.com/CUMTD/developer-web/issues"
+	},
+	"contributors": [
+		{
+			"name": "Ryan Blackman",
+			"url": "https://github.com/rblackman"
+		},
+		{
+			"name": "Matt Novelli",
+			"url": "https://github.com/mattnovelli"
+		}
+	],
+	"description": "Open API Spec for MTD Developer API",
 	"dependencies": {},
 	"devDependencies": {},
-	"license": "Apache-2.0",
-	"name": "@mtd/developer-api-spec",
-	"private": false,
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/CUMTD/developer-web",
-		"directory": "packages/spec"
-	},
-	"files": [
-		"dist"
-	],
 	"exports": {
 		"./openapi.json": "./dist/openapi.json",
 		"./openapi.yml": "./dist/openapi.yml",
 		"./package.json": "./package.json"
 	},
+	"files": [
+		"dist"
+	],
+	"license": "Apache-2.0",
+	"name": "@mtd/developer-api-spec",
+	"private": false,
+	"repository": {
+		"directory": "packages/spec",
+		"type": "git",
+		"url": "https://github.com/CUMTD/developer-web"
+	},
 	"scripts": {
+		"build": "pnpm exec tsx ../../scripts/check-spec-exists.ts",
 		"clean": "pnpm exec tsx ../../scripts/clean dist",
 		"gen": "pnpm exec tsx ../../scripts/check-spec-exists.ts --silent || dotenv -e ../../.env -- pnpm -C ../../tools gen:spec",
-		"gen:force": "pnpm run clean && dotenv -e ../../.env -- pnpm -C ../../tools gen:spec",
-		"build": "pnpm exec tsx ../../scripts/check-spec-exists.ts"
+		"gen:force": "pnpm run clean && dotenv -e ../../.env -- pnpm -C ../../tools gen:spec"
 	},
 	"type": "module",
 	"version": "3.0.0"

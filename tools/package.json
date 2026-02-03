@@ -1,4 +1,19 @@
 {
+	"author": "MTD",
+	"bugs": {
+		"url": "https://github.com/CUMTD/developer-web/issues"
+	},
+	"contributors": [
+		{
+			"name": "Ryan Blackman",
+			"url": "https://github.com/rblackman"
+		},
+		{
+			"name": "Matt Novelli",
+			"url": "https://github.com/mattnovelli"
+		}
+	],
+	"description": "Tools for building and generating code for MTD Developer API packages",
 	"devDependencies": {
 		"@apidevtools/swagger-parser": "^12.1.0",
 		"fs-extra": "^11.2.0",

@@ -1,4 +1,5 @@
 {
+	"author": "MTD",
 	"bugs": {
 		"url": "https://github.com/CUMTD/developer-web/issues"
 	},
@@ -66,6 +67,7 @@
 		"vaul": "^1.1.2",
 		"zod": "^4.3.6"
 	},
+	"description": "Docs site for MTD.dev API",
 	"devDependencies": {
 		"@tailwindcss/postcss": "^4.1.18",
 		"@tailwindcss/typography": "^0.5.19",
@@ -84,10 +86,12 @@
 		"node": "v22.x"
 	},
 	"homepage": "https://mtd.dev/",
+	"license": "UNLICENSED",
 	"name": "@mtd/developer-web",
 	"packageManager": "pnpm@10.28.2",
 	"private": true,
 	"repository": {
+		"directory": "site",
 		"type": "github",
 		"url": "https://github.com/CUMTD/developer-web"
 	},
