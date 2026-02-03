@@ -43,5 +43,6 @@
 	},
 	"sideEffects": false,
 	"type": "module",
-	"types": "./dist/index.d.ts"
+	"types": "./dist/index.d.ts",
+	"version": "3.0.0"
 }

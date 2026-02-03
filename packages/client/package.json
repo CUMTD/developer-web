@@ -44,5 +44,6 @@
 		"typecheck": "tsc --build tsconfig.json"
 	},
 	"sideEffects": false,
-	"type": "module"
+	"type": "module",
+	"version": "3.0.0"
 }

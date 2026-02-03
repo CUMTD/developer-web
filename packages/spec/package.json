@@ -38,5 +38,6 @@
 		"gen": "pnpm exec tsx ../../scripts/check-spec-exists.ts --silent || dotenv -e ../../.env -- pnpm -C ../../tools gen:spec",
 		"gen:force": "pnpm run clean && dotenv -e ../../.env -- pnpm -C ../../tools gen:spec"
 	},
-	"type": "module"
+	"type": "module",
+	"version": "3.0.0"
 }
