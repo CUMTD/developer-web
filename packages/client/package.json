@@ -34,7 +34,8 @@
 	"name": "@mtd.org/developer-api-client",
 	"private": false,
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"provenance": true
 	},
 	"repository": {
 		"directory": "packages/client",

@@ -28,7 +28,8 @@
 	"name": "@mtd.org/developer-api-spec",
 	"private": false,
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"provenance": true
 	},
 	"repository": {
 		"directory": "packages/spec",

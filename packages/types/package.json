@@ -30,7 +30,8 @@
 	"name": "@mtd.org/developer-api-types",
 	"private": false,
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"provenance": true
 	},
 	"repository": {
 		"directory": "packages/types",
