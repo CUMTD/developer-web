@@ -13,8 +13,8 @@
 			"url": "https://github.com/mattnovelli"
 		}
 	],
-	"description": "Open API Spec for MTD Developer API",
 	"dependencies": {},
+	"description": "Open API Spec for MTD Developer API",
 	"devDependencies": {},
 	"exports": {
 		"./openapi.json": "./dist/openapi.json",
@@ -27,6 +27,9 @@
 	"license": "Apache-2.0",
 	"name": "@mtd/developer-api-spec",
 	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
 	"repository": {
 		"directory": "packages/spec",
 		"type": "git",

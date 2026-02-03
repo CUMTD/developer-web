@@ -29,6 +29,9 @@
 	"license": "Apache-2.0",
 	"name": "@mtd/developer-api-types",
 	"private": false,
+	"publishConfig": {
+		"access": "public"
+	},
 	"repository": {
 		"directory": "packages/types",
 		"type": "git",
