@@ -248,3 +248,37 @@ Tooling rules (MCP / Agent mode):
      - GitHub: issues/PR context, repo search, Actions logs.
      - Vercel: deployment/platform info (VS Code only; OAuth).
    - If not needed, do not invoke them.
+
+## Changesets (required for publishable package changes)
+
+This repo uses **Changesets** for versioning and changelogs.
+When making changes, decide whether a changeset is required and create one when appropriate.
+
+### When you MUST create a changeset
+Create a changeset if your work changes the published behavior of any package, including:
+- Adding/removing/renaming exports
+- New features or bug fixes
+- Breaking changes (API or behavior)
+- Runtime dependency changes that affect consumers
+- Behavior/performance changes that should be released
+
+### When you should NOT create a changeset
+Do not create a changeset for:
+- Docs-only changes
+- Tests-only changes
+- Pure refactors with no externally observable behavior change
+- CI/tooling changes that do not affect published artifacts
+
+### How to create a changeset
+From repo root, run:
+- `pnpm changeset`
+
+Select affected package(s), choose bump type:
+- `patch`: backwards-compatible bug fix
+- `minor`: backwards-compatible feature
+- `major`: breaking change
+
+Write a clear, user-facing summary in the changeset body. Ensure the generated file under `.changeset/` is committed with the change.
+
+### Multi-package guidance
+If a change affects multiple packages, include them in a single changeset when they are part of the same logical change; otherwise create separate changesets per logical change.

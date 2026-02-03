@@ -95,6 +95,44 @@ Runs generators in `/tools` and type generation in relevant projects.
 
 These packages are built using tooling in `/tools` and are not directly used by the `site` at runtime. The site documents how to use them.
 
+### Changesets
+
+This repo uses **Changesets** to manage package version bumps and changelogs in our pnpm monorepo.
+Each meaningful change to a published package should include a changeset so releases can be automated.
+
+#### When to add a changeset
+Add a changeset for any change that affects a package consumer, including:
+- New features or behavior changes
+- Bug fixes
+- Performance improvements
+- Dependency changes that affect runtime behavior
+- Breaking changes (API changes, removed exports, behavior changes)
+
+You can usually **skip** a changeset for:
+- Docs-only changes
+- Tests-only changes
+- Internal refactors that do not change public behavior
+- CI/build tooling changes that do not affect published output
+
+If you’re unsure, add one — it’s cheap and keeps releases predictable.
+
+#### How to add a changeset
+From the repo root:
+
+```bash
+pnpm changeset
+```
+
+Follow the prompts to select:
+
+which package(s) changed
+
+the bump type (patch, minor, or major)
+
+a short description (this becomes part of the changelog)
+
+This will create a new markdown file in .changeset/. Commit that file with your PR.
+
 ---
 
 ## AI / Copilot Guidance
