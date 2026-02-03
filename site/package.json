@@ -107,6 +107,5 @@
 		"typegen:supabase:force": "dotenv -e .env -- cross-env-shell \"supabase gen types typescript --project-id $SUPABASE_PROJECT_REF\" > types/supabase.ts && pnpm exec biome format --write types/supabase.ts",
 		"validate:env": "pnpm exec tsx --require dotenv/config scripts/validate-env.ts"
 	},
-	"type": "module",
-	"version": "3.0.0"
+	"type": "module"
 }
