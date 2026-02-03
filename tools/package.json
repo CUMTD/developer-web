@@ -28,5 +28,6 @@
 		"gen:spec": "tsx src/gen-spec.ts",
 		"gen:types": "pnpm exec openapi-typescript ../packages/spec/dist/openapi.yml -o ../packages/types/src/openapi.generated.ts"
 	},
-	"type": "module"
+	"type": "module",
+	"version": "3.0.0"
 }

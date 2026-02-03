@@ -24,7 +24,7 @@ export default function RequestsPage() {
 
 			<h2>Get the API base URL</h2>
 			<CodeExampleBody mini>
-				<code>https://mtd.dev/api</code>
+				<code>https://api.mtd.dev/v3.0.0</code>
 			</CodeExampleBody>
 			<h2>Choose an endpoint</h2>
 			<p>Check out the sidebar for all of the different kinds of data you can get.</p>

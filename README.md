@@ -20,9 +20,9 @@ This repository is a **pnpm monorepo** containing everything related to MTD's pu
 /
   site/                 # Next.js documentation site & developer portal
   packages/
-    spec/               # @mtd/developer-api-spec (OpenAPI spec package)
-    types/              # @mtd/developer-api-types (generated TS types)
-    client/             # @mtd/developer-api-client (API client)
+    spec/               # @mtd.org/developer-api-spec (OpenAPI spec package)
+    types/              # @mtd.org/developer-api-types (generated TS types)
+    client/             # @mtd.org/developer-api-client (API client)
   tools/                # Generators used to build the packages
 ```
 
@@ -89,9 +89,9 @@ Runs generators in `/tools` and type generation in relevant projects.
 
 | Package                     | Purpose                                  | Published |
 |-----------------------------|------------------------------------------|-----------|
-| `@mtd/developer-api-spec`   | OpenAPI spec for the public API          | Yes       |
-| `@mtd/developer-api-types`  | Generated TypeScript types from the spec | Yes       |
-| `@mtd/developer-api-client` | Type-safe API client                     | Yes       |
+| `@mtd.org/developer-api-spec`   | OpenAPI spec for the public API          | Yes       |
+| `@mtd.org/developer-api-types`  | Generated TypeScript types from the spec | Yes       |
+| `@mtd.org/developer-api-client` | Type-safe API client                     | Yes       |
 
 These packages are built using tooling in `/tools` and are not directly used by the `site` at runtime. The site documents how to use them.
 

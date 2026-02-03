@@ -50,7 +50,7 @@ importers:
 
   packages/client:
     dependencies:
-      '@mtd/developer-api-types':
+      '@mtd.org/developer-api-types':
         specifier: workspace:*
         version: link:../types
       openapi-fetch:
@@ -65,7 +65,7 @@ importers:
 
   packages/types:
     devDependencies:
-      '@mtd/developer-api-spec':
+      '@mtd.org/developer-api-spec':
         specifier: workspace:*
         version: link:../spec
       typescript:

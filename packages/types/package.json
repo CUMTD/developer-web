@@ -15,7 +15,7 @@
 	],
 	"description": "Typescript types for MTD's Developer API",
 	"devDependencies": {
-		"@mtd/developer-api-spec": "workspace:*",
+		"@mtd.org/developer-api-spec": "workspace:*",
 		"typescript": "^5.9.3"
 	},
 	"exports": {
@@ -27,8 +27,12 @@
 		"dist"
 	],
 	"license": "Apache-2.0",
-	"name": "@mtd/developer-api-types",
+	"name": "@mtd.org/developer-api-types",
 	"private": false,
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
+	},
 	"repository": {
 		"directory": "packages/types",
 		"type": "git",

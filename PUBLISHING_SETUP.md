@@ -38,9 +38,9 @@ After this initial manual publish, all future releases will be automated via Git
 
 For **each** of the three packages, follow these steps:
 
-#### For `@mtd/developer-api-spec`:
+#### For `@mtd.org/developer-api-spec`:
 
-1. Go to https://www.npmjs.com/package/@mtd/developer-api-spec/access
+1. Go to https://www.npmjs.com/package/@mtd.org/developer-api-spec/access
 2. Click on "Trusted Publishers" in the left sidebar
 3. Click "Add a trusted publisher"
 4. Configure:
@@ -52,14 +52,14 @@ For **each** of the three packages, follow these steps:
 
 5. Click "Add"
 
-#### For `@mtd/developer-api-types`:
+#### For `@mtd.org/developer-api-types`:
 
-1. Go to https://www.npmjs.com/package/@mtd/developer-api-types/access
+1. Go to https://www.npmjs.com/package/@mtd.org/developer-api-types/access
 2. Follow the same steps as above
 
-#### For `@mtd/developer-api-client`:
+#### For `@mtd.org/developer-api-client`:
 
-1. Go to https://www.npmjs.com/package/@mtd/developer-api-client/access
+1. Go to https://www.npmjs.com/package/@mtd.org/developer-api-client/access
 2. Follow the same steps as above
 
 ### 3. Test the Workflow
@@ -71,7 +71,7 @@ After setting up Trusted Publishing:
    pnpm changeset
    ```
 
-2. Select a package (e.g., `@mtd/developer-api-spec`)
+2. Select a package (e.g., `@mtd.org/developer-api-spec`)
 3. Select `patch` for the version bump
 4. Enter a summary: "Test changeset for automated publishing"
 
@@ -94,9 +94,9 @@ After merging the Release PR:
 
 1. Check the GitHub Actions logs to ensure publishing succeeded
 2. Verify the new versions are available on npm:
-   - https://www.npmjs.com/package/@mtd/developer-api-spec
-   - https://www.npmjs.com/package/@mtd/developer-api-types
-   - https://www.npmjs.com/package/@mtd/developer-api-client
+   - https://www.npmjs.com/package/@mtd.org/developer-api-spec
+   - https://www.npmjs.com/package/@mtd.org/developer-api-types
+   - https://www.npmjs.com/package/@mtd.org/developer-api-client
 
 ## Troubleshooting
 
