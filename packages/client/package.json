@@ -27,7 +27,7 @@
 	"scripts": {
 		"build": "tsc -p tsconfig.build.json",
 		"clean": "pnpm exec tsx ../../scripts/clean dist src/operations.generated.ts tsconfig.build.tsbuildinfo tsconfig.tsbuildinfo",
-		"typecheck": "tsc -p tsconfig.json --noEmit"
+		"typecheck": "tsc --build tsconfig.json"
 	},
 	"sideEffects": false,
 	"type": "module",

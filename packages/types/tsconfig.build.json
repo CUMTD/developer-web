@@ -6,7 +6,8 @@
 		"moduleResolution": "Bundler",
 		"noEmit": false,
 		"outDir": "dist",
-		"rootDir": "src"
+		"rootDir": "src",
+		"composite": true
 	},
 	"extends": "../../tsconfig.base.json",
 	"include": ["src/**/*.ts"]
