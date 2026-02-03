@@ -76,7 +76,6 @@
 		"@types/react-dom": "^19.2.3",
 		"@vercel/toolbar": "^0.1.41",
 		"postcss": "^8.5.6",
-		"supabase": "^2.72.9",
 		"tailwind-merge": "^3.4.0",
 		"tailwindcss": "^4.1.18",
 		"tsx": "^4.21.0",
@@ -87,7 +86,7 @@
 	},
 	"homepage": "https://mtd.dev/",
 	"license": "UNLICENSED",
-	"name": "@mtd/developer-web",
+	"name": "@mtd.org/developer-web",
 	"packageManager": "pnpm@10.28.2",
 	"private": true,
 	"repository": {

@@ -1,10 +1,11 @@
 import { access } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+import { fileURLToPath } from "node:url";
 
 /**
  * Check if OpenAPI spec files exist in packages/spec/dist.
- * This is used as the build command for @mtd/developer-api-spec.
+ * This is used as the build command for @mtd.org/developer-api-spec.
  *
  * The spec files are committed to git, so during normal builds (CI, local development),
  * we don't need to regenerate them. To regenerate, use `pnpm run gen:force` in the spec package.
@@ -16,7 +17,9 @@ import process from "node:process";
 
 const SILENT = process.argv.includes("--silent");
 
-const repoRoot = path.resolve(process.cwd(), "..", "..");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const repoRoot = path.resolve(__dirname, "..");
 const specDistDir = path.join(repoRoot, "packages", "spec", "dist");
 const openApiJson = path.join(specDistDir, "openapi.json");
 const openApiYml = path.join(specDistDir, "openapi.yml");

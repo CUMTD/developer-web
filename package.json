@@ -16,6 +16,7 @@
 	"description": "Monorepo for MTD Developer API docs site and NPM packages",
 	"devDependencies": {
 		"@biomejs/biome": "2.3.13",
+		"@changesets/cli": "^2.29.8",
 		"@commitlint/cli": "^20.4.0",
 		"@commitlint/config-conventional": "^20.4.0",
 		"@types/node": "^25.1.0",
@@ -24,6 +25,7 @@
 		"dotenv-cli": "^11.0.0",
 		"husky": "^9.1.7",
 		"lint-staged": "^16.2.7",
+		"supabase": "^2.72.9",
 		"tsx": "^4.21.0",
 		"typescript": "^5.9.3"
 	},
@@ -32,7 +34,7 @@
 	},
 	"homepage": "https://mtd.dev/",
 	"license": "Apache-2.0",
-	"name": "@mtd/developer-web-monorepo",
+	"name": "@mtd.org/developer-web-monorepo",
 	"packageManager": "pnpm@10.28.2",
 	"private": true,
 	"repository": {
@@ -41,6 +43,8 @@
 	},
 	"scripts": {
 		"build": "pnpm -r --workspace-concurrency=1 --sort build",
+		"changeset": "changeset",
+		"changeset:version": "changeset version && pnpm install --lockfile-only",
 		"check": "biome check .",
 		"check:fix": "biome check . --write",
 		"ci:verify": "pnpm check && pnpm typecheck",
@@ -54,6 +58,7 @@
 		"prebuild": "pnpm run gen",
 		"preinstall": "corepack enable",
 		"prepare": "husky",
+		"release": "pnpm build && changeset publish",
 		"start": "pnpm -r start",
 		"typecheck": "pnpm -r typecheck",
 		"typegen": "pnpm -r typegen"
