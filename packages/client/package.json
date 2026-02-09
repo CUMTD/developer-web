@@ -15,7 +15,7 @@
 	],
 	"dependencies": {
 		"@mtd.org/developer-api-types": "workspace:*",
-		"openapi-fetch": "^0.15.0"
+		"openapi-fetch": "^0.16.0"
 	},
 	"description": "Typescript types for MTD's Developer API",
 	"devDependencies": {
