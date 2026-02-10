@@ -11,7 +11,7 @@ export default function LoggedOutMenu() {
 				className=""
 				linkProps={{ className: "w-full flex flex-row justify-center" }}
 			>
-				<CircleUserIcon className="mr-1 inline-block h-4 w-4" />
+				<CircleUserIcon className="md:inline-block hidden mr-1  h-4 w-4" />
 				Sign In
 			</LinkButton>
 		</NavigationMenuItem>

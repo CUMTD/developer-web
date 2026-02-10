@@ -30,9 +30,10 @@ function NavMenu() {
 
 						<NavigationMenuItem>
 							<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-								<Link href="/reference/introduction">Documentation</Link>
+								<Link href="/reference/introduction">{isMobile ? "Docs" : "Documentation"}</Link>
 							</NavigationMenuLink>
 						</NavigationMenuItem>
+
 						{/* <NavigationMenuItem className="">
 						<NavigationMenuTrigger>Documentation</NavigationMenuTrigger>
 
@@ -75,12 +76,13 @@ function NavMenu() {
 			</header>
 			<div
 				className={`
-				h-6 w-full text-sm
+					absolute top-0 z-80
+				h-min w-full text-sm
 				bg-[linear-gradient(45deg,var(--background)_25%,var(--muted)_25%,var(--muted)_50%,var(--background)_50%,var(--background)_75%,var(--muted)_75%,var(--muted)_100%)]
 				bg-size-[40px_40px] flex items-center justify-center`}
 			>
 				<p className="text-foreground font-bold px-10">
-					<strong className="uppercase">Beta - Informational not Final</strong>
+					<strong className="uppercase">Beta - Subject to Change</strong>
 				</p>
 			</div>
 		</>
