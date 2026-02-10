@@ -49,7 +49,6 @@
 	},
 	"files.exclude": {
 		"**/.DS_Store": true,
-		"**/.dist": true,
 		"**/.git": true,
 		"**/.next": true,
 		"**/.vercel": true,

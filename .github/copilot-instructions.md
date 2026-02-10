@@ -5,6 +5,11 @@
 This project is a web application for 3rd party developers to interact with MTD's Open API.
 It contains instructions, reference documentation, and features for account and API key management.
 
+This repo is a **pnpm monorepo**:
+- `site/` is the Next.js docs site (the main app).
+- `packages/` contains publishable packages for developers (OpenAPI spec, client, and types).
+- `tools/` contains generators used by `packages/*` (and other build-time utilities as needed).
+
 ## Technical Stack
 
 - **Language**: TypeScript
@@ -29,7 +34,7 @@ This project uses a **layer-first** architecture with **explicit boundaries**. R
 
 - Routes orchestrate; they do not contain business logic.
 - UI components are reusable and client-safe.
-- All server-only logic lives in `src/server`.
+- All server-only logic lives in `site/server`.
 - Content is rendered by routes, not embedded inside them.
 
 ### Target Tree
@@ -37,38 +42,46 @@ This project uses a **layer-first** architecture with **explicit boundaries**. R
 Don't deviate from this structure without explicit approval.
 
 ```txt
-src/
-  app/                        # App Router routes only
-    ...
+./
+  site/                       # Next.js docs site (main app)
+    app/                      # App Router routes only
+      ...
 
-  components/
-    ui/                       # shadcn primitives ONLY
-    common/                   # reusable app-specific UI
+    components/
+      ui/                     # shadcn primitives ONLY
+      common/                 # reusable app-specific UI
 
-  content/
-    api/                      # MDX and metadata
+    content/
+      api/                    # MDX and metadata
 
-  contexts/                   # React contexts
+    contexts/                 # React contexts
 
-  env/
-    schema.ts                 # Zod env schemas
-    global.ts                 # NEXT_PUBLIC_* only
-    server.ts                 # server-only env
+    env/
+      schema.ts               # Zod env schemas
+      global.ts               # NEXT_PUBLIC_* only
+      server.ts               # server-only env
 
-  hooks/                      # shared React hooks
+    hooks/                    # shared React hooks
 
-  lib/
-    utils/                    # cn(), small UI helpers
-    temporal/                 # other client-safe libraries
+    lib/
+      utils/                  # cn(), small UI helpers
+      temporal/               # other client-safe libraries
 
-  server/                     # server-only
-    actions/                  # server actions by domain
-    auth/                     # auth/session helpers
-    supabase/                 # Supabase server clients
+    server/                   # server-only
+      actions/                # server actions by domain
+      auth/                   # auth/session helpers
+      supabase/               # Supabase server clients
 
-  types/                      # generated + handwritten types
-    md.generated.ts           # Generated MDX types (DO NOT edit)
-    supabase.ts               # Generated Supabase types (DO NOT edit)
+    types/                    # generated + handwritten types
+      md.generated.ts         # Generated MDX types (DO NOT edit)
+      supabase.ts             # Generated Supabase types (DO NOT edit)
+
+  packages/                   # publishable packages for API consumers
+    spec/                     # OpenAPI spec package
+    client/                   # API client package
+    types/                    # shared types package
+
+  tools/                      # generators used by packages/*
 ```
 
 ---
@@ -146,7 +159,7 @@ export type ApiKey = z.infer<typeof apiKeySchema>;
 - Client components must never access Supabase server clients.
 - Server actions should NOT re-export types. Components should import types directly from `@t/`.
 - Server Actions must:
-  - Live in `src/server/actions`
+  - Live in `site/server/actions`
   - Use the `"use server"` directive
 
 **Example – Server Action**
@@ -164,8 +177,9 @@ export async function createApiKey(userId: string): Promise<void> {
 ## Do Not Touch
 
 - Do not modify pnpm-lock.yaml unless adding/removing dependencies is required.
-- Do not hand-edit `src/types/supabase.ts` (generated).
-- Do not hand-edit `src/types/md.generated.ts` (generated).
+- Do not hand-edit `site/types/supabase.ts` (generated).
+- Do not hand-edit `site/types/md.generated.ts` (generated).
+- Do not hand-edit any other generated files. (e.g., *.generated.ts).
 
 ---
 
@@ -182,9 +196,9 @@ export async function createApiKey(userId: string): Promise<void> {
 
 ## Linting & Tooling
 
-- Run:
-  - `biome check --write`
-  - `tsc -p tsconfig.json --noEmit`
+- Run (from repo root):
+  - `pnpm check:fix`
+  - `pnpm typecheck`
 - Do not disable lint rules unless absolutely necessary.
 - If a rule is disabled, include a clear justification.
 
@@ -204,7 +218,7 @@ export async function createApiKey(userId: string): Promise<void> {
 - Keep PRs focused and minimal.
 - One feature or fix per PR.
 - Reference related issues when applicable.
-- Always run `pnpm run ci:verify` before submitting. If making code changes, run `pnpm run clean` and `pnpm build` to ensure no build errors.
+- Always run `pnpm ci:verify` before submitting. If making code changes, run `pnpm clean` and `pnpm build` to ensure no build errors.
 - Be concise but descriptive in PR titles and descriptions. Try to avoid walls of text unless truly necessary to explain complex changes.
 
 ---
@@ -234,3 +248,37 @@ Tooling rules (MCP / Agent mode):
      - GitHub: issues/PR context, repo search, Actions logs.
      - Vercel: deployment/platform info (VS Code only; OAuth).
    - If not needed, do not invoke them.
+
+## Changesets (required for publishable package changes)
+
+This repo uses **Changesets** for versioning and changelogs.
+When making changes, decide whether a changeset is required and create one when appropriate.
+
+### When you MUST create a changeset
+Create a changeset if your work changes the published behavior of any package, including:
+- Adding/removing/renaming exports
+- New features or bug fixes
+- Breaking changes (API or behavior)
+- Runtime dependency changes that affect consumers
+- Behavior/performance changes that should be released
+
+### When you should NOT create a changeset
+Do not create a changeset for:
+- Docs-only changes
+- Tests-only changes
+- Pure refactors with no externally observable behavior change
+- CI/tooling changes that do not affect published artifacts
+
+### How to create a changeset
+From repo root, run:
+- `pnpm changeset`
+
+Select affected package(s), choose bump type:
+- `patch`: backwards-compatible bug fix
+- `minor`: backwards-compatible feature
+- `major`: breaking change
+
+Write a clear, user-facing summary in the changeset body. Ensure the generated file under `.changeset/` is committed with the change.
+
+### Multi-package guidance
+If a change affects multiple packages, include them in a single changeset when they are part of the same logical change; otherwise create separate changesets per logical change.

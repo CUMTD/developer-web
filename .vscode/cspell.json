@@ -1,6 +1,8 @@
 {
 	"ignorePaths": ["**/node_modules/**", "**/.next/**", "**/.turbo/**", "**/.vercel/**", "git/**/*"],
 	"words": [
+		"apidevtools",
+		"APIV",
 		"autoapprove",
 		"Autobuild",
 		"cmdk",
@@ -14,6 +16,7 @@
 		"nextjs",
 		"noopener",
 		"noreferrer",
+		"Novelli",
 		"nums",
 		"prebuild",
 		"ridemtd",
@@ -21,6 +24,7 @@
 		"shadcn",
 		"Shiki",
 		"SUPABASE",
+		"turbopack",
 		"typegen",
 		"vaul",
 		"Vercel",

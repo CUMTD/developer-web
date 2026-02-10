@@ -1,0 +1,52 @@
+{
+	"author": "MTD",
+	"bugs": {
+		"url": "https://github.com/CUMTD/developer-web/issues"
+	},
+	"contributors": [
+		{
+			"name": "Ryan Blackman",
+			"url": "https://github.com/rblackman"
+		},
+		{
+			"name": "Matt Novelli",
+			"url": "https://github.com/mattnovelli"
+		}
+	],
+	"description": "Typescript types for MTD's Developer API",
+	"devDependencies": {
+		"@mtd.org/developer-api-spec": "workspace:*",
+		"typescript": "^5.9.3"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"license": "Apache-2.0",
+	"name": "@mtd.org/developer-api-types",
+	"private": false,
+	"publishConfig": {
+		"access": "public",
+		"provenance": true
+	},
+	"repository": {
+		"directory": "packages/types",
+		"type": "git",
+		"url": "https://github.com/CUMTD/developer-web"
+	},
+	"scripts": {
+		"build": "tsc -p tsconfig.build.json",
+		"clean": "pnpm exec tsx ../../scripts/clean dist tsconfig.build.tsbuildinfo tsconfig.tsbuildinfo src/openapi.generated.ts",
+		"gen": "pnpm -C ../../tools gen:types",
+		"prebuild": "pnpm run gen",
+		"typecheck": "tsc --build tsconfig.json"
+	},
+	"sideEffects": false,
+	"type": "module",
+	"types": "./dist/index.d.ts",
+	"version": "3.0.1"
+}

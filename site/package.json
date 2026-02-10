@@ -1,0 +1,112 @@
+{
+	"author": "MTD",
+	"bugs": {
+		"url": "https://github.com/CUMTD/developer-web/issues"
+	},
+	"contributors": [
+		{
+			"name": "Ryan Blackman",
+			"url": "https://github.com/rblackman"
+		},
+		{
+			"name": "Matt Novelli",
+			"url": "https://github.com/mattnovelli"
+		}
+	],
+	"dependencies": {
+		"@hookform/resolvers": "^5.2.2",
+		"@js-temporal/polyfill": "^0.5.1",
+		"@mdx-js/loader": "^3.1.1",
+		"@mdx-js/react": "^3.1.1",
+		"@next/mdx": "^16.1.6",
+		"@plausible-analytics/tracker": "^0.4.4",
+		"@radix-ui/react-accordion": "^1.2.12",
+		"@radix-ui/react-avatar": "^1.1.11",
+		"@radix-ui/react-checkbox": "^1.3.3",
+		"@radix-ui/react-collapsible": "^1.1.12",
+		"@radix-ui/react-dialog": "^1.1.15",
+		"@radix-ui/react-label": "^2.1.8",
+		"@radix-ui/react-navigation-menu": "^1.2.14",
+		"@radix-ui/react-popover": "^1.1.15",
+		"@radix-ui/react-scroll-area": "^1.2.10",
+		"@radix-ui/react-separator": "^1.1.8",
+		"@radix-ui/react-slot": "^1.2.4",
+		"@radix-ui/react-switch": "^1.2.6",
+		"@radix-ui/react-tooltip": "^1.2.8",
+		"@sentry/nextjs": "^10.38.0",
+		"@sentry/toolbar": "1.0.0-beta.11",
+		"@supabase/ssr": "^0.8.0",
+		"@supabase/supabase-js": "^2.93.2",
+		"@types/mdx": "^2.0.13",
+		"@vercel/speed-insights": "^1.3.1",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"cmdk": "^1.1.1",
+		"date-fns": "^4.1.0",
+		"embla-carousel-react": "^8.6.0",
+		"input-otp": "^1.4.2",
+		"lucide-react": "^0.563.0",
+		"next": "^16.1.6",
+		"next-themes": "^0.4.6",
+		"react": "^19.2.4",
+		"react-day-picker": "^9.13.0",
+		"react-dom": "^19.2.4",
+		"react-hook-form": "^7.71.1",
+		"react-icons": "^5.5.0",
+		"react-resizable-panels": "^4.5.3",
+		"recharts": "3.7.0",
+		"rehype-pretty-code": "^0.14.1",
+		"rehype-stringify": "^10.0.1",
+		"remark-gfm": "^4.0.1",
+		"remark-parse": "^11.0.0",
+		"remark-rehype": "^11.1.2",
+		"server-only": "^0.0.1",
+		"shiki": "^3.21.0",
+		"sonner": "^2.0.7",
+		"unified": "^11.0.5",
+		"vaul": "^1.1.2",
+		"zod": "^4.3.6"
+	},
+	"description": "Docs site for MTD.dev API",
+	"devDependencies": {
+		"@tailwindcss/postcss": "^4.1.18",
+		"@tailwindcss/typography": "^0.5.19",
+		"@types/node": "^25.1.0",
+		"@types/react": "^19.2.10",
+		"@types/react-dom": "^19.2.3",
+		"@vercel/toolbar": "^0.1.41",
+		"postcss": "^8.5.6",
+		"tailwind-merge": "^3.4.0",
+		"tailwindcss": "^4.1.18",
+		"tsx": "^4.21.0",
+		"tw-animate-css": "^1.4.0"
+	},
+	"engines": {
+		"node": "v22.x"
+	},
+	"homepage": "https://mtd.dev/",
+	"license": "UNLICENSED",
+	"name": "@mtd.org/developer-web",
+	"packageManager": "pnpm@10.28.2",
+	"private": true,
+	"repository": {
+		"directory": "site",
+		"type": "github",
+		"url": "https://github.com/CUMTD/developer-web"
+	},
+	"scripts": {
+		"build": "next build",
+		"ci:verify": "tsc -p tsconfig.json --noEmit",
+		"dev": "next dev",
+		"prebuild": "pnpm run validate:env && pnpm run typegen:md && pnpm run typegen:supabase",
+		"predev": "pnpm run validate:env && pnpm run typegen:md && pnpm run typegen:supabase",
+		"start": "next start",
+		"typecheck": "tsc -p tsconfig.json --noEmit",
+		"typegen:md": "pnpm exec tsx scripts/generate-markdown-index.ts",
+		"typegen:supabase": "pnpm exec tsx scripts/check-supabase-types.ts --silent || pnpm run typegen:supabase:force",
+		"typegen:supabase:force": "dotenv -e .env -- cross-env-shell \"supabase gen types typescript --project-id $SUPABASE_PROJECT_REF\" > types/supabase.ts && pnpm exec biome format --write types/supabase.ts",
+		"validate:env": "pnpm exec tsx --require dotenv/config scripts/validate-env.ts"
+	},
+	"type": "module",
+	"version": "3.0.0"
+}
