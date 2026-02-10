@@ -17,24 +17,23 @@ function NavMenu() {
 	const { isMobile } = useViewport();
 
 	return (
-		<>
-			<header className="flex flex-row justify-between lg:px-8 px-5 p-5 row-span-1 sticky top-0 bg-sidebar z-50">
-				<WordMark />
-				<NavigationMenu viewport={isMobile}>
-					<NavigationMenuList className="flex-wrap">
-						<NavigationMenuItem>
-							<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-								<Link href="/">Home</Link>
-							</NavigationMenuLink>
-						</NavigationMenuItem>
+		<header className="flex flex-row justify-between lg:px-8 px-5 p-5 row-span-1 sticky top-0 bg-sidebar z-50">
+			<WordMark />
+			<NavigationMenu viewport={isMobile}>
+				<NavigationMenuList className="flex-wrap">
+					<NavigationMenuItem>
+						<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+							<Link href="/">Home</Link>
+						</NavigationMenuLink>
+					</NavigationMenuItem>
 
-						<NavigationMenuItem>
-							<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-								<Link href="/reference/introduction">{isMobile ? "Docs" : "Documentation"}</Link>
-							</NavigationMenuLink>
-						</NavigationMenuItem>
+					<NavigationMenuItem>
+						<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+							<Link href="/reference/introduction">{isMobile ? "Docs" : "Documentation"}</Link>
+						</NavigationMenuLink>
+					</NavigationMenuItem>
 
-						{/* <NavigationMenuItem className="">
+					{/* <NavigationMenuItem className="">
 						<NavigationMenuTrigger>Documentation</NavigationMenuTrigger>
 
 						<NavigationMenuContent className="absolute right-0 left-auto top-full mt-2 z-50">
@@ -70,22 +69,10 @@ function NavMenu() {
 						</NavigationMenuContent>
 					</NavigationMenuItem> */}
 
-						<UserMenu />
-					</NavigationMenuList>
-				</NavigationMenu>
-			</header>
-			<div
-				className={`
-					absolute top-0 z-80
-				h-min w-full text-sm
-				bg-[linear-gradient(45deg,var(--background)_25%,var(--muted)_25%,var(--muted)_50%,var(--background)_50%,var(--background)_75%,var(--muted)_75%,var(--muted)_100%)]
-				bg-size-[40px_40px] flex items-center justify-center`}
-			>
-				<p className="text-foreground font-bold px-10">
-					<strong className="uppercase">Beta - Subject to Change</strong>
-				</p>
-			</div>
-		</>
+					<UserMenu />
+				</NavigationMenuList>
+			</NavigationMenu>
+		</header>
 	);
 }
 

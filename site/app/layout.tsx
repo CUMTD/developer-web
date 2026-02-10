@@ -80,6 +80,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					<ClientProviders>
 						<div className="grid grid-rows-[auto_1fr] h-screen">
 							<NavMenu />
+							{/* <div
+								className={`
+					absolute top-0 z-80
+				h-min w-full text-sm
+				bg-[linear-gradient(45deg,var(--background)_25%,var(--muted)_25%,var(--muted)_50%,var(--background)_50%,var(--background)_75%,var(--muted)_75%,var(--muted)_100%)]
+				bg-size-[40px_40px] flex items-center justify-center`}
+							>
+								<p className="text-foreground font-bold px-10">
+									<strong className="uppercase">Beta - Subject to Change</strong>
+								</p>
+							</div> */}
 							<main className="overflow-auto">{children}</main>
 						</div>
 					</ClientProviders>
