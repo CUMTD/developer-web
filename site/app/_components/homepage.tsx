@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@ui/
 import { Separator } from "@ui/separator";
 import { ArrowRight, DownloadIcon, ExternalLink, FolderArchive, KeyRoundIcon, WorkflowIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Homepage() {
 	return (
@@ -59,9 +60,11 @@ export default function Homepage() {
 								<Button>
 									<DownloadIcon /> Download GTFS Feed
 								</Button>
-								<Button variant={"ghost"}>
-									GTFS Specification <ExternalLink />
-								</Button>
+								<Link href={"https://gtfs.org/documentation/overview/"} target="_blank" rel="noopener noreferrer">
+									<Button variant={"ghost"}>
+										GTFS Specification <ExternalLink />
+									</Button>
+								</Link>
 							</div>
 						</CardFooter>
 					</Card>
@@ -83,9 +86,15 @@ export default function Homepage() {
 									<DownloadIcon />
 									Download GTFS-RT Feed
 								</Button>
-								<Button variant={"ghost"}>
-									GTFS-RT Specification <ExternalLink />
-								</Button>
+								<Link
+									href={"https://gtfs.org/documentation/realtime/reference/"}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<Button variant={"ghost"}>
+										GTFS-RT Specification <ExternalLink />
+									</Button>
+								</Link>
 							</div>
 						</CardFooter>
 					</Card>

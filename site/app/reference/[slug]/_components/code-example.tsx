@@ -34,7 +34,7 @@ export default function CodeExample({ content, endpoint }: CodeExampleProps) {
 
 	return (
 		<>
-			<ItemHeader className="text-xl">
+			<ItemHeader className="text-xl flex flex-row flex-wrap">
 				<span className="font-mono text-sm">{endpoint}</span>
 				<div>
 					<LanguageSelector selectedLanguage={currentLanguage} />

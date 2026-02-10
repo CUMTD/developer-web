@@ -1,5 +1,5 @@
+import { globalEnv } from "@env/global";
 import { ImageResponse } from "next/og";
-import type { Props } from "./reference/[slug]/page";
 export const dynamicParams = false;
 export const dynamic = "force-static";
 
@@ -18,17 +18,18 @@ async function loadGoogleFont(font: string, text: string, weight = 400) {
 	throw new Error("failed to load font data");
 }
 
+interface OpenGraphImageProps {
+	route?: string;
+}
+
 // TODO: adapt this function so it works app-wide
-export default async function Image({ params }: Props) {
-	const { slug } = (await params) ?? "";
+export default async function Image({ route }: OpenGraphImageProps) {
+	console.log("generating image");
+	const logoAbsoluteUrl = `${globalEnv.NEXT_PUBLIC_BASE_URL}/mtd-white-red.svg`;
 
-	const logoAbsoluteUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/mtd-white-red.svg`;
+	const logoType = "Developer Resources";
 
-	const logoType = "Developer";
-	const subtitle = "API Documentation";
-	const route = `/${slug}`;
-
-	const theWholeEnchilada = logoType + subtitle + route;
+	const allText = logoType + route;
 
 	return new ImageResponse(
 		<div
@@ -74,19 +75,21 @@ export default async function Image({ params }: Props) {
 							//todo
 						}}
 					/>
-					<span style={{ fontWeight: "bold", fontSize: "50px" }}>{subtitle}</span>
+					<span style={{ fontWeight: "bold", fontSize: "50px" }}>{logoType}</span>
 				</div>
 
-				<span
-					style={{
-						display: "flex",
-						color: "#a0a0a0",
-						fontFamily: "OverpassMono",
-						fontSize: "40px",
-					}}
-				>
-					{route}
-				</span>
+				{route && (
+					<span
+						style={{
+							display: "flex",
+							color: "#a0a0a0",
+							fontFamily: "OverpassMono",
+							fontSize: "40px",
+						}}
+					>
+						{route}
+					</span>
+				)}
 			</div>
 		</div>,
 		{
@@ -95,19 +98,19 @@ export default async function Image({ params }: Props) {
 			fonts: [
 				{
 					name: "Overpass",
-					data: await loadGoogleFont("Overpass", theWholeEnchilada, 400),
+					data: await loadGoogleFont("Overpass", allText, 400),
 					style: "normal",
 					weight: 400,
 				},
 				{
 					name: "Overpass",
-					data: await loadGoogleFont("Overpass", theWholeEnchilada, 700),
+					data: await loadGoogleFont("Overpass", allText, 700),
 					style: "normal",
 					weight: 700,
 				},
 				{
 					name: "OverpassMono",
-					data: await loadGoogleFont("Overpass+Mono", theWholeEnchilada, 400),
+					data: await loadGoogleFont("Overpass+Mono", allText, 400),
 					style: "normal",
 					weight: 400,
 				},
