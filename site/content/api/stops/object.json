@@ -1,0 +1,30 @@
+{
+	"type": 0,
+	"isStation": false,
+	"isTimepoint": false,
+	"city": "Champaign",
+	"boardingPoints": [
+		{
+			"subName": "Platform A",
+			"platformCode": null,
+			"id": "IT:1",
+			"name": "Illinois Terminal (Platform A)",
+			"stopCode": "3678",
+			"url": "https://mtd.org/maps-and-schedules/bus-stops/info/it-1/",
+			"isAccessible": true,
+			"location": {
+				"latitude": 40.115935,
+				"longitude": -88.24094667
+			}
+		}
+	],
+	"id": "IT",
+	"name": "Illinois Terminal",
+	"stopCode": "3678",
+	"url": "https://mtd.org/maps-and-schedules/bus-stops/info/it/",
+	"isAccessible": true,
+	"location": {
+		"latitude": 40.115698,
+		"longitude": -88.24109153399999
+	}
+}
