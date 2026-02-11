@@ -9,16 +9,23 @@ import {
 	NavigationMenuList,
 	navigationMenuTriggerStyle,
 } from "@ui/navigation-menu";
+import { SidebarTrigger } from "@ui/sidebar";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { memo } from "react";
 import WordMark from "./word-mark";
 
 function NavMenu() {
 	const { isMobile } = useViewport();
+	const pathname = usePathname();
+	const showSidebarTrigger = pathname.startsWith("/reference");
 
 	return (
 		<header className="flex flex-row justify-between lg:px-8 px-5 p-5 row-span-1 sticky top-0 bg-sidebar z-50">
-			<WordMark />
+			<div className="flex items-center gap-2">
+				{showSidebarTrigger && <SidebarTrigger className="md:hidden" aria-label="Open sidebar" />}
+				<WordMark />
+			</div>
 			<NavigationMenu viewport={isMobile}>
 				<NavigationMenuList className="flex-wrap">
 					<NavigationMenuItem>
@@ -28,8 +35,11 @@ function NavMenu() {
 					</NavigationMenuItem>
 
 					<NavigationMenuItem>
-						<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-							<Link href="/reference/introduction">{isMobile ? "Docs" : "Documentation"}</Link>
+						<NavigationMenuLink asChild className={`md:hidden! block! ${navigationMenuTriggerStyle()}`}>
+							<Link href="/reference/introduction">Docs</Link>
+						</NavigationMenuLink>
+						<NavigationMenuLink asChild className={`md:block! hidden! ${navigationMenuTriggerStyle()}`}>
+							<Link href="/reference/introduction">Documentation</Link>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
 

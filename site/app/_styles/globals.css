@@ -49,7 +49,7 @@
 }
 
 :root {
-	--app-header-h: 80px;
+	--app-header-h: 20px;
 
 	--radius: 0.625rem;
 	--background: oklch(1 0 0);
@@ -126,6 +126,25 @@
 	body {
 		@apply bg-background text-foreground;
 	}
+}
+
+html.has-reference-layout,
+body.has-reference-layout {
+	height: 100%;
+	overflow: hidden;
+}
+
+body.has-reference-layout > main {
+	height: calc(100dvh - var(--app-header-h));
+	overflow: hidden;
+}
+
+.reference-scroll-container {
+	height: 100%;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	overscroll-behavior: contain;
+	padding-top: var(--app-header-h);
 }
 
 /* h1 {
