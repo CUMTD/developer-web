@@ -3,12 +3,10 @@ import CopyTextButton from "@common/copy-text-button";
 import LinkButton from "@common/link-button";
 import { H2 } from "@common/typography/heading";
 import Prose from "@common/typography/prose";
-import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@ui/card";
 import { Separator } from "@ui/separator";
 import { ArrowRight, DownloadIcon, ExternalLink, FolderArchive, KeyRoundIcon, WorkflowIcon } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Homepage() {
 	return (
@@ -57,14 +55,12 @@ export default function Homepage() {
 							<CopyTextButton text="https://mtd.dev/gtfs.zip" />
 
 							<div className="flex flex-row gap-4 flex-wrap">
-								<Button>
+								<LinkButton href="https://mtd.dev/gtfs.zip">
 									<DownloadIcon /> Download GTFS Feed
-								</Button>
-								<Link href={"https://gtfs.org/documentation/overview/"} target="_blank" rel="noopener noreferrer">
-									<Button variant={"ghost"}>
-										GTFS Specification <ExternalLink />
-									</Button>
-								</Link>
+								</LinkButton>
+								<LinkButton variant={"ghost"} href="https://gtfs.org/documentation/overview/" newWindow>
+									GTFS Specification <ExternalLink />
+								</LinkButton>
 							</div>
 						</CardFooter>
 					</Card>
@@ -82,19 +78,13 @@ export default function Homepage() {
 						</CardContent>
 						<CardFooter className="mt-auto">
 							<div className="flex flex-row gap-4 flex-wrap">
-								<Button>
+								<LinkButton href="https://gtfs-rt.mtd.org/index.html" newWindow>
 									<DownloadIcon />
-									Download GTFS-RT Feed
-								</Button>
-								<Link
-									href={"https://gtfs.org/documentation/realtime/reference/"}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									<Button variant={"ghost"}>
-										GTFS-RT Specification <ExternalLink />
-									</Button>
-								</Link>
+									View GTFS-RT Feed
+								</LinkButton>
+								<LinkButton variant={"ghost"} href="https://gtfs.org/documentation/realtime/reference/" newWindow>
+									GTFS-RT Specification <ExternalLink />
+								</LinkButton>
 							</div>
 						</CardFooter>
 					</Card>
