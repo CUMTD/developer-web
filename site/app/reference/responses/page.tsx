@@ -34,7 +34,12 @@ export default async function RequestsPage() {
 
 			<h2>Unsuccessful Response</h2>
 			<Sample />
-			<NextPreviousPageNavigatorButtons previousLink="/reference/requests" />
+
+			<NextPreviousPageNavigatorButtons
+				message={"That's the basics! You can view the rest of the API documentation using the left-hand sidebar."}
+				previousLink="/reference/requests"
+				nextLink="/reference/routes"
+			/>
 		</div>
 	);
 }

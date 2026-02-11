@@ -12,7 +12,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "
 import { Skeleton } from "@ui/skeleton";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@ui/tooltip";
 import { cva, type VariantProps } from "class-variance-authority";
-import { PanelLeftIcon } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
 	type ComponentProps,
 	type CSSProperties,
@@ -29,6 +29,7 @@ const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
 const SIDEBAR_STORAGE_KEY = "sidebar_state";
+const SIDEBAR_TOGGLE_EVENT = "sidebar:toggle";
 
 type SidebarContextProps = {
 	state: "expanded" | "collapsed";
@@ -49,6 +50,10 @@ function useSidebar() {
 	}
 
 	return context;
+}
+
+function useOptionalSidebar() {
+	return useContext(SidebarContext);
 }
 
 function SidebarProvider({
@@ -101,6 +106,15 @@ function SidebarProvider({
 
 		window.addEventListener("keydown", handleKeyDown);
 		return () => window.removeEventListener("keydown", handleKeyDown);
+	}, [toggleSidebar]);
+
+	useEffect(() => {
+		const handleToggle = () => {
+			toggleSidebar();
+		};
+
+		window.addEventListener(SIDEBAR_TOGGLE_EVENT, handleToggle);
+		return () => window.removeEventListener(SIDEBAR_TOGGLE_EVENT, handleToggle);
 	}, [toggleSidebar]);
 
 	// We add a state so that we can do data-state="expanded" or "collapsed".
@@ -242,7 +256,17 @@ function Sidebar({
 }
 
 function SidebarTrigger({ className, onClick, ...props }: ComponentProps<typeof Button>) {
-	const { toggleSidebar } = useSidebar();
+	const sidebar = useOptionalSidebar();
+	const toggleSidebar = useCallback(() => {
+		if (sidebar) {
+			sidebar.toggleSidebar();
+			return;
+		}
+
+		if (typeof window !== "undefined") {
+			window.dispatchEvent(new Event(SIDEBAR_TOGGLE_EVENT));
+		}
+	}, [sidebar]);
 
 	return (
 		<Button
@@ -257,7 +281,7 @@ function SidebarTrigger({ className, onClick, ...props }: ComponentProps<typeof 
 			}}
 			{...props}
 		>
-			<PanelLeftIcon />
+			<Menu />
 			<span className="sr-only">Toggle Sidebar</span>
 		</Button>
 	);
@@ -677,5 +701,6 @@ export {
 	SidebarRail,
 	SidebarSeparator,
 	SidebarTrigger,
+	useOptionalSidebar,
 	useSidebar,
 };

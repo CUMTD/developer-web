@@ -10,21 +10,10 @@ const RESIZE_DEBOUNCE_MS = 100;
 const ViewportContext = createContext<ViewportState | undefined>(undefined);
 
 export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>) {
-	const [state, setState] = useState<ViewportState>(() => {
-		// On client: initialize with actual values to avoid flash
-		// On server: use defaults for SSR consistency
-		if (typeof window !== "undefined") {
-			return {
-				isMobile: window.innerWidth < MOBILE_BREAKPOINT,
-				width: window.innerWidth,
-				height: window.innerHeight,
-			};
-		}
-		return {
-			isMobile: false,
-			width: undefined,
-			height: undefined,
-		};
+	const [state, setState] = useState<ViewportState>({
+		isMobile: false,
+		width: undefined,
+		height: undefined,
 	});
 
 	useEffect(() => {
@@ -47,6 +36,8 @@ export function ViewportProvider({ children }: Readonly<{ children: ReactNode }>
 				return newState;
 			});
 		};
+
+		updateViewport();
 
 		// Use matchMedia for more efficient mobile breakpoint detection
 		const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);

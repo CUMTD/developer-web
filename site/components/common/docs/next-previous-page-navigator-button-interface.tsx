@@ -25,6 +25,7 @@ type NextPreviousPageNavigatorButtonsInterface = Readonly<{
 	nextLinkTitle?: string;
 	previousLink?: string;
 	previousLinkTitle?: string;
+	message?: string;
 }>;
 
 export default function NextPreviousPageNavigatorButtons({
@@ -32,23 +33,28 @@ export default function NextPreviousPageNavigatorButtons({
 	nextLinkTitle,
 	previousLink,
 	previousLinkTitle,
+	message,
 }: NextPreviousPageNavigatorButtonsInterface) {
 	const hasPrevious = Boolean(previousLink);
 	const hasNext = Boolean(nextLink);
 
 	return (
-		<ButtonGroup className="ml-auto py-20">
-			{hasPrevious && hasNext && (
-				<LinkButton href={previousLink ?? "#"} variant="ghost">
-					<PreviousContent title={previousLinkTitle ?? "Previous"} />
-				</LinkButton>
-			)}
+		<div className="ml-auto py-20 flex flex-col items-end max-w-[40ch]">
+			{message && <p className="text-right text-ss m-0 p-0">{message}</p>}
 
-			{hasNext && (
-				<LinkButton href={nextLink ?? "#"} variant="ghost">
-					<NextContent title={nextLinkTitle ?? "Next"} />
-				</LinkButton>
-			)}
-		</ButtonGroup>
+			<ButtonGroup>
+				{hasPrevious && (
+					<LinkButton href={previousLink ?? "#"} variant="ghost">
+						<PreviousContent title={previousLinkTitle ?? "Previous"} />
+					</LinkButton>
+				)}
+
+				{hasNext && (
+					<LinkButton href={nextLink ?? "#"} variant="ghost">
+						<NextContent title={nextLinkTitle ?? "Next"} />
+					</LinkButton>
+				)}
+			</ButtonGroup>
+		</div>
 	);
 }
