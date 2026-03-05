@@ -1,22 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
+import Cursor from "./cursor";
 
 export default function WordMark() {
 	return (
 		<Link href={"/"} className="flex flex-row items-center gap-2">
 			<Image
 				priority
-				src="/mtd.svg"
-				alt="MTD"
+				src="/dev-logo.svg"
+				alt="MTD Developer Logo"
 				width={60}
-				height={40}
-				style={{
-					width: "60px",
-					height: "40px",
-				}}
+				height={60}
+				className="w-15 h-15"
 				placeholder="empty"
 			/>
-			<span className="text-2xl italic font-bold hidden md:block">Developer Resources</span>
+			<span className="text-2xl italic font-bold hidden md:block dark:text-[#63be45]">Developer Resources</span>
+			<Cursor />
 		</Link>
 	);
 }
