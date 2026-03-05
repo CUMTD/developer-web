@@ -1,8 +1,8 @@
 "use client";
 
-import { acceptRequiredTos } from "@server/actions/terms-of-use/accept-required-tos";
-import type { AcceptTosActionState } from "@t/terms-of-use-types";
-import { Status } from "@t/terms-of-use-types";
+import { acceptRequiredLicense } from "@server/actions/license/accept-required-license";
+import type { AcceptLicenseActionState } from "@t/license-types";
+import { Status } from "@t/license-types";
 import { Button } from "@ui/button";
 import { Label } from "@ui/label";
 import { Switch } from "@ui/switch";
@@ -23,12 +23,12 @@ type AcceptFormProps = Readonly<{
 	status: Status;
 }>;
 
-const initialState: AcceptTosActionState | undefined = undefined;
+const initialState: AcceptLicenseActionState | undefined = undefined;
 
 export default function AcceptForm({ status }: AcceptFormProps) {
 	const [switchState, setSwitchState] = useState(false);
 
-	const [state, formAction] = useActionState(acceptRequiredTos, initialState);
+	const [state, formAction] = useActionState(acceptRequiredLicense, initialState);
 
 	const [localMessageKey, setLocalMessageKey] = useState(0);
 	useEffect(() => {
@@ -41,16 +41,16 @@ export default function AcceptForm({ status }: AcceptFormProps) {
 		<form action={formAction} className="flex flex-col space-y-4">
 			<div className="flex items-center space-x-2">
 				<Switch
-					id="accept-terms"
+					id="accept-license"
 					checked={switchState}
 					onCheckedChange={(checked) => {
 						setSwitchState(checked);
 					}}
 				/>
-				<Label htmlFor="accept-terms">
+				<Label htmlFor="accept-license">
 					I have read and accept the{" "}
 					{status === Status.AcceptedOldInvalid || status === Status.AcceptedOldValid ? "latest " : ""}
-					Terms of Use.
+					License Agreement and Terms of Use.
 				</Label>
 			</div>
 

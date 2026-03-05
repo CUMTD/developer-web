@@ -11,7 +11,7 @@ export enum Status {
 /**
  * Terms of Use status information.
  */
-export type ToSStatus = Readonly<{
+export type LicenseStatus = Readonly<{
 	status: Status;
 	canAccessApi: boolean;
 	lastAcceptedAt: string | null;
@@ -20,4 +20,4 @@ export type ToSStatus = Readonly<{
 /**
  * Action state for accepting the Terms of Use.
  */
-export type AcceptTosActionState = { ok: true } | { ok: false; message: string };
+export type AcceptLicenseActionState = { ok: true } | { ok: false; message: string };
