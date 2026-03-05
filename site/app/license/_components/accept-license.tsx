@@ -5,11 +5,11 @@ import { Status } from "@t/license-types";
 import AcceptForm from "./accept-form";
 
 export default async function AcceptLicense() {
-	const tosStatus = await getLicenseStatus();
-	const { status } = tosStatus;
+	const licenseStatus = await getLicenseStatus();
+	const { status } = licenseStatus;
 
 	if (status === Status.AcceptedLatest) {
-		const { lastAcceptedAt } = tosStatus;
+		const { lastAcceptedAt } = licenseStatus;
 		return (
 			<Alert variant="success" title="Accepted">
 				<p>

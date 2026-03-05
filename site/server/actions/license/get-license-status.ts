@@ -1,13 +1,13 @@
 import assertUnreachable from "@helpers/assert-unreachable";
 import {
 	getLicenseAcceptanceHistory,
-	type TosStatusResult,
+	type LicenseStatusResult,
 } from "@server/actions/license/get-license-acceptance-history";
 import { type LicenseStatus, Status } from "@t/license-types";
 
 export { Status };
 
-function parseLicenseStatus(statuses: TosStatusResult[]): Status {
+function parseLicenseStatus(statuses: LicenseStatusResult[]): Status {
 	if (statuses.length === 0) {
 		return Status.NeverAccepted;
 	}
@@ -36,14 +36,14 @@ function parseSimpleStatus(status: Status): boolean {
 }
 
 export async function getLicenseStatus(): Promise<LicenseStatus> {
-	const tos = await getLicenseAcceptanceHistory();
+	const licenseHistory = await getLicenseAcceptanceHistory();
 
-	const status = parseLicenseStatus(tos);
+	const status = parseLicenseStatus(licenseHistory);
 	const simpleStatus = parseSimpleStatus(status);
 
 	return {
 		status,
 		canAccessApi: simpleStatus,
-		lastAcceptedAt: tos.length > 0 ? tos[0].accepted_at : null,
+		lastAcceptedAt: licenseHistory.length > 0 ? licenseHistory[0].accepted_at : null,
 	};
 }

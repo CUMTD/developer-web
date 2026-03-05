@@ -6,7 +6,7 @@ type AcceptedLatestTosProps = Readonly<{
 	acceptedOn: string | null;
 }>;
 
-export default function AcceptedLatestTos({ acceptedOn }: AcceptedLatestTosProps) {
+export default function AcceptedLatestLicense({ acceptedOn }: AcceptedLatestTosProps) {
 	return (
 		<Alert variant="success" title="License Agreement and Terms of Use accepted">
 			<p>

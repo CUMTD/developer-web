@@ -4,21 +4,21 @@ import { createClient } from "@server/supabase/server";
 import type { Database } from "@t/supabase";
 import { requireUserId } from "../_auth";
 
-type TosVersionRow = Database["public"]["Tables"]["tos_version"]["Row"];
-type DeveloperTosAcceptanceRow = Database["public"]["Tables"]["developer_tos_acceptance"]["Row"];
+type LicenseVersionRow = Database["public"]["Tables"]["tos_version"]["Row"];
+type DeveloperLicenseAcceptanceRow = Database["public"]["Tables"]["developer_tos_acceptance"]["Row"];
 
-type TosVersionRowResult = Pick<
-	TosVersionRow,
+type LicenseVersionRowResult = Pick<
+	LicenseVersionRow,
 	"id" | "created_at" | "version" | "is_current" | "is_required" | "supersedes"
 >;
 
-type DeveloperTosAcceptanceRowResult = {
-	accepted_at: DeveloperTosAcceptanceRow["accepted_at"];
+type DeveloperLicenseAcceptanceRowResult = {
+	accepted_at: DeveloperLicenseAcceptanceRow["accepted_at"];
 };
 
-export type TosStatusResult = Readonly<TosVersionRowResult & DeveloperTosAcceptanceRowResult>;
+export type LicenseStatusResult = Readonly<LicenseVersionRowResult & DeveloperLicenseAcceptanceRowResult>;
 
-export async function getLicenseAcceptanceHistory(): Promise<TosStatusResult[]> {
+export async function getLicenseAcceptanceHistory(): Promise<LicenseStatusResult[]> {
 	const userId = await requireUserId();
 	const supabase = await createClient();
 
