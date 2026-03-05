@@ -25,11 +25,11 @@ export default async function LicensePage() {
 
 				<section>
 					<p>
-						The Champaign-Urbana Mass Transit District ("Licensor" or "MTD") owns and maintains certain electronic
-						data, including but not limited to MTD route and schedule data, service alert data and real-time departure
-						data ("MTD Data"). MTD hereby grants you ("Licensee") a non-exclusive, limited and revocable license to
-						access, use, reproduce, and redistribute (in certain limited circumstances) MTD Data, subject to the
-						following terms and conditions:
+						The Champaign-Urbana Mass Transit District ("Licensor" or "MTD") owns and maintains certain electronic data,
+						including but not limited to MTD route and schedule data, service alert data and real-time departure data
+						("MTD Data"). MTD hereby grants you ("Licensee") a non-exclusive, limited and revocable license to access,
+						use, reproduce, and redistribute (in certain limited circumstances) MTD Data, subject to the following terms
+						and conditions:
 					</p>
 
 					<H2 id="api-included">Application Programming Interfaces Included</H2>
