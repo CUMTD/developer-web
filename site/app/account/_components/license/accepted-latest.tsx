@@ -8,11 +8,11 @@ type AcceptedLatestTosProps = Readonly<{
 
 export default function AcceptedLatestTos({ acceptedOn }: AcceptedLatestTosProps) {
 	return (
-		<Alert variant="success" title="Terms accepted">
+		<Alert variant="success" title="License Agreement and Terms of Use accepted">
 			<p>
 				{acceptedOn && (
 					<>
-						You accepted the latest Terms of Service on{" "}
+						You accepted the latest License Agreement and Terms of Use on{" "}
 						<span className="font-medium">
 							<LocalTime value={acceptedOn} variant="long" />
 						</span>
@@ -22,8 +22,8 @@ export default function AcceptedLatestTos({ acceptedOn }: AcceptedLatestTosProps
 			</p>
 
 			<div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
-				<LinkButton href="/terms-of-use" variant={"outline"} className="w-full sm:w-auto">
-					Read Terms
+				<LinkButton href="/license" variant={"outline"} className="w-full sm:w-auto">
+					License Agreement and Terms of Use
 				</LinkButton>
 			</div>
 		</Alert>

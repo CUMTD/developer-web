@@ -18,7 +18,7 @@ type DeveloperTosAcceptanceRowResult = {
 
 export type TosStatusResult = Readonly<TosVersionRowResult & DeveloperTosAcceptanceRowResult>;
 
-export async function getTosAcceptanceHistory(): Promise<TosStatusResult[]> {
+export async function getLicenseAcceptanceHistory(): Promise<TosStatusResult[]> {
 	const userId = await requireUserId();
 	const supabase = await createClient();
 

@@ -1,11 +1,11 @@
 import LinkButton from "@common/link-button";
 import { getApiKeys } from "@server/actions/api-keys/get-api-keys";
-import { getTosStatus } from "@server/actions/terms-of-use/get-tos-status";
+import { getLicenseStatus } from "@server/actions/license/get-license-status";
 import { Item, ItemActions, ItemContent, ItemDescription, ItemHeader } from "@ui/item";
 import { KeyRound } from "lucide-react";
 
 export default async function Keys() {
-	const { canAccessApi } = await getTosStatus();
+	const { canAccessApi } = await getLicenseStatus();
 	const keys = canAccessApi ? await getApiKeys() : [];
 
 	return (

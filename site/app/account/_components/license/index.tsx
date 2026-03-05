@@ -1,13 +1,13 @@
 import assertUnreachable from "@helpers/assert-unreachable";
-import { getTosStatus } from "@server/actions/terms-of-use/get-tos-status";
-import { Status } from "@t/terms-of-use-types";
+import { getLicenseStatus } from "@server/actions/license/get-license-status";
+import { Status } from "@t/license-types";
 import AcceptedLatestTos from "./accepted-latest";
 import AcceptedOldInvalid from "./accepted-old-invalid";
 import AcceptedOldValid from "./accepted-old-valid";
 import NeverAccepted from "./never-accepted";
 
-export default async function TermsOfUse() {
-	const { status, lastAcceptedAt } = await getTosStatus();
+export default async function License() {
+	const { status, lastAcceptedAt } = await getLicenseStatus();
 
 	switch (status) {
 		case Status.AcceptedLatest:

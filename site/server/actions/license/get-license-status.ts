@@ -1,10 +1,13 @@
 import assertUnreachable from "@helpers/assert-unreachable";
-import { getTosAcceptanceHistory, type TosStatusResult } from "@server/actions/terms-of-use/get-tos-acceptance-history";
-import { Status, type ToSStatus } from "@t/terms-of-use-types";
+import {
+	getLicenseAcceptanceHistory,
+	type TosStatusResult,
+} from "@server/actions/license/get-license-acceptance-history";
+import { type LicenseStatus, Status } from "@t/license-types";
 
 export { Status };
 
-function parseTosStatus(statuses: TosStatusResult[]): Status {
+function parseLicenseStatus(statuses: TosStatusResult[]): Status {
 	if (statuses.length === 0) {
 		return Status.NeverAccepted;
 	}
@@ -32,10 +35,10 @@ function parseSimpleStatus(status: Status): boolean {
 	}
 }
 
-export async function getTosStatus(): Promise<ToSStatus> {
-	const tos = await getTosAcceptanceHistory();
+export async function getLicenseStatus(): Promise<LicenseStatus> {
+	const tos = await getLicenseAcceptanceHistory();
 
-	const status = parseTosStatus(tos);
+	const status = parseLicenseStatus(tos);
 	const simpleStatus = parseSimpleStatus(status);
 
 	return {
