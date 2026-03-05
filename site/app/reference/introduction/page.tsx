@@ -26,7 +26,7 @@ export default function IntroductionPage() {
 
 			<p>
 				Students, researchers, developers and tinkerers are welcome to use the API provided they agree to and abide by
-				the <Link href="/toc">Terms of Use</Link>.
+				the <Link href="/license">License Agreement and Terms of Use</Link>.
 			</p>
 			<h2>Have you tried our GTFS Feed?</h2>
 			<p>

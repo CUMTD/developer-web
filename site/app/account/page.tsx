@@ -6,7 +6,7 @@ import { createClient } from "@server/supabase/server";
 import type { Metadata } from "next";
 import { unauthorized } from "next/navigation";
 import DeveloperInfo from "./_components/developer-info";
-import TermsOfUse from "./_components/terms-of-use";
+import License from "./_components/license";
 import UserInfo from "./_components/user-info";
 
 export const metadata: Metadata = {
@@ -42,8 +42,8 @@ export default async function AccountPage() {
 			<DeveloperInfo developer={developerDetails} />
 
 			<div className="space-y-4">
-				<H2 wrapProse>Terms of Use</H2>
-				<TermsOfUse />
+				<H2 wrapProse>License Agreement and Terms of Use</H2>
+				<License />
 			</div>
 
 			<div className="space-y-4">
