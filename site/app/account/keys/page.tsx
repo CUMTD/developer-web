@@ -2,7 +2,7 @@ import Breadcrumbs from "@common/account/breadcrumbs";
 import LinkButton from "@common/link-button";
 import { H1 } from "@common/typography/heading";
 import { getApiKeys } from "@server/actions/api-keys/get-api-keys";
-import { getTosStatus } from "@server/actions/terms-of-use/get-tos-status";
+import { getLicenseStatus } from "@server/actions/license/get-license-status";
 import { PlusIcon } from "lucide-react";
 import type { Metadata } from "next";
 import ApiKey from "./_components/api-key";
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export default async function KeysPage() {
-	const { canAccessApi } = await getTosStatus();
+	const { canAccessApi } = await getLicenseStatus();
 	const apiKeys = canAccessApi ? await getApiKeys() : [];
 
 	return (

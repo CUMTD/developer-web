@@ -1,6 +1,6 @@
 import Breadcrumbs from "@common/account/breadcrumbs";
 import { H1 } from "@common/typography/heading";
-import { getTosStatus } from "@server/actions/terms-of-use/get-tos-status";
+import { getLicenseStatus } from "@server/actions/license/get-license-status";
 import { createClient } from "@server/supabase/server";
 import type { Metadata } from "next";
 import { unauthorized } from "next/navigation";
@@ -20,7 +20,7 @@ export default async function AddApiKeyPage() {
 		unauthorized();
 	}
 
-	const { canAccessApi } = await getTosStatus();
+	const { canAccessApi } = await getLicenseStatus();
 
 	if (!canAccessApi) {
 		unauthorized();

@@ -1,14 +1,14 @@
 "use server";
 
 import { createClient } from "@server/supabase/server";
-import type { AcceptTosActionState } from "@t/terms-of-use-types";
+import type { AcceptLicenseActionState } from "@t/license-types";
 import { revalidatePath } from "next/cache";
 import { requireUserId } from "../_auth";
 
-export async function acceptRequiredTos(
-	_prevState: AcceptTosActionState | undefined,
+export async function acceptRequiredLicense(
+	_prevState: AcceptLicenseActionState | undefined,
 	_formData: FormData,
-): Promise<AcceptTosActionState> {
+): Promise<AcceptLicenseActionState> {
 	try {
 		await requireUserId();
 		const supabase = await createClient();
@@ -22,7 +22,7 @@ export async function acceptRequiredTos(
 
 		revalidatePath("/account");
 		revalidatePath("/account/keys");
-		revalidatePath("/terms-of-use");
+		revalidatePath("/license");
 
 		return { ok: true };
 	} catch (err) {

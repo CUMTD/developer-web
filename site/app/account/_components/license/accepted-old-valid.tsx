@@ -8,27 +8,27 @@ type AcceptedOldValidProps = Readonly<{
 
 export default function AcceptedOldValid({ acceptedOn }: AcceptedOldValidProps) {
 	return (
-		<Alert variant="warning" title="Action required: Re-Accept Terms">
+		<Alert variant="warning" title="Action required: Re-Accept License Agreement and Terms of Use">
 			<p>
 				{acceptedOn ? (
 					<>
-						You accepted a previous version of the Terms of Service on{" "}
+						You accepted a previous version of the License Agreement and Terms of Use on{" "}
 						<span className="font-medium">
 							<LocalTime value={acceptedOn} variant="long" />
 						</span>
 						.
 					</>
 				) : (
-					<>You accepted a previous version of the Terms of Service.</>
+					<>You accepted a previous version of the License Agreement and Terms of Use.</>
 				)}
 			</p>
 			<p>
 				Your current acceptance is still valid, but will eventually stop working. Please review and accept the latest
-				Terms to ensure uninterrupted access to the API.
+				License Agreement and Terms of Use to ensure uninterrupted access to the API.
 			</p>
 			<div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center">
-				<LinkButton href="/terms-of-use" className="w-full sm:w-auto">
-					Read &amp; Accept Terms
+				<LinkButton href="/license" className="w-full sm:w-auto">
+					Read &amp; Accept License Agreement and Terms of Use
 				</LinkButton>
 			</div>
 		</Alert>
