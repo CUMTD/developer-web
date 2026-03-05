@@ -14,7 +14,7 @@ export default function LoggedInUserMenu({ user }: Readonly<{ user: CurrentUser 
 	const { profileImageUrl } = user;
 
 	return (
-		<NavigationMenuItem className="dark:text-[#63be45] dark:hover:text-white">
+		<NavigationMenuItem>
 			<NavigationMenuLink href="/account">
 				<div className="flex flex-row gap-2 items-center">
 					<UserAvatar profileImage={profileImageUrl} name={name} size="sm" />

@@ -11,10 +11,6 @@
 
 			@media (prefers-color-scheme: dark) {
 				.adaptive-fill-bracket {
-					fill: #63be45;
-				}
-
-				.adaptive-fill-swoosh {
 					fill: #fff;
 				}
 			}

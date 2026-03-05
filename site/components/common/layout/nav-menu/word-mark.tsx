@@ -14,7 +14,7 @@ export default function WordMark() {
 				className="w-15 h-15"
 				placeholder="empty"
 			/>
-			<span className="text-2xl italic font-bold hidden md:block dark:text-[#63be45]">Developer Resources</span>
+			<span className="text-2xl italic font-bold hidden md:block">Developer Resources</span>
 			<Cursor />
 		</Link>
 	);

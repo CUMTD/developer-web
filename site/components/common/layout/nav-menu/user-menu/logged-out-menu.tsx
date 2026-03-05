@@ -4,7 +4,7 @@ import { CircleUserIcon } from "lucide-react";
 
 export default function LoggedOutMenu() {
 	return (
-		<NavigationMenuItem className="dark:text-[#63be45] dark:hover:text-white">
+		<NavigationMenuItem>
 			<LinkButton
 				variant="ghost"
 				href="/account/auth/login"

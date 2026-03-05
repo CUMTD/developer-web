@@ -29,10 +29,7 @@ function NavMenu() {
 			<NavigationMenu viewport={isMobile}>
 				<NavigationMenuList className="flex-wrap">
 					<NavigationMenuItem>
-						<NavigationMenuLink
-							asChild
-							className={`${navigationMenuTriggerStyle()} dark:text-[#63be45] dark:hover:text-white`}
-						>
+						<NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()}`}>
 							<Link href="/" className="text-currentColor">
 								Home
 							</Link>
@@ -40,16 +37,10 @@ function NavMenu() {
 					</NavigationMenuItem>
 
 					<NavigationMenuItem>
-						<NavigationMenuLink
-							asChild
-							className={`md:hidden! block! ${navigationMenuTriggerStyle()} dark:text-[#63be45] dark:hover:text-white`}
-						>
+						<NavigationMenuLink asChild className={`md:hidden! block! ${navigationMenuTriggerStyle()}`}>
 							<Link href="/reference/introduction">Docs</Link>
 						</NavigationMenuLink>
-						<NavigationMenuLink
-							asChild
-							className={`md:block! hidden! ${navigationMenuTriggerStyle()} dark:text-[#63be45] dark:hover:text-white`}
-						>
+						<NavigationMenuLink asChild className={`md:block! hidden! ${navigationMenuTriggerStyle()}`}>
 							<Link href="/reference/introduction">Documentation</Link>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
