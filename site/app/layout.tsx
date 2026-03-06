@@ -84,7 +84,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					themes={["light", "dark", "terminal"]}
 				>
 					<ClientProviders>
-						<div className="grid grid-rows-[auto_1fr] h-screen font-sans terminal:font-mono">
+						<div className="grid grid-rows-[auto_1fr] h-screen">
 							<NavMenu />
 							<main className="overflow-auto">{children}</main>
 						</div>
