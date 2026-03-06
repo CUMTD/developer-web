@@ -30,7 +30,7 @@ function NavMenu() {
 				<NavigationMenuList className="flex-wrap">
 					<NavigationMenuItem>
 						<NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()}`}>
-							<Link href="/" className="text-currentColor">
+							<Link href="/" className="text-current">
 								Home
 							</Link>
 						</NavigationMenuLink>
