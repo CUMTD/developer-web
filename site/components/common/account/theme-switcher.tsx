@@ -2,16 +2,17 @@
 
 import { Button } from "@ui/button";
 import { ButtonGroup } from "@ui/button-group";
-import { Computer, Moon, Sun } from "lucide-react";
+import { Code, Computer, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import * as React from "react";
 import { type ReactNode, useEffect, useMemo } from "react";
 
-type ThemeOption = "light" | "dark" | "system";
+type ThemeOption = "light" | "dark" | "terminal" | "system";
 
 const options: Readonly<Array<{ value: ThemeOption; label: string; icon: ReactNode }>> = [
 	{ value: "light", label: "Light", icon: <Sun className="h-[1.2rem] w-[1.2rem]" aria-hidden="true" /> },
 	{ value: "dark", label: "Dark", icon: <Moon className="h-[1.2rem] w-[1.2rem]" aria-hidden="true" /> },
+	{ value: "terminal", label: "Terminal", icon: <Code className="h-[1.2rem] w-[1.2rem]" aria-hidden="true" /> },
 	{ value: "system", label: "System", icon: <Computer className="h-[1.2rem] w-[1.2rem]" aria-hidden="true" /> },
 ];
 export default function ThemeSwitcher() {
