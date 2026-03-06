@@ -70,7 +70,7 @@ export default function Homepage() {
 					</Card>
 					<Card className="gap-0!">
 						<CardHeader>
-							<RealTimeIcon width={20} className="m-0!" />
+							<RealTimeIcon width={20} className="m-0!" aria-hidden="true" focusable={false} />
 							<h2 className="m-0!">GTFS-RT</h2>
 							<CardDescription>General Transit Feed Specification-Realtime</CardDescription>
 						</CardHeader>

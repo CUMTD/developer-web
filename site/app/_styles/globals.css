@@ -293,11 +293,42 @@ code::after {
 }
 
 .cursor-blink {
-	animation: blink 1s step-end infinite;
+	animation: blink 1.5s step-end infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
 	.cursor-blink {
+		animation: none;
+	}
+}
+
+.realtime-arc {
+	opacity: 0.5;
+	animation: realtime-pulse 2s linear infinite;
+}
+
+.realtime-arc-2 {
+	animation-delay: 0.4s;
+}
+
+@keyframes realtime-pulse {
+	0% {
+		opacity: 0.5;
+	}
+	20% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 0.5;
+	}
+}
+
+/* Respect accessibility */
+@media (prefers-reduced-motion: reduce) {
+	.realtime-arc {
 		animation: none;
 	}
 }
