@@ -1,6 +1,7 @@
 "use client";
 import CopyTextButton from "@common/copy-text-button";
 import LinkButton from "@common/link-button";
+import RealTimeIcon from "@common/real-time-icon";
 import { H2 } from "@common/typography/heading";
 import Prose from "@common/typography/prose";
 import { Button } from "@ui/button";
@@ -55,7 +56,6 @@ export default function Homepage() {
 						</CardContent>
 						<CardFooter className="mt-auto flex flex-col items-start gap-3">
 							<CopyTextButton text="https://mtd.dev/gtfs.zip" />
-
 							<div className="flex flex-row gap-4 flex-wrap">
 								<Button>
 									<DownloadIcon /> Download GTFS Feed
@@ -70,7 +70,7 @@ export default function Homepage() {
 					</Card>
 					<Card className="gap-0!">
 						<CardHeader>
-							<Image priority src="/realtime-icon-adaptive.svg" alt="" className="m-0!" width={20} height={20} />
+							<RealTimeIcon width={20} className="m-0!" aria-hidden="true" focusable={false} />
 							<h2 className="m-0!">GTFS-RT</h2>
 							<CardDescription>General Transit Feed Specification-Realtime</CardDescription>
 						</CardHeader>
@@ -112,7 +112,11 @@ export default function Homepage() {
 						</CardContent>
 						<CardFooter className="mt-auto">
 							<div className="flex flex-row gap-4">
-								<LinkButton href="/account/keys" variant={"secondary"} className="bg-blue-800 text-white">
+								<LinkButton
+									href="/account/keys"
+									variant={"secondary"}
+									className="bg-[#002f87] text-white in-[.terminal]:bg-[#1D7C33] in-[.terminal]:text-white"
+								>
 									Get an API Key <KeyRoundIcon />
 								</LinkButton>
 								<LinkButton href="/reference/introduction">

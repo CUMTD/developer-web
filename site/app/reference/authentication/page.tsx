@@ -35,7 +35,11 @@ export default function AuthenticationPage() {
 
 function ApiKeyNudge() {
 	return (
-		<LinkButton href="/account/keys" variant="secondary" className="bg-blue-800 text-white">
+		<LinkButton
+			href="/account/keys"
+			variant="secondary"
+			className="bg-[#002f87] text-white in-[.terminal]:bg-[#1D7C33] in-[.terminal]:text-white"
+		>
 			Get an API Key <KeyRoundIcon />
 		</LinkButton>
 	);

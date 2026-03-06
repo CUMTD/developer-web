@@ -72,9 +72,18 @@ export default function CopyTextButton({ text, title }: CopyTextProps) {
 
 	return (
 		<div className="grid gap-2 w-full">
-			{title && <Label htmlFor={inputId}>{title}</Label>}
+			{title ? (
+				<Label htmlFor={inputId}>{title}</Label>
+			) : (
+				<label htmlFor={inputId} className="sr-only">
+					Text to copy
+				</label>
+			)}
 
 			<fieldset className="inline-flex items-stretch w-full" aria-label={title ?? "Copy text"}>
+				<label htmlFor={inputId} className="sr-only">
+					{title ?? "Text to copy"}
+				</label>
 				<Input
 					id={inputId}
 					value={text}

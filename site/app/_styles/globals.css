@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark *, .terminal *));
 
 @theme inline {
 	--radius: 2px;
@@ -51,6 +51,10 @@
 :root {
 	--app-header-h: 20px;
 
+	--dev-logo-bracket: #0071ce;
+	--dev-logo-swoosh: #e10027;
+	--realtime-icon-stroke: #000;
+
 	--radius: 0.625rem;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.145 0 0);
@@ -86,6 +90,9 @@
 }
 
 .dark {
+	--dev-logo-bracket: white;
+	--realtime-icon-stroke: #fff;
+
 	--background: oklch(0.145 0 0);
 	--foreground: oklch(0.985 0 0);
 	--card: oklch(0.205 0 0);
@@ -117,6 +124,79 @@
 	--sidebar-accent-foreground: hsl(240 4.8% 95.9%);
 	--sidebar-border: hsl(240 3.7% 15.9%);
 	--sidebar-ring: hsl(217.2 91.2% 59.8%);
+}
+
+.terminal {
+	--dev-logo-bracket: #63be45;
+	--dev-logo-swoosh: white;
+	--realtime-icon-stroke: #63be45;
+
+	--background: oklch(0.145 0 0);
+	--foreground: #63be45;
+	--card: oklch(0.205 0 0);
+	--card-foreground: #63be45;
+	--popover: oklch(0.205 0 0);
+	--popover-foreground: #63be45;
+	--primary: oklch(0.922 0 0);
+	--primary-foreground: oklch(0.205 0 0);
+	--secondary: oklch(0.269 0 0);
+	--secondary-foreground: #63be45;
+	--muted: oklch(0.269 0 0);
+	--muted-foreground: #4f8f3a;
+	--accent: oklch(0.269 0 0);
+	--accent-foreground: #63be45;
+	--destructive: oklch(0.704 0.191 22.216);
+	--border: oklch(1 0 0 / 10%);
+	--input: oklch(1 0 0 / 15%);
+	--ring: oklch(0.556 0 0);
+	--chart-1: oklch(0.488 0.243 264.376);
+	--chart-2: oklch(0.696 0.17 162.48);
+	--chart-3: oklch(0.769 0.188 70.08);
+	--chart-4: oklch(0.627 0.265 303.9);
+	--chart-5: oklch(0.645 0.246 16.439);
+	--sidebar: hsl(240 5.9% 10%);
+	--sidebar-foreground: #4f8f3a;
+	--sidebar-primary: hsl(224.3 76.3% 48%);
+	--sidebar-primary-foreground: hsl(0 0% 100%);
+	--sidebar-accent: hsl(240 3.7% 15.9%);
+	--sidebar-accent-foreground: #4f8f3a;
+	--sidebar-border: hsl(240 3.7% 15.9%);
+	--sidebar-ring: hsl(217.2 91.2% 59.8%);
+}
+
+.terminal .prose {
+	--tw-prose-body: #63be45;
+	--tw-prose-headings: #63be45;
+	--tw-prose-lead: #63be45;
+	--tw-prose-links: #63be45;
+	--tw-prose-bold: #63be45;
+	--tw-prose-counters: #63be45;
+	--tw-prose-bullets: #63be45;
+	--tw-prose-hr: color-mix(in srgb, #63be45 35%, transparent);
+	--tw-prose-quotes: #63be45;
+	--tw-prose-quote-borders: color-mix(in srgb, #63be45 35%, transparent);
+	--tw-prose-captions: #63be45;
+	--tw-prose-code: #63be45;
+	--tw-prose-pre-code: #63be45;
+	--tw-prose-th-borders: color-mix(in srgb, #63be45 35%, transparent);
+	--tw-prose-td-borders: color-mix(in srgb, #63be45 25%, transparent);
+
+	--tw-prose-invert-body: #63be45;
+	--tw-prose-invert-headings: #63be45;
+	--tw-prose-invert-lead: #63be45;
+	--tw-prose-invert-links: #63be45;
+	--tw-prose-invert-bold: #63be45;
+	--tw-prose-invert-counters: #63be45;
+	--tw-prose-invert-bullets: #63be45;
+	--tw-prose-invert-hr: color-mix(in srgb, #63be45 35%, transparent);
+	--tw-prose-invert-quotes: #63be45;
+	--tw-prose-invert-quote-borders: color-mix(in srgb, #63be45 35%, transparent);
+	--tw-prose-invert-captions: #63be45;
+	--tw-prose-invert-code: #63be45;
+	--tw-prose-invert-pre-code: #63be45;
+	--tw-prose-invert-pre-bg: rgb(0 0 0 / 50%);
+	--tw-prose-invert-th-borders: color-mix(in srgb, #63be45 35%, transparent);
+	--tw-prose-invert-td-borders: color-mix(in srgb, #63be45 25%, transparent);
 }
 
 @layer base {
@@ -199,4 +279,56 @@ pre code {
 code::before,
 code::after {
 	content: "";
+}
+
+@keyframes blink {
+	0%,
+	49% {
+		opacity: 1;
+	}
+	50%,
+	100% {
+		opacity: 0;
+	}
+}
+
+.cursor-blink {
+	animation: blink 1.5s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cursor-blink {
+		animation: none;
+	}
+}
+
+.realtime-arc {
+	opacity: 0.5;
+	animation: realtime-pulse 2s linear infinite;
+}
+
+.realtime-arc-2 {
+	animation-delay: 0.4s;
+}
+
+@keyframes realtime-pulse {
+	0% {
+		opacity: 0.5;
+	}
+	20% {
+		opacity: 1;
+	}
+	40% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 0.5;
+	}
+}
+
+/* Respect accessibility */
+@media (prefers-reduced-motion: reduce) {
+	.realtime-arc {
+		animation: none;
+	}
 }

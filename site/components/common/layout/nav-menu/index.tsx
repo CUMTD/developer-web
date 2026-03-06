@@ -29,8 +29,10 @@ function NavMenu() {
 			<NavigationMenu viewport={isMobile}>
 				<NavigationMenuList className="flex-wrap">
 					<NavigationMenuItem>
-						<NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-							<Link href="/">Home</Link>
+						<NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()}`}>
+							<Link href="/" className="text-current">
+								Home
+							</Link>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
 
@@ -42,42 +44,6 @@ function NavMenu() {
 							<Link href="/reference/introduction">Documentation</Link>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
-
-					{/* <NavigationMenuItem className="">
-						<NavigationMenuTrigger>Documentation</NavigationMenuTrigger>
-
-						<NavigationMenuContent className="absolute right-0 left-auto top-full mt-2 z-50">
-							<div className="w-[min(420px,calc(100vw-1rem))] p-2">
-								<ul className="grid gap-2">
-									<li>
-										<NavigationMenuLink asChild>
-											<Link
-												href="/reference/introduction"
-												className="block rounded-md px-3 py-2 hover:bg-accent focus:bg-accent outline-none"
-											>
-												<div className="font-medium">Developer API Reference</div>
-												<div className="text-muted-foreground">Learn how to use the API.</div>
-											</Link>
-										</NavigationMenuLink>
-									</li>
-
-									<li>
-										<NavigationMenuLink asChild>
-											<Link
-												href="#"
-												className="block rounded-md px-3 py-2 hover:bg-accent focus:bg-accent outline-none"
-											>
-												<div className="font-medium flex flex-row gap-2 items-center">
-													Swagger UI <ExternalLink className="h-4 w-4" />
-												</div>
-												<div className="text-muted-foreground">OpenAPI Definition for power users.</div>
-											</Link>
-										</NavigationMenuLink>
-									</li>
-								</ul>
-							</div>
-						</NavigationMenuContent>
-					</NavigationMenuItem> */}
 
 					<UserMenu />
 				</NavigationMenuList>

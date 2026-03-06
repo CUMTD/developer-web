@@ -76,7 +76,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 		<html lang="en" suppressHydrationWarning>
 			<body className={`${overpass.variable} ${overpassMono.variable} font-sans antialiased`}>
 				<PlausibleAnalytics />
-				<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange
+					themes={["light", "dark", "terminal"]}
+				>
 					<ClientProviders>
 						<div className="grid grid-rows-[auto_1fr] h-screen">
 							<NavMenu />

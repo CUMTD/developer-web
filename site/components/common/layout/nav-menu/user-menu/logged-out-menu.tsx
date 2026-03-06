@@ -6,13 +6,13 @@ export default function LoggedOutMenu() {
 	return (
 		<NavigationMenuItem>
 			<LinkButton
+				variant="ghost"
 				href="/account/auth/login"
 				size="sm"
-				className=""
 				linkProps={{ className: "w-full flex flex-row justify-center" }}
 			>
 				<CircleUserIcon className="md:inline-block hidden mr-1  h-4 w-4" />
-				Sign In
+				<span className="inline-block mt-0.5">Sign In</span>
 			</LinkButton>
 		</NavigationMenuItem>
 	);
