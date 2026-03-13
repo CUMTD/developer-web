@@ -23,7 +23,6 @@ interface OpenGraphImageProps {
 
 // TODO: adapt this function so it works app-wide
 export default async function Image({ route }: OpenGraphImageProps) {
-	console.log("generating image");
 	const logoType = "Developer Resources";
 	const routeLabel = route ?? "";
 	const allText = `${logoType}${routeLabel}`;
@@ -71,7 +70,7 @@ export default async function Image({ route }: OpenGraphImageProps) {
 						role="img"
 						aria-label="MTD"
 					>
-						<title>MTD</title>
+						{/* <title>MTD</title> */}
 						<path
 							fill="#e10027"
 							d="M604 255.9c-70.4 47.4-151.1 13.2-215.3-3-63.7-17.3-147-33.7-252.7 61.7 84.5-46.6 162.4-9.6 234.8 9.3 64.1 16.1 159 14 233.2-68"

@@ -40,7 +40,7 @@ export default function Homepage() {
 					</div>
 				</div>
 				<Separator />
-				<h2 className="mt-4">Available Data</h2>
+				<h2 className="mt-4">Public Data Feeds</h2>
 				<div className="grid md:grid-cols-2 grid-cols-1 md:grid-rows-3 grid-rows-2 gap-5">
 					<Card className="gap-0!">
 						<CardHeader>
