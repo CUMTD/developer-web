@@ -8,7 +8,7 @@ export type MtdApiClientOptions = {
 };
 
 export const createMtdApiClient = ({
-	baseUrl = "https://api.mtd.dev/v3.0.0/",
+	baseUrl = "https://api.mtd.dev",
 	apiKey,
 	defaultHeaders = {},
 }: MtdApiClientOptions) => {

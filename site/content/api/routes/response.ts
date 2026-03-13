@@ -46,13 +46,13 @@ export const response: ApiResponseAttribute[] = [
 				name: "firstTrip",
 				type: "string",
 				description:
-					"The time of the first trip of the day for this route. Day is arbitary and used to convey time only.",
+					"The time of the first trip of the day for this route. Day is arbitrary and used to convey time only.",
 			},
 			{
 				name: "lastTrip",
 				type: "string",
 				description:
-					"The time of the last trip of the day for this route. Day is arbitary and used to convey time only.",
+					"The time of the last trip of the day for this route. Day is arbitrary and used to convey time only.",
 			},
 			{
 				name: "lastTripAfterMidnight",

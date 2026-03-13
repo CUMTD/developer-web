@@ -9,6 +9,10 @@ const __dirname = path.dirname(__filename);
 
 /** @type {import('rehype-pretty-code').Options} */
 const options = {
+	theme: {
+		light: "github-light",
+		dark: "github-dark-dimmed",
+	},
 	keepBackground: false,
 };
 

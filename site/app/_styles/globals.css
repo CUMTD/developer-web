@@ -210,6 +210,7 @@ html.terminal body {
 	}
 	body {
 		@apply bg-background text-foreground;
+		font-family: var(--font-sans);
 	}
 }
 
@@ -281,24 +282,51 @@ pre code {
 	display: grid;
 }
 
+/* Apply rehype-pretty-code dual-theme variables to emitted data-theme markup. */
+pre[data-theme] {
+	color: var(--shiki-light);
+	background-color: var(--shiki-light-bg);
+}
+
+pre[data-theme] span[style*="--shiki-light"] {
+	color: var(--shiki-light);
+}
+
+.dark pre[data-theme],
+.terminal pre[data-theme] {
+	color: var(--shiki-dark);
+	background-color: var(--shiki-dark-bg);
+}
+
+.dark pre[data-theme] span[style*="--shiki-dark"],
+.terminal pre[data-theme] span[style*="--shiki-dark"] {
+	color: var(--shiki-dark);
+}
+
+/* Keep typography plugin from forcing a single prose code color in highlighted blocks. */
+pre[data-theme] code {
+	color: inherit;
+}
+
 code::before,
 code::after {
 	content: "";
 }
 
 @keyframes blink {
-	0%,
-	49% {
+	0% {
 		opacity: 1;
 	}
-	50%,
+	60% {
+		opacity: 1;
+	}
 	100% {
 		opacity: 0;
 	}
 }
 
 .cursor-blink {
-	animation: blink 1.5s step-end infinite;
+	animation: blink 1.5s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

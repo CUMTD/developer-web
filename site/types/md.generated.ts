@@ -20,6 +20,7 @@ export const API_INDEX = {
 		"get-vehicle-configuration",
 		"get-vehicle-configurations",
 		"get-vehicle-location",
+		"get-vehicle-locations",
 		"get-vehicles",
 	],
 } as const;

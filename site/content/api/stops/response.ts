@@ -2,9 +2,14 @@ import type { ApiResponseAttribute } from "@t/documentation-types";
 
 export const response: ApiResponseAttribute[] = [
 	{
+		name: "id",
+		type: "string",
+		description: "Unique identifier for the stop group.",
+	},
+	{
 		name: "type",
 		type: "integer",
-		description: "0 if stop group, 1 if boarding point",
+		description: "0 = Stop Group, 1 = Boarding Point",
 	},
 	{
 		name: "isStation",
@@ -14,12 +19,13 @@ export const response: ApiResponseAttribute[] = [
 	{
 		name: "isTimepoint",
 		type: "boolean",
-		description: "Whether the stop is a timepoint.",
+		description:
+			"Whether the stop is a timepoint. An operator may not depart from a timepoint early. Timepoints are the times published in the Maps and Schedules book.",
 	},
 	{
 		name: "city",
 		type: "string",
-		description: "The city where the stop is located. Either Champaign, Urbana, or Savoy.",
+		description: 'The city where the stop is located. Either "Champaign", "Urbana", or "Savoy".',
 	},
 	{
 		name: "boardingPoints",
@@ -29,12 +35,8 @@ export const response: ApiResponseAttribute[] = [
 			{
 				name: "subName",
 				type: "string",
-				description: "Sub-name or description of the boarding point.",
-			},
-			{
-				name: "platformCode",
-				type: "string | null",
-				description: "Platform code for the boarding point, if applicable.",
+				description:
+					"Sub-name or description of the boarding point. This is usually shown in parenthesis after the Stop Group name.",
 			},
 			{
 				name: "id",
@@ -54,7 +56,7 @@ export const response: ApiResponseAttribute[] = [
 			{
 				name: "url",
 				type: "string",
-				description: "URL for more information about the boarding point.",
+				description: "URL to the stop's page on MTD's website.",
 			},
 			{
 				name: "isAccessible",
@@ -80,11 +82,7 @@ export const response: ApiResponseAttribute[] = [
 			},
 		],
 	},
-	{
-		name: "id",
-		type: "string",
-		description: "Unique identifier for the stop group.",
-	},
+
 	{
 		name: "name",
 		type: "string",
@@ -112,12 +110,12 @@ export const response: ApiResponseAttribute[] = [
 		childAttributes: [
 			{
 				name: "latitude",
-				type: "number",
+				type: "float",
 				description: "Latitude coordinate.",
 			},
 			{
 				name: "longitude",
-				type: "number",
+				type: "float",
 				description: "Longitude coordinate.",
 			},
 		],

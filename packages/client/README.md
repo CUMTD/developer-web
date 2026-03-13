@@ -26,7 +26,7 @@ pnpm add @mtd.org/developer-api-client
 ## Quick Start
 
 ```typescript
-import createClient from '@mtd.org/developer-api-client';
+import createMtdApiClient from '@mtd.org/developer-api-client';
 
 // Create a client with your API key
 const client = createMtdApiClient({
@@ -81,9 +81,9 @@ for (const departure of result) {
 ### Creating a Client
 
 ```typescript
-import createClient from '@mtd.org/developer-api-client';
+import { createMtdApiClient } from '@mtd.org/developer-api-client';
 
-const client = createClient({
+const client = createMtdApiClient({
 	apiKey: 'your-api-key',
 	// Optional: override base URL
 	// baseUrl: 'url override'
@@ -96,7 +96,7 @@ All API methods are fully typed based on the OpenAPI specification.
 Path and query params are specified as objects inside `params`.
 
 ```typescript
-const { data, error } = client.GET("/shapes/{shapeId}", {
+const { data, error } = await client.GET("/shapes/{shapeId}", {
 	params: {
 		query: {
 			polyline: true,
@@ -138,7 +138,7 @@ type Route = components['schemas']['Route'];
 type Vehicle = components['schemas']['Vehicle'];
 
 // All requests and responses are typed
-const client = createClient({ apiKey: 'key' });
+const client = createMtdApiClient({ apiKey: 'key' });
 const response = await client.GET('/GetRoutes'); // response is typed!
 ```
 

@@ -118,22 +118,22 @@ const data: Readonly<{ navMain: NavItem[] }> = {
 				},
 				{
 					sortOrder: 40,
-					title: "Get stop's schedule",
+					title: "Get a stop's schedule",
 					url: "/reference/stops#get-stop-schedule",
 				},
 				{
 					sortOrder: 50,
-					title: "Get stop's trips",
+					title: "Get a stop's trips",
 					url: "/reference/stops#get-stop-trips",
 				},
 				{
 					sortOrder: 30,
-					title: "Get stop's routes",
+					title: "Get a stop's routes",
 					url: "/reference/stops#get-stop-routes",
 				},
 				{
 					sortOrder: 20,
-					title: "Get stop's departures",
+					title: "Get a stop's departures",
 					url: "/reference/stops#get-stop-departures",
 				},
 				{
@@ -164,6 +164,11 @@ const data: Readonly<{ navMain: NavItem[] }> = {
 					sortOrder: 40,
 					title: "Get a vehicle's current location",
 					url: "/reference/vehicles#get-vehicle-location",
+				},
+				{
+					sortOrder: 45,
+					title: "Get all vehicle locations",
+					url: "/reference/vehicles#get-vehicle-locations",
 				},
 				{
 					sortOrder: 20,

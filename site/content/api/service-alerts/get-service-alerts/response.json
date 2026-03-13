@@ -3,11 +3,11 @@
 		{
 			"id": "string",
 			"displayId": "string",
-			"text": "string",
+			"text": "Example message.",
 			"startTime": "2026-01-27T20:47:09.885Z",
 			"endTime": "2026-01-27T20:47:09.885Z",
 			"blockRealtime": true,
-			"stopIds": ["string"]
+			"stopIds": ["IT:1"]
 		}
 	],
 	"error": null

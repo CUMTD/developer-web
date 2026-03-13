@@ -51,7 +51,10 @@ export async function PrettyCodeFromFilepath({
 		.use(remarkParse)
 		.use(remarkRehype)
 		.use(rehypePrettyCode, {
-			theme: "github-dark-dimmed",
+			theme: {
+				light: "github-light",
+				dark: "github-dark-dimmed",
+			},
 			keepBackground: false,
 		})
 		.use(rehypeStringify)
