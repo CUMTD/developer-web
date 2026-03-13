@@ -10,7 +10,7 @@ export const queryParameters: ApiRequestParameter[] = [
 		name: "query",
 		type: "string",
 		required: true,
-		description: "Plain text stop name query.",
+		description: "The search query.",
 		isPath: false,
 		exampleValue: "union",
 	},

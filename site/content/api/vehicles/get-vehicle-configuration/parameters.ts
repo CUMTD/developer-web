@@ -8,7 +8,7 @@ export const pathParameters: ApiRequestParameter[] = [
 		name: "id",
 		type: "string",
 		required: true,
-		description: "The id of a vehicle.",
+		description: "The id of a vehicle configuration.",
 		isPath: true,
 	},
 ];

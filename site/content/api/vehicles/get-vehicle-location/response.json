@@ -1,3 +1,9 @@
 {
-	"test": "sample"
+	"result": {
+		"vehicleId": "052dc1be-7d99-4ed9-9a6e-6ea7ea8e07c9",
+		"vehicleNumber": "1722",
+		"latitude": 40.100496,
+		"longitude": -88.30909
+	},
+	"error": null
 }

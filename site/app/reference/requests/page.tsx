@@ -18,13 +18,13 @@ export default function RequestsPage() {
 			</div>
 			<h1>Sending Requests</h1>
 			<p>
-				HTTP requests are how the internet transfers data. If you're viewing this website live on the internet, it was
-				delivered via an HTTP request made by your browser.
+				HTTP requests are at the foundation of how data moves across the internet. Every webpage you visit, every image
+				you view, and every video you watch is fetched by an HTTP request. The same goes for our API.
 			</p>
 
 			<h2>Get the API base URL</h2>
 			<CodeExampleBody mini>
-				<code>https://api.mtd.dev/v3.0.0</code>
+				<code>https://api.mtd.dev</code>
 			</CodeExampleBody>
 			<h2>Choose an endpoint</h2>
 			<p>Check out the sidebar for all of the different kinds of data you can get.</p>
@@ -40,7 +40,7 @@ export default function RequestsPage() {
 				will vary by what you are using to make the HTTP request, but here are some examples:
 			</p>
 			<h2>Send!</h2>
-			<p>Go to next page.</p>
+
 			<NextPreviousPageNavigatorButtons nextLink="/reference/responses" previousLink="/reference/authentication" />
 		</div>
 	);

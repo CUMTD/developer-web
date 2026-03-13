@@ -10,8 +10,8 @@ type EndpointParametersProps = Readonly<{
 
 export default function EndpointParameters({ type, parameters }: EndpointParametersProps) {
 	return (
-		<div>
-			<div className="mb-2">
+		<div className="ml-2 ">
+			<div className="mb-2 font-medium">
 				<h3>{type === "path" ? "Path Parameters" : "Query Parameters"}</h3>
 			</div>
 			<Separator />

@@ -74,7 +74,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${overpass.variable} ${overpassMono.variable} antialiased`}>
+			<body className={`${overpass.variable} ${overpassMono.variable} antialiased overflow-hidden`}>
 				<PlausibleAnalytics />
 				<ThemeProvider
 					attribute="class"

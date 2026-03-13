@@ -83,6 +83,7 @@ type ObjectAttributesProps = Readonly<{
 function ObjectAttributes({ attributes }: ObjectAttributesProps) {
 	return (
 		<>
+			<Separator />
 			<h3 className="prose dark:prose-invert font-normal">Attributes</h3>
 			<ItemGroup>
 				{attributes.map((attr) => {

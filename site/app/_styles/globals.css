@@ -210,6 +210,7 @@ html.terminal body {
 	}
 	body {
 		@apply bg-background text-foreground;
+		font-family: var(--font-sans);
 	}
 }
 
@@ -287,18 +288,19 @@ code::after {
 }
 
 @keyframes blink {
-	0%,
-	49% {
+	0% {
 		opacity: 1;
 	}
-	50%,
+	60% {
+		opacity: 1;
+	}
 	100% {
 		opacity: 0;
 	}
 }
 
 .cursor-blink {
-	animation: blink 1.5s step-end infinite;
+	animation: blink 1.5s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
