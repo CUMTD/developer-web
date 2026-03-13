@@ -36,7 +36,9 @@ export default function CodeExample({ content, endpoint }: CodeExampleProps) {
 		<>
 			<ItemHeader className="text-xl flex flex-row flex-wrap">
 				<div className="flex flex-row gap-2 white flex-wrap">
-					<span className="bg-green-700 text-white rounded-sm font-semibold text-sm! px-2 ">GET</span>
+					<span className="bg-green-700 text-white rounded-sm font-semibold text-sm! px-2 pt-0.5 -translate-y-0.5 ">
+						GET
+					</span>
 					<span className="font-mono text-sm">{endpoint}</span>
 				</div>
 				<div>

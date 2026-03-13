@@ -18,7 +18,7 @@ export default function AuthenticationPage() {
 			<h1>Authentication</h1>
 			<p>
 				Before you can make any requests to our API, you need an API key. An API key is essentially a password &mdash;
-				treat is as such. You will need to provide your API key with every request to let us know who you are.
+				treat it is as such. You will need to provide your API key with every request to let us know who you are.
 			</p>
 
 			<ApiKeyNudge />

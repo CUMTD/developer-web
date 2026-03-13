@@ -29,7 +29,7 @@ export default function IntroductionPage() {
 			<h2>Have you tried our GTFS Feed?</h2>
 			<p>
 				This API is built for retrieving small, specific collections of service data. If you need a snapshot of the
-				entire bus service amounts of information, be sure to check out our{" "}
+				entire bus service or large amounts of information, be sure to check out{" "}
 				<Link href="/">our GTFS and GTFS-RT feeds</Link> instead.
 			</p>
 

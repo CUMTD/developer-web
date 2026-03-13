@@ -81,7 +81,7 @@ for (const departure of result) {
 ### Creating a Client
 
 ```typescript
-import { createMtdApiClient } from '@mtd.org/developer-api-client'
+import { createMtdApiClient } from '@mtd.org/developer-api-client';
 
 const client = createMtdApiClient({
 	apiKey: 'your-api-key',

@@ -28,7 +28,7 @@ export const response: ApiResponseAttribute[] = [
 	},
 	{
 		name: "direction",
-		type: "string | null",
+		type: "object | null",
 		description: "The direction of travel for this trip, if applicable.",
 		childAttributes: [
 			{
@@ -39,10 +39,8 @@ export const response: ApiResponseAttribute[] = [
 			{
 				name: "shortNames",
 				type: "object",
-				description: "An object containing the full names of the directions (e.g. E, W)",
+				description: "An object containing the short or abbreviated names of the directions (e.g. E, W)",
 			},
-
-			// todo
 		],
 	},
 ];
