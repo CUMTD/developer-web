@@ -23,7 +23,7 @@ export default async function LicenseForDistributionPage() {
 
 			<H2 id="design">1. Platform Design Standards</H2>
 			<p>
-				Applications must follow the current, official design guidelines for their target platform (for example, Apple's
+				Applications must follow the current, official design guidelines for their target platform (for example, Apple's{" "}
 				<a href="https://developer.apple.com/design/human-interface-guidelines">Human Interface Guidelines</a> for
 				iOS/macOS apps, <a href="https://m3.material.io/">Material Design</a> for Android apps, or equivalent guidelines
 				for other platforms). The intent is that apps feel native, predictable, and accessible to riders — not that any
