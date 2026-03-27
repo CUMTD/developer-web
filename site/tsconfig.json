@@ -1,20 +1,20 @@
 {
 	"extends": "../tsconfig.base.json",
 	"compilerOptions": {
-		"baseUrl": ".",
 		"paths": {
-			"@app/*": ["app/*"],
-			"@common/*": ["components/common/*"],
-			"@content/*": ["content/*"],
-			"@contexts/*": ["contexts/*"],
-			"@env/*": ["env/*"],
-			"@helpers/*": ["helpers/*"],
-			"@hooks/*": ["hooks/*"],
-			"@lib/*": ["lib/*"],
-			"@markdown/*": ["content/api/*"],
-			"@server/*": ["server/*"],
-			"@t/*": ["types/*"],
-			"@ui/*": ["components/ui/*"]
+			"mdx-components": ["./mdx-components"],
+			"@app/*": ["./app/*"],
+			"@common/*": ["./components/common/*"],
+			"@content/*": ["./content/*"],
+			"@contexts/*": ["./contexts/*"],
+			"@env/*": ["./env/*"],
+			"@helpers/*": ["./helpers/*"],
+			"@hooks/*": ["./hooks/*"],
+			"@lib/*": ["./lib/*"],
+			"@markdown/*": ["./content/api/*"],
+			"@server/*": ["./server/*"],
+			"@t/*": ["./types/*"],
+			"@ui/*": ["./components/ui/*"]
 		},
 		"plugins": [
 			{

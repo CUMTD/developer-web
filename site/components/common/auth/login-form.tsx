@@ -30,7 +30,7 @@ export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) 
 		setEmailError(null);
 		setEmailSent(false);
 
-		if (!email || !email.includes("@")) {
+		if (!email?.includes("@")) {
 			setEmailError("Please enter a valid email address");
 			setIsEmailLoading(false);
 			return;

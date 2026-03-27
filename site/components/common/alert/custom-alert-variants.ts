@@ -303,10 +303,10 @@ type TitleVariants = VariantProps<typeof customAlertTitleVariants>;
 type DescriptionVariants = VariantProps<typeof customAlertDescriptionVariants>;
 
 export {
+	type CustomAlertContainerVariants,
 	customAlertContainerVariants,
 	customAlertDescriptionVariants,
 	customAlertTitleVariants,
-	type CustomAlertContainerVariants,
 	type DescriptionVariants,
 	type TitleVariants,
 };
