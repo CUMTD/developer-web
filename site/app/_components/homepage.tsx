@@ -1,4 +1,5 @@
 "use client";
+import BetaDisclaimer from "@common/beta-disclaimer";
 import CopyTextButton from "@common/copy-text-button";
 import LinkButton from "@common/link-button";
 import RealTimeIcon from "@common/real-time-icon";
@@ -15,12 +16,10 @@ export default function Homepage() {
 	return (
 		<div className=" max-w-7xl mx-auto pt-4 flex ">
 			<div className="prose dark:prose-invert  p-5 min-w-full! flex flex-col gap-5 ">
-				{/* <h2 className="">Welcome to MTD Developer Resources!</h2>
-				<p>
-					Students, developers, and general tinkerers our invited to explore the world of transit data through MTD's
-					public data feeds.
-				</p> */}
 				<div className="grid grid-cols-1 grid-rows-1 gap-6 bg lg:grid-cols-3">
+					<div className="col-span-3 my-auto">
+						<BetaDisclaimer />
+					</div>
 					<div className="col-span-2 my-auto ">
 						<Prose>
 							<H2 className="mt-0! mb-2 text-5xl leading-tight tracking-tight">
