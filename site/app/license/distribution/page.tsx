@@ -26,7 +26,7 @@ export default async function LicenseForDistributionPage() {
 				Applications must follow the current, official design guidelines for their target platform (for example, Apple's{" "}
 				<a href="https://developer.apple.com/design/human-interface-guidelines">Human Interface Guidelines</a> for
 				iOS/macOS apps, <a href="https://m3.material.io/">Material Design</a> for Android apps, or equivalent guidelines
-				for other platforms). The intent is that apps feel native, predictable, and accessible to riders — not that any
+				for other platforms). The intent is that apps feel native, predictable, and accessible to riders, not that any
 				particular visual style is required.
 			</p>
 
@@ -112,12 +112,12 @@ export default async function LicenseForDistributionPage() {
 			<H2 id="privacy-policy">7. Privacy Policy</H2>
 
 			<p>
-				Any application that collects, transmits, or stores user data — including but not limited to location data,
-				usage patterns, or account information — must maintain a publicly accessible privacy policy. The privacy policy
-				must accurately describe what data is collected, how it is used, and with whom it is shared. The privacy policy
-				must be linked or otherwise accessible from within the application and from any app store listing. MTD Data
-				itself is not user data for purposes of this section; this requirement applies to data the Licensee collects
-				about users of their application.
+				Any application that collects, transmits, or stores user data &mdash; including but not limited to location
+				data, usage patterns, or account information &mdash; must maintain a publicly accessible privacy policy. The
+				privacy policy must accurately describe what data is collected, how it is used, and with whom it is shared. The
+				privacy policy must be linked or otherwise accessible from within the application and from any app store
+				listing. MTD Data itself is not user data for purposes of this section; this requirement applies to data the
+				Licensee collects about users of their application.
 			</p>
 
 			<H2 id="accessibility">8. Accessibility</H2>
