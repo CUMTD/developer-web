@@ -320,13 +320,16 @@ code::after {
 	60% {
 		opacity: 1;
 	}
+	85% {
+		opacity: 0;
+	}
 	100% {
 		opacity: 0;
 	}
 }
 
 .cursor-blink {
-	animation: blink 1.5s ease-in-out infinite;
+	animation: blink 1.75s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

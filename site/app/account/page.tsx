@@ -1,3 +1,4 @@
+import CursorSwitcher from "@common/account/cursor-switcher";
 import ThemeSwitcher from "@common/account/theme-switcher";
 import { LogoutButton } from "@common/auth/logout-button";
 import { H2 } from "@common/typography/heading";
@@ -49,6 +50,11 @@ export default async function AccountPage() {
 			<div className="space-y-4">
 				<H2 wrapProse>Theme</H2>
 				<ThemeSwitcher />
+			</div>
+
+			<div className="space-y-4">
+				<H2 wrapProse>Cursor Effect</H2>
+				<CursorSwitcher />
 			</div>
 		</div>
 	);
