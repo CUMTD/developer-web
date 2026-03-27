@@ -44,8 +44,8 @@ export default async function LicenseForDistributionPage() {
 				</li>
 				<li>
 					The app must include, in an easily discoverable location (such as an About screen or store listing
-					description), the attribution line required by the Agreement: "Data provided by MTD. [App Name] is not
-					affiliated with MTD."
+					description), the attribution line required by the Agreement: "Data provided by MTD. [App Name Here] not
+					affiliated with MTD"
 				</li>
 				<li>
 					The developer's name or organization must be accurately listed as the publisher in any app store or
