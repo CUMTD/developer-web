@@ -200,18 +200,19 @@
 	--tw-prose-invert-td-borders: color-mix(in srgb, #63be45 25%, transparent);
 }
 
-html.terminal body {
-	font-family: var(--font-mono);
-}
-
 @layer base {
 	* {
 		@apply border-border outline-ring/50;
 	}
+
 	body {
 		@apply bg-background text-foreground;
 		font-family: var(--font-sans);
 	}
+}
+
+html.terminal body {
+	font-family: var(--font-mono);
 }
 
 html.has-reference-layout,
