@@ -68,7 +68,7 @@ export default async function LicensePage() {
 						Licensee receives written confirmation from MTD, in advance, that such quality standards have been met. MTD
 						shall solely determine if Licensee's program or product meets MTD's quality standards, in MTD's sole
 						discretion, and MTD's determination may be withdrawn or revoked at any time in MTD's sole discretion. Such
-						quality standards may be revised at any time by MTD without any notice to Licensee, and are set forth at
+						quality standards may be revised at any time by MTD without any notice to Licensee, and are set forth at{" "}
 						<Link href="/license/distribution">https://mtd.dev/license/distribution</Link>.
 					</p>
 
