@@ -75,7 +75,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${overpass.variable} ${overpassMono.variable} antialiased overflow-hidden`}>
+			<body className={`${overpass.variable} ${overpassMono.variable} antialiased`}>
 				<PlausibleAnalytics />
 				<ThemeProvider
 					attribute="class"
@@ -85,17 +85,19 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					themes={["light", "dark", "terminal"]}
 				>
 					<ClientProviders>
-						<div className="grid grid-rows-[auto_auto_1fr] h-screen">
-							<NavMenu />
-							<div className=" text-lg h-min py-3 w-full bg-[linear-gradient(45deg,#f8fafc_25%,#e2e8f0_25%,#e2e8f0_50%,#f8fafc_50%,#f8fafc_75%,#e2e8f0_75%,#e2e8f0_100%)] dark:bg-[linear-gradient(45deg,#000_25%,#18181b_25%,#18181b_50%,#000_50%,#000_75%,#18181b_75%,#18181b_100%)] bg-[length:40px_40px] flex items-center justify-center">
-								<span className="text-slate-900 dark:text-white px-10">
-									<b>New API is in preview!</b> Subject to change. Send feedback to{" "}
-									<Link className="underline font-bold" href="mailto:contact@mtd.dev?subject=API%20Feedback">
-										contact@mtd.dev
-									</Link>
-								</span>
-							</div>{" "}
-							<main className="overflow-auto">{children}</main>
+						<div className="app-shell grid min-h-screen grid-rows-[auto_1fr]">
+							<div className="app-top-stack sticky top-0 z-50">
+								<NavMenu />
+								<div className="text-lg h-min py-3 w-full bg-[linear-gradient(45deg,#f8fafc_25%,#e2e8f0_25%,#e2e8f0_50%,#f8fafc_50%,#f8fafc_75%,#e2e8f0_75%,#e2e8f0_100%)] dark:bg-[linear-gradient(45deg,#000_25%,#18181b_25%,#18181b_50%,#000_50%,#000_75%,#18181b_75%,#18181b_100%)] bg-size-[40px_40px] flex items-center justify-center">
+									<span className="text-slate-900 dark:text-white px-10">
+										<b>New API is in preview!</b> Subject to change. Send feedback to{" "}
+										<Link className="underline font-bold" href="mailto:contact@mtd.dev?subject=API%20Feedback">
+											contact@mtd.dev
+										</Link>
+									</span>
+								</div>
+							</div>
+							<main className="app-main min-h-0">{children}</main>
 						</div>
 					</ClientProviders>
 					{shouldInjectToolbar && (

@@ -224,8 +224,12 @@ body.has-reference-layout {
 	overflow: hidden;
 }
 
-body.has-reference-layout > main {
-	height: calc(100dvh - var(--app-header-h));
+body.has-reference-layout .app-shell {
+	height: 100dvh;
+	min-height: 100dvh;
+}
+
+body.has-reference-layout .app-main {
 	overflow: hidden;
 }
 
@@ -234,7 +238,6 @@ body.has-reference-layout > main {
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
 	overscroll-behavior: contain;
-	padding-top: var(--app-header-h);
 }
 
 /* h1 {
