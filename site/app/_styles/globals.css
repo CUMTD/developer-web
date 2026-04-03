@@ -209,6 +209,9 @@
 		@apply bg-background text-foreground;
 		font-family: var(--font-sans);
 	}
+	em {
+		@apply block p-4 my-3 dark:bg-yellow-400 dark:text-black bg-yellow-200 font-normal not-italic rounded-md;
+	}
 }
 
 html.terminal body {

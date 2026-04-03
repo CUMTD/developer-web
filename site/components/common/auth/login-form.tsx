@@ -59,8 +59,12 @@ export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) 
 		<div className={cn("flex flex-col gap-6", className)} {...props}>
 			<Card>
 				<CardHeader>
-					<CardTitle className="text-2xl">Welcome!</CardTitle>
-					<CardDescription>Sign in to your account to continue</CardDescription>
+					<CardTitle className="text-2xl">
+						<h1>What's your email?</h1>
+					</CardTitle>
+					<CardDescription>
+						<h2>An email is required to get an API key.</h2>
+					</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<div className="flex flex-col gap-6">
@@ -85,7 +89,7 @@ export function LoginForm({ className, redirectUrl, ...props }: LoginFormProps) 
 										Check your email for a magic link to sign in!
 									</FieldDescription>
 								)}
-								{!emailSent && <FieldDescription>We'll send you a magic link to sign in</FieldDescription>}
+								{!emailSent && <FieldDescription>We'll send you a magic link to sign in.</FieldDescription>}
 							</Field>
 							<Button
 								type="submit"

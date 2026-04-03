@@ -32,7 +32,16 @@ export default function ApiKey({ apiKey: { key, name, notes, created_at } }: Api
 				<ApiKeyDisplay apiKey={key} />
 			</CardContent>
 			<CardFooter>
-				<p className="text-sm text-muted-foreground">Created at: {new Date(created_at).toLocaleString()}</p>
+				<p className="text-sm text-muted-foreground">
+					Created{" "}
+					{new Date(created_at).toLocaleString(undefined, {
+						day: "numeric",
+						month: "numeric",
+						year: "numeric",
+						hour: "2-digit",
+						minute: "2-digit",
+					})}
+				</p>
 			</CardFooter>
 		</Card>
 	);

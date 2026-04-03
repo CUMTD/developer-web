@@ -98,7 +98,7 @@ export default async function LicensePage() {
 						Licensee's programs or products. If Licensee distributes its software program to others, Licensee's program
 						shall credit the Champaign-Urbana Mass Transit District for supplying the MTD Data. The credit line should
 						be placed as close to the actual MTD Data information as reasonably possible. Any such credit line should
-						read: "Data provided by MTD. <em>[App Name Here]</em> not affiliated with MTD". Licensee shall not use any
+						read: "Data provided by MTD. <i>[App Name Here]</i> not affiliated with MTD". Licensee shall not use any
 						terms or acronyms which could cause confusion with the MTD name (either in full or as an acronym), without
 						either (1) including the above-referenced language giving credit to MTD if MTD Data was used by Licensee, or
 						(2) including a disclaimer in Licensee's materials that Licensee's programs and products are not affiliated

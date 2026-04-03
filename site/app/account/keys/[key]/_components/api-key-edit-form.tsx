@@ -29,13 +29,26 @@ export default function ApiKeyEditForm({ apiKey: { name, key, notes } }: ApiKeyE
 			<div className="grid gap-12 mb-12">
 				<div className="grid gap-2">
 					<Label htmlFor="name">Name</Label>
-					<Input id="name" name="name" defaultValue={name ?? ""} aria-invalid={!!nameError} />
+					<Input
+						placeholder="Give your key a name!"
+						id="name"
+						name="name"
+						defaultValue={name ?? ""}
+						aria-invalid={!!nameError}
+					/>
 					{nameError ? <p className="text-sm text-destructive">{nameError}</p> : null}
 				</div>
 
 				<div className="grid gap-2">
 					<Label htmlFor="notes">Notes</Label>
-					<Textarea id="notes" name="notes" defaultValue={notes ?? ""} rows={12} aria-invalid={!!notesError} />
+					<Textarea
+						placeholder="What is this key for?"
+						id="notes"
+						name="notes"
+						defaultValue={notes ?? ""}
+						rows={12}
+						aria-invalid={!!notesError}
+					/>
 					{notesError ? <p className="text-sm text-destructive">{notesError}</p> : null}
 				</div>
 

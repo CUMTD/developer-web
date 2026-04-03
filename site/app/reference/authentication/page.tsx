@@ -2,6 +2,7 @@ import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-na
 import LinkButton from "@common/link-button";
 import { KeyRound, KeyRoundIcon } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
 	title: "Authentication",
@@ -16,15 +17,39 @@ export default function AuthenticationPage() {
 				<KeyRound size={50} />
 			</div>
 			<h1>Authentication</h1>
-			<p>
-				Before you can make any requests to our API, you need an API key. An API key is essentially a password &mdash;
-				treat it is as such. You will need to provide your API key with every request to let us know who you are.
-			</p>
+			<h2>API Keys</h2>
 
+			<p>
+				Before you can make any requests to our API, you need an API key. You will need to provide your API key with
+				every request to let us know who you are.
+			</p>
+			<em>
+				An API key is essentially a password &mdash; treat it is as such.{" "}
+				<b>Do not commit code containing this key to version control (e.g. a Github repository).</b> Always store your
+				key in an environment variable.
+			</em>
 			<ApiKeyNudge />
 
+			<h2>Including your Key in a Request</h2>
+			<p>
+				API Keys should be passed using the <code>X-ApiKey</code>{" "}
+				<Link
+					target="_blank"
+					rel="noopener noreferrer"
+					href={"https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers"}
+				>
+					HTTP header
+				</Link>{" "}
+				with your API key as the value.
+			</p>
+			<p>This is a significant change from our previous API, in which keys were included in the URL itself.</p>
+
 			<h2>Rate Limiting</h2>
-			<p>Excessive requests will be rate limited.</p>
+			<p>
+				Excessive requests will be rate limited. You can see your current request budget over at your{" "}
+				<Link href={"/account"}>account page</Link>. Build your application to cache responses where necessary, and be
+				mindful not to spam us with requests!
+			</p>
 			<NextPreviousPageNavigatorButtons nextLink="/reference/requests" previousLink="/reference/introduction" />
 		</div>
 	);

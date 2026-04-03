@@ -39,7 +39,7 @@ export default function NextPreviousPageNavigatorButtons({
 	const hasNext = Boolean(nextLink);
 
 	return (
-		<div className="ml-auto py-20 flex flex-col items-end max-w-[40ch]">
+		<div className="ml-auto py-20 flex flex-col items-end max-w-[30ch]">
 			{message && <p className="text-right text-ss m-0 p-0">{message}</p>}
 
 			<ButtonGroup>
