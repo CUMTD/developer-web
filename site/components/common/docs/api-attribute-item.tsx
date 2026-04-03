@@ -18,7 +18,7 @@ export default function ApiAttributeItem({
 	return (
 		<Item key={attribute.name}>
 			<ItemContent>
-				<ItemHeader className="flex flex-row gap-3 justify-start">
+				<ItemHeader className="flex flex-row gap-3 justify-start flex-wrap!">
 					<ItemTitle>
 						<span className="font-mono">{attribute.name}</span>
 					</ItemTitle>

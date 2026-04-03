@@ -51,6 +51,7 @@
 
 :root {
 	--app-header-h: 20px;
+	--reference-sticky-top-offset: 0px;
 
 	--dev-logo-bracket: #0071ce;
 	--dev-logo-swoosh: #e10027;
@@ -218,26 +219,25 @@ html.terminal body {
 	font-family: var(--font-mono);
 }
 
-html.has-reference-layout,
-body.has-reference-layout {
-	height: 100%;
-	overflow: hidden;
-}
-
-body.has-reference-layout .app-shell {
-	height: 100dvh;
-	min-height: 100dvh;
-}
-
-body.has-reference-layout .app-main {
-	overflow: hidden;
-}
-
 .reference-scroll-container {
-	height: 100%;
-	overflow-y: auto;
-	-webkit-overflow-scrolling: touch;
-	overscroll-behavior: contain;
+	scroll-padding-top: calc(var(--reference-sticky-top-offset) + 1rem);
+}
+
+body.has-reference-layout [id] {
+	scroll-margin-top: calc(var(--reference-sticky-top-offset) + 1rem);
+}
+
+@media (min-width: 768px) {
+	body.has-reference-layout [data-reference-sidebar] {
+		position: sticky;
+		top: var(--reference-sticky-top-offset);
+		height: calc(100dvh - var(--reference-sticky-top-offset));
+		align-self: flex-start;
+	}
+
+	body.has-reference-layout [data-reference-sidebar] [data-sidebar="content"] {
+		overscroll-behavior: contain;
+	}
 }
 
 /* h1 {
