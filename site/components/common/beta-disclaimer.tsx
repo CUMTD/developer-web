@@ -16,7 +16,7 @@ export default function BetaDisclaimer() {
 			<p>
 				This API is currently in preview and is subject to change. Please share your feedback and report any issues you
 				encounter to help us improve the API before its official release. Email us at{" "}
-				<a href="mailto:developer@mtd.dev?subject=API%20Feedback">developer@mtd.dev</a>.
+				<a href="mailto:contact@mtd.dev?subject=API%20Feedback">contact@mtd.dev</a>.
 			</p>
 		</Alert>
 	);
