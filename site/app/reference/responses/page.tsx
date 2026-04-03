@@ -39,7 +39,7 @@ export default async function RequestsPage() {
 
 			<p>
 				If there was an error in your request or processing your request, error details will be provided in the{" "}
-				<code>object</code>. Otherwise, the data you requested will be provided in the <code>result</code> object.
+				<code>error</code> object. Otherwise, the data you requested will be provided in the <code>result</code> object.
 			</p>
 
 			<NextPreviousPageNavigatorButtons
