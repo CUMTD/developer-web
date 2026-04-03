@@ -30,7 +30,7 @@ export default function IntroductionPage() {
 			<p>
 				This API is built for retrieving small, specific collections of service data. If you need a snapshot of the
 				entire bus service or large amounts of information, be sure to check out{" "}
-				<Link href="/">our GTFS and GTFS-RT feeds</Link> instead.
+				<Link href="/#feeds">our GTFS and GTFS-RT feeds</Link> instead.
 			</p>
 
 			<NextPreviousPageNavigatorButtons nextLink="/reference/authentication" />

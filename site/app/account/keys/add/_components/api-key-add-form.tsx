@@ -22,13 +22,13 @@ export default function ApiKeyAddForm() {
 			<div className="grid gap-12 mb-12">
 				<div className="grid gap-2">
 					<Label htmlFor="name">Name</Label>
-					<Input id="name" name="name" aria-invalid={!!nameError} />
+					<Input placeholder="Give your key a name!" id="name" name="name" aria-invalid={!!nameError} />
 					{nameError ? <p className="text-sm text-destructive">{nameError}</p> : null}
 				</div>
 
 				<div className="grid gap-2">
 					<Label htmlFor="notes">Notes</Label>
-					<Textarea id="notes" name="notes" rows={12} aria-invalid={!!notesError} />
+					<Textarea id="notes" placeholder="What is this key for?" name="notes" rows={12} aria-invalid={!!notesError} />
 					{notesError ? <p className="text-sm text-destructive">{notesError}</p> : null}
 				</div>
 

@@ -8,7 +8,7 @@ type AcceptedLatestTosProps = Readonly<{
 
 export default function AcceptedLatestLicense({ acceptedOn }: AcceptedLatestTosProps) {
 	return (
-		<Alert variant="success" title="License Agreement and Terms of Use accepted">
+		<Alert variant="success" title="Accepted">
 			<p>
 				{acceptedOn && (
 					<>

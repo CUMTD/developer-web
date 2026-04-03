@@ -22,21 +22,28 @@ export default async function RequestsPage() {
 			<h1>Interpreting Responses</h1>
 
 			<p>
-				If your API call was successful, response data will be under <code>result</code>. If your call was not
-				successful (whether by user or server error), error details will be provided under <code>error</code> in
-				addition to the proper{" "}
-				<Link href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status">HTTP status code</Link>.
+				After you send your API request, you'll receive a response in the form of a{" "}
+				<Link
+					href={
+						"https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON#no_really_what_is_json"
+					}
+				>
+					JSON object
+				</Link>
+				.
 			</p>
-			<h2>Successful Response</h2>
+
 			<CodeExampleBody copyable={false}>
 				<Sample />
 			</CodeExampleBody>
 
-			<h2>Unsuccessful Response</h2>
-			<Sample />
+			<p>
+				If there was an error in your request or processing your request, error details will be provided in the{" "}
+				<code>object</code>. Otherwise, the data you requested will be provided in the <code>result</code> object.
+			</p>
 
 			<NextPreviousPageNavigatorButtons
-				message={"That's the basics! You can view the rest of the API documentation using the left-hand sidebar."}
+				message={"That's the basics! You can explore the API documentation using the sidebar."}
 				previousLink="/reference/requests"
 				nextLink="/reference/routes"
 			/>

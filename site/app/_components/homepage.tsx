@@ -1,9 +1,8 @@
 "use client";
-import BetaDisclaimer from "@common/beta-disclaimer";
 import CopyTextButton from "@common/copy-text-button";
 import LinkButton from "@common/link-button";
 import RealTimeIcon from "@common/real-time-icon";
-import { H2 } from "@common/typography/heading";
+import { H1 } from "@common/typography/heading";
 import Prose from "@common/typography/prose";
 import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@ui/card";
@@ -17,14 +16,11 @@ export default function Homepage() {
 		<div className=" max-w-7xl mx-auto pt-4 flex ">
 			<div className="prose dark:prose-invert  p-5 min-w-full! flex flex-col gap-5 ">
 				<div className="grid grid-cols-1 grid-rows-1 gap-6 bg lg:grid-cols-3">
-					<div className="col-span-3 my-auto">
-						<BetaDisclaimer />
-					</div>
 					<div className="col-span-2 my-auto ">
 						<Prose>
-							<H2 className="mt-0! mb-2 text-5xl leading-tight tracking-tight">
+							<H1 className="mt-0! mb-2 text-5xl leading-tight tracking-tight">
 								Welcome to the wonderful world of transit data!
-							</H2>
+							</H1>
 
 							<p>
 								As part of our commitment to staying on the frontline of technology, MTD is proud to offer various ways
@@ -34,12 +30,22 @@ export default function Homepage() {
 						</Prose>
 					</div>
 
-					<div className="bg-sidebar p-5 ml-6 aspect-square col-span-1 rounded-2xl  items-center justify-center hidden lg:flex">
-						<Image alt="" src={"/isobus2.png"} priority width={300} height={200} />
+					<div className="bg-sidebar ml-6 aspect-square col-span-1 rounded-2xl overflow-hidden hidden lg:flex relative not-prose">
+						<Image
+							alt=""
+							src="/seats.jpg"
+							priority
+							fetchPriority="high"
+							fill
+							sizes="(min-width: 1024px) 33vw, 100vw"
+							className="object-cover"
+						/>
 					</div>
 				</div>
 				<Separator />
-				<h2 className="mt-4">Public Data Feeds</h2>
+				<h2 className="mt-4" id="feeds">
+					Public Data Feeds
+				</h2>
 				<div className="grid md:grid-cols-2 grid-cols-1 md:grid-rows-3 grid-rows-2 gap-5">
 					<Card className="gap-0!">
 						<CardHeader>
@@ -49,16 +55,19 @@ export default function Homepage() {
 						</CardHeader>
 						<CardContent>
 							<p>
-								Industry standard for representing static transit schedules as data. Essentially a virtual timetable.
-								Data comes in a .zip file that contains multiple comma-delimited text files.
+								Standard data format for representing static transit schedules. Data comes in a .zip file that contains
+								multiple comma-delimited text files.
 							</p>
 						</CardContent>
 						<CardFooter className="mt-auto flex flex-col items-start gap-3">
 							<CopyTextButton text="https://mtd.dev/gtfs.zip" />
 							<div className="flex flex-row gap-4 flex-wrap">
-								<Button>
-									<DownloadIcon /> Download GTFS Feed
-								</Button>
+								<Link href={"/gtfs.zip"} target="_blank" rel="noopener noreferrer">
+									<Button>
+										<DownloadIcon /> Download GTFS Feed
+									</Button>
+								</Link>
+
 								<Link href={"https://gtfs.org/documentation/overview/"} target="_blank" rel="noopener noreferrer">
 									<Button variant={"ghost"}>
 										GTFS Specification <ExternalLink />
@@ -75,16 +84,18 @@ export default function Homepage() {
 						</CardHeader>
 						<CardContent>
 							<p>
-								Industry standard for representing realtime service status, including vehicle locations, departure
+								Standard data format for representing realtime service status, including vehicle locations, departure
 								estimates and crowding. Data is transmitted via protobuf (binary).
 							</p>
 						</CardContent>
 						<CardFooter className="mt-auto">
 							<div className="flex flex-row gap-4 flex-wrap">
-								<Button>
-									<DownloadIcon />
-									Download GTFS-RT Feed
-								</Button>
+								<Link href={"https://gtfs-rt.mtd.org"} target="_blank" rel="noopener noreferrer">
+									<Button>
+										<DownloadIcon />
+										View GTFS-RT Feed
+									</Button>
+								</Link>
 								<Link
 									href={"https://gtfs.org/documentation/realtime/reference/"}
 									target="_blank"

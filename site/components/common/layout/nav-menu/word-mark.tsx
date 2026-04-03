@@ -1,13 +1,13 @@
 import DevLogo from "@common/dev-logo";
 import Link from "next/link";
-import Cursor from "./cursor";
 
 export default function WordMark() {
 	return (
-		<Link href={"/"} className="flex flex-row items-center gap-2">
-			<DevLogo width={60} />
-			<span className="text-2xl font-bold hidden md:block font-mono">Developer Resources</span>
-			<Cursor />
+		<Link href={"/"} className="flex flex-row items-center gap-1">
+			<DevLogo width={40} />
+			<span className="text-2xl font-bold hidden md:block italic translate-y-0.5">Developer Resources</span>
+
+			{/* <Cursor /> */}
 		</Link>
 	);
 }
