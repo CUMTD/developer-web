@@ -39,7 +39,7 @@ export default function CodeExample({ content, endpoint }: CodeExampleProps) {
 					<span className="bg-green-700 text-white rounded-sm font-semibold text-sm! px-2 pt-0.5 -translate-y-0.5 ">
 						GET
 					</span>
-					<span className="font-mono text-sm">{endpoint}</span>
+					<span className="font-mono text-sm overflow-scroll wrap-anywhere!">{endpoint}</span>
 				</div>
 				<div>
 					<LanguageSelector selectedLanguage={currentLanguage} />

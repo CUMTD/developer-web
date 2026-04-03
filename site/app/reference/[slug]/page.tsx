@@ -51,7 +51,7 @@ export default async function Page({ params }: Props) {
 				<ObjectAttributes attributes={attributes} />
 			</div>
 			<Item className="items-start p-0 ">
-				<ItemContent className="w-full sticky top-0">
+				<ItemContent className="w-full sticky top-(--reference-sticky-top-offset)">
 					<ItemHeader className="text-xl">Object</ItemHeader>
 					<PrettyCodeFromFilepath filepath={`@content/api/${apiObject}/object.json`} language="json" />
 				</ItemContent>

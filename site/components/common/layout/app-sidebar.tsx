@@ -253,6 +253,21 @@ function parseNavUrl(url: string): ParsedNavUrl {
 	};
 }
 
+function getReferenceStickyOffset(): number {
+	if (typeof window === "undefined") {
+		return 0;
+	}
+
+	const rawOffset = getComputedStyle(document.documentElement).getPropertyValue("--reference-sticky-top-offset").trim();
+	const parsedOffset = Number.parseFloat(rawOffset);
+
+	if (!Number.isFinite(parsedOffset) || parsedOffset < 0) {
+		return 0;
+	}
+
+	return parsedOffset;
+}
+
 export function ReferenceSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	const pathname = usePathname();
 	const { isMobile, setOpenMobile } = useSidebar();
@@ -307,6 +322,7 @@ export function ReferenceSidebar({ ...props }: React.ComponentProps<typeof Sideb
 
 		const scrollContainer = document.querySelector("[data-sidebar-scroll-container]");
 		const root = scrollContainer instanceof HTMLElement ? scrollContainer : null;
+		const stickyTopOffset = getReferenceStickyOffset();
 		const anchorElements = activeAnchors
 			.map((hash) => document.getElementById(hash.replace("#", "")))
 			.filter((element): element is HTMLElement => Boolean(element));
@@ -331,7 +347,7 @@ export function ReferenceSidebar({ ...props }: React.ComponentProps<typeof Sideb
 			},
 			{
 				root,
-				rootMargin: "0px 0px -70% 0px",
+				rootMargin: `-${stickyTopOffset}px 0px -70% 0px`,
 				threshold: [0, 0.1, 1],
 			},
 		);
