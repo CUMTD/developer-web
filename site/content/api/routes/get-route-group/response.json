@@ -1,38 +1,24 @@
 {
 	"result": {
-		"id": "01ba67cc-b207-43b0-a7c7-a7b2f7e63514",
-		"sortNumber": 2,
-		"routeName": "Red",
-		"color": "e7131a",
-		"textColor": "ffffff",
+		"id": "9773e862-95fa-4697-9e94-edb6d59bdd75",
+		"sortNumber": 1,
+		"routeGroupName": "Yellow",
+		"color": "fcee1f",
+		"textColor": "000000",
 		"routes": [
 			{
-				"id": "dac5f56a9c544a6aa4ab389d2eee31a3",
-				"number": "2",
-				"firstTrip": "06:03:00",
-				"lastTrip": "19:15:00",
+				"id": "ac3fc3d0-37af-468f-8b24-d061de7bea93",
+				"number": "1",
+				"firstTrip": "06:10:00",
+				"lastTrip": "19:19:00",
 				"lastTripAfterMidnight": false,
 				"dayType": {
-					"daypart": "Weekday",
-					"timepart": "Day",
+					"dayPart": "Weekday",
+					"timePart": "Day",
 					"daysOfWeek": "1,2,3,4,5",
 					"sortOrder": 100
 				},
-				"gtfsRoutes": ["RED"]
-			},
-			{
-				"id": "93db236e0d0042d7be2aca0ecaedf813",
-				"number": "20",
-				"firstTrip": "07:11:00",
-				"lastTrip": "18:41:00",
-				"lastTripAfterMidnight": false,
-				"dayType": {
-					"daypart": "Saturday",
-					"timepart": "Day",
-					"daysOfWeek": "6",
-					"sortOrder": 200
-				},
-				"gtfsRoutes": ["RED SATURDAY"]
+				"gtfsRoutes": ["YELLOW", "YELLOW ALT", "YELLOWHOPPER"]
 			}
 		]
 	},

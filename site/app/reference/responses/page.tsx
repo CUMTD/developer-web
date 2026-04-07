@@ -27,6 +27,8 @@ export default async function RequestsPage() {
 					href={
 						"https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON#no_really_what_is_json"
 					}
+					target="_blank"
+					rel="noopener noreferrer"
 				>
 					JSON object
 				</Link>

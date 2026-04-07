@@ -1,12 +1,12 @@
 {
 	"result": {
-		"id": "973ee9b7-9d3a-463c-abac-466f5ad40ab7",
-		"vehicleNumber": "104",
-		"vehicleConfigurationId": "2e275d30-f52a-4053-900c-1a509d13e17c",
-		"isActive": false,
-		"vin": "5FYD2UM091U023185",
+		"id": "e88c48c3-4999-4b6e-8b08-2231b6e2afb6",
+		"vehicleNumber": "1346",
+		"vehicleConfigurationId": "2771c386-b316-4dbb-89d0-a89e3c774bff",
+		"isActive": true,
+		"vin": "5FYH8FU00CB041441",
 		"licensePlateNumber": null,
-		"dateInService": "2002-01-16"
+		"dateInService": "2013-01-10"
 	},
 	"error": null
 }

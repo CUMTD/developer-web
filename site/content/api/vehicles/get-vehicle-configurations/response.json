@@ -7,8 +7,16 @@
 			"make": "New Flyer",
 			"model": "DE40LFR",
 			"lengthFeet": 40,
-			"powertrain": 2,
-			"isPublic": true
+			"powertrain": 2
+		},
+		{
+			"id": "18ccf143-21e3-4163-858c-3ffe35e3b8e0",
+			"vehicleType": 0,
+			"year": 2022,
+			"make": "New Flyer",
+			"model": "XDE60",
+			"lengthFeet": 60,
+			"powertrain": 2
 		}
 	],
 	"error": null

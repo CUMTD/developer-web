@@ -5,7 +5,7 @@ export const endpointTitle = "Get a trip";
 
 export const pathParameters: ApiRequestParameter[] = [
 	{
-		name: "id",
+		name: "tripId",
 		type: "string",
 		required: true,
 		description: "The id of a trip.",

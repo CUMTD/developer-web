@@ -3,12 +3,11 @@
 
 export const API_INDEX = {
 	routes: ["get-route", "get-route-group", "get-route-groups"],
-	"service-alerts": ["get-service-alert", "get-service-alerts"],
-	shapes: ["get-shape"],
+	shapes: ["get-shape", "get-shape-polyline"],
 	stops: [
 		"get-stop",
 		"get-stop-departures",
-		"get-stop-routes",
+		"get-stop-route-groups",
 		"get-stop-schedule",
 		"get-stop-trips",
 		"get-stops",

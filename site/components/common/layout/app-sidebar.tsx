@@ -14,6 +14,7 @@ import {
 	SidebarRail,
 	useSidebar,
 } from "@ui/sidebar";
+import { ExternalLinkIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type * as React from "react";
@@ -80,6 +81,11 @@ const data: Readonly<{ navMain: NavItem[] }> = {
 					title: "Get a shape",
 					url: "/reference/shapes#get-shape",
 				},
+				{
+					sortOrder: 20,
+					title: "Get an encoded polyline shape",
+					url: "/reference/shapes#get-shape-polyline",
+				},
 			],
 		},
 		{
@@ -128,8 +134,8 @@ const data: Readonly<{ navMain: NavItem[] }> = {
 				},
 				{
 					sortOrder: 30,
-					title: "Get a stop's routes",
-					url: "/reference/stops#get-stop-routes",
+					title: "Get a stop's route groups",
+					url: "/reference/stops#get-stop-route-groups",
 				},
 				{
 					sortOrder: 20,
@@ -182,25 +188,25 @@ const data: Readonly<{ navMain: NavItem[] }> = {
 				},
 			],
 		},
-		{
-			sortOrder: 110,
-			title: "Service Alerts",
-			subtitle: "/service-alerts",
+		// {
+		// 	sortOrder: 110,
+		// 	title: "Service Alerts",
+		// 	subtitle: "/service-alerts",
 
-			url: "/reference/service-alerts",
-			items: [
-				{
-					sortOrder: 10,
-					title: "Get a service alert",
-					url: "/reference/service-alerts#get-service-alert",
-				},
-				{
-					sortOrder: 20,
-					title: "Get all service alerts",
-					url: "/reference/service-alerts#get-service-alerts",
-				},
-			],
-		},
+		// 	url: "/reference/service-alerts",
+		// 	items: [
+		// 		{
+		// 			sortOrder: 10,
+		// 			title: "Get a service alert",
+		// 			url: "/reference/service-alerts#get-service-alert",
+		// 		},
+		// 		{
+		// 			sortOrder: 20,
+		// 			title: "Get all service alerts",
+		// 			url: "/reference/service-alerts#get-service-alerts",
+		// 		},
+		// 	],
+		// },
 
 		// {
 		// 	title: "Community",
@@ -471,6 +477,18 @@ export function ReferenceSidebar({ ...props }: React.ComponentProps<typeof Sideb
 							);
 						})}
 					</SidebarMenu>
+				</SidebarGroup>
+				<SidebarGroup>
+					<SidebarMenuItem>
+						<SidebarMenuButton asChild className={`rounded-xs border-0 text-muted-foreground "font-normal!`}>
+							<Link href={"https://api.mtd.dev/"} target="_blank" rel="noopener noreferrer">
+								Swagger UI <ExternalLinkIcon className="-translate-y-0.5" />
+							</Link>
+						</SidebarMenuButton>
+					</SidebarMenuItem>
+					<SidebarMenuItem>
+						<Separator className="mt-3" />
+					</SidebarMenuItem>
 				</SidebarGroup>
 			</SidebarContent>
 			<SidebarRail />

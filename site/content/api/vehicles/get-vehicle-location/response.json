@@ -1,9 +1,29 @@
 {
 	"result": {
-		"vehicleId": "052dc1be-7d99-4ed9-9a6e-6ea7ea8e07c9",
-		"vehicleNumber": "1722",
-		"latitude": 40.100496,
-		"longitude": -88.30909
+		"vehicleId": "09fa825c-d1fb-4d20-be0a-02261984653d",
+		"vehicleNumber": "1612",
+		"location": {
+			"latitude": 40.116617,
+			"longitude": -88.2075
+		},
+		"lastUpdated": "2026-04-07T18:47:50.8386734+00:00",
+		"trip": {
+			"id": "[@14.0.52435578@][4][1275670882890]/11__O4_RUBY_MF",
+			"headsign": "Illinois Terminal",
+			"direction": {
+				"id": 1,
+				"name": "West",
+				"shortName": "W"
+			}
+		},
+		"route": {
+			"id": "45eb37e3-c484-469f-89c9-8eb9ec9a43ec",
+			"gtfsRouteId": "ORANGEHOPPER",
+			"longName": "Orange",
+			"shortName": "6",
+			"color": "f99f2a",
+			"textColor": "000000"
+		}
 	},
 	"error": null
 }

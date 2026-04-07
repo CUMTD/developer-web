@@ -20,12 +20,12 @@ export default function AuthenticationPage() {
 			<h2>API Keys</h2>
 
 			<p>
-				Before you can make any requests to our API, you need an API key. You will need to provide your API key with
-				every request to let us know who you are.
+				Before you can make any API requests, you need an API key. You will need to provide your API key with every
+				request to let us know who you are.
 			</p>
 			<em>
-				An API key is essentially a password &mdash; treat it is as such.{" "}
-				<b>Do not commit code containing this key to version control (e.g. a Github repository).</b> Always store your
+				An API key is essentially a password &mdash; treat it as such.{" "}
+				<b>Do not commit code containing this key to version control (e.g. a GitHub repository).</b> Always store your
 				key in an environment variable.
 			</em>
 			<ApiKeyNudge />

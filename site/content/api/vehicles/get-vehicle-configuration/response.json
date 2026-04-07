@@ -1,13 +1,12 @@
 {
 	"result": {
-		"id": "0e029025-5166-4486-9ee0-f9c34207aeed",
+		"id": "2771c386-b316-4dbb-89d0-a89e3c774bff",
 		"vehicleType": 0,
-		"year": 2011,
+		"year": 2013,
 		"make": "New Flyer",
-		"model": "DE40LFR",
+		"model": "XDE40",
 		"lengthFeet": 40,
-		"powertrain": 2,
-		"isPublic": true
+		"powertrain": 2
 	},
 	"error": null
 }

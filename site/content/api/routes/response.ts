@@ -13,9 +13,9 @@ export const response: ApiResponseAttribute[] = [
 			"Number used to sort the routes in a logical order. Lower numbers should be shown first on lists. This is not the route number.",
 	},
 	{
-		name: "routeName",
+		name: "routeGroupName",
 		type: "string",
-		description: 'The route name, e.g. "Silver Limited", "Gold", "Blue"',
+		description: 'The route group name, e.g. "Silver Limited", "Gold", "Blue"',
 	},
 	{
 		name: "color",
@@ -45,14 +45,12 @@ export const response: ApiResponseAttribute[] = [
 			{
 				name: "firstTrip",
 				type: "string",
-				description:
-					"The time of the first trip of the day for this route. Day is arbitrary and used to convey time only.",
+				description: "The time of the first trip of the day for this route.",
 			},
 			{
 				name: "lastTrip",
 				type: "string",
-				description:
-					"The time of the last trip of the day for this route. Day is arbitrary and used to convey time only.",
+				description: "The time of the last trip of the day for this route.",
 			},
 			{
 				name: "lastTripAfterMidnight",
@@ -65,12 +63,12 @@ export const response: ApiResponseAttribute[] = [
 				description: "The days and times of day this route is active.",
 				childAttributes: [
 					{
-						name: "daypart",
+						name: "dayPart",
 						type: "string",
 						description: 'The parts of day e.g. "Weekday", "Saturday", "Gameday"',
 					},
 					{
-						name: "timepart",
+						name: "timePart",
 						type: "string",
 						description: 'The time of day e.g. "Day", "Night", "Late Night", "Non-UI Day"',
 					},
@@ -78,13 +76,13 @@ export const response: ApiResponseAttribute[] = [
 						name: "daysOfWeek",
 						type: "string",
 						description:
-							'A zero-indexed comma-separated list of ints representing the days of the week this daytype is active. 0=Sunday, 1=Monday, 2=Tuesday, 3=Wednesday, 4=Thursday, 5=Friday, 6=Saturday. Examples: "1,2,3,4,5" for weekdays only, "0,6" for weekends only.',
+							'A zero-indexed comma-separated list of ints representing the days of the week this dayType is active. 0=Sunday, 1=Monday, 2=Tuesday, 3=Wednesday, 4=Thursday, 5=Friday, 6=Saturday. Examples: "1,2,3,4,5" for weekdays only, "0,6" for weekends only.',
 					},
 					{
 						name: "sortOrder",
 						type: "integer",
 						description:
-							"Number used to sort the daytypes in a logical order. Lower numbers should be shown first on lists.",
+							"Number used to sort the dayTypes in a logical order. Lower numbers should be shown first on lists.",
 					},
 				],
 			},

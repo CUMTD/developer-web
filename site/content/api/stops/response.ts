@@ -2,11 +2,6 @@ import type { ApiResponseAttribute } from "@t/documentation-types";
 
 export const response: ApiResponseAttribute[] = [
 	{
-		name: "id",
-		type: "string",
-		description: "Unique identifier for the stop group.",
-	},
-	{
 		name: "type",
 		type: "integer",
 		description: "0 = Stop Group, 1 = Boarding Point",
@@ -15,12 +10,6 @@ export const response: ApiResponseAttribute[] = [
 		name: "isStation",
 		type: "boolean",
 		description: "Whether the stop is a station.",
-	},
-	{
-		name: "isTimepoint",
-		type: "boolean",
-		description:
-			"Whether the stop is a timepoint. An operator may not depart from a timepoint early. Timepoints are the times published in the Maps and Schedules book.",
 	},
 	{
 		name: "city",
@@ -36,7 +25,7 @@ export const response: ApiResponseAttribute[] = [
 				name: "subName",
 				type: "string",
 				description:
-					"Sub-name or description of the boarding point. This is usually shown in parenthesis after the Stop Group name.",
+					"Sub-name or description of the boarding point. This is usually shown in parenthesis after the stop name.",
 			},
 			{
 				name: "id",
@@ -51,12 +40,12 @@ export const response: ApiResponseAttribute[] = [
 			{
 				name: "stopCode",
 				type: "string",
-				description: "Stop code for the boarding point.",
+				description: "4-digit stop code for the boarding point, used for SMS and https://mtd.org/stop/{code}",
 			},
 			{
 				name: "url",
 				type: "string",
-				description: "URL to the stop's page on MTD's website.",
+				description: "URL to the boarding point's page on MTD's website.",
 			},
 			{
 				name: "isAccessible",
@@ -82,21 +71,31 @@ export const response: ApiResponseAttribute[] = [
 			},
 		],
 	},
-
+	{
+		name: "id",
+		type: "string",
+		description: "Unique identifier for the stop group.",
+	},
 	{
 		name: "name",
 		type: "string",
 		description: "Name of the stop group.",
 	},
 	{
+		name: "isTimepoint",
+		type: "boolean",
+		description:
+			"Whether the stop is a timepoint. An operator may not depart from a timepoint early. Timepoints are the times published in the Maps and Schedules book.",
+	},
+	{
 		name: "stopCode",
 		type: "string",
-		description: "Stop code for the stop group.",
+		description: "4-digit stop code for the stop group, used for SMS and https://mtd.org/stop/{code}",
 	},
 	{
 		name: "url",
 		type: "string",
-		description: "URL for more information about the stop group.",
+		description: "URL to the stop group's page on MTD's website.",
 	},
 	{
 		name: "isAccessible",

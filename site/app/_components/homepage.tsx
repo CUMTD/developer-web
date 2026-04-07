@@ -7,7 +7,15 @@ import Prose from "@common/typography/prose";
 import { Button } from "@ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader } from "@ui/card";
 import { Separator } from "@ui/separator";
-import { ArrowRight, DownloadIcon, ExternalLink, FolderArchive, KeyRoundIcon, WorkflowIcon } from "lucide-react";
+import {
+	ArrowRight,
+	DownloadIcon,
+	ExternalLink,
+	ExternalLinkIcon,
+	FolderArchive,
+	KeyRoundIcon,
+	WorkflowIcon,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -92,7 +100,7 @@ export default function Homepage() {
 							<div className="flex flex-row gap-4 flex-wrap">
 								<Link href={"https://gtfs-rt.mtd.org"} target="_blank" rel="noopener noreferrer">
 									<Button>
-										<DownloadIcon />
+										<ExternalLinkIcon />
 										View GTFS-RT Feed
 									</Button>
 								</Link>

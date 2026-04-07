@@ -30,7 +30,7 @@ export default function RequestsPage() {
 				request. The same goes for our API.
 			</p>
 			<p>
-				There are many ways to make HTTP requests, whether through your web browser's URL bar, code, or user interface
+				There are many ways to make HTTP requests, whether through your web browser's URL bar, code, or a user interface
 				like{" "}
 				<Link href={"https://www.postman.com/"} target="_blank" rel="noopener noreferrer">
 					Postman
@@ -41,10 +41,10 @@ export default function RequestsPage() {
 			<h2>Path and Query Parameters</h2>
 			<p>Some endpoints take parameters that will shape the response object.</p>
 			<p>
-				<i>Path parameters</i> are hierarchical elements of the resource path, and are usually mandatory.
+				<b>Path parameters</b> are hierarchical elements of the resource path, and are usually mandatory.
 			</p>
 			<p>
-				<i>Query parameters</i> come after a <code>?</code> and filter or sort the results, and are usually optional.
+				<b>Query parameters</b> come after a <code>?</code> and filter or sort the results, and are usually optional.
 			</p>
 
 			<p>
@@ -63,8 +63,8 @@ export default function RequestsPage() {
 				</span>
 
 				<span className="dark:text-purple-400 text-purple-800 underline">Path Parameter</span>
-				<span className="dark:text-green-300 text-green-800 underline decoration-wavy">First Query parameter</span>
-				<span className="dark:text-red-300 text-red-800 underline decoration-dashed">Second Query Paramter</span>
+				<span className="dark:text-green-300 text-green-800 underline decoration-wavy">First Query Parameter</span>
+				<span className="dark:text-red-300 text-red-800 underline decoration-dashed">Second Query Parameter</span>
 			</div>
 			<h2>Don't forget that API Key!</h2>
 			<p>

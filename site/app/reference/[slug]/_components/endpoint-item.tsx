@@ -24,8 +24,6 @@ export default async function EndpointItem<T extends ApiObject>({ object, method
 
 	for (const lang of EXAMPLE_LANGUAGES) {
 		try {
-			// const { default: CodeExample } = await import(`@content/api/${object}/${method}/${lang.name}.mdx`);
-			// content[lang.name] = <CodeExample />;
 			content[lang.name] = (
 				<PrettyCodeFromFilepath
 					filepath={`@content/templates/${lang.filename}`}
@@ -44,16 +42,11 @@ export default async function EndpointItem<T extends ApiObject>({ object, method
 			<div className="col-span-1 lg:col-span-1 flex flex-col gap-10 px-2">
 				<div className="[&_p]:text-muted-foreground leading-loose ">
 					<h2 className="text-3xl font-semibold">{endpointTitle}</h2>
-					{/* <CodeExampleBody mini copyable>
-						<code>
-							{globalEnv.NEXT_PUBLIC_MTD_API_URL}
-							{endpoint}
-						</code>
-					</CodeExampleBody> */}
 				</div>
 				<div className="flex flex-col gap-6">
 					<EndpointParameters parameters={pathParameters} type="path" />
 					<EndpointParameters parameters={queryParameters} type="query" />
+					{/* <ObjectAttributes attributes={} /> */}
 				</div>
 			</div>
 			<ItemGroup className="flex flex-col gap-5">

@@ -5,7 +5,7 @@ export const endpointTitle = "Get a shape";
 
 export const pathParameters: ApiRequestParameter[] = [
 	{
-		name: "id",
+		name: "shapeId",
 		type: "string",
 		required: true,
 		description: "The id of a shape.",
@@ -13,13 +13,4 @@ export const pathParameters: ApiRequestParameter[] = [
 	},
 ];
 
-export const queryParameters: ApiRequestParameter[] = [
-	{
-		name: "polyline",
-		type: "boolean",
-		required: false,
-		description: "Returns an encoded polyline (see above) if true.",
-		isPath: false,
-		exampleValue: "false",
-	},
-];
+export const queryParameters: ApiRequestParameter[] = [];
