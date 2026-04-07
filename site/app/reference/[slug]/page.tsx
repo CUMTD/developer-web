@@ -1,14 +1,11 @@
 import toTitleCase from "@helpers/to-title-case";
 import type { ApiResponseAttribute } from "@t/documentation-types";
 import { API_INDEX, type ApiObject } from "@t/md.generated";
-import { Item, ItemContent, ItemHeader } from "@ui/item";
 import { Separator } from "@ui/separator";
 import type { Metadata } from "next";
 import React from "react";
 import "server-only";
 import EndpointItem from "./_components/endpoint-item";
-import ObjectAttributes from "./_components/object-attributes";
-import { PrettyCodeFromFilepath } from "./_components/pretty-code-from-file-path";
 
 // Disable dynamic route parameters
 // This ensures that only the statically generated routes are used
@@ -46,16 +43,16 @@ export default async function Page({ params }: Props) {
 
 	return (
 		<>
-			<div className="col-span-1 lg:col-span-1 prose dark:prose-invert max-w-full " id={apiObject}>
+			<div className="col-span-1 lg:col-span-2 prose dark:prose-invert max-w-prose " id={apiObject}>
 				<ObjectDescription />
-				<ObjectAttributes title="Attributes" attributes={attributes} />
+				{/* <ObjectAttributesBox title="Attributes" attributes={attributes} /> */}
 			</div>
-			<Item className="items-start p-0 ">
+			{/* <Item className="items-start p-0 ">
 				<ItemContent className="w-full sticky top-0">
 					<ItemHeader className="text-xl">Object</ItemHeader>
 					<PrettyCodeFromFilepath filepath={`@content/api/${apiObject}/object.json`} language="json" />
 				</ItemContent>
-			</Item>
+			</Item> */}
 			<div className="col-span-1 lg:col-span-2">
 				<h2 className="font-bold text-3xl ">API Definitions</h2>
 				<Separator className="" id={methods[0]} />

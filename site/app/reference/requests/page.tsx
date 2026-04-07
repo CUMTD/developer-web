@@ -55,7 +55,7 @@ export default function RequestsPage() {
 
 			<div className="grid grid-rows-2 grid-cols-3 text-center gap-3 mt-10">
 				<span className="col-span-3 font-mono bg-accent p-3 rounded-xl">
-					https://api.mtd.dev/stops/<span className="dark:text-purple-400 text-purple-800 underline">IT:1</span>
+					api.mtd.dev/stops/<span className="dark:text-purple-400 text-purple-800 underline">IT:1</span>
 					/departures
 					<wbr />
 					<span className="dark:text-green-300 text-green-800 underline decoration-wavy">?routes=red</span>

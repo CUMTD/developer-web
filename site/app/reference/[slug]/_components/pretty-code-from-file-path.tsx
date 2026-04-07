@@ -15,6 +15,7 @@ type PrettyCodeFromFilepathProps = Readonly<{
 	endpoint?: string;
 	apiKey?: string;
 	queryParameters?: ApiRequestParameter[];
+	expand?: boolean;
 }>;
 
 export async function PrettyCodeFromFilepath({
@@ -22,6 +23,7 @@ export async function PrettyCodeFromFilepath({
 	language,
 	endpoint,
 	queryParameters,
+	expand,
 }: PrettyCodeFromFilepathProps) {
 	const resolvedPath = filepath.replace("@content/", "content/");
 	const fileContent = await readFile(resolvedPath, { encoding: "utf-8" });
@@ -64,7 +66,7 @@ export async function PrettyCodeFromFilepath({
 		<CodeComponent>
 			<CodeExampleBody copyable={false}>
 				<div
-					className="overflow-hidden"
+					className="overflow-y-scroll max-h-[30em]"
 					// biome-ignore lint/security/noDangerouslySetInnerHtml: necessary. page is statically rendered.
 					dangerouslySetInnerHTML={{ __html: String(formatted) }}
 				/>

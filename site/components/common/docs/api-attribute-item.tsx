@@ -34,7 +34,7 @@ export default function ApiAttributeItem({
 				{childAttributes && childAttributes.length > 0 && (
 					<Accordion type="single" collapsible defaultValue="shipping">
 						<AccordionItem value="shipping">
-							<AccordionTrigger className="rounded-md border px-4 py-2 prose dark:prose-invert justify-end flex-row-reverse w-full whitespace-nowrap hover:bg-accent hover:cursor-pointer">
+							<AccordionTrigger className="rounded-md border px-4 py-2 prose dark:prose-invert justify-end flex-row-reverse w-full whitespace-nowrap hover:bg-accent hover:cursor-pointer mt-2">
 								Child attributes
 							</AccordionTrigger>
 							<AccordionContent>

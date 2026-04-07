@@ -1,4 +1,4 @@
-import type { ApiRequestParameter } from "@t/documentation-types";
+import type { ApiRequestParameter, ApiResponseAttribute } from "@t/documentation-types";
 
 export const endpoint = "/routes/groups/{routeGroupId}";
 export const endpointTitle = "Get a route group";
@@ -14,3 +14,68 @@ export const pathParameters: ApiRequestParameter[] = [
 ];
 
 export const queryParameters: ApiRequestParameter[] = [];
+
+export const responseAttributes: ApiResponseAttribute[] = [
+	{ name: "id", type: "string", description: "Stable identifier for this route group." },
+	{
+		name: "sortNumber",
+		type: "integer",
+		description: "Number used to sort route groups in logical order. Lower numbers should appear first in a list.",
+	},
+	{
+		name: "routeGroupName",
+		type: "string",
+		description: 'The route name. Examples: "Silver Limited", "Gold", "Blue".',
+	},
+	{
+		name: "color",
+		type: "string",
+		description: "Hex color code used to represent this route group. # sign is omitted.",
+	},
+	{
+		name: "textColor",
+		type: "string",
+		description: "Hex text color code for use on top of the route color. # sign is omitted.",
+	},
+	{
+		name: "routes",
+		type: "Array of routes",
+		description: "The routes within this route group.",
+		childAttributes: [
+			{ name: "id", type: "string", description: "Stable identifier for this route." },
+			{ name: "number", type: "string | null", description: 'Route name number. Example: "50".' },
+			{ name: "firstTrip", type: "string", description: "The time of the first trip of the day for this route." },
+			{ name: "lastTrip", type: "string", description: "The time of the last trip of the day for this route." },
+			{
+				name: "lastTripAfterMidnight",
+				type: "boolean",
+				description: "True if the last trip of the day is after midnight.",
+			},
+			{
+				name: "dayType",
+				type: "object",
+				description: "The days and times of day this route is active.",
+				childAttributes: [
+					{
+						name: "dayPart",
+						type: "string",
+						description: 'The part of day. Examples: "Weekday", "Saturday", "Gameday".',
+					},
+					{ name: "timePart", type: "string", description: 'The time of day. Examples: "Day", "Night", "Late Night".' },
+					{
+						name: "daysOfWeek",
+						type: "string",
+						description:
+							"Comma-separated zero-indexed days of the week this daytype is active. 0=Sunday through 6=Saturday.",
+					},
+					{
+						name: "sortOrder",
+						type: "integer",
+						description: "Number used to sort day types in logical order. Lower numbers should appear first in a list.",
+					},
+				],
+			},
+			{ name: "gtfsRoutes", type: "string[]", description: "GTFS route IDs associated with this route." },
+		],
+	},
+];
