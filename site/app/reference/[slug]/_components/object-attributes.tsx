@@ -1,6 +1,6 @@
 import ApiAttributeItem from "@common/docs/api-attribute-item";
 import type { ApiResponseAttribute } from "@t/documentation-types";
-import { ItemGroup, ItemSeparator } from "@ui/item";
+import { ItemGroup, ItemSeparator, ItemTitle } from "@ui/item";
 import { Separator } from "@ui/separator";
 import React from "react";
 
@@ -8,16 +8,18 @@ type ObjectAttributesProps = Readonly<{
 	title: string;
 	attributes: ApiResponseAttribute[];
 }>;
-export default function ObjectAttributes({ title, attributes }: ObjectAttributesProps) {
+export default function ObjectAttributesBox({ title, attributes }: ObjectAttributesProps) {
 	return (
 		<>
 			<Separator />
-			<h3 className="prose dark:prose-invert font-normal">{title}</h3>
-			<ItemGroup>
-				{attributes.map((attr) => {
+			<ItemGroup className="border rounded-md border-accent">
+				<ItemTitle className="bg-accent font-semibold p-3 m-0! rounded-t-md w-full sticky top-0 z-50">
+					<h3 className="m-0!">{title}</h3>
+				</ItemTitle>
+				{attributes.map((attr, idx) => {
 					return (
 						<React.Fragment key={attr.name}>
-							<ItemSeparator />
+							{idx !== 0 && <ItemSeparator className="accent h-1" />}
 							<ApiAttributeItem attribute={attr} childAttributes={attr.childAttributes ?? []} />
 						</React.Fragment>
 					);

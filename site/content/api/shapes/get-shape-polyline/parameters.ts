@@ -1,4 +1,4 @@
-import type { ApiRequestParameter } from "@t/documentation-types";
+import type { ApiRequestParameter, ApiResponseAttribute } from "@t/documentation-types";
 
 export const endpoint = "/shapes/{id}/polyline";
 export const endpointTitle = "Get an encoded polyline shape";
@@ -15,3 +15,7 @@ export const pathParameters: ApiRequestParameter[] = [
 ];
 
 export const queryParameters: ApiRequestParameter[] = [];
+
+export const responseAttributes: ApiResponseAttribute[] = [
+	{ name: "polyline", type: "string", description: "The shape as an encoded polyline." },
+];

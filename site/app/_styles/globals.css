@@ -234,7 +234,7 @@ body.has-reference-layout > main {
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
 	overscroll-behavior: contain;
-	padding-top: var(--app-header-h);
+	/* padding-top: var(--app-header-h); */
 }
 
 /* h1 {

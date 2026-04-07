@@ -1,4 +1,4 @@
-import type { ApiRequestParameter } from "@t/documentation-types";
+import type { ApiRequestParameter, ApiResponseAttribute } from "@t/documentation-types";
 
 export const endpoint = "/stops/{stopId}/schedule";
 export const endpointTitle = "Get a stop's schedule";
@@ -28,3 +28,37 @@ export const pathParameters: ApiRequestParameter[] = [
 ];
 
 export const queryParameters: ApiRequestParameter[] = [];
+
+export const responseAttributes: ApiResponseAttribute[] = [
+	{ name: "stopId", type: "string", description: "The stop ID this stop time belongs to." },
+	{ name: "tripId", type: "string", description: "The trip ID this stop time belongs to." },
+	{ name: "routeId", type: "string | null", description: "The route ID this stop time belongs to." },
+	{ name: "gtfsRouteId", type: "string | null", description: "The GTFS route ID this stop time belongs to." },
+	{
+		name: "stopSequence",
+		type: "integer | string",
+		description: "The sequential order of this stop within the trip, 0-indexed.",
+	},
+	{
+		name: "arrivalTime",
+		type: "string",
+		description: "The scheduled arrival time at the stop. Do not display this publicly! Instead, use departureTime.",
+	},
+	{
+		name: "arrivalPastMidnight",
+		type: "boolean",
+		description: "True if this arrival is past midnight on a trip that began before midnight.",
+	},
+	{
+		name: "departureTime",
+		type: "string",
+		description:
+			"The scheduled departure time from the stop. This is the time shown in public-facing passenger information.",
+	},
+	{
+		name: "departurePastMidnight",
+		type: "boolean",
+		description: "True if this departure is past midnight on a trip that began before midnight.",
+	},
+	{ name: "stopHeadsign", type: "string | null", description: "Stop-specific headsign override, if applicable." },
+];
