@@ -1,15 +1,16 @@
 import type { ApiRequestParameter } from "@t/documentation-types";
 
-export const endpoint = "/stops/{id}/routes";
-export const endpointTitle = "Get a stop's routes";
+export const endpoint = "/shapes/{id}/polyline";
+export const endpointTitle = "Get an encoded polyline shape";
 
 export const pathParameters: ApiRequestParameter[] = [
 	{
 		name: "id",
 		type: "string",
 		required: true,
-		description: "The id of a stop.",
+		description: "The id of a shape.",
 		isPath: true,
+		exampleValue: "[@124.0.102304247@]5",
 	},
 ];
 

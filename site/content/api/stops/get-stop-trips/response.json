@@ -1,37 +1,41 @@
 {
 	"result": [
 		{
-			"id": "[@6.0.66478040@][42][1749224043234]/8__R3_SA",
-			"gtfsRouteId": "RED SATURDAY",
-			"blockId": "R3 SA",
-			"shapeId": "[@6.0.66478040@]16",
-			"headsign": "Urbana Meijer",
+			"id": "[@6.0.66478040@][42][1750109522515]/0__R1_SA",
+			"blockId": "R1 SA",
+			"shapeId": "[@6.0.66478040@]18",
+			"headsign": "Illini Union",
 			"direction": {
-				"longNames": {
-					"0": "Champaign",
-					"1": "Urbana"
-				},
-				"shortNames": {
-					"0": "C",
-					"1": "U"
-				}
+				"id": 1,
+				"name": "Urbana",
+				"shortName": "U"
+			},
+			"route": {
+				"id": "93db236e-0d00-42d7-be2a-ca0ecaedf813",
+				"gtfsRouteId": "RED SATURDAY",
+				"longName": "Red",
+				"shortName": "20",
+				"color": "e7131a",
+				"textColor": "ffffff"
 			}
 		},
 		{
-			"id": "[@6.0.66478040@][42][1749224136147]/10__R1_SA",
-			"gtfsRouteId": "RED SATURDAY",
+			"id": "[@6.0.66478040@][42][1749224458239]/30__R1_SA",
 			"blockId": "R1 SA",
 			"shapeId": "[@6.0.66478040@]17",
 			"headsign": "Urbana Meijer",
 			"direction": {
-				"longNames": {
-					"0": "Champaign",
-					"1": "Urbana"
-				},
-				"shortNames": {
-					"0": "C",
-					"1": "U"
-				}
+				"id": 1,
+				"name": "Urbana",
+				"shortName": "U"
+			},
+			"route": {
+				"id": "93db236e-0d00-42d7-be2a-ca0ecaedf813",
+				"gtfsRouteId": "RED SATURDAY",
+				"longName": "Red",
+				"shortName": "20",
+				"color": "e7131a",
+				"textColor": "ffffff"
 			}
 		}
 	],

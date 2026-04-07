@@ -1,6 +1,7 @@
 {
 	"result": [
 		{
+			"type": 0,
 			"isStation": false,
 			"city": "Urbana",
 			"boardingPoints": [
@@ -40,6 +41,7 @@
 			}
 		},
 		{
+			"type": 0,
 			"isStation": false,
 			"city": "Urbana",
 			"boardingPoints": [

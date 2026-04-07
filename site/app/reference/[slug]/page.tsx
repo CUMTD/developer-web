@@ -1,13 +1,13 @@
-import ApiAttributeItem from "@common/docs/api-attribute-item";
 import toTitleCase from "@helpers/to-title-case";
 import type { ApiResponseAttribute } from "@t/documentation-types";
 import { API_INDEX, type ApiObject } from "@t/md.generated";
-import { Item, ItemContent, ItemGroup, ItemHeader, ItemSeparator } from "@ui/item";
+import { Item, ItemContent, ItemHeader } from "@ui/item";
 import { Separator } from "@ui/separator";
 import type { Metadata } from "next";
 import React from "react";
 import "server-only";
 import EndpointItem from "./_components/endpoint-item";
+import ObjectAttributes from "./_components/object-attributes";
 import { PrettyCodeFromFilepath } from "./_components/pretty-code-from-file-path";
 
 // Disable dynamic route parameters
@@ -48,7 +48,7 @@ export default async function Page({ params }: Props) {
 		<>
 			<div className="col-span-1 lg:col-span-1 prose dark:prose-invert max-w-full " id={apiObject}>
 				<ObjectDescription />
-				<ObjectAttributes attributes={attributes} />
+				<ObjectAttributes title="Attributes" attributes={attributes} />
 			</div>
 			<Item className="items-start p-0 ">
 				<ItemContent className="w-full sticky top-0">
@@ -73,28 +73,6 @@ export default async function Page({ params }: Props) {
 				<Separator />
 				<span className="text-muted-foreground text-center text-xs">* * *</span>
 			</div>
-		</>
-	);
-}
-
-type ObjectAttributesProps = Readonly<{
-	attributes: ApiResponseAttribute[];
-}>;
-function ObjectAttributes({ attributes }: ObjectAttributesProps) {
-	return (
-		<>
-			<Separator />
-			<h3 className="prose dark:prose-invert font-normal">Attributes</h3>
-			<ItemGroup>
-				{attributes.map((attr) => {
-					return (
-						<React.Fragment key={attr.name}>
-							<ItemSeparator />
-							<ApiAttributeItem attribute={attr} childAttributes={attr.childAttributes ?? []} />
-						</React.Fragment>
-					);
-				})}
-			</ItemGroup>
 		</>
 	);
 }

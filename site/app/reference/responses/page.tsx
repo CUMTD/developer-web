@@ -27,6 +27,8 @@ export default async function RequestsPage() {
 					href={
 						"https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON#no_really_what_is_json"
 					}
+					target="_blank"
+					rel="noopener noreferrer"
 				>
 					JSON object
 				</Link>
@@ -39,7 +41,7 @@ export default async function RequestsPage() {
 
 			<p>
 				If there was an error in your request or processing your request, error details will be provided in the{" "}
-				<code>object</code>. Otherwise, the data you requested will be provided in the <code>result</code> object.
+				<code>object</code>. Otherwise, the data you requested will be in the <code>result</code> object.
 			</p>
 
 			<NextPreviousPageNavigatorButtons

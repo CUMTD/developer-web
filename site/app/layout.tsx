@@ -35,7 +35,8 @@ export const viewport: Viewport = {
 
 export async function generateMetadata(): Promise<Metadata> {
 	const defaultTitle = "MTD Developer";
-	const defaultDescription = "MTD Developer API."; // TODO: Update description
+	const defaultDescription =
+		"Developer resources provided by the Champaign-Urbana Mass Transit District. Includes GTFS feeds, an API, and documentation.";
 	const metadataBase = globalEnv.NEXT_PUBLIC_BASE_URL ? new URL(globalEnv.NEXT_PUBLIC_BASE_URL) : undefined;
 
 	return {
@@ -87,7 +88,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					<ClientProviders>
 						<div className="grid grid-rows-[auto_auto_1fr] h-screen">
 							<NavMenu />
-							<div className=" text-lg h-min py-3 w-full bg-[linear-gradient(45deg,#f8fafc_25%,#e2e8f0_25%,#e2e8f0_50%,#f8fafc_50%,#f8fafc_75%,#e2e8f0_75%,#e2e8f0_100%)] dark:bg-[linear-gradient(45deg,#000_25%,#18181b_25%,#18181b_50%,#000_50%,#000_75%,#18181b_75%,#18181b_100%)] bg-[length:40px_40px] flex items-center justify-center">
+							<div className=" text-md h-min py-2 w-full bg-[linear-gradient(45deg,#f8fafc_25%,#e2e8f0_25%,#e2e8f0_50%,#f8fafc_50%,#f8fafc_75%,#e2e8f0_75%,#e2e8f0_100%)] dark:bg-[linear-gradient(45deg,#000_25%,#18181b_25%,#18181b_50%,#000_50%,#000_75%,#18181b_75%,#18181b_100%)] bg-[length:40px_40px] flex items-center justify-center">
 								<span className="text-slate-900 dark:text-white px-10">
 									<b>New API is in preview!</b> Subject to change. Send feedback to{" "}
 									<Link className="underline font-bold" href="mailto:contact@mtd.dev?subject=API%20Feedback">

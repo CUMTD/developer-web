@@ -1,15 +1,30 @@
 {
 	"result": {
-		"type": 1,
-		"subName": "Platform A",
-		"id": "IT:1",
-		"name": "Illinois Terminal (Platform A)",
-		"stopCode": "3678",
-		"url": "https://mtd.org/maps-and-schedules/bus-stops/info/it-1/",
+		"type": 0,
+		"isStation": false,
+		"city": "Champaign",
+		"boardingPoints": [
+			{
+				"subName": "NW Corner",
+				"id": "MJRPSPCT:4",
+				"name": "Meijer Drive & Prospect (NW Corner)",
+				"stopCode": "4618",
+				"url": "https://mtd.org/maps-and-schedules/bus-stops/info/mjrpspct-4/",
+				"isAccessible": true,
+				"location": {
+					"latitude": 40.14673667000001,
+					"longitude": -88.25807167
+				}
+			}
+		],
+		"id": "MJRPSPCT",
+		"name": "Meijer Drive & Prospect",
+		"stopCode": "4618",
+		"url": "https://mtd.org/maps-and-schedules/bus-stops/info/mjrpspct/",
 		"isAccessible": true,
 		"location": {
-			"latitude": 40.115935,
-			"longitude": -88.24094667
+			"latitude": 40.146605835,
+			"longitude": -88.2581525
 		}
 	},
 	"error": null
