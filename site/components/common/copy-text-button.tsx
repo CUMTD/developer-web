@@ -81,9 +81,7 @@ export default function CopyTextButton({ text, title }: CopyTextProps) {
 			)}
 
 			<fieldset className="inline-flex items-stretch w-full" aria-label={title ?? "Copy text"}>
-				<label htmlFor={inputId} className="sr-only">
-					{title ?? "Text to copy"}
-				</label>
+				<legend>Form that contains copyable text.</legend>
 				<Input
 					id={inputId}
 					value={text}

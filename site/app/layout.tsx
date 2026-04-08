@@ -76,7 +76,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={`${overpass.variable} ${overpassMono.variable} antialiased overflow-hidden`}>
+			<body
+				className={`${overpass.variable} ${overpassMono.variable} antialiased overflow-x-hidden md:overflow-hidden`}
+			>
 				<PlausibleAnalytics />
 				<ThemeProvider
 					attribute="class"
@@ -86,9 +88,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 					themes={["light", "dark", "terminal"]}
 				>
 					<ClientProviders>
-						<div className="grid grid-rows-[auto_auto_1fr] h-screen">
+						<div className="grid grid-rows-[auto_auto_1fr] min-h-svh md:h-screen">
 							<NavMenu />
-							<div className=" text-md h-min py-2 w-full bg-[linear-gradient(45deg,#f8fafc_25%,#e2e8f0_25%,#e2e8f0_50%,#f8fafc_50%,#f8fafc_75%,#e2e8f0_75%,#e2e8f0_100%)] dark:bg-[linear-gradient(45deg,#000_25%,#18181b_25%,#18181b_50%,#000_50%,#000_75%,#18181b_75%,#18181b_100%)] bg-[length:40px_40px] flex items-center justify-center">
+							<div className=" text-md h-min py-2 w-full bg-[linear-gradient(45deg,#f8fafc_25%,#e2e8f0_25%,#e2e8f0_50%,#f8fafc_50%,#f8fafc_75%,#e2e8f0_75%,#e2e8f0_100%)] dark:bg-[linear-gradient(45deg,#000_25%,#18181b_25%,#18181b_50%,#000_50%,#000_75%,#18181b_75%,#18181b_100%)] bg-size-[40px_40px] flex items-center justify-center">
 								<span className="text-slate-900 dark:text-white px-10">
 									<b>New API is in preview!</b> Subject to change. Send feedback to{" "}
 									<Link className="underline font-bold" href="mailto:contact@mtd.dev?subject=API%20Feedback">
@@ -96,7 +98,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 									</Link>
 								</span>
 							</div>{" "}
-							<main className="overflow-auto">{children}</main>
+							<main className="overflow-visible md:overflow-auto">{children}</main>
 						</div>
 					</ClientProviders>
 					{shouldInjectToolbar && (

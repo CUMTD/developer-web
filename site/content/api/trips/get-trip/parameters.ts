@@ -8,7 +8,8 @@ export const pathParameters: ApiRequestParameter[] = [
 		name: "tripId",
 		type: "string",
 		required: true,
-		description: "The id of a trip.",
+		description:
+			"The id of a trip. You MUST URL encode this value, as it may contain forward slashes. This is planned to be changed in the future.",
 		isPath: true,
 	},
 ];

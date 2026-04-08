@@ -1,150 +1,82 @@
 {
 	"result": [
 		{
-			"stopId": "IT:2",
-			"headsign": "7W GREY",
-			"tripDirection": {
-				"id": 1,
-				"name": "West",
-				"shortName": "W"
+			"stopId": "IT:1",
+			"headsign": "6E ORANGE",
+			"trip": {
+				"tripId": "[@2.0.86175868@][1458585713139]/65__O4_RUBY_MF",
+				"direction": {
+					"id": 0,
+					"name": "East",
+					"shortName": "E"
+				}
 			},
-			"blockId": "GR1 MF SCH",
-			"recordedTime": "2026-04-07T19:13:43.588+00:00",
-			"scheduledDeparture": "2026-04-07T19:13:00+00:00",
-			"estimatedDeparture": "2026-04-07T19:19:09+00:00",
-			"vehicleId": "2203",
-			"originStopId": "UWALMART:2",
-			"destinationStopId": "PKLN:1",
+			"blockId": "O4 RUBY MF",
+			"recordedTime": "2026-04-08T18:17:23.923+00:00",
+			"scheduledDeparture": "2026-04-08T18:10:00+00:00",
+			"estimatedDeparture": "2026-04-08T18:19:28+00:00",
+			"vehicleId": "1730",
+			"originStopId": "RNDBRNRD:2",
+			"destinationStopId": "BTSLRMN:2",
 			"location": {
-				"latitude": 40.121183,
-				"longitude": -88.232167
+				"latitude": 40.11625,
+				"longitude": -88.2437
 			},
-			"shapeId": "7W",
-			"tripId": "[@2.0.80545657@][32][1425489606906]/34__GR1_MF_SCH",
-			"minutesTillDeparture": 5,
+			"shapeId": "[@2.0.86175868@]7",
+			"minutesTillDeparture": 2,
 			"isRealTime": true,
 			"isHopper": false,
-			"destination": "PKLN:1",
-			"departsIn": "5 mins",
+			"destination": "BTSLRMN:2",
+			"departsIn": "2 mins",
 			"isIStop": false,
-			"uniqueId": "v-2203_t-[@2.0.80545657@][32][1425489606906]/34__GR1_MF_SCH_b-GR1 MF SCH_sd-20260407-191300",
+			"uniqueId": "v-1730_t-[@2.0.86175868@][1458585713139]/65__O4_RUBY_MF_b-O4 RUBY MF_sd-20260408-181000",
 			"route": {
-				"id": "46a84a6b-fd73-45a4-98bf-c8d183955f23",
-				"gtfsRouteId": "GREY",
-				"longName": "Grey",
-				"shortName": "7",
-				"color": "808285",
+				"id": "45eb37e3-c484-469f-89c9-8eb9ec9a43ec",
+				"routeGroupId": "3d9a07bd-9342-48fd-84ab-72b8ab16ec7b",
+				"gtfsRouteId": "ORANGE",
+				"longName": "Orange",
+				"shortName": "6",
+				"color": "f99f2a",
 				"textColor": "000000"
 			}
 		},
 		{
-			"stopId": "IT:2",
-			"headsign": "14W NAVY",
-			"tripDirection": {
-				"id": 1,
-				"name": "West",
-				"shortName": "W"
+			"stopId": "IT:1",
+			"headsign": "5E GREEN HOPPER",
+			"trip": {
+				"tripId": "[@7.0.41101146@][3][1237929928359]/6__GNX2_MF",
+				"direction": {
+					"id": 0,
+					"name": "East",
+					"shortName": "E"
+				}
 			},
-			"blockId": "N1 MF",
-			"recordedTime": "2026-04-07T19:13:43.588+00:00",
-			"scheduledDeparture": "2026-04-07T19:20:00+00:00",
-			"estimatedDeparture": "2026-04-07T19:20:00+00:00",
-			"vehicleId": "2309",
-			"originStopId": "IT:2",
-			"destinationStopId": "CATFS:2",
+			"blockId": "GNX2 MF",
+			"recordedTime": "2026-04-08T18:17:23.923+00:00",
+			"scheduledDeparture": "2026-04-08T18:23:00+00:00",
+			"estimatedDeparture": "2026-04-08T18:24:08+00:00",
+			"vehicleId": "2425",
+			"originStopId": "PKLN:1",
+			"destinationStopId": "WASHLRMN:7",
 			"location": {
-				"latitude": 40.110317,
-				"longitude": -88.23865
+				"latitude": 40.112633,
+				"longitude": -88.262167
 			},
-			"shapeId": "[@124.0.103534744@]4",
-			"tripId": "[@124.0.103534744@][32][1510344867429]/18__N1_MF",
+			"shapeId": "5E HOPPER 79",
 			"minutesTillDeparture": 6,
 			"isRealTime": true,
-			"isHopper": false,
-			"destination": "CATFS:2",
+			"isHopper": true,
+			"destination": "WASHLRMN:7",
 			"departsIn": "6 mins",
 			"isIStop": false,
-			"uniqueId": "v-2309_t-[@124.0.103534744@][32][1510344867429]/18__N1_MF_b-N1 MF_sd-20260407-192000",
+			"uniqueId": "v-2425_t-[@7.0.41101146@][3][1237929928359]/6__GNX2_MF_b-GNX2 MF_sd-20260408-182300",
 			"route": {
-				"id": "df77bc51-ebd3-446a-bb85-001dc38bd89f",
-				"gtfsRouteId": "NAVY",
-				"longName": "Navy",
-				"shortName": "14",
-				"color": "2b3088",
-				"textColor": "ffffff"
-			}
-		},
-		{
-			"stopId": "IT:5",
-			"headsign": "1S YELLOW",
-			"tripDirection": {
-				"id": 1,
-				"name": "South",
-				"shortName": "S"
-			},
-			"blockId": "Y5 UIMF",
-			"recordedTime": "2026-04-07T19:13:43.595+00:00",
-			"scheduledDeparture": "2026-04-07T19:20:00+00:00",
-			"estimatedDeparture": "2026-04-07T19:20:00+00:00",
-			"vehicleId": "2430",
-			"originStopId": "WALMART:2",
-			"destinationStopId": "SWALMART:1",
-			"location": {
-				"latitude": 40.12135,
-				"longitude": -88.2468
-			},
-			"shapeId": "YELLOW 14",
-			"tripId": "[@6.0.14329702@][2][1622063646669]/22__Y5_UIMF",
-			"minutesTillDeparture": 6,
-			"isRealTime": true,
-			"isHopper": false,
-			"destination": "SWALMART:1",
-			"departsIn": "6 mins",
-			"isIStop": false,
-			"uniqueId": "v-2430_t-[@6.0.14329702@][2][1622063646669]/22__Y5_UIMF_b-Y5 UIMF_sd-20260407-192000",
-			"route": {
-				"id": "ac3fc3d0-37af-468f-8b24-d061de7bea93",
-				"gtfsRouteId": "YELLOW",
-				"longName": "Yellow",
-				"shortName": "1",
-				"color": "fcee1f",
-				"textColor": "000000"
-			}
-		},
-		{
-			"stopId": "IT:5",
-			"headsign": "12E TEAL ORCHARD DOWNS",
-			"tripDirection": {
-				"id": 0,
-				"name": "East",
-				"shortName": "E"
-			},
-			"blockId": "T2 UIMF",
-			"recordedTime": "2026-04-07T19:13:43.595+00:00",
-			"scheduledDeparture": "2026-04-07T19:15:00+00:00",
-			"estimatedDeparture": "2026-04-07T19:20:04+00:00",
-			"vehicleId": "1354",
-			"originStopId": "IT:5",
-			"destinationStopId": "ODSS:1",
-			"location": {
-				"latitude": 40.114317,
-				"longitude": -88.228917
-			},
-			"shapeId": "12E TEAL 13",
-			"tripId": "[@7.0.41893871@][3][1243541396687]/91__T2_UIMF",
-			"minutesTillDeparture": 6,
-			"isRealTime": true,
-			"isHopper": false,
-			"destination": "ODSS:1",
-			"departsIn": "6 mins",
-			"isIStop": false,
-			"uniqueId": "v-1354_t-[@7.0.41893871@][3][1243541396687]/91__T2_UIMF_b-T2 UIMF_sd-20260407-191500",
-			"route": {
-				"id": "1cf2244c-cdfd-4e7f-8a55-89b5a60b2767",
-				"gtfsRouteId": "TEAL",
-				"longName": "Teal",
-				"shortName": "12",
-				"color": "006991",
+				"id": "294fb25d-538f-466d-b90e-a34317dceea1",
+				"routeGroupId": "fdfeb28c-61d4-463e-a708-51a7f96928b7",
+				"gtfsRouteId": "GREENHOPPER",
+				"longName": "Green",
+				"shortName": "5",
+				"color": "008063",
 				"textColor": "ffffff"
 			}
 		}
