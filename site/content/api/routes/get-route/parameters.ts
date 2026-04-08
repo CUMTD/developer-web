@@ -55,4 +55,5 @@ export const responseAttributes: ApiResponseAttribute[] = [
 		],
 	},
 	{ name: "gtfsRoutes", type: "string[]", description: "GTFS route IDs associated with this route." },
+	{ name: "routeGroupId", type: "string", description: "The ID of the route group this route belongs to." },
 ];

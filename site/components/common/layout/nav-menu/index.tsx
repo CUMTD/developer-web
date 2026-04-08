@@ -21,14 +21,14 @@ function NavMenu() {
 	const showSidebarTrigger = pathname.startsWith("/reference");
 
 	return (
-		<header className="flex flex-row justify-between lg:px-8 p-3 row-span-1 sticky top-0 bg-sidebar z-50 terminal:font-mono">
+		<header className="flex flex-row justify-between lg:px-8 p-3 row-span-1 sticky top-0 bg-sidebar z-100 terminal:font-mono">
 			<div className="flex items-center gap-2">
 				{showSidebarTrigger && <SidebarTrigger className="md:hidden" aria-label="Open sidebar" />}
 				<WordMark />
 			</div>
 			<NavigationMenu viewport={isMobile}>
 				<NavigationMenuList className="flex-wrap">
-					<NavigationMenuItem>
+					<NavigationMenuItem aria-hidden>
 						<NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()}`}>
 							<Link href="/" className="text-current">
 								Home
@@ -37,7 +37,7 @@ function NavMenu() {
 					</NavigationMenuItem>
 
 					<NavigationMenuItem>
-						<NavigationMenuLink asChild className={`md:hidden! block! ${navigationMenuTriggerStyle()}`}>
+						<NavigationMenuLink asChild aria-hidden className={`md:hidden! block! ${navigationMenuTriggerStyle()}`}>
 							<Link href="/reference/introduction">Docs</Link>
 						</NavigationMenuLink>
 						<NavigationMenuLink asChild className={`md:block! hidden! ${navigationMenuTriggerStyle()}`}>

@@ -28,8 +28,6 @@ export const responseAttributes: ApiResponseAttribute[] = [
 		description:
 			"True if this vehicle is currently in the active fleet. Does not indicate whether the vehicle is currently running a route.",
 	},
-	{ name: "vin", type: "string | null", description: "The vehicle's Vehicle Identification Number (ISO 3779)." },
-	{ name: "licensePlateNumber", type: "string | null", description: "The vehicle's license plate number." },
 	{
 		name: "dateInService",
 		type: "string | null",

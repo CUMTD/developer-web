@@ -39,24 +39,36 @@ export const responseAttributes: ApiResponseAttribute[] = [
 		description: "The destination headsign displayed for this departure.",
 	},
 	{
-		name: "tripDirection",
+		name: "trip",
 		type: "object | null",
-		description: "The direction of travel for this departure, when available.",
+		description: "Trip details associated with this departure, when available.",
 		childAttributes: [
 			{
-				name: "id",
-				type: "integer | null",
-				description: "Direction id for this trip when known (typically 0 or 1).",
-			},
-			{
-				name: "name",
-				type: "string",
-				description: "Direction display name.",
-			},
-			{
-				name: "shortName",
+				name: "tripId",
 				type: "string | null",
-				description: "Short direction code, when available.",
+				description: "The trip id associated with this departure.",
+			},
+			{
+				name: "direction",
+				type: "object | null",
+				description: "The direction of travel for this departure, when available.",
+				childAttributes: [
+					{
+						name: "id",
+						type: "integer | null",
+						description: "Direction id for this trip when known (typically 0 or 1).",
+					},
+					{
+						name: "name",
+						type: "string",
+						description: "Direction display name.",
+					},
+					{
+						name: "shortName",
+						type: "string | null",
+						description: "Short direction code, when available.",
+					},
+				],
 			},
 		],
 	},
@@ -118,11 +130,6 @@ export const responseAttributes: ApiResponseAttribute[] = [
 		description: "The shape id used by this trip.",
 	},
 	{
-		name: "tripId",
-		type: "string | null",
-		description: "The trip id associated with this departure.",
-	},
-	{
 		name: "minutesTillDeparture",
 		type: "integer",
 		description: "The number of minutes until departure.",
@@ -166,6 +173,11 @@ export const responseAttributes: ApiResponseAttribute[] = [
 				name: "id",
 				type: "string",
 				description: "Stable identifier for the route.",
+			},
+			{
+				name: "routeGroupId",
+				type: "string | null",
+				description: "Stable identifier for the route group.",
 			},
 			{
 				name: "gtfsRouteId",

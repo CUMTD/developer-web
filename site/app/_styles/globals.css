@@ -218,23 +218,30 @@ html.terminal body {
 	font-family: var(--font-mono);
 }
 
-html.has-reference-layout,
-body.has-reference-layout {
-	height: 100%;
-	overflow: hidden;
-}
-
-body.has-reference-layout > main {
-	height: calc(100dvh - var(--app-header-h));
-	overflow: hidden;
-}
-
 .reference-scroll-container {
-	height: 100%;
-	overflow-y: auto;
-	-webkit-overflow-scrolling: touch;
-	overscroll-behavior: contain;
+	height: auto;
+	overflow: visible;
 	/* padding-top: var(--app-header-h); */
+}
+
+@media (min-width: 768px) {
+	html.has-reference-layout,
+	body.has-reference-layout {
+		height: 100%;
+		overflow: hidden;
+	}
+
+	body.has-reference-layout > main {
+		height: calc(100dvh - var(--app-header-h));
+		overflow: hidden;
+	}
+
+	.reference-scroll-container {
+		height: 100%;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		overscroll-behavior: contain;
+	}
 }
 
 /* h1 {
