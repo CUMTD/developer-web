@@ -66,7 +66,7 @@ export async function PrettyCodeFromFilepath({
 		<CodeComponent>
 			<CodeExampleBody copyable={false}>
 				<div
-					className="overflow-y-scroll max-h-[30em]"
+					className="overflow-auto max-h-[30em]"
 					// biome-ignore lint/security/noDangerouslySetInnerHtml: necessary. page is statically rendered.
 					dangerouslySetInnerHTML={{ __html: String(formatted) }}
 				/>

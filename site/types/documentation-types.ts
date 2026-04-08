@@ -21,5 +21,10 @@ export type ApiResponseAttribute = {
 	name: string;
 	type: ApiDataType;
 	description: string;
+	enumDefinition?: EnumEntry;
 	childAttributes?: ApiResponseAttribute[];
+};
+
+export type EnumEntry = {
+	[key: number]: string;
 };

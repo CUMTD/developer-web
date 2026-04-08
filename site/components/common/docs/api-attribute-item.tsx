@@ -1,4 +1,4 @@
-import type { ApiRequestParameter, ApiResponseAttribute } from "@t/documentation-types";
+import type { ApiRequestParameter, ApiResponseAttribute, EnumEntry } from "@t/documentation-types";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@ui/accordion";
 import { Item, ItemContent, ItemDescription, ItemGroup, ItemHeader, ItemSeparator, ItemTitle } from "@ui/item";
 import React from "react";
@@ -8,12 +8,14 @@ type ApiAttributeItemProps = Readonly<{
 	required?: boolean;
 	showOptional?: boolean;
 	childAttributes?: ApiResponseAttribute[];
+	enumEntry?: EnumEntry;
 }>;
 export default function ApiAttributeItem({
 	attribute,
 	childAttributes,
 	required,
 	showOptional = false,
+	enumEntry,
 }: ApiAttributeItemProps) {
 	return (
 		<Item key={attribute.name}>
@@ -31,6 +33,21 @@ export default function ApiAttributeItem({
 					</ItemDescription>
 				</ItemHeader>
 				{attribute.description}
+				{enumEntry && (
+					<table className="text-xs w-min! mt-3">
+						<tbody>
+							{Object.keys(enumEntry).map((e) => {
+								return (
+									<tr key={e}>
+										<td className="w-[1ch] font-mono">{e}</td>
+										<td className="whitespace-nowrap">{(enumEntry as Record<string, string>)[e]}</td>
+									</tr>
+								);
+							})}
+							<tr></tr>
+						</tbody>
+					</table>
+				)}
 				{childAttributes && childAttributes.length > 0 && (
 					<Accordion type="single" collapsible defaultValue="shipping">
 						<AccordionItem value="shipping">
@@ -42,7 +59,11 @@ export default function ApiAttributeItem({
 									{childAttributes?.map((childAttr, idx) => {
 										return (
 											<React.Fragment key={attribute.name + childAttr.name}>
-												<ApiAttributeItem attribute={childAttr} childAttributes={childAttr.childAttributes ?? []} />
+												<ApiAttributeItem
+													attribute={childAttr}
+													{...(childAttr.enumDefinition && { enumEntry: childAttr.enumDefinition })}
+													childAttributes={childAttr.childAttributes ?? []}
+												/>
 												{idx !== childAttributes.length - 1 && <ItemSeparator />}
 											</React.Fragment>
 										);

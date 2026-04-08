@@ -20,7 +20,11 @@ export default function ObjectAttributesBox({ title, attributes }: ObjectAttribu
 					return (
 						<React.Fragment key={attr.name}>
 							{idx !== 0 && <ItemSeparator className="accent h-1" />}
-							<ApiAttributeItem attribute={attr} childAttributes={attr.childAttributes ?? []} />
+							<ApiAttributeItem
+								attribute={attr}
+								{...(attr.enumDefinition && { enumEntry: attr.enumDefinition })}
+								childAttributes={attr.childAttributes ?? []}
+							/>
 						</React.Fragment>
 					);
 				})}

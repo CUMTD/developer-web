@@ -17,7 +17,15 @@ export const queryParameters: ApiRequestParameter[] = [
 ];
 
 export const responseAttributes: ApiResponseAttribute[] = [
-	{ name: "type", type: "integer", description: "Stop type discriminator: 0 = Stop Group, 1 = Boarding Point." },
+	{
+		name: "type",
+		type: "integer",
+		description: "Stop type discriminator.",
+		enumDefinition: {
+			0: "Stop Group",
+			1: "Boarding Point",
+		},
+	},
 	{ name: "id", type: "string", description: "Stable identifier for this stop." },
 	{ name: "name", type: "string", description: "Human-readable name for this stop." },
 	{

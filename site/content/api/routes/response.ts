@@ -76,7 +76,16 @@ export const response: ApiResponseAttribute[] = [
 						name: "daysOfWeek",
 						type: "string",
 						description:
-							'A zero-indexed comma-separated list of ints representing the days of the week this dayType is active. 0=Sunday, 1=Monday, 2=Tuesday, 3=Wednesday, 4=Thursday, 5=Friday, 6=Saturday. Examples: "1,2,3,4,5" for weekdays only, "0,6" for weekends only.',
+							'A zero-indexed comma-separated list of ints representing the days of the week this dayType is active. Examples: "1,2,3,4,5" for weekdays only, "0,6" for weekends only.',
+						enumDefinition: {
+							0: "Sunday",
+							1: "Monday",
+							2: "Tuesday",
+							3: "Wednesday",
+							4: "Thursday",
+							5: "Friday",
+							6: "Saturday",
+						},
 					},
 					{
 						name: "sortOrder",

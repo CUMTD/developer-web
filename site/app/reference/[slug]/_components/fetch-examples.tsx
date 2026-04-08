@@ -16,7 +16,7 @@ function isValidLanguage(language: string | null): language is string {
 	return EXAMPLE_LANGUAGES.some((lang) => lang.name === language);
 }
 
-export default function CodeExample({ content, endpoint }: CodeExampleProps) {
+export default function FetchExamples({ content, endpoint }: CodeExampleProps) {
 	const searchParams = useSearchParams();
 	const language = searchParams.get("language");
 
@@ -34,12 +34,12 @@ export default function CodeExample({ content, endpoint }: CodeExampleProps) {
 
 	return (
 		<>
-			<ItemHeader className="text-xl flex flex-row flex-wrap">
-				<div className="flex flex-row gap-2 white flex-wrap">
+			<ItemHeader className="text-xl flex flex-row flex-wrap max-w-full">
+				<div className="flex flex-row gap-2 white flex-wrap max-w-full">
 					<span className="bg-green-700 text-white rounded-sm font-semibold text-sm! px-2 pt-0.5 -translate-y-0.5 ">
 						GET
 					</span>
-					<span className="font-mono text-sm">{endpoint}</span>
+					<span className="font-mono text-sm wrap-break-word! max-w-full">{endpoint}</span>
 				</div>
 				<div>
 					<LanguageSelector selectedLanguage={currentLanguage} />
