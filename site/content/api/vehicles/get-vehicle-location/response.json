@@ -1,7 +1,6 @@
 {
 	"result": {
-		"vehicleId": "09fa825c-d1fb-4d20-be0a-02261984653d",
-		"vehicleNumber": "1612",
+		"id": "1612",
 		"location": {
 			"latitude": 40.116617,
 			"longitude": -88.2075

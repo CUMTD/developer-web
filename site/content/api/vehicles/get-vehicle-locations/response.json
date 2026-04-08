@@ -1,8 +1,7 @@
 {
 	"result": [
 		{
-			"vehicleId": "01c15574-73ab-4d0c-963a-33c66591e4e8",
-			"vehicleNumber": "2102",
+			"id": "2102",
 			"location": {
 				"latitude": 40.1162,
 				"longitude": -88.19825
@@ -12,8 +11,7 @@
 			"route": null
 		},
 		{
-			"vehicleId": "052dc1be-7d99-4ed9-9a6e-6ea7ea8e07c9",
-			"vehicleNumber": "1722",
+			"id": "1722",
 			"location": {
 				"latitude": 40.115417,
 				"longitude": -88.198567

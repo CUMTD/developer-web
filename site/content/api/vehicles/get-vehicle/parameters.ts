@@ -16,8 +16,7 @@ export const pathParameters: ApiRequestParameter[] = [
 export const queryParameters: ApiRequestParameter[] = [];
 
 export const responseAttributes: ApiResponseAttribute[] = [
-	{ name: "id", type: "string", description: "Stable identifier for this vehicle." },
-	{ name: "vehicleNumber", type: "string | null", description: "The number displayed on the side of the vehicle." },
+	{ name: "id", type: "string", description: "The number displayed on the side of the vehicle." },
 	{
 		name: "vehicleConfigurationId",
 		type: "string",
