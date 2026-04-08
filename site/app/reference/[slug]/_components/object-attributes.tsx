@@ -1,6 +1,7 @@
 import ApiAttributeItem from "@common/docs/api-attribute-item";
+import ApiAttributesContainer from "@common/docs/api-attributes-container";
 import type { ApiResponseAttribute } from "@t/documentation-types";
-import { ItemGroup, ItemSeparator, ItemTitle } from "@ui/item";
+import { ItemSeparator } from "@ui/item";
 import { Separator } from "@ui/separator";
 import React from "react";
 
@@ -12,10 +13,7 @@ export default function ObjectAttributesBox({ title, attributes }: ObjectAttribu
 	return (
 		<>
 			<Separator />
-			<ItemGroup className="border rounded-md border-accent">
-				<ItemTitle className="bg-accent font-semibold p-3 m-0! rounded-t-md w-full sticky top-0 z-50">
-					<h3 className="m-0!">{title}</h3>
-				</ItemTitle>
+			<ApiAttributesContainer title={title}>
 				{attributes.map((attr, idx) => {
 					return (
 						<React.Fragment key={attr.name}>
@@ -28,7 +26,7 @@ export default function ObjectAttributesBox({ title, attributes }: ObjectAttribu
 						</React.Fragment>
 					);
 				})}
-			</ItemGroup>
+			</ApiAttributesContainer>
 		</>
 	);
 }
