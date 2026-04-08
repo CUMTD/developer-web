@@ -1,28 +1,38 @@
 {
 	"result": [
 		{
-			"stopId": "MJRPSPCT:4",
-			"tripId": "[@6.0.66476575@][2][1750964235201]/1__Y1_NONUI_SA",
+			"stopId": "IT:5",
+			"tripId": "[@124.0.92247832@][1484327725398]/20__Y5_SA",
 			"routeId": "26e0cf42-28e7-40f8-af71-4ff786d6d183",
 			"gtfsRouteId": "YELLOW EVENING SATURDAY",
-			"stopSequence": 3,
-			"arrivalTime": "2026-02-27T00:01:44",
+			"direction": {
+				"id": 1,
+				"name": "South",
+				"shortName": "S"
+			},
+			"stopSequence": 28,
+			"arrivalTime": "2026-02-27T00:00:00",
 			"arrivalPastMidnight": true,
-			"departureTime": "2026-02-27T00:01:44",
+			"departureTime": "2026-02-27T00:00:00",
 			"departurePastMidnight": true,
 			"stopHeadsign": "First & Gregory"
 		},
 		{
-			"stopId": "MJRPSPCT:4",
-			"tripId": "[@6.0.66476575@][2][1750964235201]/1__Y1_UI_SA",
-			"routeId": "26e0cf42-28e7-40f8-af71-4ff786d6d183",
-			"gtfsRouteId": "YELLOW EVENING SATURDAY",
-			"stopSequence": 3,
-			"arrivalTime": "2026-02-27T00:01:44",
+			"stopId": "IT:1",
+			"tripId": "[@124.0.92344750@][1484579800344]/84__GN2_UISA",
+			"routeId": "accac4ed-dba6-4714-b5c7-964f53fa2a84",
+			"gtfsRouteId": "GREEN LATE NIGHT SATURDAY",
+			"direction": {
+				"id": 0,
+				"name": "East",
+				"shortName": "E"
+			},
+			"stopSequence": 1,
+			"arrivalTime": "2026-02-27T00:00:00",
 			"arrivalPastMidnight": true,
-			"departureTime": "2026-02-27T00:01:44",
+			"departureTime": "2026-02-27T00:00:00",
 			"departurePastMidnight": true,
-			"stopHeadsign": "First & Gregory"
+			"stopHeadsign": "Lincoln Square"
 		}
 	],
 	"error": null

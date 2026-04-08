@@ -35,6 +35,12 @@ export default function ApiAttributeItem({
 				{attribute.description}
 				{enumEntry && (
 					<table className="text-xs w-min! mt-3">
+						<thead>
+							<tr>
+								<th>Value</th>
+								<th>Definition</th>
+							</tr>
+						</thead>
 						<tbody>
 							{Object.keys(enumEntry).map((e) => {
 								return (

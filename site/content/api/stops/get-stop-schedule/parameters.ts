@@ -35,6 +35,16 @@ export const responseAttributes: ApiResponseAttribute[] = [
 	{ name: "routeId", type: "string | null", description: "The route ID this stop time belongs to." },
 	{ name: "gtfsRouteId", type: "string | null", description: "The GTFS route ID this stop time belongs to." },
 	{
+		name: "direction",
+		type: "object | null",
+		description: "The direction of travel for this trip.",
+		childAttributes: [
+			{ name: "id", type: "integer | null", description: "Direction id (0 or 1)." },
+			{ name: "name", type: "string", description: "Direction display name." },
+			{ name: "shortName", type: "string | null", description: "Short direction code." },
+		],
+	},
+	{
 		name: "stopSequence",
 		type: "integer | string",
 		description: "The sequential order of this stop within the trip, 0-indexed.",
