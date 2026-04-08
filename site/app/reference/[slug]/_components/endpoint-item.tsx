@@ -5,7 +5,7 @@ import type { ApiMethod, ApiObject } from "@t/md.generated";
 import { Item, ItemContent, ItemGroup, ItemHeader } from "@ui/item";
 import type React from "react";
 import "server-only";
-import CodeExample from "./code-example";
+import FetchExamples from "./fetch-examples";
 import ObjectAttributesBox from "./object-attributes";
 import { PrettyCodeFromFilepath } from "./pretty-code-from-file-path";
 
@@ -53,7 +53,7 @@ export default async function EndpointItem<T extends ApiObject>({ object, method
 			<ItemGroup>
 				<div className="flex flex-col gap-5 sticky top-0">
 					<Item className="p-0">
-						<CodeExample content={content} endpoint={`${globalEnv.NEXT_PUBLIC_MTD_API_URL}${endpoint}`} />
+						<FetchExamples content={content} endpoint={`${globalEnv.NEXT_PUBLIC_MTD_API_URL}${endpoint}`} />
 					</Item>
 					<Item className="p-0">
 						<ItemHeader className="text-xl">Sample Response Object</ItemHeader>
