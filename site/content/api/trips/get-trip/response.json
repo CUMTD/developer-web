@@ -1,19 +1,22 @@
 {
 	"result": {
-		"id": "[@124.0.92344750@][1484579800344]/84__GN2_UISA",
-		"gtfsRouteId": "GREEN LATE NIGHT SATURDAY",
-		"blockId": "GN2 UISA",
-		"shapeId": "[@124.0.92344750@]50E->50WLNIGHT",
+		"id": "[@12.0.42224456@][3][1246897112109]/0__SV4_SCH_UIF",
+		"blockId": "SV4 SCH UIF",
+		"shapeId": "130N SILVER EVENING 2",
 		"headsign": "Lincoln Square",
 		"direction": {
-			"longNames": {
-				"0": "East",
-				"1": "West"
-			},
-			"shortNames": {
-				"0": "E",
-				"1": "W"
-			}
+			"id": 0,
+			"name": "North",
+			"shortName": "N"
+		},
+		"route": {
+			"id": "60bda5b3-dd69-4f8c-9891-72d9dac9fb68",
+			"routeGroupId": "cdfc9380-d084-4885-ae79-c6314a1071f5",
+			"gtfsRouteId": "SILVER EVENING",
+			"longName": "Silver",
+			"shortName": "130",
+			"color": "cccccc",
+			"textColor": "000000"
 		}
 	},
 	"error": null

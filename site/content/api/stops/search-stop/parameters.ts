@@ -18,16 +18,25 @@ export const queryParameters: ApiRequestParameter[] = [
 
 export const responseAttributes: ApiResponseAttribute[] = [
 	{ name: "stopId", type: "string", description: "The stop ID." },
-	{ name: "name", type: "string", description: "The full text name of the stop." },
+	{ name: "name", type: "string", description: "The full text name of the stop, without the sub-name." },
+	{
+		name: "subName",
+		type: "string | null",
+		description: "The sub-name of the stop, if applicable. Usually displayed within parentheses.",
+	},
 	{
 		name: "highlightedName",
 		type: "string",
-		description: "The name with the matched query portion highlighted in brackets.",
+		description: "The name with the matched query portion surrounded in square brackets.",
 	},
 	{
 		name: "type",
-		type: "integer | string",
-		description: "Whether the stop is a parent stop group (0) or a boarding point (1 or 2).",
+		type: "integer",
+		description: "Stop type discriminator.",
+		enumDefinition: {
+			0: "Stop Group",
+			1: "Boarding Point",
+		},
 	},
 	{
 		name: "location",

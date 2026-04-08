@@ -1,6 +1,6 @@
 import type { ApiRequestParameter, ApiResponseAttribute } from "@t/documentation-types";
 
-export const endpoint = "/shapes/{id}";
+export const endpoint = "/shapes/{shapeId}";
 export const endpointTitle = "Get a shape";
 
 export const pathParameters: ApiRequestParameter[] = [

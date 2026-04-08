@@ -82,12 +82,6 @@ export const response: ApiResponseAttribute[] = [
 		description: "Name of the stop group.",
 	},
 	{
-		name: "isTimepoint",
-		type: "boolean",
-		description:
-			"Whether the stop is a timepoint. An operator may not depart from a timepoint early. Timepoints are the times published in the Maps and Schedules book.",
-	},
-	{
 		name: "stopCode",
 		type: "string",
 		description: "4-digit stop code for the stop group, used for SMS and https://mtd.org/stop/{code}",

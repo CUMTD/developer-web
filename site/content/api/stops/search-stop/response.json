@@ -3,6 +3,7 @@
 		{
 			"stopId": "IU",
 			"name": "Illini Union",
+			"subName": null,
 			"highlightedName": "Illini [Union]",
 			"type": 1,
 			"location": {
@@ -16,7 +17,8 @@
 		},
 		{
 			"stopId": "IU:9",
-			"name": "Illini Union (Island Shelter)",
+			"name": "Illini Union",
+			"subName": "Island Shelter",
 			"highlightedName": "Illini [Union] (Island Shelter)",
 			"type": 2,
 			"location": {
@@ -30,7 +32,8 @@
 		},
 		{
 			"stopId": "IU:1",
-			"name": "Illini Union (South Side Shelter)",
+			"name": "Illini Union",
+			"subName": "South Side Shelter",
 			"highlightedName": "Illini [Union] (South Side Shelter)",
 			"type": 2,
 			"location": {
@@ -44,7 +47,8 @@
 		},
 		{
 			"stopId": "IU:2",
-			"name": "Illini Union (North Side Shelter)",
+			"name": "Illini Union",
+			"subName": "North Side Shelter",
 			"highlightedName": "Illini [Union] (North Side Shelter)",
 			"type": 2,
 			"location": {
@@ -59,6 +63,7 @@
 		{
 			"stopId": "BDWYUNI",
 			"name": "Broadway & University",
+			"subName": null,
 			"highlightedName": "Broadway & University",
 			"type": 1,
 			"location": {

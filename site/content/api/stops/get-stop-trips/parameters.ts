@@ -36,6 +36,11 @@ export const responseAttributes: ApiResponseAttribute[] = [
 		description: "Route details associated with this trip.",
 		childAttributes: [
 			{ name: "id", type: "string", description: "Stable identifier for the route." },
+			{
+				name: "routeGroupId",
+				type: "string | null",
+				description: "Stable identifier for the route group the route belongs to.",
+			},
 			{ name: "gtfsRouteId", type: "string", description: "Stable GTFS route identifier." },
 			{ name: "longName", type: "string | null", description: "Long route name." },
 			{ name: "shortName", type: "string | null", description: "Short route name or number." },

@@ -11,6 +11,9 @@ export const pathParameters: ApiRequestParameter[] = [
 		description: "The id of stop, with or without a boarding point.",
 		isPath: true,
 	},
+];
+
+export const queryParameters: ApiRequestParameter[] = [
 	{
 		name: "routeId",
 		type: "string",
@@ -26,8 +29,6 @@ export const pathParameters: ApiRequestParameter[] = [
 		isPath: true,
 	},
 ];
-
-export const queryParameters: ApiRequestParameter[] = [];
 
 export const responseAttributes: ApiResponseAttribute[] = [
 	{ name: "stopId", type: "string", description: "The stop ID this stop time belongs to." },
