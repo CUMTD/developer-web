@@ -39,7 +39,7 @@ export const response: ApiResponseAttribute[] = [
 			},
 			{
 				name: "number",
-				type: "string",
+				type: "string | null",
 				description: "Route number.",
 			},
 			{
@@ -99,6 +99,11 @@ export const response: ApiResponseAttribute[] = [
 				name: "gtfsRoutes",
 				type: "array of strings",
 				description: "Array of GTFS route IDs from routes.txt associated with this route.",
+			},
+			{
+				name: "routeGroupId",
+				type: "string",
+				description: "The ID of the route group this route belongs to.",
 			},
 		],
 	},

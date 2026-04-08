@@ -4,12 +4,7 @@ export const response: ApiResponseAttribute[] = [
 	{
 		name: "id",
 		type: "string",
-		description: "Unique identifier for the vehicle.",
-	},
-	{
-		name: "vehicleNumber",
-		type: "string",
-		description: "The vehicle number displayed on the bus.",
+		description: "The vehicle number displayed on the side of the vehicle.",
 	},
 	{
 		name: "vehicleConfigurationId",
@@ -21,16 +16,7 @@ export const response: ApiResponseAttribute[] = [
 		type: "boolean",
 		description: "Whether the vehicle is currently active in service.",
 	},
-	{
-		name: "vin",
-		type: "string",
-		description: "Vehicle Identification Number (VIN).",
-	},
-	{
-		name: "licensePlateNumber",
-		type: "string | null",
-		description: "License plate number of the vehicle, if available.",
-	},
+
 	{
 		name: "dateInService",
 		type: "string",
