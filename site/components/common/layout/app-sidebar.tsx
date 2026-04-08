@@ -312,7 +312,17 @@ export function ReferenceSidebar({ ...props }: React.ComponentProps<typeof Sideb
 		}
 
 		const scrollContainer = document.querySelector("[data-sidebar-scroll-container]");
-		const root = scrollContainer instanceof HTMLElement ? scrollContainer : null;
+		const root = (() => {
+			if (!(scrollContainer instanceof HTMLElement)) {
+				return null;
+			}
+
+			const { overflowY } = window.getComputedStyle(scrollContainer);
+			const hasScrollableOverflow = ["auto", "scroll", "overlay"].includes(overflowY);
+			const hasScrollableContent = scrollContainer.scrollHeight > scrollContainer.clientHeight;
+
+			return hasScrollableOverflow && hasScrollableContent ? scrollContainer : null;
+		})();
 		const anchorElements = activeAnchors
 			.map((hash) => document.getElementById(hash.replace("#", "")))
 			.filter((element): element is HTMLElement => Boolean(element));
