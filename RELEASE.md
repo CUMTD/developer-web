@@ -98,7 +98,8 @@ For each package (`@mtd.org/developer-api-spec`, `@mtd.org/developer-api-types`,
 
 ### Requirements
 
-- npm CLI version 11.5.1 or higher (automatically installed in CI)
+- **npm CLI 11.5.1 or higher** (automatically upgraded in CI — required for OIDC)
+- Node.js 22.14.0 or higher (automatically installed in CI)
 - GitHub-hosted runners (already used)
 - Workflow permissions: `id-token: write` (already configured)
 
@@ -114,12 +115,17 @@ For each package (`@mtd.org/developer-api-spec`, `@mtd.org/developer-api-types`,
 
 If you merge a PR without a changeset, no release PR will be created. Add a changeset to your next PR.
 
-### "Published failed"
+### "Published failed" / `E404 Not Found`
 
-Check that:
-1. Trusted publishing is configured for the package on npmjs.com
-2. The workflow file name matches exactly (`release.yml`)
-3. The organization and repository names match exactly
+npm returns a **misleading `404`** (not `401`/`403`) whenever the OIDC authentication handshake fails. This does **not** mean the package is missing. The most common causes:
+
+1. **npm CLI too old**: OIDC requires npm ≥ 11.5.1. The workflow upgrades npm automatically via `npm install -g npm@latest` — ensure that step is present and runs before publishing.
+
+2. **`registry-url` in `setup-node` conflicts with OIDC**: If `actions/setup-node` is configured with `registry-url:`, it writes an `_authToken` entry into `.npmrc` which blocks npm's OIDC token exchange. The release workflow intentionally omits `registry-url` for this reason — do not add it back.
+
+3. **Trusted Publisher configuration mismatch**: Verify on npmjs.com that each package has a Trusted Publisher with exactly: Provider = GitHub Actions, Org = `CUMTD`, Repo = `developer-web`, Workflow = `release.yml`, Environment = _(empty)_.
+
+> **Do not** add `NPM_TOKEN` or `NODE_AUTH_TOKEN` to the release workflow — OIDC requires these to be absent.
 
 ### "Version conflicts"
 
