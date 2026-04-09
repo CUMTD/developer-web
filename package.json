@@ -58,7 +58,7 @@
 		"prebuild": "pnpm run gen",
 		"preinstall": "corepack enable",
 		"prepare": "husky",
-		"release": "pnpm build && changeset publish",
+		"release": "pnpm build && unset NODE_AUTH_TOKEN && unset NPM_CONFIG_USERCONFIG && changeset publish",
 		"start": "pnpm -r start",
 		"typecheck": "pnpm -r typecheck",
 		"typegen": "pnpm -r typegen"
