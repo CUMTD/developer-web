@@ -43,5 +43,5 @@
 		"gen:force": "pnpm run clean && dotenv -e ../../.env -- pnpm -C ../../tools gen:spec"
 	},
 	"type": "module",
-	"version": "3.0.0"
+	"version": "3.0.1"
 }
