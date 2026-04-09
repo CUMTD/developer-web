@@ -8,6 +8,7 @@ type SitemapEntry = {
 	url: string;
 	changeFrequency: ChangeFrequency;
 	priority?: number;
+	lastModified?: Date;
 };
 
 function isSitemapEntry(obj: string | SitemapEntry): obj is SitemapEntry {
@@ -19,17 +20,19 @@ function isSitemapEntry(obj: string | SitemapEntry): obj is SitemapEntry {
 	);
 }
 
-const base = globalEnv.NEXT_PUBLIC_BASE_URL;
+const base = globalEnv.NEXT_PUBLIC_BASE_URL.replace(/\/$/, "");
+
+/** Build-time date used as lastModified for statically generated pages. */
+const buildDate = new Date();
 
 const staticRoutes: SitemapEntry[] = [
-	{ url: "/", changeFrequency: "weekly", priority: 1.0 },
-	{ url: "/reference", changeFrequency: "monthly", priority: 0.8 },
-	{ url: "/reference/introduction", changeFrequency: "monthly", priority: 0.8 },
-	{ url: "/reference/authentication", changeFrequency: "monthly", priority: 0.8 },
-	{ url: "/reference/requests", changeFrequency: "monthly", priority: 0.8 },
-	{ url: "/reference/responses", changeFrequency: "monthly", priority: 0.8 },
-	{ url: "/license", changeFrequency: "monthly", priority: 0.8 },
-	{ url: "/license/distribution", changeFrequency: "monthly", priority: 0.8 },
+	{ url: "/", changeFrequency: "weekly", priority: 1.0, lastModified: buildDate },
+	{ url: "/reference/introduction", changeFrequency: "monthly", priority: 0.8, lastModified: buildDate },
+	{ url: "/reference/authentication", changeFrequency: "monthly", priority: 0.8, lastModified: buildDate },
+	{ url: "/reference/requests", changeFrequency: "monthly", priority: 0.8, lastModified: buildDate },
+	{ url: "/reference/responses", changeFrequency: "monthly", priority: 0.8, lastModified: buildDate },
+	{ url: "/license", changeFrequency: "monthly", priority: 0.8, lastModified: buildDate },
+	{ url: "/license/distribution", changeFrequency: "monthly", priority: 0.8, lastModified: buildDate },
 ];
 
 const dynamicReferenceRoutes = (Object.keys(API_INDEX) as ApiObject[]).map((slug) => `/reference/${slug}`);
@@ -37,18 +40,20 @@ const dynamicReferenceRoutes = (Object.keys(API_INDEX) as ApiObject[]).map((slug
 export default function sitemap(): MetadataRoute.Sitemap {
 	return [...staticRoutes, ...dynamicReferenceRoutes].map((route) => {
 		if (isSitemapEntry(route)) {
-			const { url, changeFrequency, priority } = route;
+			const { url, changeFrequency, priority, lastModified } = route;
 			return {
 				url: `${base}${url}`,
 				changeFrequency,
 				priority,
+				lastModified,
 			};
 		}
 
 		return {
 			url: `${base}${route}`,
-			changeFrequency: "monthly",
+			changeFrequency: "monthly" as const,
 			priority: 0.7,
+			lastModified: buildDate,
 		};
 	});
 }

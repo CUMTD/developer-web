@@ -41,7 +41,6 @@ export async function generateMetadata(): Promise<Metadata> {
 			address: false,
 			telephone: false,
 		},
-		generator: "Next.js",
 		keywords: ["MTD", "API", "Developer", "Transit", "Public Transportation", "GTFS", "Open Data"],
 		metadataBase,
 		openGraph: {

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 	title: "Account",
 	description: "Manage your account details and API keys.",
 	alternates: { canonical: "/account" },
+	robots: { index: false, follow: false },
 };
 
 export default async function AccountPage() {

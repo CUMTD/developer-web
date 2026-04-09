@@ -26,6 +26,7 @@ const withMDX = nextMDX({
 
 const nextConfig = {
 	pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+	trailingSlash: false,
 	reactStrictMode: true,
 	distDir: ".next",
 	outputFileTracingRoot: path.join(__dirname, ".."),

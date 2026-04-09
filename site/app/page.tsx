@@ -3,7 +3,8 @@ import "server-only";
 import Homepage from "./_components/homepage";
 
 const homeTitle = "Home";
-const homeDescription = "MTD Developer API."; // TODO: Update description
+const homeDescription =
+	"Access the MTD Open API to build apps with real-time departures and static schedule info like routes, schedules, and stops for Champaign-Urbana Mass Transit District (MTD). Get your API key, explore documentation, and start building today!";
 
 export const metadata: Metadata = {
 	description: homeDescription,
