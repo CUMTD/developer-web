@@ -5,7 +5,7 @@ export const metadata: Metadata = {
 	title: "Reference",
 	description: "API documentation reference.",
 	alternates: { canonical: "/reference/introduction" },
-	robots: { index: false, follow: true },
+	robots: { index: true, follow: true },
 };
 
 export default function ReferencePage() {

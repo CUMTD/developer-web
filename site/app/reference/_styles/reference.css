@@ -1,0 +1,56 @@
+.reference-scroll-container {
+	height: auto;
+	overflow: visible;
+	/* padding-top: var(--app-header-h); */
+}
+
+@media (min-width: 768px) {
+	html.has-reference-layout,
+	body.has-reference-layout {
+		height: 100%;
+		overflow: hidden;
+	}
+
+	body.has-reference-layout > main {
+		height: calc(100dvh - var(--app-header-h));
+		overflow: hidden;
+	}
+
+	.reference-scroll-container {
+		height: 100%;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		overscroll-behavior: contain;
+	}
+}
+
+/* make sure the theme colors actually get used */
+pre code {
+	display: grid;
+}
+
+/* Apply rehype-pretty-code dual-theme variables to emitted data-theme markup. */
+pre[data-theme] {
+	color: var(--shiki-light);
+	background-color: var(--shiki-light-bg);
+}
+
+pre[data-theme] span[style*="--shiki-light"] {
+	color: var(--shiki-light);
+}
+
+.dark pre[data-theme],
+.terminal pre[data-theme] {
+	color: var(--shiki-dark);
+	background-color: var(--shiki-dark-bg);
+}
+
+.dark pre[data-theme] span[style*="--shiki-dark"],
+.terminal pre[data-theme] span[style*="--shiki-dark"] {
+	color: var(--shiki-dark);
+}
+
+/* Keep typography plugin from forcing a single prose code color in highlighted blocks. */
+pre[data-theme] code {
+	color: inherit;
+}
