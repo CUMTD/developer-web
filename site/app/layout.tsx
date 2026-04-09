@@ -5,7 +5,7 @@ import { serverEnv } from "@env/server";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { VercelToolbar } from "@vercel/toolbar/next";
 import type { Metadata, Viewport } from "next";
-import { Overpass, Overpass_Mono } from "next/font/google";
+import { Overpass } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import "server-only";
@@ -19,12 +19,6 @@ const overpass = Overpass({
 	subsets: ["latin"],
 	variable: "--font-sans",
 	fallback: ["-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif"],
-});
-
-const overpassMono = Overpass_Mono({
-	subsets: ["latin"],
-	variable: "--font-mono",
-	fallback: ["ui-monospace", "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", "monospace"],
 });
 
 export const viewport: Viewport = {
@@ -76,9 +70,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body
-				className={`${overpass.variable} ${overpassMono.variable} antialiased overflow-x-hidden md:overflow-hidden`}
-			>
+			<body className={`${overpass.variable} antialiased overflow-x-hidden md:overflow-hidden`}>
 				<PlausibleAnalytics />
 				<ThemeProvider
 					attribute="class"
