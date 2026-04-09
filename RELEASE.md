@@ -98,7 +98,7 @@ For each package (`@mtd.org/developer-api-spec`, `@mtd.org/developer-api-types`,
 
 ### Requirements
 
-- npm CLI 9.5.0 or higher (Node 22 bundles npm 10.x — already satisfied)
+- npm CLI 11.5.1 or higher (Node 24 bundles npm 11.x — already satisfied)
 - GitHub-hosted runners (already used)
 - Workflow permissions: `id-token: write` (already configured)
 
@@ -118,13 +118,13 @@ If you merge a PR without a changeset, no release PR will be created. Add a chan
 
 npm returns a **misleading `404`** (not `401`/`403`) whenever the OIDC authentication handshake fails. This does **not** mean the package is missing. The most common causes:
 
-1. **`changesets/action` OIDC JWT conflict**: `changesets/action@v1` sets `NODE_AUTH_TOKEN` to a raw GitHub OIDC JWT and writes it into a temp `.npmrc` as `_authToken`. npm cannot use a raw GitHub JWT as an auth token — it needs to perform its own OIDC exchange. The `release` script unsets `NODE_AUTH_TOKEN` and `NPM_CONFIG_USERCONFIG` before calling `changeset publish`, giving npm a clean slate to exchange the OIDC token natively. **Do not remove the `unset` commands from the `release` script.**
+1. **npm CLI too old**: OIDC trusted publishing requires npm ≥ 11.5.1. Node 22's npm 10.x is **not** sufficient — the release workflow uses Node 24 (which bundles npm 11.x) for this reason. Do not downgrade to Node 22.
 
-2. **`registry-url` in `setup-node` conflicts with OIDC**: If `actions/setup-node` is configured with `registry-url:`, it writes an `_authToken` entry into `.npmrc` which blocks npm's OIDC token exchange. The release workflow intentionally omits `registry-url` for this reason — do not add it back.
+2. **`registry-url` missing from `setup-node`**: The `actions/setup-node` step must include `registry-url: "https://registry.npmjs.org"` so it creates the `.npmrc` that `changesets/action` uses for authentication. Do not remove it.
 
 3. **Trusted Publisher configuration mismatch**: Verify on npmjs.com that each package has a Trusted Publisher with exactly: Provider = GitHub Actions, Org = `CUMTD`, Repo = `developer-web`, Workflow = `release.yml`, Environment = _(empty)_.
 
-> **Do not** add `NPM_TOKEN` or `NODE_AUTH_TOKEN` to the release workflow env — OIDC requires these to be absent when npm performs its exchange.
+> **Do not** add `NPM_TOKEN` or `NODE_AUTH_TOKEN` to the release workflow env — OIDC handles authentication automatically via `changesets/action`.
 
 ### "Version conflicts"
 
