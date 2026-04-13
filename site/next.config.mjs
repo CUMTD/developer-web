@@ -37,6 +37,16 @@ const nextConfig = {
 	turbopack: {
 		root: path.join(__dirname, ".."),
 	},
+	async rewrites() {
+		return {
+			beforeFiles: [
+				{
+					source: "/gtfs.zip",
+					destination: "https://developer.mtd.org/gtfs/google_transit.zip",
+				},
+			],
+		};
+	},
 };
 
 const withVercelToolbar = createWithVercelToolbar();
