@@ -81,12 +81,13 @@ export default function CopyTextButton({ text, title }: CopyTextProps) {
 			)}
 
 			<fieldset className="inline-flex items-stretch w-full" aria-label={title ?? "Copy text"}>
-				<legend>Form that contains copyable text.</legend>
+				<legend className="hidden">Form that contains copyable text.</legend>
 				<Input
 					id={inputId}
 					value={text}
+					size={Math.max(text.length, 1)}
 					readOnly
-					className="font-mono w-full max-w-60 min-w-0 rounded-r-none text-sm"
+					className="font-mono w-auto min-w-0 rounded-r-none text-sm"
 					onFocus={(e) => {
 						e.currentTarget.select();
 					}}
