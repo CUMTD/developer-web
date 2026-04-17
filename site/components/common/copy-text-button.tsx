@@ -87,7 +87,7 @@ export default function CopyTextButton({ text, title }: CopyTextProps) {
 					value={text}
 					size={Math.max(text.length, 1)}
 					readOnly
-					className="font-mono w-auto min-w-0 rounded-r-none text-sm"
+					className="font-mono w-full sm:w-auto sm:max-w-full min-w-0 rounded-r-none text-sm"
 					onFocus={(e) => {
 						e.currentTarget.select();
 					}}
