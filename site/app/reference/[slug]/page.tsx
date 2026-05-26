@@ -1,5 +1,4 @@
 import toTitleCase from "@helpers/to-title-case";
-import type { ApiResponseAttribute } from "@t/documentation-types";
 import { API_INDEX, type ApiObject } from "@t/md.generated";
 import { Separator } from "@ui/separator";
 import type { Metadata } from "next";
@@ -38,8 +37,6 @@ export default async function Page({ params }: Props) {
 	const methods = API_INDEX[apiObject];
 
 	const { default: ObjectDescription } = await import(`@content/api/${apiObject}/description.mdx`);
-	const { response: responseAttributes } = await import(`@content/api/${apiObject}/response.ts`);
-	var attributes = responseAttributes as ApiResponseAttribute[];
 
 	return (
 		<>

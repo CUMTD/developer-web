@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: MetaParams): Promise<Metadata
 		title: "Edit Key",
 		description: "Edit an API key.",
 		alternates: { canonical: `/account/keys/${key}` },
+		robots: { index: false, follow: false },
 	};
 }
 

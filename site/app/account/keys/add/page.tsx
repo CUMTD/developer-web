@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 	title: "Add Key",
 	description: "Add an API key.",
 	alternates: { canonical: "/account/keys/add" },
+	robots: { index: false, follow: false },
 };
 
 export default async function AddApiKeyPage() {

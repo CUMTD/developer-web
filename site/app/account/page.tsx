@@ -1,6 +1,7 @@
 import ThemeSwitcher from "@common/account/theme-switcher";
 import { LogoutButton } from "@common/auth/logout-button";
 import { H2 } from "@common/typography/heading";
+import getUserDisplayName from "@helpers/get-user-display-name";
 import { getDeveloperDetails } from "@server/actions/account/get-developer-details";
 import { createClient } from "@server/supabase/server";
 import type { Metadata } from "next";
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 	title: "Account",
 	description: "Manage your account details and API keys.",
 	alternates: { canonical: "/account" },
+	robots: { index: false, follow: false },
 };
 
 export default async function AccountPage() {
@@ -29,8 +31,10 @@ export default async function AccountPage() {
 		claims: { user_metadata },
 	} = authData;
 
-	const name = user_metadata?.full_name ?? "Unknown User";
-	const email = user_metadata?.email ?? null;
+	const metadataEmail = typeof user_metadata?.email === "string" ? user_metadata.email : null;
+	const claimsEmail = typeof authData.claims.email === "string" ? authData.claims.email : null;
+	const email = metadataEmail ?? claimsEmail;
+	const name = getUserDisplayName(user_metadata?.full_name, email);
 	const avatarUrl = user_metadata?.avatar_url ?? null;
 
 	return (

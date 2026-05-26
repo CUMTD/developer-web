@@ -58,11 +58,7 @@ export default async function EndpointItem<T extends ApiObject>({ object, method
 					<Item className="p-0">
 						<ItemHeader className="text-xl">Sample Response Object</ItemHeader>
 						<ItemContent className="w-full">
-							<PrettyCodeFromFilepath
-								expand
-								filepath={`@content/api/${object}/${method}/response.json`}
-								language="json"
-							/>
+							<PrettyCodeFromFilepath filepath={`@content/api/${object}/${method}/response.json`} language="json" />
 						</ItemContent>
 					</Item>
 				</div>

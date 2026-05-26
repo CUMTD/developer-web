@@ -4,6 +4,7 @@ export const metadata: Metadata = {
 	title: "Login",
 	description: "Login to your developer account.",
 	alternates: { canonical: "/account/auth/login" },
+	robots: { index: false, follow: false },
 };
 
 type LoginFormProps = Readonly<{

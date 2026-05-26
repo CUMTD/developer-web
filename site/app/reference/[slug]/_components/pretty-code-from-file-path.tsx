@@ -15,7 +15,6 @@ type PrettyCodeFromFilepathProps = Readonly<{
 	endpoint?: string;
 	apiKey?: string;
 	queryParameters?: ApiRequestParameter[];
-	expand?: boolean;
 }>;
 
 export async function PrettyCodeFromFilepath({
@@ -23,7 +22,6 @@ export async function PrettyCodeFromFilepath({
 	language,
 	endpoint,
 	queryParameters,
-	expand,
 }: PrettyCodeFromFilepathProps) {
 	const resolvedPath = filepath.replace("@content/", "content/");
 	const fileContent = await readFile(resolvedPath, { encoding: "utf-8" });

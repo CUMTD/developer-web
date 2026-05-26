@@ -5,6 +5,7 @@ export const metadata: Metadata = {
 	title: "Login Error",
 	description: "An error occurred during login.",
 	alternates: { canonical: "/account/auth/error" },
+	robots: { index: false, follow: false },
 };
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ error: string }> }) {

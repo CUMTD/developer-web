@@ -28,19 +28,8 @@ function NavMenu() {
 			</div>
 			<NavigationMenu viewport={isMobile}>
 				<NavigationMenuList className="flex-wrap">
-					<NavigationMenuItem aria-hidden>
-						<NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()}`}>
-							<Link href="/" className="text-current">
-								Home
-							</Link>
-						</NavigationMenuLink>
-					</NavigationMenuItem>
-
 					<NavigationMenuItem>
-						<NavigationMenuLink asChild aria-hidden className={`md:hidden! block! ${navigationMenuTriggerStyle()}`}>
-							<Link href="/reference/introduction">Docs</Link>
-						</NavigationMenuLink>
-						<NavigationMenuLink asChild className={`md:block! hidden! ${navigationMenuTriggerStyle()}`}>
+						<NavigationMenuLink asChild className={` ${navigationMenuTriggerStyle()}`}>
 							<Link href="/reference/introduction">Documentation</Link>
 						</NavigationMenuLink>
 					</NavigationMenuItem>

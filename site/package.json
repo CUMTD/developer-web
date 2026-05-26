@@ -1,5 +1,12 @@
 {
 	"author": "MTD",
+	"browserslist": [
+		"last 2 Chrome versions",
+		"last 2 Firefox versions",
+		"last 2 Edge versions",
+		"last 2 Safari versions",
+		"not IE 11"
+	],
 	"bugs": {
 		"url": "https://github.com/CUMTD/developer-web/issues"
 	},

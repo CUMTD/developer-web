@@ -1,4 +1,6 @@
+import NpmPackageCard from "@app/_components/npmPackageCard";
 import NextPreviousPageNavigatorButtons from "@common/docs/next-previous-page-navigator-button-interface";
+import { ItemGroup } from "@ui/item";
 import { BusFrontIcon, HeartIcon } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -33,6 +35,25 @@ export default function IntroductionPage() {
 				<Link href="/#feeds">our GTFS and GTFS-RT feeds</Link> instead.
 			</p>
 
+			<h2 id="npm">npm Packages</h2>
+
+			<ItemGroup className="gap-3">
+				<NpmPackageCard
+					name="@mtd.org/developer-api-types"
+					description="API response TypeScript types."
+					href="https://www.npmjs.com/package/@mtd.org/developer-api-types"
+				/>
+				<NpmPackageCard
+					name="@mtd.org/developer-api-client"
+					description="A typesafe API client."
+					href="https://www.npmjs.com/package/@mtd.org/developer-api-client"
+				/>
+				<NpmPackageCard
+					name="@mtd.org/developer-api-spec"
+					description="OpenAPI specification files for the MTD API."
+					href="https://www.npmjs.com/package/@mtd.org/developer-api-spec"
+				/>
+			</ItemGroup>
 			<NextPreviousPageNavigatorButtons nextLink="/reference/authentication" />
 		</div>
 	);

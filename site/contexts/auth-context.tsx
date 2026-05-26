@@ -1,5 +1,6 @@
 "use client";
 
+import getUserDisplayName from "@helpers/get-user-display-name";
 import { createClient } from "@lib/supabase/client";
 import type { Session } from "@supabase/supabase-js";
 import type { CurrentUser, CurrentUserState } from "@t/current-user";
@@ -13,7 +14,7 @@ function mapSessionToUser(session: Session | null): CurrentUser | null {
 	const metadata = session.user.user_metadata as Record<string, unknown> | undefined;
 
 	const nameValue = metadata?.full_name;
-	const name = typeof nameValue === "string" ? nameValue : "Unknown User";
+	const name = getUserDisplayName(nameValue, session.user.email);
 
 	const imageValue = metadata?.profile_image_url ?? metadata?.avatar_url;
 	const profileImageUrl = typeof imageValue === "string" ? imageValue : null;

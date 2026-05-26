@@ -26,6 +26,7 @@ const withMDX = nextMDX({
 
 const nextConfig = {
 	pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+	trailingSlash: false,
 	reactStrictMode: true,
 	distDir: ".next",
 	outputFileTracingRoot: path.join(__dirname, ".."),
@@ -35,6 +36,16 @@ const nextConfig = {
 	},
 	turbopack: {
 		root: path.join(__dirname, ".."),
+	},
+	async rewrites() {
+		return {
+			beforeFiles: [
+				{
+					source: "/gtfs.zip",
+					destination: "https://developer.mtd.org/gtfs/google_transit.zip",
+				},
+			],
+		};
 	},
 };
 
