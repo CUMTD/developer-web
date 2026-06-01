@@ -16,7 +16,7 @@
 	"description": "Typescript types for MTD's Developer API",
 	"devDependencies": {
 		"@mtd.org/developer-api-spec": "workspace:*",
-		"typescript": "^6.0.2"
+		"typescript": "^6.0.3"
 	},
 	"exports": {
 		".": {
