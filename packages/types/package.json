@@ -15,8 +15,15 @@
 	],
 	"description": "Typescript types for MTD's Developer API",
 	"devDependencies": {
+		"@changesets/cli": "^2.31.0",
+		"@commitlint/config-conventional": "^21.0.2",
 		"@mtd.org/developer-api-spec": "workspace:*",
-		"typescript": "^6.0.2"
+		"@types/node": "^25.9.1",
+		"dotenv": "^17.4.2",
+		"lint-staged": "^17.0.7",
+		"supabase": "^2.104.0",
+		"tsx": "^4.22.4",
+		"typescript": "^6.0.3"
 	},
 	"exports": {
 		".": {
