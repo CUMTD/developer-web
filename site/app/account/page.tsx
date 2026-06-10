@@ -3,6 +3,7 @@ import { LogoutButton } from "@common/auth/logout-button";
 import { H2 } from "@common/typography/heading";
 import getUserDisplayName from "@helpers/get-user-display-name";
 import { getDeveloperDetails } from "@server/actions/account/get-developer-details";
+import { getRequestsToday } from "@server/actions/account/get-requests-today";
 import { createClient } from "@server/supabase/server";
 import type { Metadata } from "next";
 import { unauthorized } from "next/navigation";
@@ -26,6 +27,7 @@ export default async function AccountPage() {
 	}
 
 	const developerDetails = await getDeveloperDetails();
+	const requestsToday = await getRequestsToday();
 
 	const {
 		claims: { user_metadata },
@@ -43,7 +45,7 @@ export default async function AccountPage() {
 				<UserInfo name={name} email={email} avatarUrl={avatarUrl} />
 				<LogoutButton variant={"destructive"} />
 			</div>
-			<DeveloperInfo developer={developerDetails} />
+			<DeveloperInfo developer={developerDetails} requestsToday={requestsToday} />
 
 			<div className="space-y-4">
 				<H2 wrapProse>License Agreement and Terms of Use</H2>
@@ -54,11 +56,6 @@ export default async function AccountPage() {
 				<H2 wrapProse>Theme</H2>
 				<ThemeSwitcher />
 			</div>
-
-			{/* <div className="space-y-4">
-				<H2 wrapProse>Cursor Effect</H2>
-				<CursorSwitcher />
-			</div> */}
 		</div>
 	);
 }

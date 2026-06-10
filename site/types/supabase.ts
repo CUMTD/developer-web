@@ -117,6 +117,120 @@ export type Database = {
 					},
 				];
 			};
+			request_log_aggregate: {
+				Row: {
+					api_key: string;
+					average_response_time_ms: number;
+					date: string;
+					developer_id: string;
+					endpoint: string;
+					request_count: number;
+					status_code: number;
+					utc_hour: number;
+				};
+				Insert: {
+					api_key: string;
+					average_response_time_ms?: number;
+					date: string;
+					developer_id: string;
+					endpoint: string;
+					request_count?: number;
+					status_code: number;
+					utc_hour: number;
+				};
+				Update: {
+					api_key?: string;
+					average_response_time_ms?: number;
+					date?: string;
+					developer_id?: string;
+					endpoint?: string;
+					request_count?: number;
+					status_code?: number;
+					utc_hour?: number;
+				};
+				Relationships: [
+					{
+						foreignKeyName: "request_log_agg_developer_id_fkey";
+						columns: ["developer_id"];
+						isOneToOne: false;
+						referencedRelation: "developer";
+						referencedColumns: ["id"];
+					},
+				];
+			};
+			request_log_daily_aggregate: {
+				Row: {
+					average_response_time_ms: number;
+					date: string;
+					developer_id: string;
+					endpoint: string;
+					request_count: number;
+					status_code: number;
+				};
+				Insert: {
+					average_response_time_ms?: number;
+					date: string;
+					developer_id: string;
+					endpoint: string;
+					request_count?: number;
+					status_code: number;
+				};
+				Update: {
+					average_response_time_ms?: number;
+					date?: string;
+					developer_id?: string;
+					endpoint?: string;
+					request_count?: number;
+					status_code?: number;
+				};
+				Relationships: [
+					{
+						foreignKeyName: "request_log_daily_agg_developer_id_fkey";
+						columns: ["developer_id"];
+						isOneToOne: false;
+						referencedRelation: "developer";
+						referencedColumns: ["id"];
+					},
+				];
+			};
+			request_log_monthly_aggregate: {
+				Row: {
+					average_response_time_ms: number;
+					developer_id: string;
+					endpoint: string;
+					month: number;
+					request_count: number;
+					status_code: number;
+					year: number;
+				};
+				Insert: {
+					average_response_time_ms?: number;
+					developer_id: string;
+					endpoint: string;
+					month: number;
+					request_count?: number;
+					status_code: number;
+					year: number;
+				};
+				Update: {
+					average_response_time_ms?: number;
+					developer_id?: string;
+					endpoint?: string;
+					month?: number;
+					request_count?: number;
+					status_code?: number;
+					year?: number;
+				};
+				Relationships: [
+					{
+						foreignKeyName: "request_log_monthly_agg_developer_id_fkey";
+						columns: ["developer_id"];
+						isOneToOne: false;
+						referencedRelation: "developer";
+						referencedColumns: ["id"];
+					},
+				];
+			};
 			tos_version: {
 				Row: {
 					content: string;
@@ -161,6 +275,21 @@ export type Database = {
 		};
 		Functions: {
 			accept_required_tos: { Args: never; Returns: undefined };
+			rollup_daily_to_monthly: { Args: never; Returns: undefined };
+			rollup_hourly_to_daily: { Args: never; Returns: undefined };
+			upsert_request_log_aggregates: {
+				Args: {
+					p_api_keys: string[];
+					p_avg_response_times: number[];
+					p_dates: string[];
+					p_developer_ids: string[];
+					p_endpoints: string[];
+					p_request_counts: number[];
+					p_status_codes: number[];
+					p_utc_hours: number[];
+				};
+				Returns: undefined;
+			};
 			validate_api_key: {
 				Args: { p_key: string };
 				Returns: {
