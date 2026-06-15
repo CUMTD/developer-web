@@ -1,10 +1,13 @@
 import ThemeSwitcher from "@common/account/theme-switcher";
 import { LogoutButton } from "@common/auth/logout-button";
+import LinkButton from "@common/link-button";
 import { H2 } from "@common/typography/heading";
 import getUserDisplayName from "@helpers/get-user-display-name";
 import { getDeveloperDetails } from "@server/actions/account/get-developer-details";
 import { getRequestsToday } from "@server/actions/account/get-requests-today";
+import { isAdmin } from "@server/actions/account/is-admin";
 import { createClient } from "@server/supabase/server";
+import { LayoutDashboard } from "lucide-react";
 import type { Metadata } from "next";
 import { unauthorized } from "next/navigation";
 import DeveloperInfo from "./_components/developer-info";
@@ -26,8 +29,11 @@ export default async function AccountPage() {
 		unauthorized();
 	}
 
-	const developerDetails = await getDeveloperDetails();
-	const requestsToday = await getRequestsToday();
+	const [developerDetails, requestsToday, adminUser] = await Promise.all([
+		getDeveloperDetails(),
+		getRequestsToday(),
+		isAdmin(),
+	]);
 
 	const {
 		claims: { user_metadata },
@@ -41,9 +47,17 @@ export default async function AccountPage() {
 
 	return (
 		<div className="space-y-12">
-			<div className="space-y-4 flex flex-row justify-between items-center">
+			<div className="space-y-4 flex flex-row justify-between items-center w-full">
 				<UserInfo name={name} email={email} avatarUrl={avatarUrl} />
-				<LogoutButton variant={"destructive"} />
+				<div className="flex flex-row gap-2">
+					{adminUser && (
+						<LinkButton href="/dashboard" variant="outline" className="m-0">
+							<LayoutDashboard className="h-4 w-4" aria-hidden />
+							Admin Dashboard
+						</LinkButton>
+					)}
+					<LogoutButton variant={"destructive"} />
+				</div>
 			</div>
 			<DeveloperInfo developer={developerDetails} requestsToday={requestsToday} />
 
