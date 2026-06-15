@@ -46,6 +46,7 @@ export type Database = {
 			developer: {
 				Row: {
 					accepted_tos_version_id: string | null;
+					admin: boolean;
 					created_at: string;
 					current_tokens: number;
 					id: string;
@@ -56,6 +57,7 @@ export type Database = {
 				};
 				Insert: {
 					accepted_tos_version_id?: string | null;
+					admin?: boolean;
 					created_at?: string;
 					current_tokens?: number;
 					id: string;
@@ -66,6 +68,7 @@ export type Database = {
 				};
 				Update: {
 					accepted_tos_version_id?: string | null;
+					admin?: boolean;
 					created_at?: string;
 					current_tokens?: number;
 					id?: string;
