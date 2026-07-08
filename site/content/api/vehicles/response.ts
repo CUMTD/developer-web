@@ -2,7 +2,7 @@ import type { ApiResponseAttribute } from "@t/documentation-types";
 
 export const response: ApiResponseAttribute[] = [
 	{
-		name: "id",
+		name: "vehicleId",
 		type: "string",
 		description: "The vehicle number displayed on the side of the vehicle.",
 	},

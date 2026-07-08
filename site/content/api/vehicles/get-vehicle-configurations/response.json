@@ -1,7 +1,7 @@
 {
 	"result": [
 		{
-			"id": "0e029025-5166-4486-9ee0-f9c34207aeed",
+			"vehicleConfigurationId": "0e029025-5166-4486-9ee0-f9c34207aeed",
 			"vehicleType": 0,
 			"year": 2011,
 			"make": "New Flyer",
@@ -10,7 +10,7 @@
 			"powertrain": 2
 		},
 		{
-			"id": "18ccf143-21e3-4163-858c-3ffe35e3b8e0",
+			"vehicleConfigurationId": "18ccf143-21e3-4163-858c-3ffe35e3b8e0",
 			"vehicleType": 0,
 			"year": 2022,
 			"make": "New Flyer",

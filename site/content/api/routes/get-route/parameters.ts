@@ -16,7 +16,7 @@ export const pathParameters: ApiRequestParameter[] = [
 export const queryParameters: ApiRequestParameter[] = [];
 
 export const responseAttributes: ApiResponseAttribute[] = [
-	{ name: "id", type: "string", description: "Stable identifier for this route." },
+	{ name: "routeId", type: "string", description: "Stable identifier for this route." },
 	{ name: "number", type: "string | null", description: 'Route name number. Example: "50".' },
 	{ name: "firstTrip", type: "string", description: "The time of the first trip of the day for this route." },
 	{ name: "lastTrip", type: "string", description: "The time of the last trip of the day for this route." },

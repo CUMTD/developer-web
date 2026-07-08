@@ -170,7 +170,7 @@ export const responseAttributes: ApiResponseAttribute[] = [
 		description: "Route details associated with this departure, when available.",
 		childAttributes: [
 			{
-				name: "id",
+				name: "routeId",
 				type: "string",
 				description: "Stable identifier for the route.",
 			},

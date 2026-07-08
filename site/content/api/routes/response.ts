@@ -2,7 +2,7 @@ import type { ApiResponseAttribute } from "@t/documentation-types";
 
 export const response: ApiResponseAttribute[] = [
 	{
-		name: "id",
+		name: "routeGroupId",
 		type: "string",
 		description: "Unique identifier for the route group.",
 	},
@@ -33,7 +33,7 @@ export const response: ApiResponseAttribute[] = [
 		description: "Array of individual routes within this route group.",
 		childAttributes: [
 			{
-				name: "id",
+				name: "routeId",
 				type: "string",
 				description: "Unique identifier for a route.",
 			},

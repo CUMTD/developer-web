@@ -31,7 +31,7 @@
 			"isIStop": false,
 			"uniqueId": "v-1730_t-[@2.0.86175868@][1458585713139]/65__O4_RUBY_MF_b-O4 RUBY MF_sd-20260408-181000",
 			"route": {
-				"id": "45eb37e3-c484-469f-89c9-8eb9ec9a43ec",
+				"routeId": "45eb37e3-c484-469f-89c9-8eb9ec9a43ec",
 				"routeGroupId": "3d9a07bd-9342-48fd-84ab-72b8ab16ec7b",
 				"gtfsRouteId": "ORANGE",
 				"longName": "Orange",
@@ -71,7 +71,7 @@
 			"isIStop": false,
 			"uniqueId": "v-2425_t-[@7.0.41101146@][3][1237929928359]/6__GNX2_MF_b-GNX2 MF_sd-20260408-182300",
 			"route": {
-				"id": "294fb25d-538f-466d-b90e-a34317dceea1",
+				"routeId": "294fb25d-538f-466d-b90e-a34317dceea1",
 				"routeGroupId": "fdfeb28c-61d4-463e-a708-51a7f96928b7",
 				"gtfsRouteId": "GREENHOPPER",
 				"longName": "Green",

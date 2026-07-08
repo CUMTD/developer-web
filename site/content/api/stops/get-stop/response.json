@@ -6,9 +6,9 @@
 		"boardingPoints": [
 			{
 				"subName": "NW Corner",
-				"id": "MJRPSPCT:4",
+				"stopId": "MJRPSPCT:4",
 				"name": "Meijer Drive & Prospect (NW Corner)",
-				"stopCode": "4618",
+				"smsCode": "4618",
 				"url": "https://mtd.org/maps-and-schedules/bus-stops/info/mjrpspct-4/",
 				"isAccessible": true,
 				"location": {
@@ -17,9 +17,9 @@
 				}
 			}
 		],
-		"id": "MJRPSPCT",
+		"stopId": "MJRPSPCT",
 		"name": "Meijer Drive & Prospect",
-		"stopCode": "4618",
+		"smsCode": "4618",
 		"url": "https://mtd.org/maps-and-schedules/bus-stops/info/mjrpspct/",
 		"isAccessible": true,
 		"location": {

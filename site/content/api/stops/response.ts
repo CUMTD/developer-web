@@ -28,7 +28,7 @@ export const response: ApiResponseAttribute[] = [
 					"Sub-name or description of the boarding point. This is usually shown in parenthesis after the stop name.",
 			},
 			{
-				name: "id",
+				name: "stopId",
 				type: "string",
 				description: "Unique identifier for the boarding point.",
 			},
@@ -38,9 +38,9 @@ export const response: ApiResponseAttribute[] = [
 				description: "Full name of the boarding point.",
 			},
 			{
-				name: "stopCode",
+				name: "smsCode",
 				type: "string",
-				description: "4-digit stop code for the boarding point, used for SMS and https://mtd.org/stop/{code}",
+				description: "4-digit SMS code for the boarding point, used for Text-My-Stop and https://mtd.org/stop/{code}",
 			},
 			{
 				name: "url",
@@ -72,7 +72,7 @@ export const response: ApiResponseAttribute[] = [
 		],
 	},
 	{
-		name: "id",
+		name: "stopId",
 		type: "string",
 		description: "Unique identifier for the stop group.",
 	},
@@ -82,9 +82,9 @@ export const response: ApiResponseAttribute[] = [
 		description: "Name of the stop group.",
 	},
 	{
-		name: "stopCode",
+		name: "smsCode",
 		type: "string",
-		description: "4-digit stop code for the stop group, used for SMS and https://mtd.org/stop/{code}",
+		description: "4-digit SMS code for the boarding point, used for Text-My-Stop and https://mtd.org/stop/{code}",
 	},
 	{
 		name: "url",

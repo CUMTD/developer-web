@@ -9,7 +9,7 @@ export const pathParameters: ApiRequestParameter[] = [
 		type: "string",
 		required: true,
 		description:
-			"The id of a trip. You MUST URL encode this value, as it may contain forward slashes. This is planned to be changed in the future.",
+			"The id of a trip. You must URL encode this value, as it may contain forward slashes. Trip ID format is planned to be changed in the future.",
 		isPath: true,
 	},
 ];
@@ -17,7 +17,7 @@ export const pathParameters: ApiRequestParameter[] = [
 export const queryParameters: ApiRequestParameter[] = [];
 
 export const responseAttributes: ApiResponseAttribute[] = [
-	{ name: "id", type: "string", description: "Stable identifier for this trip." },
+	{ name: "tripId", type: "string", description: "Stable identifier for this trip." },
 	{ name: "blockId", type: "string", description: "Stable identifier for the block this trip is part of." },
 	{ name: "shapeId", type: "string", description: "Stable identifier for this trip's shape." },
 	{ name: "headsign", type: "string", description: "The headsign displayed on the vehicle for this trip." },
@@ -36,7 +36,7 @@ export const responseAttributes: ApiResponseAttribute[] = [
 		type: "object | null",
 		description: "Route details associated with this trip.",
 		childAttributes: [
-			{ name: "id", type: "string", description: "Stable identifier for the route." },
+			{ name: "routeId", type: "string", description: "Stable identifier for the route." },
 			{
 				name: "routeGroupId",
 				type: "string | null",

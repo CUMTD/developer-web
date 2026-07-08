@@ -1,13 +1,13 @@
 {
 	"result": {
-		"id": "1612",
+		"vehicleId": "1612",
 		"location": {
 			"latitude": 40.116617,
 			"longitude": -88.2075
 		},
 		"lastUpdated": "2026-04-07T18:47:50.8386734+00:00",
 		"trip": {
-			"id": "[@14.0.52435578@][4][1275670882890]/11__O4_RUBY_MF",
+			"tripId": "[@14.0.52435578@][4][1275670882890]/11__O4_RUBY_MF",
 			"headsign": "Illinois Terminal",
 			"direction": {
 				"id": 1,
@@ -16,7 +16,7 @@
 			}
 		},
 		"route": {
-			"id": "45eb37e3-c484-469f-89c9-8eb9ec9a43ec",
+			"routeId": "45eb37e3-c484-469f-89c9-8eb9ec9a43ec",
 			"gtfsRouteId": "ORANGEHOPPER",
 			"longName": "Orange",
 			"shortName": "6",
