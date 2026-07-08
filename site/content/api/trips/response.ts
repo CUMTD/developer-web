@@ -2,7 +2,7 @@ import type { ApiResponseAttribute } from "@t/documentation-types";
 
 export const response: ApiResponseAttribute[] = [
 	{
-		name: "id",
+		name: "tripId",
 		type: "string",
 		description: "Unique identifier for the trip.",
 	},
@@ -49,7 +49,7 @@ export const response: ApiResponseAttribute[] = [
 		description: "Route details associated with this trip.",
 		childAttributes: [
 			{
-				name: "id",
+				name: "routeId",
 				type: "string",
 				description: "Stable identifier for the route.",
 			},

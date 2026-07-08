@@ -1,7 +1,7 @@
 {
 	"result": [
 		{
-			"id": "[@12.0.42224456@][3][1246897112109]/0__SV4_NOSCH_UIF",
+			"tripId": "[@12.0.42224456@][3][1246897112109]/0__SV4_NOSCH_UIF",
 			"blockId": "SV4 NOSCH UIF",
 			"shapeId": "130N SILVER EVENING 2",
 			"headsign": "Lincoln Square",
@@ -11,7 +11,7 @@
 				"shortName": "N"
 			},
 			"route": {
-				"id": "60bda5b3-dd69-4f8c-9891-72d9dac9fb68",
+				"routeId": "60bda5b3-dd69-4f8c-9891-72d9dac9fb68",
 				"routeGroupId": "cdfc9380-d084-4885-ae79-c6314a1071f5",
 				"gtfsRouteId": "SILVER EVENING",
 				"longName": "Silver",
@@ -21,7 +21,7 @@
 			}
 		},
 		{
-			"id": "[@12.0.42224456@][3][1246897112109]/0__SV4_NOSCH_UIMTH",
+			"tripId": "[@12.0.42224456@][3][1246897112109]/0__SV4_NOSCH_UIMTH",
 			"blockId": "SV4 NOSCH UIMTH",
 			"shapeId": "130N SILVER EVENING 2",
 			"headsign": "Lincoln Square",
@@ -31,7 +31,7 @@
 				"shortName": "N"
 			},
 			"route": {
-				"id": "60bda5b3-dd69-4f8c-9891-72d9dac9fb68",
+				"routeId": "60bda5b3-dd69-4f8c-9891-72d9dac9fb68",
 				"routeGroupId": "cdfc9380-d084-4885-ae79-c6314a1071f5",
 				"gtfsRouteId": "SILVER EVENING",
 				"longName": "Silver",

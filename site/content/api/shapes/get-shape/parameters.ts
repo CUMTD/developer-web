@@ -16,7 +16,7 @@ export const pathParameters: ApiRequestParameter[] = [
 export const queryParameters: ApiRequestParameter[] = [];
 
 export const responseAttributes: ApiResponseAttribute[] = [
-	{ name: "id", type: "string", description: "Stable identifier for this shape." },
+	{ name: "shapeId", type: "string", description: "Stable identifier for this shape." },
 	{
 		name: "shapePoints",
 		type: "Array of shapePoints",

@@ -7,9 +7,9 @@
 			"boardingPoints": [
 				{
 					"subName": "NE Corner",
-					"id": "150DALE:1",
+					"stopId": "150DALE:1",
 					"name": "U.S. 150 & Dale (NE Corner)",
-					"stopCode": "0114",
+					"smsCode": "0114",
 					"url": "https://mtd.org/maps-and-schedules/bus-stops/info/150dale-1/",
 					"isAccessible": true,
 					"location": {
@@ -19,9 +19,9 @@
 				},
 				{
 					"subName": "South Side",
-					"id": "150DALE:3",
+					"stopId": "150DALE:3",
 					"name": "U.S. 150 & Dale (South Side)",
-					"stopCode": "0114",
+					"smsCode": "0114",
 					"url": "https://mtd.org/maps-and-schedules/bus-stops/info/150dale-3/",
 					"isAccessible": true,
 					"location": {
@@ -30,9 +30,9 @@
 					}
 				}
 			],
-			"id": "150DALE",
+			"stopId": "150DALE",
 			"name": "U.S. 150 & Dale",
-			"stopCode": "0114",
+			"smsCode": "0114",
 			"url": "https://mtd.org/maps-and-schedules/bus-stops/info/150dale/",
 			"isAccessible": true,
 			"location": {
@@ -47,9 +47,9 @@
 			"boardingPoints": [
 				{
 					"subName": "NE Far Side",
-					"id": "150DOD:5",
+					"stopId": "150DOD:5",
 					"name": "U.S. 150 & Dodson (NE Far Side)",
-					"stopCode": "3695",
+					"smsCode": "3695",
 					"url": "https://mtd.org/maps-and-schedules/bus-stops/info/150dod-5/",
 					"isAccessible": true,
 					"location": {
@@ -58,9 +58,9 @@
 					}
 				}
 			],
-			"id": "150DOD",
+			"stopId": "150DOD",
 			"name": "U.S. 150 & Dodson Dr.",
-			"stopCode": "3695",
+			"smsCode": "3695",
 			"url": "https://mtd.org/maps-and-schedules/bus-stops/info/150dod/",
 			"isAccessible": true,
 			"location": {

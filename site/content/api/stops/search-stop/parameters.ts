@@ -49,6 +49,10 @@ export const responseAttributes: ApiResponseAttribute[] = [
 	},
 	{ name: "city", type: "string | null", description: "The city where the stop is located." },
 	{ name: "isIStop", type: "boolean", description: "Whether this is an I-Stop location." },
-	{ name: "stopCode", type: "string | null", description: "The stop code identifier." },
+	{
+		name: "smsCode",
+		type: "string | null",
+		description: "4-digit SMS code for the boarding point, used for Text-My-Stop and https://mtd.org/stop/{code}",
+	},
 	{ name: "accessible", type: "boolean", description: "Whether the stop is accessible." },
 ];
