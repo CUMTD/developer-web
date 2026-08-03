@@ -8,7 +8,7 @@ export const pathParameters: ApiRequestParameter[] = [];
 export const queryParameters: ApiRequestParameter[] = [];
 
 export const responseAttributes: ApiResponseAttribute[] = [
-	{ name: "id", type: "string", description: "Stable identifier for this trip." },
+	{ name: "tripId", type: "string", description: "Stable identifier for this trip." },
 	{ name: "blockId", type: "string", description: "Stable identifier for the block this trip is part of." },
 	{ name: "shapeId", type: "string", description: "Stable identifier for this trip's shape." },
 	{ name: "headsign", type: "string", description: "The headsign displayed on the vehicle for this trip." },
@@ -27,7 +27,7 @@ export const responseAttributes: ApiResponseAttribute[] = [
 		type: "object | null",
 		description: "Route details associated with this trip.",
 		childAttributes: [
-			{ name: "id", type: "string", description: "Stable identifier for the route." },
+			{ name: "routeId", type: "string", description: "Stable identifier for the route." },
 			{ name: "routeGroupId", type: "string | null", description: "Stable identifier for the route group." },
 			{ name: "gtfsRouteId", type: "string", description: "Stable GTFS route identifier." },
 			{ name: "longName", type: "string | null", description: "Long route name." },

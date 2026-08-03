@@ -16,7 +16,7 @@ export const pathParameters: ApiRequestParameter[] = [
 export const queryParameters: ApiRequestParameter[] = [];
 
 export const responseAttributes: ApiResponseAttribute[] = [
-	{ name: "id", type: "string", description: "Stable identifier for this vehicle configuration." },
+	{ name: "vehicleConfigurationId", type: "string", description: "Stable identifier for this vehicle configuration." },
 	{
 		name: "vehicleType",
 		type: "integer",
@@ -37,5 +37,15 @@ export const responseAttributes: ApiResponseAttribute[] = [
 	{ name: "make", type: "string", description: "The vehicle manufacturer." },
 	{ name: "model", type: "string", description: "The vehicle model." },
 	{ name: "lengthFeet", type: "integer | string | null", description: "The vehicle length in feet." },
-	{ name: "powertrain", type: "integer", description: "The powertrain type." },
+	{
+		name: "powertrain",
+		type: "integer",
+		description: "The powertrain type.",
+		enumDefinition: {
+			0: "Diesel",
+			1: "Gasoline",
+			2: "Diesel-Electric Hybrid",
+			3: "Hydrogen",
+		},
+	},
 ];

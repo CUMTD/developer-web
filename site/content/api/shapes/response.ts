@@ -2,7 +2,7 @@ import type { ApiResponseAttribute } from "@t/documentation-types";
 
 export const response: ApiResponseAttribute[] = [
 	{
-		name: "id",
+		name: "shapeId",
 		type: "string",
 		description: "Unique identifier for the shape.",
 	},

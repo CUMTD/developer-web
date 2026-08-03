@@ -1,22 +1,22 @@
 {
 	"result": [
 		{
-			"id": "2102",
+			"vehicleId": "2102",
 			"location": {
 				"latitude": 40.1162,
 				"longitude": -88.19825
 			},
-			"lastUpdated": "2026-04-07T18:37:20.4313484+00:00",
+			"lastUpdated": "2026-04-07T18:37:20.4313484-05:00",
 			"trip": null,
 			"route": null
 		},
 		{
-			"id": "1722",
+			"vehicleId": "1722",
 			"location": {
 				"latitude": 40.115417,
 				"longitude": -88.198567
 			},
-			"lastUpdated": "2026-04-07T18:37:20.4314403+00:00",
+			"lastUpdated": "2026-04-07T18:37:20.4314403-05:00",
 			"trip": null,
 			"route": null
 		}

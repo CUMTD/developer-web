@@ -1,13 +1,13 @@
 {
 	"result": {
-		"id": "9773e862-95fa-4697-9e94-edb6d59bdd75",
+		"routeGroupId": "9773e862-95fa-4697-9e94-edb6d59bdd75",
 		"sortNumber": 1,
 		"routeGroupName": "Yellow",
 		"color": "fcee1f",
 		"textColor": "000000",
 		"routes": [
 			{
-				"id": "ac3fc3d0-37af-468f-8b24-d061de7bea93",
+				"routeId": "ac3fc3d0-37af-468f-8b24-d061de7bea93",
 				"number": "1",
 				"firstTrip": "06:10:00",
 				"lastTrip": "19:19:00",

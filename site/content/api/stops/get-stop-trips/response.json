@@ -1,7 +1,7 @@
 {
 	"result": [
 		{
-			"id": "[@6.0.66478040@][42][1750109522515]/0__R1_SA",
+			"tripId": "[@6.0.66478040@][42][1750109522515]/0__R1_SA",
 			"blockId": "R1 SA",
 			"shapeId": "[@6.0.66478040@]18",
 			"headsign": "Illini Union",
@@ -11,7 +11,7 @@
 				"shortName": "U"
 			},
 			"route": {
-				"id": "93db236e-0d00-42d7-be2a-ca0ecaedf813",
+				"routeId": "93db236e-0d00-42d7-be2a-ca0ecaedf813",
 				"gtfsRouteId": "RED SATURDAY",
 				"longName": "Red",
 				"shortName": "20",
@@ -20,7 +20,7 @@
 			}
 		},
 		{
-			"id": "[@6.0.66478040@][42][1749224458239]/30__R1_SA",
+			"tripId": "[@6.0.66478040@][42][1749224458239]/30__R1_SA",
 			"blockId": "R1 SA",
 			"shapeId": "[@6.0.66478040@]17",
 			"headsign": "Urbana Meijer",
@@ -30,7 +30,7 @@
 				"shortName": "U"
 			},
 			"route": {
-				"id": "93db236e-0d00-42d7-be2a-ca0ecaedf813",
+				"routeId": "93db236e-0d00-42d7-be2a-ca0ecaedf813",
 				"gtfsRouteId": "RED SATURDAY",
 				"longName": "Red",
 				"shortName": "20",

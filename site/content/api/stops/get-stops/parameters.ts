@@ -26,12 +26,12 @@ export const responseAttributes: ApiResponseAttribute[] = [
 			1: "Boarding Point",
 		},
 	},
-	{ name: "id", type: "string", description: "Stable identifier for this stop." },
+	{ name: "stopId", type: "string", description: "Stable identifier for this stop." },
 	{ name: "name", type: "string", description: "Human-readable name for this stop." },
 	{
-		name: "stopCode",
+		name: "smsCode",
 		type: "string | null",
-		description: "The 4-digit stop code displayed on bus stop signs. Used for MTD's SMS Service.",
+		description: "4-digit SMS code for the boarding point, used for Text-My-Stop and https://mtd.org/stop/{code}",
 	},
 	{ name: "url", type: "string | null", description: "Link to the stop info page on MTD's website." },
 	{
@@ -69,12 +69,12 @@ export const responseAttributes: ApiResponseAttribute[] = [
 				description:
 					'Sub-name describing the boarding point location, e.g. "SE Corner". Usually contained in parentheses.',
 			},
-			{ name: "id", type: "string", description: "Stable identifier for this boarding point." },
+			{ name: "stopId", type: "string", description: "Stable identifier for this boarding point." },
 			{ name: "name", type: "string", description: "Full name of the boarding point." },
 			{
-				name: "stopCode",
+				name: "smsCode",
 				type: "string | null",
-				description: "The 4-digit stop code displayed on bus stop signs. Used for MTD's SMS Service.",
+				description: "4-digit SMS code for the boarding point, used for Text-My-Stop and https://mtd.org/stop/{code}",
 			},
 			{ name: "url", type: "string | null", description: "Link to the boarding point info page on MTD's website." },
 			{
