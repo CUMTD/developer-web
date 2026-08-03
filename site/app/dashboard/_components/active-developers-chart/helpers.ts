@@ -15,21 +15,22 @@ import { CHART_COLORS, type ChartDatum, type DashboardBarChartData } from "../da
  */
 export default function buildActiveDevelopersChartData(
 	rows: Readonly<AdminDeveloperActivityResult[]>,
+	endDate: Date,
+	dayCount: number,
 ): DashboardBarChartData {
-	const now = new Date();
-	const last30Days: Date[] = [];
+	const days: Date[] = [];
 
-	for (let index = 29; index >= 0; index--) {
-		const day = new Date(now);
+	for (let index = dayCount - 1; index >= 0; index--) {
+		const day = new Date(endDate);
 		day.setDate(day.getDate() - index);
 		day.setHours(0, 0, 0, 0);
-		last30Days.push(day);
+		days.push(day);
 	}
 
 	// Map dateStr → set of distinct developer IDs seen on that day.
 	const developersByDay = new Map<string, Set<string>>();
 
-	for (const day of last30Days) {
+	for (const day of days) {
 		const dateStr = day.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 		developersByDay.set(dateStr, new Set());
 	}

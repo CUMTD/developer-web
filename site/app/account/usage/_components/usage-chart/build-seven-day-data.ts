@@ -20,15 +20,14 @@ import { CHART_COLORS, type ChartDatum, type ChartSeries, type UsageChartData } 
  *   responsibility). Filtering happens in page.tsx to avoid repeating the work
  *   across the several builders that all use the same window.
  */
-export default function buildSevenDayData(last7DaysUsage: DailyUsageResult[]): UsageChartData {
-	const now = new Date();
+export default function buildSevenDayData(last7DaysUsage: DailyUsageResult[], endDate: Date): UsageChartData {
 	const last7Days: Date[] = [];
 
-	// Build an ordered list of the 7 days ending today (index 6 = today, 0 = 6 days ago).
+	// Build an ordered list of the 7 days ending at endDate (index 6 = endDate, 0 = 6 days before).
 	// setHours(0,0,0,0) normalises to midnight local time so date-string comparisons
 	// against localDate from DailyUsageResult are consistent.
 	for (let index = 6; index >= 0; index--) {
-		const day = new Date(now);
+		const day = new Date(endDate);
 		day.setDate(day.getDate() - index);
 		day.setHours(0, 0, 0, 0);
 		last7Days.push(day);

@@ -10,7 +10,11 @@ import { buildStatusCodeChartData } from "../status-code-breakdown-chart/helpers
  *
  * @param rows - All (date, status_code, request_count) rows for the last 30 days.
  */
-export default function buildErrorResponsesChartData(rows: Readonly<AdminRequestStatsResult[]>): DashboardBarChartData {
+export default function buildErrorResponsesChartData(
+	rows: Readonly<AdminRequestStatsResult[]>,
+	endDate: Date,
+	dayCount: number,
+): DashboardBarChartData {
 	const errorRows = rows.filter(({ statusCode }) => statusCode !== 200);
-	return buildStatusCodeChartData(errorRows);
+	return buildStatusCodeChartData(errorRows, endDate, dayCount);
 }

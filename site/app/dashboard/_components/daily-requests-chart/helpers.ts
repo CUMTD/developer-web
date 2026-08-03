@@ -10,20 +10,23 @@ import { CHART_COLORS, type ChartDatum, type DashboardBarChartData } from "../da
  *
  * @param rows - All (date, status_code, request_count) rows for the last 30 days.
  */
-export default function buildDailyRequestsChartData(rows: Readonly<AdminRequestStatsResult[]>): DashboardBarChartData {
-	const now = new Date();
-	const last30Days: Date[] = [];
+export default function buildDailyRequestsChartData(
+	rows: Readonly<AdminRequestStatsResult[]>,
+	endDate: Date,
+	dayCount: number,
+): DashboardBarChartData {
+	const days: Date[] = [];
 
-	for (let index = 29; index >= 0; index--) {
-		const day = new Date(now);
+	for (let index = dayCount - 1; index >= 0; index--) {
+		const day = new Date(endDate);
 		day.setDate(day.getDate() - index);
 		day.setHours(0, 0, 0, 0);
-		last30Days.push(day);
+		days.push(day);
 	}
 
 	const dayMap = new Map<string, number>();
 
-	for (const day of last30Days) {
+	for (const day of days) {
 		const dateStr = day.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 		dayMap.set(dateStr, 0);
 	}

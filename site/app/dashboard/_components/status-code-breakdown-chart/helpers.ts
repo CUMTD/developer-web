@@ -13,15 +13,18 @@ import { CHART_COLORS, type ChartDatum, type DashboardBarChartData } from "../da
  *
  * @param rows - Pre-filtered (date, status_code, request_count) rows.
  */
-export function buildStatusCodeChartData(rows: Readonly<AdminRequestStatsResult[]>): DashboardBarChartData {
-	const now = new Date();
-	const last30Days: Date[] = [];
+export function buildStatusCodeChartData(
+	rows: Readonly<AdminRequestStatsResult[]>,
+	endDate: Date,
+	dayCount: number,
+): DashboardBarChartData {
+	const days: Date[] = [];
 
-	for (let index = 29; index >= 0; index--) {
-		const day = new Date(now);
+	for (let index = dayCount - 1; index >= 0; index--) {
+		const day = new Date(endDate);
 		day.setDate(day.getDate() - index);
 		day.setHours(0, 0, 0, 0);
-		last30Days.push(day);
+		days.push(day);
 	}
 
 	// Collect distinct status codes and sort ascending.
@@ -42,7 +45,7 @@ export function buildStatusCodeChartData(rows: Readonly<AdminRequestStatsResult[
 	// Pre-populate all buckets with 0 for every series.
 	const dayMap = new Map<string, ChartDatum>();
 
-	for (const day of last30Days) {
+	for (const day of days) {
 		const dateStr = day.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 		const row: ChartDatum = { date: dateStr };
 

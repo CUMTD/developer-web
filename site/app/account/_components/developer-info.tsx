@@ -16,7 +16,7 @@ export default function DeveloperInfo({
 }: DeveloperInfoProps) {
 	return (
 		<div className="space-y-4">
-			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 max-w-3xl">
+			<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 ">
 				<Item variant="muted">
 					<ItemContent>
 						<ItemHeader>Maximum Requests / Hour</ItemHeader>

@@ -19,15 +19,14 @@ import { CHART_COLORS, type ChartDatum, type ChartSeries, type UsageChartData } 
  * @param last24HoursUsage - Rows already filtered to the last 24 hours
  *   (caller's responsibility). See page.tsx for the filter logic.
  */
-export default function buildTwentyFourHourData(last24HoursUsage: DailyUsageResult[]): UsageChartData {
-	const now = new Date();
+export default function buildTwentyFourHourData(last24HoursUsage: DailyUsageResult[], endDate: Date): UsageChartData {
 	const last24Hours: Date[] = [];
 
-	// Walk backwards from the current hour, creating one Date per hour bucket.
+	// Walk backwards from endDate, creating one Date per hour bucket.
 	// setMinutes(0,0,0) truncates to the top of the hour so the format string
 	// matches what we'll produce from localHour during accumulation below.
 	for (let index = 23; index >= 0; index--) {
-		const hour = new Date(now);
+		const hour = new Date(endDate);
 		hour.setHours(hour.getHours() - index);
 		hour.setMinutes(0, 0, 0);
 		last24Hours.push(hour);

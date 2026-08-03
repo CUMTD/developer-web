@@ -51,12 +51,14 @@ export type ResponseTimeChartData = Readonly<{
  *
  * @param last7DaysUsage - Rows already filtered to the last 7 days.
  */
-export default function buildResponseTimeChartData(last7DaysUsage: DailyUsageResult[]): ResponseTimeChartData {
-	const now = new Date();
+export default function buildResponseTimeChartData(
+	last7DaysUsage: DailyUsageResult[],
+	endDate: Date,
+): ResponseTimeChartData {
 	const last7Days: Date[] = [];
 
 	for (let index = 6; index >= 0; index--) {
-		const day = new Date(now);
+		const day = new Date(endDate);
 		day.setDate(day.getDate() - index);
 		day.setHours(0, 0, 0, 0);
 		last7Days.push(day);

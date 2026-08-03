@@ -1,6 +1,8 @@
 import { H2 } from "@common/typography/heading";
 import { getDailyUsage } from "@server/actions/account/get-daily-usage";
 import { createClient } from "@server/supabase/server";
+import { Alert, AlertDescription, AlertTitle } from "@ui/alert";
+import { InfoIcon } from "lucide-react";
 import type { Metadata } from "next";
 import { unauthorized } from "next/navigation";
 import buildApiKeyUsageChartData from "./_components/api-key-usage-chart/helpers";
@@ -67,23 +69,42 @@ export default async function UsagePage() {
 	// Single fetch for all charts — avoids N+1 round trips to Supabase.
 	const dailyUsage = await getDailyUsage();
 
-	// Capture `now` once so all time-window comparisons are evaluated at the same instant.
-	const now = Date.now();
+	// Lightweight lookup: key string → display name for the API key chart labels.
+	const { data: apiKeyRows } = await supabase.from("api_key").select("key, name");
+	const apiKeyNames = new Map((apiKeyRows ?? []).map(({ key, name }) => [key, name]));
+
+	// Data takes ~8 days to fully populate, so the effective "now" is shifted
+	// back 8 days. All time-window filters below are relative to this value.
+	const DATA_LAG_MS = 8 * 24 * 60 * 60 * 1000;
+	const now = Date.now() - DATA_LAG_MS;
+	const endDate = new Date(now);
 
 	// 24-hour window: used only by the hourly bar chart.
-	const last24HoursUsage = dailyUsage.filter(({ utcDate }) => utcDate.getTime() >= now - 24 * 60 * 60 * 1000);
-	const { chartData, chartConfig, chartSeries, endpointCount } = buildTwentyFourHourData(last24HoursUsage);
+	const last24HoursUsage = dailyUsage.filter(
+		({ utcDate }) => utcDate.getTime() >= now - 24 * 60 * 60 * 1000 && utcDate.getTime() < now,
+	);
+	const { chartData, chartConfig, chartSeries, endpointCount } = buildTwentyFourHourData(last24HoursUsage, endDate);
 
 	// 7-day window: shared by all remaining charts to avoid re-filtering.
-	const last7DaysUsage = dailyUsage.filter(({ utcDate }) => utcDate.getTime() >= now - 7 * 24 * 60 * 60 * 1000);
-	const sevenDayChartData = buildSevenDayData(last7DaysUsage);
-	const responseTimeChartData = buildResponseTimeChartData(last7DaysUsage);
+	const last7DaysUsage = dailyUsage.filter(
+		({ utcDate }) => utcDate.getTime() >= now - 7 * 24 * 60 * 60 * 1000 && utcDate.getTime() < now,
+	);
+	const sevenDayChartData = buildSevenDayData(last7DaysUsage, endDate);
+	const responseTimeChartData = buildResponseTimeChartData(last7DaysUsage, endDate);
 	const statusCodeChartData = buildStatusCodeChartData(last7DaysUsage);
-	const apiKeyChartData = buildApiKeyUsageChartData(last7DaysUsage);
+	const apiKeyChartData = buildApiKeyUsageChartData(last7DaysUsage, apiKeyNames, endDate);
 
 	return (
 		<>
 			<H2 wrapProse>API Usage</H2>
+			<Alert className="mb-6">
+				<InfoIcon />
+				<AlertTitle>Data Delay</AlertTitle>
+				<AlertDescription>
+					Usage data takes up to 8 days to fully process. Charts below reflect activity through{" "}
+					{new Date(now).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}.
+				</AlertDescription>
+			</Alert>
 			{/*
 			 * 2-column responsive grid. Charts that should span the full width
 			 * use md:col-span-2. Single column on mobile for all items.

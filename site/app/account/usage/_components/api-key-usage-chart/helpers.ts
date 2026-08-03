@@ -1,4 +1,3 @@
-import { obfuscateKeyString } from "@common/obfuscated-key";
 import type DailyUsageResult from "@t/daily-usage-result";
 import type { ChartConfig } from "@ui/chart";
 import { CHART_COLORS, type ChartDatum, type ChartSeries, type UsageChartData } from "../usage-chart/types";
@@ -15,19 +14,23 @@ import { CHART_COLORS, type ChartDatum, type ChartSeries, type UsageChartData } 
  *     collisions if both charts are on the same page with the same ChartConfig.
  *  3. The raw API key string is stored in ChartSeries.endpoint (used internally
  *     as a React key and for data lookup), but the ChartConfig label shown in
- *     the tooltip and legend uses obfuscateKeyString() so the full key is never
- *     exposed in the UI. Format: "abcd***...***wxyz".
+ *     the tooltip and legend uses the key's display name (from apiKeyNames map)
+ *     so the full key is never exposed in the UI.
  *
  * Because this component reuses UsageChart, no separate chart component is needed.
  *
  * @param last7DaysUsage - Rows already filtered to the last 7 days.
+ * @param apiKeyNames - Map of raw API key string → display name.
  */
-export default function buildApiKeyUsageChartData(last7DaysUsage: DailyUsageResult[]): UsageChartData {
-	const now = new Date();
+export default function buildApiKeyUsageChartData(
+	last7DaysUsage: DailyUsageResult[],
+	apiKeyNames: ReadonlyMap<string, string>,
+	endDate: Date,
+): UsageChartData {
 	const last7Days: Date[] = [];
 
 	for (let index = 6; index >= 0; index--) {
-		const day = new Date(now);
+		const day = new Date(endDate);
 		day.setDate(day.getDate() - index);
 		day.setHours(0, 0, 0, 0);
 		last7Days.push(day);
@@ -50,10 +53,8 @@ export default function buildApiKeyUsageChartData(last7DaysUsage: DailyUsageResu
 		color: CHART_COLORS[index % CHART_COLORS.length],
 	}));
 
-	// obfuscateKeyString produces "abcd***...***wxyz" so the tooltip and legend
-	// show a recognisable but safe representation of each key.
 	const chartConfig: ChartConfig = Object.fromEntries(
-		chartSeries.map(({ endpoint, key, color }) => [key, { label: obfuscateKeyString(endpoint), color }]),
+		chartSeries.map(({ endpoint, key, color }) => [key, { label: apiKeyNames.get(endpoint) ?? endpoint, color }]),
 	);
 
 	// Zero-fill all day buckets before accumulating (same pattern as buildSevenDayData).
