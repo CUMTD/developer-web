@@ -3,6 +3,12 @@ packages:
   - ./packages/*
   - ./tools
 
+allowBuilds:
+  '@sentry/cli': true
+  esbuild: true
+  sharp: true
+  supabase: true
+
 onlyBuiltDependencies:
   - "@sentry/cli"
   - esbuild

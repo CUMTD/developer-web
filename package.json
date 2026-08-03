@@ -15,19 +15,19 @@
 	],
 	"description": "Monorepo for MTD Developer API docs site and NPM packages",
 	"devDependencies": {
-		"@biomejs/biome": "2.4.9",
-		"@changesets/cli": "^2.30.0",
-		"@commitlint/cli": "^20.5.0",
-		"@commitlint/config-conventional": "^20.5.0",
-		"@types/node": "^25.5.0",
+		"@biomejs/biome": "2.4.16",
+		"@changesets/cli": "^2.31.0",
+		"@commitlint/cli": "^21.0.2",
+		"@commitlint/config-conventional": "^21.0.2",
+		"@types/node": "^25.9.1",
 		"cross-env": "^10.1.0",
-		"dotenv": "^17.3.1",
+		"dotenv": "^17.4.2",
 		"dotenv-cli": "^11.0.0",
 		"husky": "^9.1.7",
-		"lint-staged": "^16.4.0",
-		"supabase": "^2.84.4",
-		"tsx": "^4.21.0",
-		"typescript": "^6.0.2"
+		"lint-staged": "^17.0.7",
+		"supabase": "^2.104.0",
+		"tsx": "^4.22.4",
+		"typescript": "^6.0.3"
 	},
 	"engines": {
 		"node": "v22.x"
@@ -35,7 +35,7 @@
 	"homepage": "https://mtd.dev/",
 	"license": "Apache-2.0",
 	"name": "@mtd.org/developer-web-monorepo",
-	"packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
+	"packageManager": "pnpm@11.20.0+sha512.9a6f330a95b66446ea088faf1521405a8a01f07fde7124cc9958dfed52d4bb436737e65b08f85f37b46fcba375092558ac51262b816844b22f63406ed166bfee",
 	"private": true,
 	"repository": {
 		"type": "github",
@@ -52,7 +52,7 @@
 		"dev": "pnpm -r dev",
 		"format": "biome format .",
 		"format:fix": "biome format . --write",
-		"gen": "pnpm -r gen",
+		"gen": "pnpm -r --sort gen",
 		"lint": "biome lint .",
 		"lint:fix": "biome lint . --write",
 		"prebuild": "pnpm run gen",
